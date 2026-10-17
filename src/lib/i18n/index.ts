@@ -9,3 +9,6 @@ export const DEFAULT_LOCALE: Locale = 'en';
 export function isLocale(value: unknown): value is Locale {
   return typeof value === 'string' && value in dictionaries;
 }
+
+/** Native names, shown as-is in every language. */
+export const LOCALE_NAMES: Record<Locale, string> = { en: 'English', tr: 'Türkçe' };

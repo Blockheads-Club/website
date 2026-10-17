@@ -1,21 +1,39 @@
-import { render, screen } from '@testing-library/svelte';
+import { render, screen, waitFor, within } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 import { createRawSnippet } from 'svelte';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { i18n } from '$lib/locale.svelte';
 import { prerender } from './+layout';
 import Layout from './+layout.svelte';
-import Page from './+page.svelte';
+import Home from './+page.svelte';
+import Faq from './faq/+page.svelte';
+import Guides from './guides/+page.svelte';
+import Article from './guides/fix-game-on-phone/+page.svelte';
+import Legal from './legal/+page.svelte';
+import Server from './server/+page.svelte';
+
+const nav = vi.hoisted(() => ({ path: '/', hash: '', goto: vi.fn() }));
+vi.mock('$app/state', () => ({
+  page: {
+    get url() {
+      return new URL('http://localhost' + nav.path);
+    }
+  }
+}));
+vi.mock('$app/navigation', () => ({ goto: nav.goto }));
 
 const children = createRawSnippet(() => ({ render: () => '<p>child</p>' }));
 
 beforeEach(() => {
   vi.stubGlobal('matchMedia', () => ({ matches: false }));
+  nav.path = '/';
 });
 afterEach(() => {
   vi.unstubAllGlobals();
   localStorage.clear();
   i18n.locale = 'en';
+  location.hash = '';
+  nav.goto.mockClear();
 });
 
 describe('layout', () => {
@@ -32,52 +50,142 @@ describe('layout', () => {
     expect(document.documentElement.dataset.theme).toBe('dark');
     expect(document.title).toBe('Blockheads Club');
     const meta = (sel: string) => document.head.querySelector(sel)?.getAttribute('content');
-    expect(meta('meta[property="og:image"]')).toBe(
-      'https://blockheads-club.github.io/website/social-preview.png'
-    );
+    expect(meta('meta[property="og:image"]')).toBe('https://blockheads-club.github.io/website/social-preview.png');
     expect(meta('meta[name="twitter:card"]')).toBe('summary_large_image');
-    expect(screen.getAllByRole('link', { name: 'Blockheads Club' })[0].querySelector('img')).not.toBeNull();
   });
 
-  it('switches language and theme from the header', async () => {
+  it('sets a per-page title and falls back for unknown routes', () => {
+    nav.path = '/server';
+    const { unmount } = render(Layout, { children });
+    expect(document.title).toBe('Server quick start · Blockheads Club');
+    unmount();
+    nav.path = '/missing';
+    render(Layout, { children });
+    expect(document.title).toBe('Blockheads Club');
+  });
+
+  it('switches language from the header menu and theme', async () => {
     const user = userEvent.setup();
     render(Layout, { children });
-    expect(screen.getByRole('button', { name: 'EN' })).toHaveAttribute('aria-pressed', 'true');
-    await user.click(screen.getByRole('button', { name: 'TR' }));
-    expect(screen.getByRole('link', { name: 'Yamalayıcı' })).toBeInTheDocument();
+    await user.click(screen.getAllByRole('button', { name: 'Language: English' })[0]);
+    await user.click(screen.getByRole('menuitemradio', { name: /Türkçe/ }));
+    expect(screen.getAllByRole('link', { name: 'Yamalayıcı' }).length).toBeGreaterThan(0);
     expect(document.documentElement.lang).toBe('tr');
-
     await user.click(screen.getByRole('button', { name: 'Koyu temaya geç' }));
     expect(document.documentElement.dataset.theme).toBe('dark');
-    await user.click(screen.getByRole('button', { name: 'Açık temaya geç' }));
-    expect(document.documentElement.dataset.theme).toBe('light');
   });
 });
 
-describe('page', () => {
-  it('has all sections and the required links', () => {
-    render(Page);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Keep The Blockheads playable.');
-    for (const name of ['Patcher', 'Server', 'Guides', 'FAQ', 'Legal notice']) {
-      expect(screen.getByRole('heading', { level: 2, name })).toBeInTheDocument();
-    }
+describe('home', () => {
+  it('has sections and real links', () => {
+    render(Home);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Keep The Blockheads playable');
     const hrefs = screen.getAllByRole('link').map((a) => a.getAttribute('href'));
     expect(hrefs).toContain('https://blockheads-club.github.io/blockheads-patcher/');
-    expect(hrefs).toContain('https://github.com/Blockheads-Club/blockheads-server');
     expect(hrefs).toContain('https://github.com/Blockheads-Club/blockheads-patcher/releases');
-    expect(screen.getByText(/not affiliated with, endorsed by/)).toBeInTheDocument();
-    expect(screen.getByText(/do not distribute any game files/)).toBeInTheDocument();
+    expect(hrefs).toContain('/server');
+    expect(screen.getByText('[VERSION]')).toHaveClass('ph');
+    expect(screen.getByText('Is this the official Blockheads?').closest('details')).toHaveAttribute('open');
+    expect(screen.getAllByText('Coming soon')).toHaveLength(2);
   });
 
-  it('renders guides as ordered lists and FAQ as details', () => {
-    render(Page);
-    expect(screen.getAllByRole('list').length).toBeGreaterThan(3);
-    expect(screen.getByText('Do you distribute the game?').closest('details')).not.toBeNull();
-  });
-
-  it('renders Turkish content', () => {
+  it('renders Turkish', () => {
     i18n.locale = 'tr';
-    render(Page);
+    render(Home);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('oynanabilir');
+  });
+
+  it('redirects legacy anchors', async () => {
+    location.hash = '#faq';
+    render(Home);
+    await waitFor(() => expect(nav.goto).toHaveBeenCalledWith('/faq', { replaceState: true }));
+  });
+
+  it('keeps #patcher on the page', () => {
+    location.hash = '#patcher';
+    render(Home);
+    expect(nav.goto).not.toHaveBeenCalled();
+  });
+});
+
+describe('server', () => {
+  it('switches platform tabs and shows commands', async () => {
+    const user = userEvent.setup();
+    render(Server);
+    expect(screen.getByRole('tab', { name: 'Linux' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByText(/tar -xzf blockheads-server-linux-x64/)).toBeInTheDocument();
+    for (const name of ['Windows', 'macOS', 'Raspberry Pi', 'Docker', 'Android']) {
+      await user.click(screen.getByRole('tab', { name }));
+      expect(screen.getByRole('tab', { name })).toHaveAttribute('aria-selected', 'true');
+    }
+    expect(screen.getByRole('link', { name: 'Download for Android' })).toBeInTheDocument();
+    await user.click(screen.getByRole('tab', { name: 'Windows' }));
+    expect(screen.getByText(/blockheads-server\.exe/)).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /Example QR code/ })).toBeInTheDocument();
+    expect(screen.getAllByText('[IMAGE]').length).toBeGreaterThan(0);
+  });
+});
+
+describe('guides index', () => {
+  it('filters by chip and search, and can be cleared', async () => {
+    const user = userEvent.setup();
+    render(Guides);
+    expect(screen.getByRole('heading', { level: 2, name: 'Start here' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Server' }));
+    expect(screen.queryByRole('heading', { name: 'Patcher' })).toBeNull();
+    expect(screen.getByRole('heading', { level: 2, name: 'Server' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Patcher' }));
+    expect(screen.queryByRole('heading', { level: 2, name: 'Server' })).toBeNull();
+    await user.click(screen.getByRole('button', { name: 'All guides' }));
+    await user.type(screen.getByRole('searchbox', { name: 'Search guides' }), 'raspberry');
+    expect(screen.getAllByText('Run a 24/7 server on a Raspberry Pi')).toHaveLength(1);
+    expect(screen.queryByText('Docker and Docker Compose')).toBeNull();
+    await user.clear(screen.getByRole('searchbox'));
+    await user.type(screen.getByRole('searchbox'), 'zzzz');
+    expect(screen.getByText('No guides match your search.')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Clear search and filters' }));
+    expect(screen.queryByText('No guides match your search.')).toBeNull();
+  });
+});
+
+describe('article', () => {
+  it('has toc, placeholders and feedback', async () => {
+    const user = userEvent.setup();
+    render(Article);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Fix the game on your phone');
+    expect(screen.getByRole('navigation', { name: 'On this page' })).toBeInTheDocument();
+    expect(screen.getByText('[SCREENSHOT — world list and backup option]')).toBeInTheDocument();
+    expect(screen.getByText('[DATE]')).toHaveClass('ph');
+    expect(within(screen.getByRole('navigation', { name: 'Breadcrumb' })).getAllByRole('link')).toHaveLength(2);
+    await user.click(screen.getByRole('button', { name: 'Yes' }));
+    expect(screen.getByRole('button', { name: 'Yes' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('status')).toHaveTextContent('Thanks for the feedback!');
+    await user.click(screen.getByRole('button', { name: 'No' }));
+    expect(screen.getByRole('button', { name: 'No' })).toHaveAttribute('aria-pressed', 'true');
+  });
+});
+
+describe('faq and legal', () => {
+  it('faq has sections, details and a sidebar', async () => {
+    const user = userEvent.setup();
+    render(Faq);
+    expect(screen.getByText('Do you upload my game file?').closest('details')).not.toBeNull();
+    const side = screen.getByRole('navigation', { name: 'FAQ sections' });
+    expect(within(side).getByRole('link', { name: 'About the project' })).toHaveAttribute('aria-current', 'true');
+    await user.click(within(side).getByRole('link', { name: 'Server' }));
+    expect(within(side).getByRole('link', { name: 'Server' })).toHaveAttribute('aria-current', 'true');
+    await user.click(within(side).getByRole('link', { name: 'Getting help' }));
+    expect(within(side).getByRole('link', { name: 'Getting help' })).toHaveAttribute('aria-current', 'true');
+    expect(screen.getByRole('link', { name: 'Open an issue' })).toHaveAttribute(
+      'href',
+      'https://github.com/Blockheads-Club/blockheads-patcher/issues'
+    );
+  });
+
+  it('legal keeps placeholders and the disclaimer', () => {
+    render(Legal);
+    expect(screen.getAllByText('[CONTACT EMAIL]').length).toBe(2);
+    expect(screen.getByText(/not affiliated with, endorsed, sponsored or approved by/)).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(8);
   });
 });

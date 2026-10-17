@@ -54,3 +54,31 @@ describe('theme', () => {
     expect(theme.value).toBe('dark');
   });
 });
+
+describe('theme preference', () => {
+  it('system removes the stored value and follows the OS', async () => {
+    const { setThemePref, cycleThemePref } = await import('./theme.svelte');
+    mockMedia(true);
+    setTheme('light');
+    setThemePref('system');
+    expect(theme.pref).toBe('system');
+    expect(theme.value).toBe('dark');
+    expect(localStorage.getItem('bh-theme')).toBeNull();
+    cycleThemePref();
+    expect(theme.pref).toBe('light');
+    cycleThemePref();
+    expect(theme.pref).toBe('dark');
+    cycleThemePref();
+    expect(theme.pref).toBe('system');
+  });
+
+  it('system survives unavailable storage', async () => {
+    const { setThemePref } = await import('./theme.svelte');
+    mockMedia(false);
+    vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {
+      throw new Error('blocked');
+    });
+    setThemePref('system');
+    expect(theme.value).toBe('light');
+  });
+});

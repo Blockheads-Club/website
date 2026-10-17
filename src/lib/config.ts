@@ -5,7 +5,9 @@ export const LINKS = {
   serverRepo: 'https://github.com/Blockheads-Club/blockheads-server',
   serverReleases: 'https://github.com/Blockheads-Club/blockheads-server/releases',
   org: 'https://github.com/Blockheads-Club',
-  websiteRepo: 'https://github.com/Blockheads-Club/website'
+  websiteRepo: 'https://github.com/Blockheads-Club/website',
+  websiteIssues: 'https://github.com/Blockheads-Club/website/issues',
+  patcherIssues: 'https://github.com/Blockheads-Club/blockheads-patcher/issues'
 } as const;
 
 /** Canonical site URL (GitHub Pages); used for absolute OpenGraph URLs. Ends with a slash. */

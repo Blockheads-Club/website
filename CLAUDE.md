@@ -19,3 +19,7 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
   100% branch threshold; use `{"#" + x}` instead.
 - Theme: `data-theme` on `<html>`, set early by the inline script in `src/app.html`; stored in `localStorage` (`bh-theme`, `bh-locale`).
 - External links live in `src/lib/config.ts`.
+- Design: "Sunlit Blocks" tokens + shared classes (`.btn`, `.card`, `.badge`, ...) live in `src/app.css`; fonts are self-hosted via
+  `@fontsource*` (no Google Fonts, CSP unchanged). Inline markup in dictionary strings: `**bold**`, `` `mono` ``, `{{placeholder}}`,
+  `[label](linkKey)` (see `src/lib/rich.ts`, `Rich.svelte`). Avoid `{a} {b}` text interpolation (use `{a + ' ' + b}`) for the same branch-coverage reason.
+- Routes: `/`, `/server`, `/guides`, `/guides/fix-game-on-phone`, `/faq`, `/legal`. Old `/#faq` etc. anchors redirect client-side.

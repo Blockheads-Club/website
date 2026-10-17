@@ -1,13 +1,20 @@
 <script lang="ts">
   import '../app.css';
   import { onMount } from 'svelte';
+  import { base } from '$app/paths';
+  import { page } from '$app/state';
   import Footer from '$lib/components/Footer.svelte';
   import { SITE_URL } from '$lib/config';
   import Header from '$lib/components/Header.svelte';
   import { dict, initLocale } from '$lib/locale.svelte';
+  import { routeKey } from '$lib/route';
   import { initTheme } from '$lib/theme.svelte';
 
   let { children } = $props();
+
+  const route = $derived(routeKey(page.url.pathname, base));
+  const home = $derived(route === 'home');
+  const title = $derived(route === 'other' ? dict().meta.title : dict().meta.titles[route]);
 
   onMount(() => {
     initLocale();
@@ -16,7 +23,7 @@
 </script>
 
 <svelte:head>
-  <title>Blockheads Club</title>
+  <title>{'' + title}</title>
   <meta name="description" content={dict().meta.description} />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Blockheads Club" />
@@ -33,8 +40,8 @@
 </svelte:head>
 
 <a class="skip" href="#main">{dict().nav.skip}</a>
-<Header />
+<Header {route} hero={home} />
 <main id="main">
   {@render children()}
 </main>
-<Footer />
+<Footer {route} rich={home} />
