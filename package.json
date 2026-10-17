@@ -1,0 +1,36 @@
+{
+  "name": "blockheads-club-website",
+  "version": "0.0.0",
+  "private": true,
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview --port 4173 --strictPort",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "test": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "release": "semantic-release"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/github": "^11.0.0",
+    "@semantic-release/release-notes-generator": "^14.0.0",
+    "@sveltejs/adapter-static": "^3.0.0",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^6.0.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/svelte": "^5.0.0",
+    "@testing-library/user-event": "^14.0.0",
+    "@vitest/coverage-v8": "3.2.4",
+    "jsdom": "^26.0.0",
+    "semantic-release": "^24.0.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "typescript": "5.9.3",
+    "vite": "^7.0.0",
+    "vitest": "3.2.4"
+  }
+}

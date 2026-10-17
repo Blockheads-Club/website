@@ -1,0 +1,11 @@
+node_modules/
+.svelte-kit/
+build/
+coverage/
+test-results/
+playwright-report/
+.wrangler/
+*.apk
+*.obb
+.env
+.env.*
