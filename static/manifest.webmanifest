@@ -1,0 +1,14 @@
+{
+  "name": "Blockheads Club",
+  "short_name": "Blockheads",
+  "start_url": ".",
+  "scope": ".",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#1f6feb",
+  "icons": [
+    { "src": "icon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
