@@ -184,7 +184,7 @@ export const en = {
     quick: {
       eyebrow: 'Quick start',
       title: 'Pick your platform',
-      lead: 'Each step has a command you can copy. The server keeps running until you close it or press Ctrl + C.',
+      lead: 'Each step has a command you can copy. To stop the server cleanly, type /stop in its console: it saves the world and exits. Ctrl + C stops it without a final save.',
       tabsLabel: 'Platform',
       copy: 'Copy',
       copied: 'Copied',
@@ -196,7 +196,7 @@ export const en = {
           steps: [
             {
               title: 'Download and unzip',
-              text: 'Get `blockheads-server-windows-x64.zip` and unzip it into a folder, for example Documents\\Blockheads Server.',
+              text: 'Get `blockheads-server-v0.1.1-x86_64-pc-windows-msvc.zip` (or `aarch64-pc-windows-msvc` on ARM) and unzip it into a folder, for example Documents\\Blockheads Server.',
               button: 'Download for Windows'
             },
             {
@@ -227,7 +227,7 @@ export const en = {
             { title: 'Download and unpack' },
             {
               title: 'Start the server',
-              hint: 'Run it as a service with the Raspberry Pi steps — they work on any systemd Linux.'
+              hint: 'Run it as a service with the Raspberry Pi guide — its systemd steps work on any systemd Linux.'
             }
           ] as Step[]
         },
@@ -236,9 +236,12 @@ export const en = {
           steps: [
             {
               title: 'Download the ARM build',
-              text: 'Use the 64-bit build on Raspberry Pi 4 and 5 with a 64-bit OS.'
+              text: 'Use the `aarch64` build on a 64-bit OS and the `armv7` build on a 32-bit OS.'
             },
-            { title: 'Start it on every boot' }
+            {
+              title: 'Start it on every boot',
+              text: 'Create a systemd service as shown in the [Raspberry Pi guide](raspberryPi), then enable it:'
+            }
           ] as Step[]
         },
         docker: {
@@ -246,7 +249,7 @@ export const en = {
           steps: [
             {
               title: 'Run the container',
-              text: 'Worlds are kept in the `bh-data` volume, so they survive updates.'
+              text: 'Map the port as UDP. Worlds are kept in the `bh-data` volume, so they survive updates. To restart the same world later, use `--load` (see the [Docker guide](docker)).'
             },
             { title: 'Open the console' }
           ] as Step[]
@@ -261,11 +264,11 @@ export const en = {
             },
             {
               title: 'Create a world and tap Start',
-              text: 'The server keeps running in the background. A notification shows its status and a Stop button.'
+              text: 'The server keeps running in the background. A notification shows its status, the players and the address, with a Stop server button.'
             },
             {
               title: 'Keep the phone charging',
-              text: 'Hosting uses battery. Turn off battery optimization for the app when it asks, so Android doesn’t stop it.'
+              text: 'Hosting uses battery. The app keeps the phone and Wi-Fi awake while the server runs. If your phone still stops it, turn off battery optimization for the app in Android’s settings.'
             }
           ] as Step[]
         }
@@ -274,7 +277,7 @@ export const en = {
     connect: {
       eyebrow: 'Connect',
       title: 'Join from your phone',
-      lead: 'Your phone and the server must be on the same Wi-Fi. The server shows its address when it starts — in the console, on the dashboard and as a QR code.',
+      lead: 'Your phone and the server must be on the same Wi-Fi. The desktop and Android apps show the address on the dashboard and as a QR code. For the command-line server, use the computer’s local IP address.',
       steps: [
         {
           title: 'Find the address',
@@ -282,7 +285,7 @@ export const en = {
         },
         {
           title: 'Open the game’s multiplayer menu',
-          body: 'Choose to join a server by address.'
+          body: 'Go to **Join World** → **Advanced...** → **Online IP/Port...**.'
         },
         {
           title: 'Enter the address and play',
@@ -294,7 +297,7 @@ export const en = {
       addressHint: 'Example address, as shown on the Server dashboard.',
       warnTitle: 'Playing over the internet?',
       warnBody:
-        'Forward port 15151 on your router to the server computer and share your public IP. Set a password or turn on the whitelist first. [Read the guide](openInternet)',
+        'Forward UDP port 15151 on your router to the server computer and share your public IP. Set a password or turn on the whitelist first. [Read the guide](openInternet)',
       info: 'Your phone needs a game version that matches the server. Patched and original games can play together.'
     },
     downloads: {
@@ -302,7 +305,7 @@ export const en = {
       items: [
         { name: 'Desktop app', hint: 'Windows · macOS · Linux' },
         { name: 'Command-line server', hint: 'x64 · ARM64 · ARMv7' },
-        { name: 'Docker image', hint: 'multi-arch · {{[IMAGE]}}' },
+        { name: 'Docker image', hint: 'multi-arch · `ghcr.io/blockheads-club/blockheads-server`' },
         { name: 'Android app', hint: 'APK · {{[MIN ANDROID]}}' }
       ],
       version:

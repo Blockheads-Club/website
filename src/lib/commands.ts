@@ -9,57 +9,63 @@ const cm = (text: string): Segment => ['cm', text];
 
 export type PlatformId = 'win' | 'mac' | 'linux' | 'pi' | 'docker' | 'android';
 
+const V = 'v0.1.1';
+const SERVER_IMAGE = 'ghcr.io/blockheads-club/blockheads-server:0.1.1';
+const archive = (target: string) => 'blockheads-server-' + V + '-' + target;
+
 /** Code per platform, aligned to the steps in the dictionary (undefined = step has no code). */
 export const COMMANDS: Record<PlatformId, readonly (readonly Line[] | undefined)[]> = {
-  win: [undefined, [[pr('PS> '), t('.\\blockheads-server.exe --world "Sunny Isle"')]], undefined],
+  win: [undefined, [[pr('PS> '), t('.\\blockheads_server.exe --new "Sunny Isle"')]], undefined],
   mac: [
     [
-      [pr('$ '), t('tar -xzf blockheads-server-macos-universal.tar.gz')],
-      [pr('$ '), t('cd blockheads-server')]
+      [cm('# Apple silicon; on Intel use x86_64-apple-darwin')],
+      [pr('$ '), t('tar -xzf ' + archive('aarch64-apple-darwin') + '.tar.gz')],
+      [pr('$ '), t('cd ' + archive('aarch64-apple-darwin'))]
     ],
-    [[pr('$ '), t('xattr -d com.apple.quarantine ./blockheads-server')]],
-    [[pr('$ '), t('./blockheads-server --world "Sunny Isle"')]]
+    [[pr('$ '), t('xattr -d com.apple.quarantine ./blockheads_server')]],
+    [[pr('$ '), t('./blockheads_server --new "Sunny Isle"')]]
   ],
   linux: [
     [
-      [pr('$ '), t('tar -xzf blockheads-server-linux-x64.tar.gz')],
-      [pr('$ '), t('cd blockheads-server')]
+      [pr('$ '), t('tar -xzf ' + archive('x86_64-unknown-linux-gnu') + '.tar.gz')],
+      [pr('$ '), t('cd ' + archive('x86_64-unknown-linux-gnu'))]
     ],
-    [[pr('$ '), t('./blockheads-server --world "Sunny Isle" --port 15151')]]
+    [[pr('$ '), t('./blockheads_server --new "Sunny Isle" --port 15151')]]
   ],
   pi: [
     [
-      [pr('$ '), t('tar -xzf blockheads-server-linux-arm64.tar.gz')],
-      [pr('$ '), t('sudo mv blockheads-server /opt/')]
+      [pr('$ '), t('tar -xzf ' + archive('aarch64-unknown-linux-gnu') + '.tar.gz')],
+      [pr('$ '), t('sudo mv ' + archive('aarch64-unknown-linux-gnu') + ' /opt/blockheads-server')]
     ],
     [
-      [pr('$ '), t('sudo /opt/blockheads-server/blockheads-server install-service')],
-      [pr('$ '), t('sudo systemctl enable --now blockheads-server')]
+      [cm('# after creating the service from the Raspberry Pi guide')],
+      [pr('$ '), t('sudo systemctl enable --now blockheads')]
     ]
   ],
   docker: [
     [
-      [pr('$ '), t('docker run -d --name blockheads --restart unless-stopped \\')],
-      [t('    -p 15151:15151 -v bh-data:/data \\')],
-      [t('    -e BH_WORLD="Sunny Isle" [IMAGE]:latest')]
+      [pr('$ '), t('docker run -dit --name blockheads \\')],
+      [t('    -p 15151:15151/udp -v bh-data:/data \\')],
+      [t('    ' + SERVER_IMAGE + ' --new "Sunny Isle"')]
     ],
     [[pr('$ '), t('docker attach blockheads   '), cm('# detach: Ctrl+P, Ctrl+Q')]]
   ],
   android: [undefined, undefined, undefined]
 };
 
-/** Home page example console output. */
+/** Home page example console output (real start-up lines, timestamps trimmed). */
 export const HOME_EXAMPLE: readonly Line[] = [
   [cm('# Linux / macOS / Raspberry Pi')],
-  [pr('$ '), t('./blockheads-server --world "Sunny Isle"')],
-  [['ok', '✓ '], t('World loaded · 1× · normal mode')],
-  [['ok', '✓ '], t('Listening on 0.0.0.0:15151')],
-  [['info', '→ '], t('MIRA_K joined (1/16)')]
+  [pr('$ '), t('./blockheads_server --new "Sunny Isle"')],
+  [['info', '→ '], t('Creating new world named "SUNNY ISLE"')],
+  [['info', '→ '], t('Loading world named "SUNNY ISLE" on port 15151 with id:34343411…')],
+  [['ok', '✓ '], t('World load complete.')]
 ];
 
-/** Text that gets copied: prompts and comments are dropped, one command per line. */
+/** Text that gets copied: prompts and comments (and comment-only lines) are dropped, one command per line. */
 export function copyText(lines: readonly Line[]): string {
   return lines
+    .filter((line) => line.some(([kind]) => kind === 'plain'))
     .map((line) =>
       line
         .filter(([kind]) => kind === 'plain')
@@ -72,7 +78,7 @@ export function copyText(lines: readonly Line[]): string {
 
 const REL = 'https://github.com/Blockheads-Club/blockheads-server/releases/download/v0.1.1/';
 const PI = 'blockheads-server-v0.1.1-aarch64-unknown-linux-gnu';
-const IMG = 'ghcr.io/blockheads-club/blockheads-server:0.1.1';
+const IMG = SERVER_IMAGE;
 
 /** Code per guide, by step index (missing = step has no code). Shown on `/guides/[slug]`. */
 export const GUIDE_CODE: Record<string, Record<number, readonly Line[]>> = {

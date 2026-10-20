@@ -161,7 +161,7 @@ export const tr: Dict = {
     quick: {
       eyebrow: 'Hızlı başlangıç',
       title: 'Platformunuzu seçin',
-      lead: 'Her adımda kopyalayabileceğiniz bir komut var. Sunucu siz kapatana veya Ctrl + C’ye basana kadar çalışmaya devam eder.',
+      lead: 'Her adımda kopyalayabileceğiniz bir komut var. Sunucuyu düzgünce durdurmak için konsoluna /stop yazın: dünyayı kaydeder ve kapanır. Ctrl + C son kaydı yapmadan durdurur.',
       tabsLabel: 'Platform',
       copy: 'Kopyala',
       copied: 'Kopyalandı',
@@ -173,7 +173,7 @@ export const tr: Dict = {
           steps: [
             {
               title: 'İndirin ve arşivden çıkarın',
-              text: '`blockheads-server-windows-x64.zip` dosyasını alın ve bir klasöre çıkarın, örneğin Belgeler\\Blockheads Server.',
+              text: '`blockheads-server-v0.1.1-x86_64-pc-windows-msvc.zip` dosyasını (ARM’de `aarch64-pc-windows-msvc`) alın ve bir klasöre çıkarın, örneğin Belgeler\\Blockheads Server.',
               button: 'Windows için indir'
             },
             {
@@ -204,7 +204,7 @@ export const tr: Dict = {
             { title: 'İndirin ve açın' },
             {
               title: 'Sunucuyu başlatın',
-              hint: 'Raspberry Pi adımlarıyla hizmet olarak çalıştırın — bunlar her systemd Linux’ta çalışır.'
+              hint: 'Raspberry Pi rehberiyle hizmet olarak çalıştırın — oradaki systemd adımları her systemd Linux’ta çalışır.'
             }
           ]
         },
@@ -213,9 +213,12 @@ export const tr: Dict = {
           steps: [
             {
               title: 'ARM sürümünü indirin',
-              text: '64 bit işletim sistemli Raspberry Pi 4 ve 5’te 64 bit sürümü kullanın.'
+              text: '64 bit işletim sisteminde `aarch64`, 32 bit işletim sisteminde `armv7` sürümünü kullanın.'
             },
-            { title: 'Her açılışta başlatın' }
+            {
+              title: 'Her açılışta başlatın',
+              text: '[Raspberry Pi rehberindeki](raspberryPi) gibi bir systemd hizmeti oluşturun, sonra etkinleştirin:'
+            }
           ]
         },
         docker: {
@@ -223,7 +226,7 @@ export const tr: Dict = {
           steps: [
             {
               title: 'Kapsayıcıyı çalıştırın',
-              text: 'Dünyalar `bh-data` biriminde tutulur, böylece güncellemelerde korunur.'
+              text: 'Bağlantı noktasını UDP olarak eşleyin. Dünyalar `bh-data` biriminde tutulur, böylece güncellemelerde korunur. Aynı dünyayı sonra yeniden başlatmak için `--load` kullanın (bkz. [Docker rehberi](docker)).'
             },
             { title: 'Konsolu açın' }
           ]
@@ -238,11 +241,11 @@ export const tr: Dict = {
             },
             {
               title: 'Bir dünya oluşturun ve Başlat’a dokunun',
-              text: 'Sunucu arka planda çalışmaya devam eder. Bir bildirim durumunu ve Durdur düğmesini gösterir.'
+              text: 'Sunucu arka planda çalışmaya devam eder. Bir bildirim durumunu, oyuncuları ve adresi bir Sunucuyu durdur düğmesiyle gösterir.'
             },
             {
               title: 'Telefonu şarjda tutun',
-              text: 'Barındırma pil harcar. İstendiğinde uygulama için pil optimizasyonunu kapatın; böylece Android onu durdurmaz.'
+              text: 'Barındırma pil harcar. Sunucu çalışırken uygulama telefonu ve Wi-Fi’ı uyanık tutar. Telefonunuz yine de durduruyorsa Android ayarlarında uygulama için pil optimizasyonunu kapatın.'
             }
           ]
         }
@@ -251,7 +254,7 @@ export const tr: Dict = {
     connect: {
       eyebrow: 'Bağlan',
       title: 'Telefonunuzdan katılın',
-      lead: 'Telefonunuz ve sunucu aynı Wi-Fi’de olmalı. Sunucu başladığında adresini gösterir — konsolda, panoda ve QR kod olarak.',
+      lead: 'Telefonunuz ve sunucu aynı Wi-Fi’de olmalı. Masaüstü ve Android uygulamaları adresi panelde ve QR kod olarak gösterir. Komut satırı sunucusunda bilgisayarın yerel IP adresini kullanın.',
       steps: [
         {
           title: 'Adresi bulun',
@@ -259,7 +262,7 @@ export const tr: Dict = {
         },
         {
           title: 'Oyunun çok oyunculu menüsünü açın',
-          body: 'Adresle bir sunucuya katılmayı seçin.'
+          body: '**Join World** → **Advanced...** → **Online IP/Port...** yolunu izleyin.'
         },
         {
           title: 'Adresi girin ve oynayın',
@@ -271,7 +274,7 @@ export const tr: Dict = {
       addressHint: 'Örnek adres; Sunucu panosunda göründüğü gibi.',
       warnTitle: 'İnternet üzerinden mi oynuyorsunuz?',
       warnBody:
-        'Yönlendiricinizde 15151 numaralı bağlantı noktasını sunucu bilgisayarına yönlendirin ve genel IP’nizi paylaşın. Önce bir parola belirleyin veya beyaz listeyi açın. [Rehberi okuyun](openInternet)',
+        'Yönlendiricinizde UDP 15151 numaralı bağlantı noktasını sunucu bilgisayarına yönlendirin ve genel IP’nizi paylaşın. Önce bir parola belirleyin veya beyaz listeyi açın. [Rehberi okuyun](openInternet)',
       info: 'Telefonunuzdaki oyun sürümü sunucuyla eşleşmelidir. Yamalı ve orijinal oyunlar birlikte oynayabilir.'
     },
     downloads: {
@@ -279,7 +282,7 @@ export const tr: Dict = {
       items: [
         { name: 'Masaüstü uygulaması', hint: 'Windows · macOS · Linux' },
         { name: 'Komut satırı sunucusu', hint: 'x64 · ARM64 · ARMv7' },
-        { name: 'Docker imajı', hint: 'çoklu mimari · {{[İMAJ]}}' },
+        { name: 'Docker imajı', hint: 'çoklu mimari · `ghcr.io/blockheads-club/blockheads-server`' },
         { name: 'Android uygulaması', hint: 'APK · {{[EN DÜŞÜK ANDROID]}}' }
       ],
       version:

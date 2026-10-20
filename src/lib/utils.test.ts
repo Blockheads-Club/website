@@ -55,7 +55,11 @@ describe('qrPattern', () => {
 describe('commands', () => {
   it('copies only commands', () => {
     expect(copyText(COMMANDS.docker[1]!)).toBe('docker attach blockheads');
-    expect(copyText(COMMANDS.mac[0]!)).toBe('tar -xzf blockheads-server-macos-universal.tar.gz\ncd blockheads-server');
+    expect(copyText(COMMANDS.mac[0]!)).toBe(
+      'tar -xzf blockheads-server-v0.1.1-aarch64-apple-darwin.tar.gz\ncd blockheads-server-v0.1.1-aarch64-apple-darwin'
+    );
+    expect(copyText(COMMANDS.docker[0]!)).toContain('-p 15151:15151/udp');
+    expect(copyText(COMMANDS.docker[0]!)).toContain('ghcr.io/blockheads-club/blockheads-server:0.1.1 --new "Sunny Isle"');
   });
 });
 

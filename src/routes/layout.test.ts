@@ -121,16 +121,17 @@ describe('server', () => {
     const user = userEvent.setup();
     render(Server);
     expect(screen.getByRole('tab', { name: 'Linux' })).toHaveAttribute('aria-selected', 'true');
-    expect(screen.getByText(/tar -xzf blockheads-server-linux-x64/)).toBeInTheDocument();
+    expect(screen.getByText(/tar -xzf blockheads-server-v0\.1\.1-x86_64-unknown-linux-gnu\.tar\.gz/)).toBeInTheDocument();
     for (const name of ['Windows', 'macOS', 'Raspberry Pi', 'Docker', 'Android']) {
       await user.click(screen.getByRole('tab', { name }));
       expect(screen.getByRole('tab', { name })).toHaveAttribute('aria-selected', 'true');
     }
     expect(screen.getByRole('link', { name: 'Download for Android' })).toBeInTheDocument();
     await user.click(screen.getByRole('tab', { name: 'Windows' }));
-    expect(screen.getByText(/blockheads-server\.exe/)).toBeInTheDocument();
+    expect(screen.getByText(/blockheads_server\.exe --new/)).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /Example QR code/ })).toBeInTheDocument();
-    expect(screen.getAllByText('[IMAGE]').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('ghcr.io/blockheads-club/blockheads-server').length).toBeGreaterThan(0);
+    expect(screen.queryByText(/--world|install-service|BH_WORLD/)).toBeNull();
   });
 });
 

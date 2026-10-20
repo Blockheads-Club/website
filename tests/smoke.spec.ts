@@ -43,7 +43,7 @@ test('server quick start tabs switch', async ({ page }) => {
   await page.goto('/server');
   await expect(page.getByRole('tab', { name: 'Linux' })).toHaveAttribute('aria-selected', 'true');
   await page.getByRole('tab', { name: 'Windows' }).click();
-  await expect(page.getByText('blockheads-server.exe')).toBeVisible();
+  await expect(page.getByText('blockheads_server.exe')).toBeVisible();
   await page.getByRole('tab', { name: 'Docker' }).click();
   await expect(page.getByText('docker run')).toBeVisible();
 });
