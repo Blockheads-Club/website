@@ -1,3 +1,8 @@
 name = "blockheads-club"
 compatibility_date = "2025-01-01"
-pages_build_output_dir = "build"
+
+# Deployed by Cloudflare Workers Builds: build `bun run build`, deploy `npx wrangler deploy`,
+# non-production branches `npx wrangler versions upload`. The static site is served from build/.
+[assets]
+directory = "./build"
+not_found_handling = "404-page"
