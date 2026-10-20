@@ -922,7 +922,7 @@ export const tr: Dict = {
       },
       {
         title: '7. Lisanslar',
-        body: 'Kodumuz GPL-3.0-only altında yayımlanır. Üçüncü taraf bileşenler ve yazı tipleri (Bricolage Grotesque, Atkinson Hyperlegible Next, JetBrains Mono — SIL Open Font License) her uygulamada Ayarlar → Hakkında → Lisanslar altında listelenir.'
+        body: 'Kodumuz GPL-3.0-or-later altında yayımlanır. Üçüncü taraf bileşenler ve yazı tipleri (Bricolage Grotesque, Atkinson Hyperlegible Next, JetBrains Mono — SIL Open Font License) her uygulamada Ayarlar → Hakkında → Lisanslar altında listelenir.'
       },
       {
         title: '8. Kaldırma talebi ve iletişim',
@@ -945,6 +945,6 @@ export const tr: Dict = {
     nav: 'Alt bilgi',
     short: 'Resmî olmayan topluluk projesi. Majic Jungle Software veya Noodlecake ile bağlantısı yoktur.',
     disclaimer:
-      'Blockheads Club resmî olmayan, ticari olmayan bir topluluk projesidir. Majic Jungle Software veya Noodlecake ile bağlantılı değildir, onlar tarafından onaylanmamış veya desteklenmemiştir. “The Blockheads” ilgili sahibinin ticari markasıdır. Kod GPL-3.0-only altında yayımlanır.'
+      'Blockheads Club resmî olmayan, ticari olmayan bir topluluk projesidir. Majic Jungle Software veya Noodlecake ile bağlantılı değildir, onlar tarafından onaylanmamış veya desteklenmemiştir. “The Blockheads” ilgili sahibinin ticari markasıdır. Kod GPL-3.0-or-later altında yayımlanır.'
   }
 };

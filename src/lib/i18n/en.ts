@@ -945,7 +945,7 @@ export const en = {
       },
       {
         title: '7. Licences',
-        body: 'Our code is released under GPL-3.0-only. Third-party components and fonts (Bricolage Grotesque, Atkinson Hyperlegible Next, JetBrains Mono — SIL Open Font License) are listed in each app under Settings → About → Licences.'
+        body: 'Our code is released under GPL-3.0-or-later. Third-party components and fonts (Bricolage Grotesque, Atkinson Hyperlegible Next, JetBrains Mono — SIL Open Font License) are listed in each app under Settings → About → Licences.'
       },
       {
         title: '8. Takedown and contact',
@@ -968,7 +968,7 @@ export const en = {
     nav: 'Footer',
     short: 'Unofficial community project. Not affiliated with Majic Jungle Software or Noodlecake.',
     disclaimer:
-      'Blockheads Club is an unofficial, non-commercial community project. It is not affiliated with, endorsed or sponsored by Majic Jungle Software or Noodlecake. “The Blockheads” is a trademark of its respective owner. Code released under GPL-3.0-only.'
+      'Blockheads Club is an unofficial, non-commercial community project. It is not affiliated with, endorsed or sponsored by Majic Jungle Software or Noodlecake. “The Blockheads” is a trademark of its respective owner. Code released under GPL-3.0-or-later.'
   }
 };
 

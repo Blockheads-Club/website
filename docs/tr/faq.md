@@ -36,7 +36,7 @@ Evet. Aynı sunuculara katılabilirler.
 
 ## Ücretsiz mi?
 
-Evet. Her şey ücretsiz ve açık kaynaklıdır (GPL-3.0).
+Evet. Her şey ücretsiz ve açık kaynaklıdır (GPL-3.0-or-later).
 
 ## Nereden yardım alabilirim?
 

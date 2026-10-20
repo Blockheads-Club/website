@@ -4,7 +4,7 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
 (`../AGENTS.md` rules apply).
 
 ## Hard rules
-- License GPL-3.0-only. Package manager **bun**, never npm.
+- License GPL-3.0-or-later. Package manager **bun**, never npm.
 - NEVER commit or ship game files (APKs, assets, decompiled code). Keep the legal notice: not affiliated with
   Majic Jungle / Noodlecake, no game files distributed, patch only what you own.
 - 100% coverage thresholds (lines/branches/functions/statements) in `vite.config.ts` must never be lowered.

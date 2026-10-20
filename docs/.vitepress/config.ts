@@ -65,7 +65,7 @@ function themeConfig(s: Strings): DefaultTheme.Config {
     darkModeSwitchTitle: s.dark,
     langMenuLabel: s.language,
     notFound: { title: s.notFound, linkText: s.goHome, linkLabel: s.goHome, quote: '' },
-    footer: { message: s.footer, copyright: 'GPL-3.0-only' }
+    footer: { message: s.footer, copyright: 'GPL-3.0-or-later' }
   };
 }
 

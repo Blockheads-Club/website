@@ -65,7 +65,7 @@ bun run build      # static site in ./build
 ---
 
 ## 📄 License
-The website is licensed under **GNU GPLv3** (GPL-3.0-only). See the [LICENSE](LICENSE) file for details.
+The website is licensed under **GNU GPLv3 or later** (GPL-3.0-or-later). This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See the [LICENSE](LICENSE) file for details.
 
 Unofficial fan project, not affiliated with Majic Jungle Software or Noodlecake Studios. No game files are
 distributed here.

@@ -36,7 +36,7 @@ Yes. They can join the same servers.
 
 ## Is it free?
 
-Yes. Everything is free and open source (GPL-3.0).
+Yes. Everything is free and open source (GPL-3.0-or-later).
 
 ## Where do I get help?
 
