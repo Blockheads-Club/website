@@ -96,11 +96,11 @@
       </div>
 
       <div class="pn">
-        <a class="card" href={base + '/guides'}>
+        <a class="card" href={base + '/guides/get-apk'}>
           <Icon name="chev-l" />
           <span><span class="hint blk">{a.previous}</span><span class="b">{a.prevTitle}</span></span>
         </a>
-        <a class="card nx" href={base + '/guides'}>
+        <a class="card nx" href={base + '/guides/signing-key'}>
           <span><span class="hint blk">{a.next}</span><span class="b">{a.nextTitle}</span></span>
           <Icon name="chev-r" />
         </a>

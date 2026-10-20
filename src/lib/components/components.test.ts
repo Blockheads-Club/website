@@ -89,6 +89,13 @@ describe('primitives', () => {
     expect(screen.getByRole('link', { name: 'g' })).toHaveAttribute('href', '/guides');
   });
 
+  it('Rich links to the server page and to each written guide', () => {
+    render(Rich, { text: '[s](server) [k](signingKey) [l](lanPlay)' });
+    expect(screen.getByRole('link', { name: 's' })).toHaveAttribute('href', '/server');
+    expect(screen.getByRole('link', { name: 'k' })).toHaveAttribute('href', '/guides/signing-key');
+    expect(screen.getByRole('link', { name: 'l' })).toHaveAttribute('href', '/guides/lan-play');
+  });
+
   it('Wordmark links home', () => {
     render(Wordmark);
     expect(screen.getByRole('link', { name: 'Blockheads Club home' })).toHaveAttribute('href', '/');
@@ -220,14 +227,15 @@ describe('LangSwitch', () => {
 });
 
 describe('GuideCard', () => {
-  it.each(['home', 'list', 'featured'] as const)('renders %s variants for linked and upcoming guides', (variant) => {
+  it.each(['home', 'list', 'featured'] as const)('renders %s variants for written guides', (variant) => {
     render(GuideCard, { id: 'fix-game-on-phone', variant });
     expect(screen.getByRole('link', { name: /Fix the game on your phone/ })).toHaveAttribute(
       'href',
       '/guides/fix-game-on-phone'
     );
     render(GuideCard, { id: 'raspberry-pi', variant });
-    expect(screen.getAllByText('Coming soon').length).toBeGreaterThan(0);
+    expect(screen.getByRole('link', { name: /Raspberry Pi/ })).toHaveAttribute('href', '/guides/raspberry-pi');
+    expect(screen.queryByText('Coming soon')).toBeNull();
   });
 
   it('server featured and beginner server tones', () => {

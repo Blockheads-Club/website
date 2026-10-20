@@ -5,6 +5,24 @@ export interface Step {
   button?: string;
 }
 
+export interface GuideStep {
+  title: string;
+  /** Paragraphs (inline markup allowed). */
+  body: string[];
+  list?: string[];
+  tip?: string;
+  warn?: string;
+}
+
+export interface GuideDoc {
+  tags: string;
+  title: string;
+  lead: string;
+  need: string[];
+  steps: GuideStep[];
+  help: string[];
+}
+
 export const en = {
   meta: {
     title: 'Blockheads Club',
@@ -14,7 +32,6 @@ export const en = {
       home: 'Blockheads Club',
       server: 'Server quick start · Blockheads Club',
       guides: 'Guides · Blockheads Club',
-      article: 'Fix the game on your phone · Blockheads Club',
       faq: 'FAQ · Blockheads Club',
       legal: 'Legal notice · Blockheads Club'
     }
@@ -277,7 +294,7 @@ export const en = {
       addressHint: 'Example address, as shown on the Server dashboard.',
       warnTitle: 'Playing over the internet?',
       warnBody:
-        'Forward port 15151 on your router to the server computer and share your public IP. Set a password or turn on the whitelist first. [Read the guide](guides)',
+        'Forward port 15151 on your router to the server computer and share your public IP. Set a password or turn on the whitelist first. [Read the guide](openInternet)',
       info: 'Your phone needs a game version that matches the server. Patched and original games can play together.'
     },
     downloads: {
@@ -407,7 +424,7 @@ export const en = {
       title: 'Patch it',
       body: 'The fixes your version needs are already ticked. Tap **Patch game** and wait about a minute. Keep the app open.',
       callout:
-        'The Patcher signs the game with **your own key**. Keep that key — you need the same one to install future updates without losing worlds again. [Learn about signing keys](guides)'
+        'The Patcher signs the game with **your own key**. Keep that key — you need the same one to install future updates without losing worlds again. [Learn about signing keys](signingKey)'
     },
     s4: {
       title: 'Swap the games',
@@ -433,6 +450,399 @@ export const en = {
     next: 'Next',
     prevTitle: 'Get the APK of the game you own',
     nextTitle: 'Keep your signing key safe'
+  },
+  docs: {
+    'lan-play': {
+      tags: 'Server · Wi-Fi',
+      title: 'Play with friends on the same Wi-Fi',
+      lead: 'Start a server on a computer at home and let every phone on your Wi-Fi join the same world. It takes about four minutes.',
+      need: [
+        'A Windows, macOS or Linux computer on the same Wi-Fi as the phones',
+        'Blockheads Server — the desktop app or the command-line server ([downloads](serverReleases))',
+        'The Blockheads on every phone. On modern Android, [fix the game first](fixGameOnPhone)'
+      ],
+      steps: [
+        {
+          title: 'Start a server',
+          body: [
+            '**Desktop app:** open **Worlds**, tap **Create world**, give it a name and tap **Start server**.',
+            '**Command line:** unpack the download for your computer and create a world. The server starts right away:'
+          ],
+          tip: 'Stop the command-line server with `/stop`. Ctrl + C closes it without a final save.'
+        },
+        {
+          title: 'Let it through the firewall',
+          body: [
+            'The server uses **UDP port 15151**. When Windows Firewall asks, allow access on **private networks**. On other systems, allow incoming UDP on port 15151 if you use a firewall.'
+          ]
+        },
+        {
+          title: 'Find the server’s address',
+          body: [
+            'In the desktop app, the **Dashboard** has a **Connect from a phone** card with the **LAN address**, the port and a QR code. Scan the code with a phone camera to copy the address.',
+            'On the command line, look up your computer’s local IP address in its network settings, for example `192.168.1.42`.'
+          ]
+        },
+        {
+          title: 'Join from the game',
+          body: ['On each phone, open the game and go to:'],
+          list: [
+            '**Join World** → **Advanced...** → **Online IP/Port...**',
+            'Enter the address and the port (the field already says `15151`)',
+            'Tap **Join Online World**'
+          ],
+          tip: 'If the server has a password, the game asks for it.'
+        }
+      ],
+      help: [
+        '**Nobody can connect** — check that the phones are on the same Wi-Fi (not a guest network) and that the firewall allows UDP 15151.',
+        '**One friend is refused** — if the whitelist has names in it, only those names can join. See [Admins, mods and bans](adminsMods).',
+        'Still stuck? [Open an issue on GitHub](serverIssues) and paste the server log.'
+      ]
+    } as GuideDoc,
+    'backup-worlds': {
+      tags: 'Patcher · Android',
+      title: 'Back up your worlds before patching',
+      lead: 'On Android you must remove the original game before you can install the fixed one — and that deletes the worlds saved on the phone. Here is why, and how to keep them.',
+      need: ['The Blockheads installed on your phone', 'A few minutes before you start patching'],
+      steps: [
+        {
+          title: 'Know why the original has to go',
+          body: [
+            'The Patcher signs the fixed game with **your own key**, not the original one. Android won’t install an app over another app with a different signature, so the original must be uninstalled first.'
+          ],
+          warn: '**Worlds stored on that phone are deleted with it.** Worlds hosted on servers are not affected.'
+        },
+        {
+          title: 'Back up every world in the game',
+          body: [
+            'Open the original game on your phone and use its own backup for each world you want to keep. The Patcher can’t do this for you: it never touches your saves.'
+          ]
+        },
+        {
+          title: 'Confirm in the Patcher',
+          body: [
+            'Before the Patcher removes the original, it shows **Your worlds on this phone will be deleted**. Tick **My worlds are backed up, or I don’t need them** to go on.'
+          ]
+        },
+        {
+          title: 'Restore after installing',
+          body: ['When the fixed game is installed, open it and restore your worlds from your backup.'],
+          tip: 'The fix **Offer to keep game data when uninstalling** is on by default. With it, Android 10 and newer ask whether to keep the game’s data if you ever uninstall the fixed game.'
+        },
+        {
+          title: 'Skip this next time',
+          body: [
+            'Keep your signing key. If you patch again with the same key, the update installs over your fixed game and your worlds stay. [Keep your signing key safe](signingKey)'
+          ]
+        }
+      ],
+      help: [
+        'Not sure a world is saved? Back it up again — it only takes a moment.',
+        'Questions? [Ask on GitHub](patcherIssues).'
+      ]
+    } as GuideDoc,
+    'get-apk': {
+      tags: 'Patcher · Android',
+      title: 'Get the APK of the game you own',
+      lead: 'The web and desktop Patcher need the game as an `.apk` file. On Android you can usually skip this guide.',
+      need: [
+        'The Blockheads installed on your Android phone',
+        'For the computer route: a USB cable and Android’s `adb` tool'
+      ],
+      steps: [
+        {
+          title: 'On Android? Use the installed game',
+          body: [
+            'The Blockheads Patcher app for Android finds the game on your phone. Tap **Use installed game** — no file needed. Or tap **Pick an APK file** if you already have one.'
+          ]
+        },
+        {
+          title: 'Copy the game to a computer',
+          body: [
+            'Turn on USB debugging on the phone, connect it and ask Android where the game is. Then copy that file:'
+          ],
+          warn: 'If the first command prints **more than one** line, the game is split into several APK files. The Patcher can’t patch those safely — you need a full (universal) APK.'
+        },
+        {
+          title: 'Open it in the Patcher',
+          body: [
+            'Open the [web Patcher](webPatcher) or the desktop app and drop the file in. It takes **.apk files only**. Nothing is uploaded.'
+          ],
+          tip: 'Use only your own copy, and don’t share the APK with others.'
+        }
+      ],
+      help: [
+        '**“Choose the .apk of The Blockheads that you saved from your phone.”** — the file is a different app.',
+        '**“The installed game is split into several APK files…”** — supply a full (universal) APK instead.',
+        'Next: [Fix the game on your phone](fixGameOnPhone).'
+      ]
+    } as GuideDoc,
+    'signing-key': {
+      tags: 'Patcher',
+      title: 'Keep your signing key safe',
+      lead: 'Every game you patch is signed with a key that lives only on your device. Keep a backup, and future fixes install without uninstalling.',
+      need: ['The Blockheads Patcher (web, desktop or Android)', 'A safe place for one small file, and a password you can remember'],
+      steps: [
+        {
+          title: 'Know what the key does',
+          body: [
+            'The Patcher creates the key the first time you patch. Android only installs an update over your fixed game if **both are signed with the same key**. A new key means uninstalling again — and losing local worlds unless you back them up.'
+          ],
+          warn: '**Keep it private.** Anyone with your key could make apps that look like updates to your game.'
+        },
+        {
+          title: 'Export a backup',
+          body: [
+            'Open **Signing keys** and choose **Export backup…**. Set a password, repeat it and tap **Save backup**. You get a `.json` file, by default `blockheads-patcher-key.json`.'
+          ],
+          tip: 'We can’t recover the password, so write it down. Without a password the file is not encrypted, and anyone with it could sign apps as you.'
+        },
+        {
+          title: 'Move it to another device',
+          body: [
+            'On the new device, open **Signing keys**, choose **Import key** and pick the `.json` file. Enter the backup password, then tap **Use this key**.',
+            'Compare the first and last four pairs of the fingerprint on both devices to be sure it is the same key.'
+          ]
+        },
+        {
+          title: 'If the key is lost',
+          body: [
+            'Without a backup you can’t update games patched with that key. Back up your worlds, uninstall the fixed game and patch again with a new key. [How to back up worlds](backupWorlds)'
+          ]
+        }
+      ],
+      help: [
+        'The web Patcher keeps the key in your browser’s storage for this site. Clearing the site’s data removes it — export a backup first.',
+        'Import accepts only the `.json` backups exported by the Patcher.',
+        'Questions? [Ask on GitHub](patcherIssues).'
+      ]
+    } as GuideDoc,
+    'raspberry-pi': {
+      tags: 'Server · Linux',
+      title: 'Run a 24/7 server on a Raspberry Pi',
+      lead: 'A Raspberry Pi uses little power and can host your world day and night. You will install the ARM build, start it on boot and keep nightly backups.',
+      need: [
+        'A Raspberry Pi with Raspberry Pi OS (or another Linux), connected to your network',
+        'A terminal on the Pi (directly or over SSH)',
+        'The command-line server from the [releases page](serverReleases)'
+      ],
+      steps: [
+        {
+          title: 'Check 32-bit or 64-bit',
+          body: [
+            'Use the `aarch64` build on a 64-bit OS and the `armv7` build on a 32-bit OS. This command tells you which you have:'
+          ]
+        },
+        {
+          title: 'Download and unpack',
+          body: [
+            'These commands use version 0.1.1 and the 64-bit build. Take the newest version from the releases page, and use `armv7-unknown-linux-gnueabihf` instead of `aarch64-unknown-linux-gnu` on a 32-bit OS.'
+          ]
+        },
+        {
+          title: 'Create your world',
+          body: [
+            'Create the world once by hand. Worlds are saved in `~/GNUstep/Library/ApplicationSupport/TheBlockheads`.'
+          ],
+          tip: 'Without options, the server loads the most recent world. The service below uses that.'
+        },
+        {
+          title: 'Start it on every boot',
+          body: [
+            'Create a systemd service. Replace `pi` with your user name — the one that created the world.'
+          ],
+          tip: 'The service has no console. Give commands as an admin in the game chat (see [Admins, mods and bans](adminsMods)), and watch the log with `journalctl`.'
+        },
+        {
+          title: 'Keep nightly backups',
+          body: [
+            'Copy the world folder only while the server is stopped. This root cron job stops the server at 04:00, packs everything into a dated `.tar.gz` and starts it again. Replace `/home/pi` with your home folder.'
+          ],
+          warn: '`systemctl stop` ends the server without a final save. The server saves regularly, but the last few seconds can be lost — pick a quiet time.'
+        }
+      ],
+      help: [
+        '**“Exec format error”** — wrong build. Check `uname -m` again.',
+        '**Friends can’t connect** — the same checks as in [Play with friends on the same Wi-Fi](lanPlay).',
+        'Still stuck? [Open an issue on GitHub](serverIssues) with the `journalctl` output.'
+      ]
+    } as GuideDoc,
+    'open-internet': {
+      tags: 'Server · Network',
+      title: 'Open your server to the internet',
+      lead: 'Let friends outside your home join your world. You will lock the server first, then forward one port on your router.',
+      need: [
+        'A server that already works on your Wi-Fi ([LAN guide](lanPlay))',
+        'Access to your router’s settings page'
+      ],
+      steps: [
+        {
+          title: 'Lock the server first',
+          body: [
+            'Set a **password**: in the app under **Settings** → **Password** (up to 15 characters), or with `/set-password` in the console.',
+            'Or turn on the **whitelist** by adding names: in the app under **Access lists** → **Whitelist**, or with `/whitelist`. As soon as the whitelist has names, only those players can join.'
+          ]
+        },
+        {
+          title: 'Give the server a fixed address',
+          body: [
+            'In your router, reserve the server computer’s local IP address (often called DHCP reservation), so it doesn’t change after a restart.'
+          ]
+        },
+        {
+          title: 'Forward the port',
+          body: [
+            'In the router’s port forwarding page, forward **UDP port 15151** to the server computer’s local address. If you changed the port, use yours.'
+          ]
+        },
+        {
+          title: 'Share your public address',
+          body: [
+            'Look up your public IP address and send it to your friends with the port. They join with **Join World** → **Advanced...** → **Online IP/Port...**.'
+          ],
+          warn: 'Your public IP shows roughly where you are. Share it only with people you trust.'
+        }
+      ],
+      help: [
+        '**Works at home, not outside** — the router’s internet address may differ from your public IP (some providers share one address between customers). Then port forwarding can’t work; ask your provider.',
+        '**Still blocked** — check the firewall on the server computer allows UDP 15151.',
+        'Need help? [Open an issue on GitHub](serverIssues).'
+      ]
+    } as GuideDoc,
+    'admins-mods': {
+      tags: 'Server',
+      title: 'Admins, mods and bans explained',
+      lead: 'Who can do what on your server, and how to manage players from the app, the console or the game chat.',
+      need: ['A running Blockheads Server', 'The player names you want to manage'],
+      steps: [
+        {
+          title: 'Know the roles',
+          body: [
+            'The server console has every right. **Admins** have full control, including other admins. **Mods** can kick and ban players, but not change admins. Admins and mods type commands in the game chat, starting with `/`.'
+          ],
+          list: [
+            '**Mods:** `/players`, `/kick`, `/ban`, `/unban`, `/whitelist`, `/unwhitelist`, `/clear`',
+            '**Admins also:** `/stop`, `/pvp-on`, `/pvp-off`, `/mod`, `/unmod`, `/admin`, `/unadmin`, `/load-lists`',
+            '**Owner only:** `/set-password`, `/remove-password`'
+          ]
+        },
+        {
+          title: 'Add admins and mods',
+          body: [
+            'In the app, open **Access lists** → **Admins** or **Mods** and tap **Add admin** or **Add mod**. Or tap a player under **Players** and choose **Make admin** or **Make mod**. In the console:'
+          ]
+        },
+        {
+          title: 'Kick and ban',
+          body: [
+            'In the app, tap a player and choose **Kick…** or **Ban…**. A ban can **also block the IP address**, not only the name. `/ban` also bans the player’s device; `/ban-no-device` bans only the name.'
+          ]
+        },
+        {
+          title: 'Use a whitelist',
+          body: [
+            'The whitelist turns on as soon as it has a name in it. Then only listed players can join, and anyone not allowed is kicked.'
+          ]
+        },
+        {
+          title: 'Edit the list files',
+          body: [
+            'Each world keeps `adminlist.txt`, `modlist.txt`, `whitelist.txt` and `blacklist.txt` in its folder under `saves`. One name per line; names are not case sensitive and the first line is ignored. After editing by hand, reload them:'
+          ]
+        }
+      ],
+      help: [
+        '**“Sorry, you do not have permission to issue that command.”** — you are not a mod or admin on this server.',
+        'While the server runs, the app applies list changes through console commands.',
+        'Questions? [Ask on GitHub](serverIssues).'
+      ]
+    } as GuideDoc,
+    'host-android': {
+      tags: 'Server · Android',
+      title: 'Host from an Android phone',
+      lead: 'Turn a spare Android phone into a server. The Blockheads Server app keeps running in the background, with a notification to control it.',
+      need: [
+        'An Android phone on your Wi-Fi',
+        'The Blockheads Server APK (`blockheads-server-…-android.apk`, [releases](serverReleases))',
+        'A charger'
+      ],
+      steps: [
+        {
+          title: 'Install the app',
+          body: ['Download the APK and open it. Android may ask you to allow installs from your browser.']
+        },
+        {
+          title: 'Create a world and start',
+          body: [
+            'Open **Worlds** → **Create world**. Pick a name (up to 30 characters) and a size, keep **Use this world right away** on, then tap **Start server**.'
+          ]
+        },
+        {
+          title: 'Let it run in the background',
+          body: [
+            'A notification shows the state, the world, how many players are online and the address. Its buttons are **Stop server**, **Copy address** and **Console**.'
+          ],
+          tip: 'The app keeps the phone and its Wi-Fi awake while the server runs. If your phone still stops it, turn off battery optimization for Blockheads Server in Android’s settings.'
+        },
+        {
+          title: 'Keep the phone charging',
+          body: ['Hosting uses battery. Leave the phone on its charger while friends play.']
+        },
+        {
+          title: 'Connect your friends',
+          body: [
+            'The **Dashboard** shows the **LAN address** and a QR code. On the other phones, join with **Join World** → **Advanced...** → **Online IP/Port...**.'
+          ]
+        }
+      ],
+      help: [
+        '**“Server stopped unexpectedly”** — tap the notification and choose **Open log** to see why.',
+        'The worlds are stored in the app’s private storage on this phone.',
+        'Still stuck? [Open an issue on GitHub](serverIssues).'
+      ]
+    } as GuideDoc,
+    docker: {
+      tags: 'Server · Docker',
+      title: 'Docker and Docker Compose',
+      lead: 'Run the server as a container. Worlds live in a volume, so they survive updates.',
+      need: [
+        'Docker (and Docker Compose if you want it)',
+        'The multi-arch image `ghcr.io/blockheads-club/blockheads-server` (amd64, arm64, arm/v7)'
+      ],
+      steps: [
+        {
+          title: 'Create a world',
+          body: [
+            'Run the container once with `-it` so you get the console. Worlds go into the `bh-data` volume. Wait for **World load complete.**, then type `/stop`.'
+          ],
+          tip: 'The examples use version 0.1.1. Every release has a version tag; pick the newest one.'
+        },
+        {
+          title: 'Find the world ID',
+          body: ['List the worlds in the volume. The long hex name is the world ID.']
+        },
+        {
+          title: 'Run it in the background',
+          body: [
+            'Start the world with `--load`. Keep `-i` and `-t` so you can open the console later, and map the port as **UDP**.'
+          ]
+        },
+        {
+          title: 'Logs and console',
+          body: ['Follow the log, or attach to the console to type commands like `/players` or `/stop`.']
+        },
+        {
+          title: 'Or use Docker Compose',
+          body: ['The same setup as a `compose.yaml`. Start it with `docker compose up -d`.']
+        }
+      ],
+      help: [
+        '**The container only prints help** — the image starts with `--help` unless you give options such as `--new` or `--load`.',
+        '**Updating** — stop and remove the container, then run it again with the new tag. The `bh-data` volume keeps your worlds. `docker stop` ends the server without a final save, so stop when nobody is playing.',
+        '**No connection** — the port must be mapped as `15151:15151/udp`.'
+      ]
+    } as GuideDoc
   },
   faq: {
     title: 'Frequently asked questions',
@@ -483,7 +893,7 @@ export const en = {
           { q: 'How many players can join?', a: 'From 1 to 32. You choose the limit in Settings.' },
           {
             q: 'My friend can’t connect. What should I check?',
-            a: 'Same Wi-Fi, correct address and port, firewall allows the server, and the whitelist (if on) includes their name. [Connection guide](guides)'
+            a: 'Same Wi-Fi, correct address and port, firewall allows the server, and the whitelist (if on) includes their name. [Connection guide](lanPlay)'
           },
           {
             q: 'Can I run it on an old Android phone?',

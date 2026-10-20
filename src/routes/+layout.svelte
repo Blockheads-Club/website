@@ -7,14 +7,19 @@
   import { SITE_URL } from '$lib/config';
   import Header from '$lib/components/Header.svelte';
   import { dict, initLocale } from '$lib/locale.svelte';
-  import { routeKey } from '$lib/route';
+  import { guideSlug, routeKey } from '$lib/route';
   import { initTheme } from '$lib/theme.svelte';
 
   let { children } = $props();
 
   const route = $derived(routeKey(page.url.pathname, base));
   const home = $derived(route === 'home');
-  const title = $derived(route === 'other' ? dict().meta.title : dict().meta.titles[route]);
+  const slug = $derived(guideSlug(page.url.pathname, base));
+  const title = $derived.by(() => {
+    const d = dict();
+    if (route === 'article') return d.guides.items.find((item) => item.id === slug)!.title + ' · ' + d.meta.title;
+    return route === 'other' ? d.meta.title : d.meta.titles[route];
+  });
 
   onMount(() => {
     initLocale();

@@ -9,6 +9,10 @@ import Home from './+page.svelte';
 import Faq from './faq/+page.svelte';
 import Guides from './guides/+page.svelte';
 import Article from './guides/fix-game-on-phone/+page.svelte';
+import { entries, load } from './guides/[slug]/+page';
+import Guide from './guides/[slug]/+page.svelte';
+import { ARTICLE_IDS } from '$lib/guides';
+import { GUIDE_CODE } from '$lib/commands';
 import Legal from './legal/+page.svelte';
 import Server from './server/+page.svelte';
 
@@ -60,8 +64,12 @@ describe('layout', () => {
     expect(document.title).toBe('Server quick start · Blockheads Club');
     unmount();
     nav.path = '/missing';
-    render(Layout, { children });
+    const other = render(Layout, { children });
     expect(document.title).toBe('Blockheads Club');
+    other.unmount();
+    nav.path = '/guides/docker';
+    render(Layout, { children });
+    expect(document.title).toBe('Docker and Docker Compose · Blockheads Club');
   });
 
   it('switches language from the header menu and theme', async () => {
@@ -86,7 +94,7 @@ describe('home', () => {
     expect(hrefs).toContain('/server');
     expect(screen.getByText('[VERSION]')).toHaveClass('ph');
     expect(screen.getByText('Is this the official Blockheads?').closest('details')).toHaveAttribute('open');
-    expect(screen.getAllByText('Coming soon')).toHaveLength(2);
+    expect(screen.queryByText('Coming soon')).toBeNull();
   });
 
   it('renders Turkish', () => {
@@ -162,6 +170,54 @@ describe('article', () => {
     expect(screen.getByRole('status')).toHaveTextContent('Thanks for the feedback!');
     await user.click(screen.getByRole('button', { name: 'No' }));
     expect(screen.getByRole('button', { name: 'No' })).toHaveAttribute('aria-pressed', 'true');
+  });
+});
+
+describe('guide articles', () => {
+  it('prerenders every written guide except the hand-made one and 404s others', () => {
+    const slugs = (entries as () => { slug: string }[])().map((e) => e.slug);
+    expect(slugs).toEqual(ARTICLE_IDS);
+    expect(slugs).toHaveLength(9);
+    expect(slugs).not.toContain('fix-game-on-phone');
+    const run = (slug: string) => (load as (e: unknown) => unknown)({ params: { slug } });
+    expect(run('docker')).toEqual({ id: 'docker' });
+    expect(() => run('nope')).toThrow();
+  });
+
+  it.each(ARTICLE_IDS.flatMap((id) => [[id, 'en'] as const, [id, 'tr'] as const]))(
+    '%s renders in %s with toc, steps, code and help',
+    (id, locale) => {
+      i18n.locale = locale;
+      const { container } = render(Guide, { data: { id } });
+      const steps = container.querySelectorAll('h2');
+      expect(screen.getByRole('heading', { level: 1 }).textContent).not.toBe('');
+      expect(steps.length).toBeGreaterThan(1);
+      const toc = within(screen.getByRole('navigation', { name: locale === 'en' ? 'On this page' : 'Bu sayfada' }));
+      expect(toc.getAllByRole('link')).toHaveLength(steps.length + 2);
+      expect(container.querySelectorAll('pre')).toHaveLength(Object.keys(GUIDE_CODE[id] ?? {}).length);
+      expect(container.querySelector('#help li')).not.toBeNull();
+      for (const a of container.querySelectorAll('a')) expect(a.getAttribute('href')).toBeTruthy();
+    }
+  );
+
+  it('links to neighbours on the same topic and takes feedback', async () => {
+    const user = userEvent.setup();
+    render(Guide, { data: { id: 'lan-play' } });
+    expect(screen.getByRole('link', { name: /Next.*Run a 24\/7 server/ })).toHaveAttribute('href', '/guides/raspberry-pi');
+    expect(screen.queryByRole('link', { name: /Previous/ })).toBeNull();
+    await user.click(screen.getByRole('button', { name: 'Yes' }));
+    expect(screen.getByRole('button', { name: 'Yes' })).toHaveAttribute('aria-pressed', 'true');
+    await user.click(screen.getByRole('button', { name: 'No' }));
+    expect(screen.getByText('Thanks for the feedback!')).toHaveAttribute('role', 'status');
+  });
+
+  it('the last guide of a topic has no next link', () => {
+    render(Guide, { data: { id: 'docker' } });
+    expect(screen.getByRole('link', { name: /Previous.*Host from an Android phone/ })).toHaveAttribute(
+      'href',
+      '/guides/host-android'
+    );
+    expect(screen.queryByRole('link', { name: /Next/ })).toBeNull();
   });
 });
 

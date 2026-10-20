@@ -3,6 +3,7 @@ export const LINKS = {
   patcherReleases: 'https://github.com/Blockheads-Club/blockheads-patcher/releases',
   patcherRepo: 'https://github.com/Blockheads-Club/blockheads-patcher',
   serverRepo: 'https://github.com/Blockheads-Club/blockheads-server',
+  serverIssues: 'https://github.com/Blockheads-Club/blockheads-server/issues',
   serverReleases: 'https://github.com/Blockheads-Club/blockheads-server/releases',
   org: 'https://github.com/Blockheads-Club',
   websiteRepo: 'https://github.com/Blockheads-Club/website',

@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { COMMANDS, copyText } from './commands';
-import { GUIDES, guideById, matchesFilter } from './guides';
+import { ARTICLE_IDS, GUIDES, WRITTEN, guideById, linkKey, matchesFilter, neighbours } from './guides';
 import { qrPattern } from './qr';
 import { parseRich } from './rich';
-import { routeKey } from './route';
+import { guideSlug, routeKey } from './route';
 
 describe('parseRich', () => {
   it('parses all inline kinds', () => {
@@ -29,6 +29,8 @@ describe('routeKey', () => {
     ['/website/server', 'server'],
     ['/website/guides', 'guides'],
     ['/website/guides/fix-game-on-phone/', 'article'],
+    ['/website/guides/docker', 'article'],
+    ['/website/guides/nope', 'other'],
     ['/website/faq', 'faq'],
     ['/website/legal', 'legal'],
     ['/website/nope', 'other']
@@ -67,5 +69,24 @@ describe('guides', () => {
     expect(matchesFilter(fix, 'beginner')).toBe(true);
     expect(matchesFilter(fix, 'advanced')).toBe(false);
     expect(GUIDES.length).toBeGreaterThan(5);
+  });
+
+  it('every listed guide is written and has its own path', () => {
+    expect(WRITTEN).toEqual(GUIDES);
+    for (const g of GUIDES) expect(g.path).toBe('/guides/' + g.id);
+    expect(ARTICLE_IDS).toHaveLength(GUIDES.length - 1);
+  });
+
+  it('finds neighbours on the same topic', () => {
+    expect(neighbours('get-apk')).toEqual({ prev: guideById('backup-worlds'), next: guideById('signing-key') });
+    expect(neighbours('fix-game-on-phone').prev).toBeUndefined();
+    expect(neighbours('docker').next).toBeUndefined();
+  });
+
+  it('derives link keys and slugs', () => {
+    expect(linkKey('fix-game-on-phone')).toBe('fixGameOnPhone');
+    expect(linkKey('docker')).toBe('docker');
+    expect(guideSlug('/website/guides/lan-play/', '/website')).toBe('lan-play');
+    expect(guideSlug('/website/guides', '/website')).toBeUndefined();
   });
 });

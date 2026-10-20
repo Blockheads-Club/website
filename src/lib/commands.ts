@@ -69,3 +69,122 @@ export function copyText(lines: readonly Line[]): string {
     )
     .join('\n');
 }
+
+const REL = 'https://github.com/Blockheads-Club/blockheads-server/releases/download/v0.1.1/';
+const PI = 'blockheads-server-v0.1.1-aarch64-unknown-linux-gnu';
+const IMG = 'ghcr.io/blockheads-club/blockheads-server:0.1.1';
+
+/** Code per guide, by step index (missing = step has no code). Shown on `/guides/[slug]`. */
+export const GUIDE_CODE: Record<string, Record<number, readonly Line[]>> = {
+  'lan-play': {
+    0: [
+      [cm('# Linux / macOS, in the unpacked folder')],
+      [pr('$ '), t('./blockheads_server --new MYWORLD')],
+      [cm('# Windows (PowerShell)')],
+      [pr('PS> '), t('.\\blockheads_server.exe --new MYWORLD')]
+    ]
+  },
+  'get-apk': {
+    1: [
+      [pr('$ '), t('adb shell pm path com.noodlecake.blockheads')],
+      [cm('# package:/data/app/…/base.apk')],
+      [pr('$ '), t('adb pull /data/app/…/base.apk blockheads.apk')]
+    ]
+  },
+  'raspberry-pi': {
+    0: [
+      [pr('$ '), t('uname -m')],
+      [cm('# aarch64 = 64-bit, armv7l = 32-bit')]
+    ],
+    1: [
+      [pr('$ '), t('curl -LO ' + REL + PI + '.tar.gz')],
+      [pr('$ '), t('tar -xzf ' + PI + '.tar.gz')],
+      [pr('$ '), t('sudo mv ' + PI + ' /opt/blockheads-server')]
+    ],
+    2: [
+      [pr('$ '), t('/opt/blockheads-server/blockheads_server --new MYWORLD')],
+      [cm('# wait for "World load complete.", then type:')],
+      [pr('> '), t('/stop')]
+    ],
+    3: [
+      [pr('$ '), t("sudo tee /etc/systemd/system/blockheads.service <<'EOF'")],
+      [t('[Unit]')],
+      [t('Description=Blockheads server')],
+      [t('After=network-online.target')],
+      [t('Wants=network-online.target')],
+      [t('')],
+      [t('[Service]')],
+      [t('User=pi')],
+      [t('ExecStart=/opt/blockheads-server/blockheads_server')],
+      [t('Restart=on-failure')],
+      [t('')],
+      [t('[Install]')],
+      [t('WantedBy=multi-user.target')],
+      [t('EOF')],
+      [pr('$ '), t('sudo systemctl enable --now blockheads')],
+      [pr('$ '), t('journalctl -u blockheads -f')]
+    ],
+    4: [
+      [pr('$ '), t('sudo crontab -e')],
+      [cm('# add this line (one line): every night at 04:00')],
+      [
+        t(
+          '0 4 * * * systemctl stop blockheads && tar -czf /home/pi/bh-backup-$(date +\\%F).tar.gz -C /home/pi/GNUstep/Library/ApplicationSupport TheBlockheads; systemctl start blockheads'
+        )
+      ]
+    ]
+  },
+  'open-internet': {
+    0: [
+      [cm('# in the server console')],
+      [pr('> '), t('/set-password secret123')],
+      [pr('> '), t('/whitelist friendname')]
+    ]
+  },
+  'admins-mods': {
+    1: [
+      [pr('> '), t('/admin playername')],
+      [pr('> '), t('/mod playername')],
+      [pr('> '), t('/list-adminlist')]
+    ],
+    2: [
+      [pr('> '), t('/kick playername')],
+      [pr('> '), t('/ban playername')],
+      [pr('> '), t('/unban playername')]
+    ],
+    3: [
+      [pr('> '), t('/whitelist playername')],
+      [pr('> '), t('/list-whitelist')]
+    ],
+    4: [[pr('> '), t('/load-lists')]]
+  },
+  docker: {
+    0: [[pr('$ '), t('docker run -it --rm -p 15151:15151/udp -v bh-data:/data ' + IMG + ' --new MYWORLD')]],
+    1: [
+      [pr('$ '), t('docker run --rm -v bh-data:/data ' + IMG + ' --list')],
+      [cm('# "MYWORLD" stored in directory named 4e834bde…')]
+    ],
+    2: [
+      [pr('$ '), t('docker run -dit --name blockheads --restart unless-stopped \\')],
+      [t('    -p 15151:15151/udp -v bh-data:/data \\')],
+      [t('    ' + IMG + ' --load WORLD_ID')]
+    ],
+    3: [
+      [pr('$ '), t('docker logs -f blockheads')],
+      [pr('$ '), t('docker attach blockheads   '), cm('# detach: Ctrl+P, Ctrl+Q')]
+    ],
+    4: [
+      [t('services:')],
+      [t('  blockheads:')],
+      [t('    image: ' + IMG)],
+      [t('    command: ["--load", "WORLD_ID"]')],
+      [t('    ports: ["15151:15151/udp"]')],
+      [t('    volumes: ["bh-data:/data"]')],
+      [t('    stdin_open: true')],
+      [t('    tty: true')],
+      [t('    restart: unless-stopped')],
+      [t('volumes:')],
+      [t('  bh-data:')]
+    ]
+  }
+};

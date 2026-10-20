@@ -1,4 +1,4 @@
-import type { Dict } from './en';
+import type { Dict, GuideDoc } from './en';
 
 export const tr: Dict = {
   meta: {
@@ -9,7 +9,6 @@ export const tr: Dict = {
       home: 'Blockheads Club',
       server: 'Sunucu hızlı başlangıç · Blockheads Club',
       guides: 'Rehberler · Blockheads Club',
-      article: 'Oyunu telefonunuzda düzeltin · Blockheads Club',
       faq: 'SSS · Blockheads Club',
       legal: 'Yasal bildirim · Blockheads Club'
     }
@@ -272,7 +271,7 @@ export const tr: Dict = {
       addressHint: 'Örnek adres; Sunucu panosunda göründüğü gibi.',
       warnTitle: 'İnternet üzerinden mi oynuyorsunuz?',
       warnBody:
-        'Yönlendiricinizde 15151 numaralı bağlantı noktasını sunucu bilgisayarına yönlendirin ve genel IP’nizi paylaşın. Önce bir parola belirleyin veya beyaz listeyi açın. [Rehberi okuyun](guides)',
+        'Yönlendiricinizde 15151 numaralı bağlantı noktasını sunucu bilgisayarına yönlendirin ve genel IP’nizi paylaşın. Önce bir parola belirleyin veya beyaz listeyi açın. [Rehberi okuyun](openInternet)',
       info: 'Telefonunuzdaki oyun sürümü sunucuyla eşleşmelidir. Yamalı ve orijinal oyunlar birlikte oynayabilir.'
     },
     downloads: {
@@ -402,7 +401,7 @@ export const tr: Dict = {
       title: 'Yamalayın',
       body: 'Sürümünüzün ihtiyaç duyduğu düzeltmeler zaten işaretli. **Oyunu yamala**’ya dokunun ve yaklaşık bir dakika bekleyin. Uygulamayı açık tutun.',
       callout:
-        'Yamalayıcı oyunu **kendi anahtarınızla** imzalar. O anahtarı saklayın — gelecekteki güncellemeleri dünyalarınızı yeniden kaybetmeden kurmak için aynısına ihtiyacınız olacak. [İmzalama anahtarları hakkında bilgi alın](guides)'
+        'Yamalayıcı oyunu **kendi anahtarınızla** imzalar. O anahtarı saklayın — gelecekteki güncellemeleri dünyalarınızı yeniden kaybetmeden kurmak için aynısına ihtiyacınız olacak. [İmzalama anahtarları hakkında bilgi alın](signingKey)'
     },
     s4: {
       title: 'Oyunları değiştirin',
@@ -428,6 +427,399 @@ export const tr: Dict = {
     next: 'Sonraki',
     prevTitle: 'Sahip olduğunuz oyunun APK’sını alın',
     nextTitle: 'İmzalama anahtarınızı güvende tutun'
+  },
+  docs: {
+    'lan-play': {
+      tags: 'Sunucu · Wi-Fi',
+      title: 'Aynı Wi-Fi’daki arkadaşlarınızla oynayın',
+      lead: 'Evdeki bir bilgisayarda sunucu başlatın; Wi-Fi’nıza bağlı her telefon aynı dünyaya katılsın. Yaklaşık dört dakika sürer.',
+      need: [
+        'Telefonlarla aynı Wi-Fi’da bir Windows, macOS ya da Linux bilgisayar',
+        'Blockheads Sunucu — masaüstü uygulaması ya da komut satırı sunucusu ([indirmeler](serverReleases))',
+        'Her telefonda The Blockheads. Yeni Android sürümlerinde [önce oyunu düzeltin](fixGameOnPhone)'
+      ],
+      steps: [
+        {
+          title: 'Bir sunucu başlatın',
+          body: [
+            '**Masaüstü uygulaması:** **Dünyalar**’ı açın, **Dünya oluştur**’a dokunun, bir ad verin ve **Sunucuyu başlat**’a dokunun.',
+            '**Komut satırı:** bilgisayarınıza uygun indirmeyi açın ve bir dünya oluşturun. Sunucu hemen başlar:'
+          ],
+          tip: 'Komut satırı sunucusunu `/stop` ile durdurun. Ctrl + C son kaydı yapmadan kapatır.'
+        },
+        {
+          title: 'Güvenlik duvarından geçirin',
+          body: [
+            'Sunucu **UDP 15151** numaralı bağlantı noktasını kullanır. Windows Güvenlik Duvarı sorduğunda **özel ağlarda** erişime izin verin. Başka sistemlerde güvenlik duvarı kullanıyorsanız 15151’e gelen UDP trafiğine izin verin.'
+          ]
+        },
+        {
+          title: 'Sunucunun adresini bulun',
+          body: [
+            'Masaüstü uygulamasında **Panel**’deki **Telefondan bağlan** kartı **Yerel ağ adresi**ni, bağlantı noktasını ve bir QR kodu gösterir. Adresi kopyalamak için kodu telefon kamerasıyla tarayın.',
+            'Komut satırında bilgisayarınızın yerel IP adresini ağ ayarlarından bulun, örneğin `192.168.1.42`.'
+          ]
+        },
+        {
+          title: 'Oyundan katılın',
+          body: ['Her telefonda oyunu açın ve şuraya gidin:'],
+          list: [
+            '**Join World** → **Advanced...** → **Online IP/Port...**',
+            'Adresi ve bağlantı noktasını girin (alanda zaten `15151` yazar)',
+            '**Join Online World**’e dokunun'
+          ],
+          tip: 'Sunucunun parolası varsa oyun onu sorar.'
+        }
+      ],
+      help: [
+        '**Kimse bağlanamıyor** — telefonların aynı Wi-Fi’da (misafir ağında değil) olduğunu ve güvenlik duvarının UDP 15151’e izin verdiğini kontrol edin.',
+        '**Bir arkadaşınız reddediliyor** — beyaz listede isim varsa yalnızca o isimler katılabilir. Bkz. [Yöneticiler, moderatörler ve yasaklar](adminsMods).',
+        'Hâlâ takıldınız mı? [GitHub’da bir sorun açın](serverIssues) ve sunucu günlüğünü ekleyin.'
+      ]
+    } as GuideDoc,
+    'backup-worlds': {
+      tags: 'Yamalayıcı · Android',
+      title: 'Yamalamadan önce dünyalarınızı yedekleyin',
+      lead: 'Android’de düzeltilmiş oyunu kurmadan önce orijinali kaldırmanız gerekir — bu da telefonda kayıtlı dünyaları siler. Nedenini ve dünyaları nasıl koruyacağınızı anlatıyoruz.',
+      need: ['Telefonunuzda kurulu The Blockheads', 'Yamalamaya başlamadan önce birkaç dakika'],
+      steps: [
+        {
+          title: 'Orijinalin neden kaldırılması gerektiğini bilin',
+          body: [
+            'Yamalayıcı düzeltilmiş oyunu orijinal anahtarla değil **kendi anahtarınızla** imzalar. Android, imzası farklı bir uygulamayı mevcut uygulamanın üzerine kurmaz; bu yüzden önce orijinal kaldırılmalıdır.'
+          ],
+          warn: '**O telefonda kayıtlı dünyalar oyunla birlikte silinir.** Sunucularda barındırılan dünyalar etkilenmez.'
+        },
+        {
+          title: 'Her dünyayı oyunun içinden yedekleyin',
+          body: [
+            'Telefonunuzdaki orijinal oyunu açın ve saklamak istediğiniz her dünya için oyunun kendi yedeklemesini kullanın. Yamalayıcı bunu sizin yerinize yapamaz: kayıtlarınıza hiç dokunmaz.'
+          ]
+        },
+        {
+          title: 'Yamalayıcı’da onaylayın',
+          body: [
+            'Yamalayıcı orijinali kaldırmadan önce **Bu telefondaki dünyalarınız silinecek** uyarısını gösterir. Devam etmek için **Dünyalarımı yedekledim ya da onlara ihtiyacım yok** kutusunu işaretleyin.'
+          ]
+        },
+        {
+          title: 'Kurduktan sonra geri yükleyin',
+          body: ['Düzeltilmiş oyun kurulunca onu açın ve dünyalarınızı yedeğinizden geri yükleyin.'],
+          tip: '**Kaldırırken oyun verisini saklamayı öner** düzeltmesi varsayılan olarak açıktır. Bununla Android 10 ve üstü, düzeltilmiş oyunu bir gün kaldırırsanız oyun verisini saklamak isteyip istemediğinizi sorar.'
+        },
+        {
+          title: 'Bir dahaki sefere bunu atlayın',
+          body: [
+            'İmza anahtarınızı saklayın. Aynı anahtarla yeniden yamalarsanız güncelleme düzeltilmiş oyunun üzerine kurulur ve dünyalarınız kalır. [İmza anahtarınızı güvende tutun](signingKey)'
+          ]
+        }
+      ],
+      help: [
+        'Bir dünyanın kaydedildiğinden emin değil misiniz? Yeniden yedekleyin — yalnızca bir dakika sürer.',
+        'Sorunuz mu var? [GitHub’da sorun](patcherIssues).'
+      ]
+    } as GuideDoc,
+    'get-apk': {
+      tags: 'Yamalayıcı · Android',
+      title: 'Sahip olduğunuz oyunun APK’sını alın',
+      lead: 'Web ve masaüstü Yamalayıcı oyunu bir `.apk` dosyası olarak ister. Android’de bu rehberi genellikle atlayabilirsiniz.',
+      need: [
+        'Android telefonunuzda kurulu The Blockheads',
+        'Bilgisayar yolu için: bir USB kablosu ve Android’in `adb` aracı'
+      ],
+      steps: [
+        {
+          title: 'Android’de misiniz? Yüklü oyunu kullanın',
+          body: [
+            'Android için Blockheads Yamalayıcı uygulaması telefonunuzdaki oyunu bulur. **Yüklü oyunu kullan**’a dokunun — dosya gerekmez. Elinizde zaten bir dosya varsa **APK dosyası seç**’e dokunun.'
+          ]
+        },
+        {
+          title: 'Oyunu bilgisayara kopyalayın',
+          body: [
+            'Telefonda USB hata ayıklamayı açın, telefonu bağlayın ve Android’e oyunun nerede olduğunu sorun. Ardından o dosyayı kopyalayın:'
+          ],
+          warn: 'İlk komut **birden fazla** satır yazarsa oyun birden çok APK dosyasına bölünmüştür. Yamalayıcı bunları güvenle yamalayamaz — tam (evrensel) bir APK gerekir.'
+        },
+        {
+          title: 'Yamalayıcı’da açın',
+          body: [
+            '[Web Yamalayıcı](webPatcher)’yı ya da masaüstü uygulamasını açın ve dosyayı bırakın. **Yalnızca .apk dosyaları** kabul edilir. Hiçbir şey yüklenmez.'
+          ],
+          tip: 'Yalnızca kendi kopyanızı kullanın ve APK’yı başkalarıyla paylaşmayın.'
+        }
+      ],
+      help: [
+        '**“Telefonunuzdan kaydettiğiniz The Blockheads .apk dosyasını seçin.”** — dosya başka bir uygulama.',
+        '**“Yüklü oyun birden çok APK dosyasına bölünmüş…”** — bunun yerine tam (evrensel) bir APK kullanın.',
+        'Sonraki adım: [Oyunu telefonunuzda düzeltin](fixGameOnPhone).'
+      ]
+    } as GuideDoc,
+    'signing-key': {
+      tags: 'Yamalayıcı',
+      title: 'İmza anahtarınızı güvende tutun',
+      lead: 'Yamaladığınız her oyun yalnızca cihazınızda duran bir anahtarla imzalanır. Bir yedeğini saklarsanız gelecekteki düzeltmeler kaldırmadan kurulur.',
+      need: ['Blockheads Yamalayıcı (web, masaüstü ya da Android)', 'Küçük bir dosya için güvenli bir yer ve hatırlayacağınız bir parola'],
+      steps: [
+        {
+          title: 'Anahtarın ne işe yaradığını bilin',
+          body: [
+            'Yamalayıcı anahtarı ilk yamalamada oluşturur. Android, düzeltilmiş oyununuzun üzerine bir güncellemeyi yalnızca **ikisi de aynı anahtarla imzalanmışsa** kurar. Yeni anahtar, yeniden kaldırmak demektir — yedeklemediyseniz yerel dünyaları kaybedersiniz.'
+          ],
+          warn: '**Gizli tutun.** Anahtarınıza sahip olan biri, oyununuzun güncellemesi gibi görünen uygulamalar yapabilir.'
+        },
+        {
+          title: 'Bir yedek dışa aktarın',
+          body: [
+            '**İmza anahtarları**’nı açın ve **Yedeği dışa aktar…**’ı seçin. Bir parola belirleyin, tekrarlayın ve **Yedeği kaydet**’e dokunun. Varsayılan adı `blockheads-patcher-key.json` olan bir `.json` dosyası alırsınız.'
+          ],
+          tip: 'Parolayı kurtaramayız, bu yüzden bir yere yazın. Parola olmadan dosya şifrelenmez ve dosyaya sahip olan herkes sizin adınıza uygulama imzalayabilir.'
+        },
+        {
+          title: 'Başka bir cihaza taşıyın',
+          body: [
+            'Yeni cihazda **İmza anahtarları**’nı açın, **Anahtarı içe aktar**’ı seçin ve `.json` dosyasını seçin. Yedek parolasını girin, ardından **Bu anahtarı kullan**’a dokunun.',
+            'Aynı anahtar olduğundan emin olmak için iki cihazda parmak izinin ilk ve son dört çiftini karşılaştırın.'
+          ]
+        },
+        {
+          title: 'Anahtar kaybolursa',
+          body: [
+            'Yedeğiniz yoksa o anahtarla yamalanmış oyunları güncelleyemezsiniz. Dünyalarınızı yedekleyin, düzeltilmiş oyunu kaldırın ve yeni bir anahtarla yeniden yamalayın. [Dünyalar nasıl yedeklenir](backupWorlds)'
+          ]
+        }
+      ],
+      help: [
+        'Web Yamalayıcı anahtarı tarayıcınızın bu siteye ait depolamasında tutar. Sitenin verilerini temizlemek onu siler — önce bir yedek alın.',
+        'İçe aktarma yalnızca Yamalayıcı’nın dışa aktardığı `.json` yedeklerini kabul eder.',
+        'Sorunuz mu var? [GitHub’da sorun](patcherIssues).'
+      ]
+    } as GuideDoc,
+    'raspberry-pi': {
+      tags: 'Sunucu · Linux',
+      title: 'Raspberry Pi’de 7/24 sunucu çalıştırın',
+      lead: 'Raspberry Pi az enerji harcar ve dünyanızı gece gündüz barındırabilir. ARM sürümünü kuracak, açılışta başlatacak ve her gece yedek alacaksınız.',
+      need: [
+        'Ağınıza bağlı, Raspberry Pi OS (ya da başka bir Linux) kurulu bir Raspberry Pi',
+        'Pi’de bir terminal (doğrudan ya da SSH ile)',
+        '[Sürümler sayfasından](serverReleases) komut satırı sunucusu'
+      ],
+      steps: [
+        {
+          title: '32 bit mi 64 bit mi, kontrol edin',
+          body: [
+            '64 bit sistemde `aarch64`, 32 bit sistemde `armv7` sürümünü kullanın. Hangisine sahip olduğunuzu bu komut söyler:'
+          ]
+        },
+        {
+          title: 'İndirin ve açın',
+          body: [
+            'Bu komutlar 0.1.1 sürümünü ve 64 bit yapıyı kullanır. Sürümler sayfasından en yeni sürümü alın; 32 bit sistemde `aarch64-unknown-linux-gnu` yerine `armv7-unknown-linux-gnueabihf` kullanın.'
+          ]
+        },
+        {
+          title: 'Dünyanızı oluşturun',
+          body: [
+            'Dünyayı bir kez elle oluşturun. Dünyalar `~/GNUstep/Library/ApplicationSupport/TheBlockheads` klasörüne kaydedilir.'
+          ],
+          tip: 'Seçenek verilmezse sunucu en son dünyayı yükler. Aşağıdaki hizmet bunu kullanır.'
+        },
+        {
+          title: 'Her açılışta başlatın',
+          body: [
+            'Bir systemd hizmeti oluşturun. `pi` yerine dünyayı oluşturan kullanıcının adını yazın.'
+          ],
+          tip: 'Hizmetin konsolu yoktur. Komutları oyun sohbetinde yönetici olarak verin (bkz. [Yöneticiler, moderatörler ve yasaklar](adminsMods)) ve günlüğü `journalctl` ile izleyin.'
+        },
+        {
+          title: 'Her gece yedek alın',
+          body: [
+            'Dünya klasörünü yalnızca sunucu dururken kopyalayın. Bu root cron görevi sunucuyu 04:00’te durdurur, her şeyi tarihli bir `.tar.gz` dosyasına paketler ve yeniden başlatır. `/home/pi` yerine kendi ev klasörünüzü yazın.'
+          ],
+          warn: '`systemctl stop` sunucuyu son kaydı yapmadan kapatır. Sunucu düzenli kaydeder ama son birkaç saniye kaybolabilir — sakin bir saat seçin.'
+        }
+      ],
+      help: [
+        '**“Exec format error”** — yanlış yapı. `uname -m` ile yeniden kontrol edin.',
+        '**Arkadaşlar bağlanamıyor** — [Aynı Wi-Fi’daki arkadaşlarınızla oynayın](lanPlay) rehberindeki kontrollerin aynısı.',
+        'Hâlâ takıldınız mı? `journalctl` çıktısıyla [GitHub’da bir sorun açın](serverIssues).'
+      ]
+    } as GuideDoc,
+    'open-internet': {
+      tags: 'Sunucu · Ağ',
+      title: 'Sunucunuzu internete açın',
+      lead: 'Evinizin dışındaki arkadaşlarınız da dünyanıza katılsın. Önce sunucuyu kilitleyecek, sonra yönlendiricinizde tek bir bağlantı noktasını yönlendireceksiniz.',
+      need: [
+        'Wi-Fi’nızda zaten çalışan bir sunucu ([yerel ağ rehberi](lanPlay))',
+        'Yönlendiricinizin ayarlar sayfasına erişim'
+      ],
+      steps: [
+        {
+          title: 'Önce sunucuyu kilitleyin',
+          body: [
+            'Bir **parola** belirleyin: uygulamada **Ayarlar** → **Parola** (en çok 15 karakter) ya da konsolda `/set-password` ile.',
+            'Ya da isim ekleyerek **beyaz liste**yi açın: uygulamada **Erişim listeleri** → **Beyaz liste** ya da `/whitelist` ile. Beyaz listede isim olduğu anda yalnızca o oyuncular katılabilir.'
+          ]
+        },
+        {
+          title: 'Sunucuya sabit bir adres verin',
+          body: [
+            'Yönlendiricinizde sunucu bilgisayarının yerel IP adresini ayırın (genellikle DHCP rezervasyonu denir); böylece yeniden başlatınca değişmez.'
+          ]
+        },
+        {
+          title: 'Bağlantı noktasını yönlendirin',
+          body: [
+            'Yönlendiricinin bağlantı noktası yönlendirme sayfasında **UDP 15151**’i sunucu bilgisayarının yerel adresine yönlendirin. Bağlantı noktasını değiştirdiyseniz kendinizinkini kullanın.'
+          ]
+        },
+        {
+          title: 'Genel adresinizi paylaşın',
+          body: [
+            'Genel IP adresinizi öğrenin ve bağlantı noktasıyla birlikte arkadaşlarınıza gönderin. **Join World** → **Advanced...** → **Online IP/Port...** ile katılırlar.'
+          ],
+          warn: 'Genel IP’niz kabaca nerede olduğunuzu gösterir. Yalnızca güvendiğiniz kişilerle paylaşın.'
+        }
+      ],
+      help: [
+        '**Evde çalışıyor, dışarıdan çalışmıyor** — yönlendiricinin internet adresi genel IP’nizden farklı olabilir (bazı sağlayıcılar bir adresi müşteriler arasında paylaştırır). O zaman yönlendirme çalışamaz; sağlayıcınıza sorun.',
+        '**Hâlâ engelli** — sunucu bilgisayarındaki güvenlik duvarının UDP 15151’e izin verdiğini kontrol edin.',
+        'Yardım mı lazım? [GitHub’da bir sorun açın](serverIssues).'
+      ]
+    } as GuideDoc,
+    'admins-mods': {
+      tags: 'Sunucu',
+      title: 'Yöneticiler, moderatörler ve yasaklar',
+      lead: 'Sunucunuzda kim ne yapabilir; oyuncuları uygulamadan, konsoldan ya da oyun sohbetinden nasıl yönetirsiniz.',
+      need: ['Çalışan bir Blockheads Sunucu', 'Yönetmek istediğiniz oyuncu adları'],
+      steps: [
+        {
+          title: 'Rolleri tanıyın',
+          body: [
+            'Sunucu konsolunun tüm yetkileri vardır. **Yöneticiler** diğer yöneticiler dahil tam denetime sahiptir. **Moderatörler** oyuncuları atabilir ve yasaklayabilir, yöneticileri değiştiremez. Yöneticiler ve moderatörler komutları oyun sohbetine `/` ile başlayarak yazar.'
+          ],
+          list: [
+            '**Moderatörler:** `/players`, `/kick`, `/ban`, `/unban`, `/whitelist`, `/unwhitelist`, `/clear`',
+            '**Yöneticiler ayrıca:** `/stop`, `/pvp-on`, `/pvp-off`, `/mod`, `/unmod`, `/admin`, `/unadmin`, `/load-lists`',
+            '**Yalnızca sahip:** `/set-password`, `/remove-password`'
+          ]
+        },
+        {
+          title: 'Yönetici ve moderatör ekleyin',
+          body: [
+            'Uygulamada **Erişim listeleri** → **Yöneticiler** ya da **Moderatörler**’i açın ve **Yönetici ekle** ya da **Moderatör ekle**’ye dokunun. Ya da **Oyuncular** altında bir oyuncuya dokunup **Yönetici yap** ya da **Moderatör yap**’ı seçin. Konsolda:'
+          ]
+        },
+        {
+          title: 'Atın ve yasaklayın',
+          body: [
+            'Uygulamada bir oyuncuya dokunun ve **At…** ya da **Yasakla…**’yı seçin. Bir yasak yalnızca adı değil **IP adresini de engelleyebilir**. `/ban` oyuncunun cihazını da yasaklar; `/ban-no-device` yalnızca adı yasaklar.'
+          ]
+        },
+        {
+          title: 'Beyaz liste kullanın',
+          body: [
+            'Beyaz liste içine bir isim eklendiği anda açılır. O zaman yalnızca listedeki oyuncular katılabilir ve izni olmayan herkes atılır.'
+          ]
+        },
+        {
+          title: 'Liste dosyalarını düzenleyin',
+          body: [
+            'Her dünya, `saves` altındaki klasöründe `adminlist.txt`, `modlist.txt`, `whitelist.txt` ve `blacklist.txt` tutar. Her satıra bir isim; büyük/küçük harf fark etmez ve ilk satır yok sayılır. Elle düzenledikten sonra yeniden yükleyin:'
+          ]
+        }
+      ],
+      help: [
+        '**“Sorry, you do not have permission to issue that command.”** — bu sunucuda moderatör ya da yönetici değilsiniz.',
+        'Sunucu çalışırken uygulama liste değişikliklerini konsol komutlarıyla uygular.',
+        'Sorunuz mu var? [GitHub’da sorun](serverIssues).'
+      ]
+    } as GuideDoc,
+    'host-android': {
+      tags: 'Sunucu · Android',
+      title: 'Android telefondan sunucu barındırın',
+      lead: 'Boşta duran bir Android telefonu sunucuya çevirin. Blockheads Sunucu uygulaması arka planda çalışmaya devam eder ve onu bir bildirimden yönetirsiniz.',
+      need: [
+        'Wi-Fi’nıza bağlı bir Android telefon',
+        'Blockheads Sunucu APK’sı (`blockheads-server-…-android.apk`, [sürümler](serverReleases))',
+        'Bir şarj aleti'
+      ],
+      steps: [
+        {
+          title: 'Uygulamayı kurun',
+          body: ['APK’yı indirin ve açın. Android tarayıcınızdan kurulumlara izin vermenizi isteyebilir.']
+        },
+        {
+          title: 'Bir dünya oluşturun ve başlatın',
+          body: [
+            '**Dünyalar** → **Dünya oluştur**’u açın. Bir ad (en çok 30 karakter) ve boyut seçin, **Bu dünyayı hemen kullan** açık kalsın, sonra **Sunucuyu başlat**’a dokunun.'
+          ]
+        },
+        {
+          title: 'Arka planda çalışsın',
+          body: [
+            'Bir bildirim durumu, dünyayı, çevrimiçi oyuncu sayısını ve adresi gösterir. Düğmeleri **Sunucuyu durdur**, **Adresi kopyala** ve **Konsol**’dur.'
+          ],
+          tip: 'Sunucu çalışırken uygulama telefonu ve Wi-Fi’ını uyanık tutar. Telefonunuz yine de durduruyorsa Android ayarlarında Blockheads Sunucu için pil optimizasyonunu kapatın.'
+        },
+        {
+          title: 'Telefonu şarjda tutun',
+          body: ['Sunucu barındırmak pil harcar. Arkadaşlarınız oynarken telefonu şarjda bırakın.']
+        },
+        {
+          title: 'Arkadaşlarınızı bağlayın',
+          body: [
+            '**Panel** **Yerel ağ adresi**ni ve bir QR kodu gösterir. Diğer telefonlarda **Join World** → **Advanced...** → **Online IP/Port...** ile katılın.'
+          ]
+        }
+      ],
+      help: [
+        '**“Sunucu beklenmedik şekilde durdu”** — nedenini görmek için bildirime dokunun ve **Günlüğü aç**’ı seçin.',
+        'Dünyalar bu telefondaki uygulamanın özel depolamasında saklanır.',
+        'Hâlâ takıldınız mı? [GitHub’da bir sorun açın](serverIssues).'
+      ]
+    } as GuideDoc,
+    docker: {
+      tags: 'Sunucu · Docker',
+      title: 'Docker ve Docker Compose',
+      lead: 'Sunucuyu bir konteyner olarak çalıştırın. Dünyalar bir birimde durur; böylece güncellemelerden sonra da kalır.',
+      need: [
+        'Docker (isterseniz Docker Compose da)',
+        'Çok mimarili `ghcr.io/blockheads-club/blockheads-server` imajı (amd64, arm64, arm/v7)'
+      ],
+      steps: [
+        {
+          title: 'Bir dünya oluşturun',
+          body: [
+            'Konsolu almak için konteyneri bir kez `-it` ile çalıştırın. Dünyalar `bh-data` birimine gider. **World load complete.** yazısını bekleyin, sonra `/stop` yazın.'
+          ],
+          tip: 'Örnekler 0.1.1 sürümünü kullanır. Her sürümün bir sürüm etiketi vardır; en yenisini seçin.'
+        },
+        {
+          title: 'Dünya kimliğini bulun',
+          body: ['Birimdeki dünyaları listeleyin. Uzun onaltılık ad dünya kimliğidir.']
+        },
+        {
+          title: 'Arka planda çalıştırın',
+          body: [
+            'Dünyayı `--load` ile başlatın. Konsolu sonra açabilmek için `-i` ve `-t` kalsın; bağlantı noktasını **UDP** olarak eşleyin.'
+          ]
+        },
+        {
+          title: 'Günlükler ve konsol',
+          body: ['Günlüğü izleyin ya da `/players` veya `/stop` gibi komutlar yazmak için konsola bağlanın.']
+        },
+        {
+          title: 'Ya da Docker Compose kullanın',
+          body: ['Aynı kurulum bir `compose.yaml` olarak. `docker compose up -d` ile başlatın.']
+        }
+      ],
+      help: [
+        '**Konteyner yalnızca yardım metnini yazıyor** — `--new` ya da `--load` gibi seçenekler vermezseniz imaj `--help` ile başlar.',
+        '**Güncelleme** — konteyneri durdurup silin, sonra yeni etiketle yeniden çalıştırın. `bh-data` birimi dünyalarınızı saklar. `docker stop` sunucuyu son kaydı yapmadan kapatır; kimse oynamıyorken durdurun.',
+        '**Bağlantı yok** — bağlantı noktası `15151:15151/udp` olarak eşlenmelidir.'
+      ]
+    } as GuideDoc
   },
   faq: {
     title: 'Sık sorulan sorular',
@@ -478,7 +870,7 @@ export const tr: Dict = {
           { q: 'Kaç oyuncu katılabilir?', a: '1 ile 32 arası. Sınırı Ayarlar’dan seçersiniz.' },
           {
             q: 'Arkadaşım bağlanamıyor. Nelere bakmalıyım?',
-            a: 'Aynı Wi-Fi, doğru adres ve bağlantı noktası, güvenlik duvarının sunucuya izin vermesi ve (açıksa) beyaz listede adının bulunması. [Bağlantı rehberi](guides)'
+            a: 'Aynı Wi-Fi, doğru adres ve bağlantı noktası, güvenlik duvarının sunucuya izin vermesi ve (açıksa) beyaz listede adının bulunması. [Bağlantı rehberi](lanPlay)'
           },
           {
             q: 'Eski bir Android telefonda çalıştırabilir miyim?',
