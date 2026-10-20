@@ -216,6 +216,8 @@ export default defineConfig({
   // Maintainer notes, not a docs page.
   srcExclude: ['development.md'],
   lastUpdated: false,
+  // App screenshots in docs/public/shots/<locale>/ load only when scrolled near.
+  markdown: { image: { lazyLoading: true } },
   title: 'Blockheads Club Docs',
   titleTemplate: ':title · Blockheads Club Docs',
   head: [

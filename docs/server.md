@@ -21,8 +21,24 @@ Then:
 2. Press **Start server**.
 3. Share the address shown in the app with your friends. There is also a QR code for phones.
 
+![Blockheads Server desktop app, “Create a world” dialog: World name, World size from 1/16× to 16×, the Expert mode switch and the “Create world” button.](/shots/en/server/worlds-create.webp)
+
+*Create a world: a name, a size and, if you like, expert mode.*
+
+![Blockheads Server dashboard while running: 2 players online, the current world “Sunny Isle”, and the “Connect from a phone” card with a QR code, LAN address 192.168.1.42 and port 15151.](/shots/en/server/dashboard.webp)
+
+*The dashboard shows the address to share, with a QR code for phones.*
+
 In the app you can also see the live console and who is online, and edit the admin, mod, white and black lists.
 Port, max players and password are under **Settings**.
+
+![Blockheads Server Console: the live log with join, chat and error lines, filters, a search field and a command box with a Run button.](/shots/en/server/console.webp)
+
+*The live console: search the log and type commands.*
+
+![Blockheads Server Settings, Connection: Port 15151, Max players and Password, then World & saving with the save delay and the data folder.](/shots/en/server/settings.webp)
+
+*Port, max players and password are under Settings.*
 
 ## Command line
 
@@ -61,6 +77,10 @@ docker run -i --rm -p 15151:15151/udp -v bh-data:/data \
    browser.
 2. Create a world and tap **Start server**. The server keeps running in the background; a notification shows its status.
 3. Keep the phone charging. If the app asks, turn off battery optimization for it, so Android doesn’t stop it.
+
+![Blockheads Server app on an Android phone: the dashboard while running, with the LAN address, the port and a QR code for the other phones.](/shots/en/server/phone-dashboard.webp)
+
+*The Android app shows the same dashboard.*
 
 ## Connect from the game
 

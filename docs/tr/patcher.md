@@ -18,6 +18,10 @@ Her şey cihazınızda olur. Hiçbir şey yüklenmez ve hiçbir oyun dosyası in
 
 Android’de Yamalayıcı, telefonunuzda zaten yüklü olan oyunu okuyabilir; APK’yı kendiniz bulmanız gerekmez.
 
+![Android’de Blockheads Yamalayıcı: “Bu telefonda bulundu” kartında The Blockheads 1.7.4 ve “Yüklü oyunu kullan” düğmesi; altında APK dosyası seçme düğmesi.](/shots/tr/patcher/phone-choose.webp)
+
+*Android’de Yamalayıcı kurulu oyunu bulur.*
+
 ## Nasıl yamalanır
 
 1. **Seç**: APK’yı (1.7.4, 1.7.5 veya 1.7.6 sürümü) sürükleyip bırakın ya da seçin. Android’de **Yüklü oyunu kullan**’a
@@ -31,6 +35,18 @@ Android’de Yamalayıcı, telefonunuzda zaten yüklü olan oyunu okuyabilir; AP
      **Telefonda kayıtlı dünyalar oyunla birlikte silinir.**
    - Yamalanmış APK’yı açarak kurun. Android sorarsa bu kaynaktan yüklemeye izin verin.
 
+![Blockheads Yamalayıcı, 1. adım “Oyununuzu seçin”: oyunun APK dosyası için bırakma alanı ve dosya seçme düğmesi.](/shots/tr/patcher/choose.webp)
+
+*1. adım: APK’nızı seçin.*
+
+![Blockheads Yamalayıcı, 2. adım “Düzeltmeleri gözden geçirin”: solda algılanan 1.7.4 oyununun ayrıntıları, sağda önerilen ve uyumlu etiketli yama listesi ve oyunu yamalama düğmesi.](/shots/tr/patcher/review.webp)
+
+*2. adım: sürümünüzün ihtiyaç duyduğu düzeltmeler zaten işaretli.*
+
+![Blockheads Yamalayıcı, oyun düzeltildi ekranı: blockheads-1.7.4-patched.apk dosyası, yamalı APK’yı kaydetme düğmesi ve telefona kurmak için sonraki adımlar.](/shots/tr/patcher/done.webp)
+
+*3–4. adım: yamalı APK’yı kaydedin, sonra kurun.*
+
 Android’de Yamalayıcı’da iki adım için de düğme vardır: önce **Orijinali kaldır**, sonra **Düzeltilmiş oyunu kur**.
 
 ::: tip İmza anahtarınızı saklayın
@@ -38,6 +54,10 @@ Yamalayıcı ilk seferde sizin için bir imza anahtarı oluşturur. **İmza anah
 bir yerde saklayın. Daha sonra aynı anahtarla yeniden yamalarsanız güncelleme yamalı oyununuzun üzerine kurulur ve
 dünyalarınız korunur.
 :::
+
+![Blockheads Yamalayıcı “İmza anahtarları” ekranı: SHA-256 parmak izli anahtar ve parola belirleyerek yedeği dışa aktarma formu.](/shots/tr/patcher/keys-export.webp)
+
+*Anahtarlar → Yedeği dışa aktar… anahtarınızı parolalı bir dosyaya kaydeder.*
 
 ## Önerilen yamalar
 
@@ -76,6 +96,10 @@ Ek yamalar **yama paketleri** (`.bhpack` dosyaları) olarak gelebilir.
 1. **Ayarlar → İçe aktarılan yama paketleri**’ni açın.
 2. **Paket içe aktar**’a tıklayıp dosyayı seçin (dosyayı oraya sürükleyip de bırakabilirsiniz).
 3. Paketteki yamalar, yama listesinde **Paket** etiketiyle görünür. Hiçbir zaman varsayılan olarak işaretli değildir.
+
+![Blockheads Yamalayıcı ayarları, içe aktarılan yama paketleri: paketlerin başkalarından geldiği uyarısı, paket içe aktarma düğmesi ve kaldırma düğmeli örnek bir paket.](/shots/tr/patcher/packs.webp)
+
+*Ayarlar → İçe aktarılan yama paketleri.*
 
 Bir paketi kaldırmak için Ayarlar’da yanındaki kaldır düğmesini kullanın.
 

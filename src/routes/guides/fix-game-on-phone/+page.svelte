@@ -6,6 +6,7 @@
   import Callout from '$lib/components/Callout.svelte';
   import Icon from '$lib/components/Icon.svelte';
   import Rich from '$lib/components/Rich.svelte';
+  import Shot from '$lib/components/Shot.svelte';
   import StepNumber from '$lib/components/StepNumber.svelte';
   import Toc from '$lib/components/Toc.svelte';
   import { dict } from '$lib/locale.svelte';
@@ -61,21 +62,23 @@
       <h2 id="s1"><StepNumber n={1} />{a.s1.title}</h2>
       <p>{a.s1.body}</p>
       <Callout tone="warn" icon="alert"><p><strong>{a.s1.calloutStrong}</strong>{' ' + a.s1.callout}</p></Callout>
-      <div class="shot" role="img" aria-label={a.s1.shotAlt}><Icon name="image" size={32} />{a.s1.shot}</div>
 
       <h2 id="s2"><StepNumber n={2} />{a.s2.title}</h2>
       <p><Rich text={a.s2.body} /></p>
-      <div class="shot" role="img" aria-label={a.s2.shotAlt}><Icon name="image" size={32} />{a.s2.shot}</div>
+      <Shot name="patcher/phone-choose" />
 
       <h2 id="s3"><StepNumber n={3} />{a.s3.title}</h2>
       <p><Rich text={a.s3.body} /></p>
+      <Shot name="patcher/phone-review" />
       <Callout tone="info" icon="info"><p><Rich text={a.s3.callout} /></p></Callout>
 
       <h2 id="s4"><StepNumber n={4} />{a.s4.title}</h2>
       <p><Rich text={a.s4.body} /></p>
+      <Shot name="patcher/phone-uninstall-confirm" />
 
       <h2 id="s5"><StepNumber n={5} />{a.s5.title}</h2>
       <p>{a.s5.body}</p>
+      <Shot name="patcher/phone-installed" />
 
       <section id="help" class="card helpbox">
         <h3>{a.help.title}</h3>
@@ -196,21 +199,6 @@
   .prose :global(.call) {
     font-size: 16.5px;
     line-height: 1.55;
-  }
-  .shot {
-    border: 2px dashed var(--line-strong);
-    border-radius: 16px;
-    background: var(--surface-2);
-    min-height: 260px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: var(--text-3);
-    font-size: 15px;
-    text-align: center;
-    padding: 20px;
   }
   .helpbox {
     padding: 22px 24px;

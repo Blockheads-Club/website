@@ -145,3 +145,15 @@
   transform: translateY(2px);
   box-shadow: none;
 }
+
+/* App screenshots: a frame so light screens stand out from the page; phone screens stay narrow. */
+.vp-doc img[src*='/shots/'] {
+  display: block;
+  margin: 16px 0 6px;
+  border: 2px solid var(--vp-c-divider);
+  border-radius: 12px;
+}
+.vp-doc img[src*='/phone-'] {
+  max-width: min(100%, 300px);
+  border-radius: 20px;
+}

@@ -131,13 +131,13 @@ export const en = {
       getTitle: 'Get the Patcher',
       platforms: [
         { name: 'Web app', hint: 'Any modern browser' },
-        { name: 'Android', hint: 'APK · {{[MIN ANDROID]}}' },
+        { name: 'Android', hint: 'APK · Android 7.0+' },
         { name: 'Windows', hint: '10 / 11 · x64' },
         { name: 'macOS', hint: 'Apple silicon & Intel' },
         { name: 'Linux', hint: 'AppImage · .deb' }
       ],
       version:
-        'Current version {{[VERSION]}} · [Release notes](patcherReleases) · [Checksums](patcherReleases)'
+        'Current version **0.1.0** (pre-release, 20 October 2026) · [Release notes](patcherReleases) · [Checksums](patcherReleases)'
     },
     server: {
       eyebrow: 'Blockheads Server',
@@ -315,10 +315,10 @@ export const en = {
         { name: 'Desktop app', hint: 'Windows · macOS · Linux' },
         { name: 'Command-line server', hint: 'x64 · ARM64 · ARMv7' },
         { name: 'Docker image', hint: 'multi-arch · `ghcr.io/blockheads-club/blockheads-server`' },
-        { name: 'Android app', hint: 'APK · {{[MIN ANDROID]}}' }
+        { name: 'Android app', hint: 'APK · Android 7.0+' }
       ],
       version:
-        'Version {{[VERSION]}} · [Release notes](serverReleases) · [Checksums](serverReleases) · [Source on GitHub](serverRepo)'
+        'Version **0.1.1** (pre-release, 20 October 2026) · [Release notes](serverReleases) · [Checksums](serverReleases) · [Source on GitHub](serverRepo)'
     }
   },
   guides: {
@@ -407,7 +407,7 @@ export const en = {
     level: 'Beginner',
     title: 'Fix the game on your phone, start to finish',
     lead: 'This guide uses the Blockheads Patcher app for Android. You will keep your worlds, fix the “Welcome” freeze and — on 1.7.6 — the world-loading crash.',
-    updated: 'Updated {{[DATE]}} · [Edit this page on GitHub](websiteRepo)',
+    updated: 'Updated 21 October 2026 · [Edit this page on GitHub](websiteRepo)',
     toc: 'On this page',
     need: {
       title: 'What you need',
@@ -422,15 +422,11 @@ export const en = {
       body: 'Android only lets you install the fixed game after the original is removed. Removing the game also deletes the worlds saved on this phone — so save them somewhere else first.',
       calloutStrong: 'Don’t skip this.',
       callout:
-        'Worlds that are only on this phone can’t be recovered after you uninstall the game. Worlds on a server are safe.',
-      shotAlt: 'Screenshot placeholder: the game’s world list with the backup option',
-      shot: '[SCREENSHOT — world list and backup option]'
+        'Worlds that are only on this phone can’t be recovered after you uninstall the game. Worlds on a server are safe.'
     },
     s2: {
       title: 'Pick the installed game',
-      body: 'Open the Patcher and tap **Use installed game**. The Patcher reads the game on your phone and shows its version. Nothing is uploaded.',
-      shotAlt: 'Screenshot placeholder: Patcher choose screen',
-      shot: '[SCREENSHOT — Patcher “Choose your game”]'
+      body: 'Open the Patcher and tap **Use installed game**. The Patcher reads the game on your phone and shows its version. Nothing is uploaded.'
     },
     s3: {
       title: 'Patch it',
@@ -440,7 +436,7 @@ export const en = {
     },
     s4: {
       title: 'Swap the games',
-      body: 'Tap **Uninstall original** and confirm. Then tap **Install patched game**. If Android asks, allow the Patcher to install apps.'
+      body: 'Tick **My worlds are backed up, or I don’t need them**, tap **Uninstall original** and confirm. Then tap **Install fixed game**. If Android asks, allow the Patcher to install apps.'
     },
     s5: {
       title: 'Bring your worlds back',
@@ -922,14 +918,14 @@ export const en = {
   },
   legal: {
     title: 'Legal notice',
-    lead: 'Plain-language summary first. Last updated {{[DATE]}}.',
+    lead: 'Plain-language summary first. Last updated 21 October 2026.',
     shortTitle: 'In short',
     short:
       'We are fans, not the game’s makers. Our tools work only with a copy of The Blockheads that you own. We don’t share the game, we don’t collect your files, and the tools come with no warranty.',
     sections: [
       {
         title: '1. Who runs this project',
-        body: 'Blockheads Club is maintained by {{[MAINTAINER NAME OR ORGANISATION]}}, {{[POSTAL ADDRESS, IF REQUIRED IN YOUR COUNTRY]}}. Contact: {{[CONTACT EMAIL]}}.'
+        body: 'Blockheads Club is maintained by volunteers in the [Blockheads Club organisation on GitHub](org). Contact: [open an issue on GitHub](websiteIssues).'
       },
       {
         title: '2. No affiliation',
@@ -945,7 +941,7 @@ export const en = {
       },
       {
         title: '5. Privacy',
-        body: 'The Patcher processes files only on your device; nothing is uploaded. This website is static. {{[STATE ANALYTICS / COOKIES USED, OR “NONE”]}}. The Server stores player names and device identifiers only on the machine that runs it.'
+        body: 'The Patcher processes files only on your device; nothing is uploaded. This website is static: it uses no analytics, no tracking and no cookies. It only remembers your theme and language choice in your browser’s local storage. The Server stores player names and device identifiers only on the machine that runs it.'
       },
       {
         title: '6. No warranty',
@@ -957,9 +953,63 @@ export const en = {
       },
       {
         title: '8. Takedown and contact',
-        body: 'Rights holders can reach us at {{[CONTACT EMAIL]}}. We respond to good-faith requests promptly.'
+        body: 'Rights holders can reach us by [opening an issue on GitHub](websiteIssues). We respond to good-faith requests promptly.'
       }
     ]
+  },
+  shots: {
+    'patcher/phone-choose': {
+      alt: 'Blockheads Patcher on Android, step “Choose your game”: the card “Found on this phone” shows The Blockheads 1.7.4 with a “Use installed game” button, and below it “Pick an APK file”.',
+      caption: 'The Patcher finds the game installed on your phone.'
+    },
+    'patcher/phone-review': {
+      alt: 'Patcher on Android, step “Review the fixes”: details of the detected game version and the key it will be signed with, and a “Patch game (3 fixes)” button.',
+      caption: 'The fixes your version needs are already ticked.'
+    },
+    'patcher/phone-uninstall-confirm': {
+      alt: 'Patcher on Android, “Install the fixed game”: a warning “Your worlds on this phone will be deleted”, the checkbox “My worlds are backed up, or I don’t need them”, then step 1 “Uninstall original” and step 2 “Install fixed game”.',
+      caption: 'Tick the box only when your worlds are backed up.'
+    },
+    'patcher/phone-installed': {
+      alt: 'Patcher on Android, last screen “All fixed — have fun!”: the fixed game is installed, with a reminder to keep your signing key and an “Export it” link.',
+      caption: 'Done. Now restore your worlds in the fixed game.'
+    },
+    'patcher/choose': {
+      alt: 'Desktop Patcher, step “Choose your game”: a drop area for the APK file of The Blockheads, with a button to browse for the file.',
+      caption: 'Drop the .apk file in, or browse for it.'
+    },
+    'patcher/keys-export': {
+      alt: 'Patcher “Keys” screen: the signing key “My key” with its SHA-256 fingerprint, and the open “Export backup — set a password” form with Password and Repeat password fields and a “Save backup” button.',
+      caption: 'Export a password-protected backup of your signing key.'
+    },
+    'server/worlds-create': {
+      alt: 'Blockheads Server desktop app, “Create a world” dialog: World name, World size from 1/16× to 16×, the Expert mode switch and the “Create world” button.',
+      caption: 'Create a world: a name, a size and, if you like, expert mode.'
+    },
+    'server/dashboard': {
+      alt: 'Server dashboard while running: status Running, 2 players online, uptime and current world “Sunny Isle”, and the “Connect from a phone” card with a QR code, LAN address 192.168.1.42 and port 15151.',
+      caption: 'The dashboard shows the LAN address, the port and a QR code.'
+    },
+    'server/access': {
+      alt: 'Server “Access lists” screen with four cards: Admins, Mods, Whitelist and Blacklist, each with a name field and an Add button.',
+      caption: 'Admins, mods, whitelist and blacklist in one place.'
+    },
+    'server/players-menu': {
+      alt: 'Server “Players” screen with the actions menu of player Sam open: Make admin, Remove mod, Copy device ID, Kick… and Ban….',
+      caption: 'Tap a player to change their role, kick or ban them.'
+    },
+    'server/settings': {
+      alt: 'Server “Settings” screen, Connection section: Port 15151, Max players and Password (up to 15 characters).',
+      caption: 'The password is under Settings → Connection.'
+    },
+    'server/phone-worlds': {
+      alt: 'Blockheads Server app on an Android phone, “Worlds” screen: a “Create world” button and the worlds “Sunny Isle” (loaded now) and “Cozy Harbor”.',
+      caption: 'Create a world, then start the server.'
+    },
+    'server/phone-dashboard': {
+      alt: 'Server app on an Android phone, dashboard while running, with the LAN address, the port and a QR code for the other phones.',
+      caption: 'Friends join with the address shown on the dashboard.'
+    }
   },
   footer: {
     tagline: 'Community tools for The Blockheads. Made with',

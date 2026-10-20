@@ -19,6 +19,10 @@ Everything happens on your device. Nothing is uploaded and no game files are dow
 On Android the Patcher can read the copy of the game already installed on your phone, so you don’t need to find the
 APK yourself.
 
+![Blockheads Patcher on Android: the card “Found on this phone” shows The Blockheads 1.7.4 with a “Use installed game” button; below it “Pick an APK file”.](/shots/en/patcher/phone-choose.webp)
+
+*On Android the Patcher finds the installed game.*
+
 ## How to patch
 
 1. **Choose** your game: drop or pick the APK (version 1.7.4, 1.7.5 or 1.7.6). On Android, tap **Use installed game**.
@@ -31,12 +35,28 @@ APK yourself.
      **Worlds stored on the phone are deleted with it.**
    - Open the patched APK to install it. Allow installs from this source if Android asks.
 
+![Blockheads Patcher, step 1 “Choose your game”: a drop area for the game’s APK file with a “Browse files” button.](/shots/en/patcher/choose.webp)
+
+*Step 1: choose your APK.*
+
+![Blockheads Patcher, step 2 “Review the fixes”: details of the detected game 1.7.4 on the left, the list of patches with Recommended and Compatible badges on the right, and a “Patch game (3 fixes)” button.](/shots/en/patcher/review.webp)
+
+*Step 2: the fixes your version needs are already ticked.*
+
+![Blockheads Patcher, “Your game is fixed!”: the patched file blockheads-1.7.4-patched.apk with a “Save patched APK” button, and the next steps to put it on your phone.](/shots/en/patcher/done.webp)
+
+*Steps 3–4: save the patched APK, then install it.*
+
 On Android the Patcher has buttons for both steps: **Uninstall original**, then **Install fixed game**.
 
 ::: tip Keep your signing key
 The Patcher creates a signing key for you the first time. Export it under **Keys** and keep it somewhere safe. If you patch again later with
 the same key, the update installs over your patched game and you keep your worlds.
 :::
+
+![Blockheads Patcher “Signing keys” screen: the key “My key” with its SHA-256 fingerprint, and the form “Export backup — set a password” with a “Save backup” button.](/shots/en/patcher/keys-export.webp)
+
+*Keys → Export backup… saves your key as a password-protected file.*
 
 ## Recommended patches
 
@@ -75,6 +95,10 @@ Extra patches can come as **patch packs** (`.bhpack` files).
 1. Open **Settings → Imported patch packs**.
 2. Click **Import pack** and choose the file (you can also drop it there).
 3. The pack’s patches appear in the patch list with a **Pack** badge. They are never ticked by default.
+
+![Blockheads Patcher Settings, Imported patch packs: a warning that packs come from other people, an “Import pack” button and one imported example pack with a remove button.](/shots/en/patcher/packs.webp)
+
+*Settings → Imported patch packs.*
 
 To remove a pack, use the remove button next to it in Settings.
 

@@ -58,6 +58,10 @@ When you start Blockheads PC for the first time, a short setup guides you throug
 5. **Import saves** – optional: copy the game’s save folder from your phone (or a zip backup) and pick it here.
 6. **Ready** – a summary. Press **Play**.
 
+![Blockheads PC setup, step 2 of 6 “Choose your game file”: The Blockheads 1.7.6 is chosen and marked Supported, with the option to keep a private copy in the data folder.](/shots/en/pc/setup-2-apk.webp)
+
+*Setup step 2: pick your own APK. The launcher checks the version.*
+
 You can change everything later in **Settings**.
 
 ### Your own APK
@@ -68,6 +72,10 @@ your phone to your computer, then pick it in the setup. We never download or sha
 - Leave **Keep a private copy** on (recommended). The game then keeps working if you move or delete the original
   file.
 - Other versions or modified APKs can be tried under **Advanced → Allow unknown builds**. They may not start.
+
+![Blockheads PC Home screen: a large Play button for The Blockheads 1.7.6, and buttons to change the game file, import saves, open the data folder, view logs and learn how to join a server.](/shots/en/pc/home.webp)
+
+*The Home screen after setup.*
 
 ## Settings
 
@@ -81,6 +89,10 @@ your phone to your computer, then pick it in the setup. We never download or sha
 | **Updates & about** | Version, updates and licences |
 
 ### Graphics and FPS
+
+![Blockheads PC Settings, Window & graphics: display mode Window or Fullscreen, window size 1600 × 900, VSync on, FPS limit 60, Show FPS and Game speed.](/shots/en/pc/settings-graphics.webp)
+
+*Settings → Window & graphics.*
 
 - **Fullscreen**: turn it on in Settings, or press **F11** while playing.
 - **VSync**: a smoother picture without tearing. Turn it off only if the game feels slow to react.
@@ -96,6 +108,10 @@ only; multiplayer games always run at normal speed.
 
 ### Controls
 
+![Blockheads PC Settings, Controls: the switch for the game’s on-screen D-pad and the mouse bindings Tap and drag, Pan, Zoom, Pinch and Back, each with a Change button.](/shots/en/pc/settings-controls.webp)
+
+*Settings → Controls: change any binding.*
+
 The game was made for touch, so your mouse plays the role of your finger:
 
 | Mouse / key | Does |
@@ -110,6 +126,10 @@ The game was made for touch, so your mouse plays the role of your finger:
 You can change any of these under **Settings → Controls**, or reset them to the defaults.
 
 ### Game controller
+
+![Blockheads PC Settings, Game controller: switches “Use a game controller” and “Move the controller cursor tile by tile”, and the table of controller buttons and what they do.](/shots/en/pc/settings-controller.webp)
+
+*The controller section lists what every button does.*
 
 Plug in a gamepad at any time; the first one connected plays. A cursor shows where **A** taps.
 

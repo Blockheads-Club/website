@@ -100,13 +100,13 @@ export const tr: Dict = {
       getTitle: 'Yamalayıcıyı edinin',
       platforms: [
         { name: 'Web uygulaması', hint: 'Herhangi bir modern tarayıcı' },
-        { name: 'Android', hint: 'APK · {{[EN DÜŞÜK ANDROID]}}' },
+        { name: 'Android', hint: 'APK · Android 7.0+' },
         { name: 'Windows', hint: '10 / 11 · x64' },
         { name: 'macOS', hint: 'Apple silicon ve Intel' },
         { name: 'Linux', hint: 'AppImage · .deb' }
       ],
       version:
-        'Güncel sürüm {{[SÜRÜM]}} · [Sürüm notları](patcherReleases) · [Sağlama toplamları](patcherReleases)'
+        'Güncel sürüm **0.1.0** (ön sürüm, 20 Ekim 2026) · [Sürüm notları](patcherReleases) · [Sağlama toplamları](patcherReleases)'
     },
     server: {
       eyebrow: 'Blockheads Sunucu',
@@ -284,10 +284,10 @@ export const tr: Dict = {
         { name: 'Masaüstü uygulaması', hint: 'Windows · macOS · Linux' },
         { name: 'Komut satırı sunucusu', hint: 'x64 · ARM64 · ARMv7' },
         { name: 'Docker imajı', hint: 'çoklu mimari · `ghcr.io/blockheads-club/blockheads-server`' },
-        { name: 'Android uygulaması', hint: 'APK · {{[EN DÜŞÜK ANDROID]}}' }
+        { name: 'Android uygulaması', hint: 'APK · Android 7.0+' }
       ],
       version:
-        'Sürüm {{[SÜRÜM]}} · [Sürüm notları](serverReleases) · [Sağlama toplamları](serverReleases) · [GitHub’da kaynak](serverRepo)'
+        'Sürüm **0.1.1** (ön sürüm, 20 Ekim 2026) · [Sürüm notları](serverReleases) · [Sağlama toplamları](serverReleases) · [GitHub’da kaynak](serverRepo)'
     }
   },
   guides: {
@@ -376,7 +376,7 @@ export const tr: Dict = {
     level: 'Başlangıç',
     title: 'Oyunu telefonunuzda baştan sona düzeltin',
     lead: 'Bu rehber Android için Blockheads Yamalayıcı uygulamasını kullanır. Dünyalarınızı korur, “Hoş geldin” donmasını ve — 1.7.6’da — dünya yükleme çökmesini düzeltirsiniz.',
-    updated: 'Güncellendi {{[TARİH]}} · [Bu sayfayı GitHub’da düzenleyin](websiteRepo)',
+    updated: 'Güncellendi: 21 Ekim 2026 · [Bu sayfayı GitHub’da düzenleyin](websiteRepo)',
     toc: 'Bu sayfada',
     need: {
       title: 'Nelere ihtiyacınız var',
@@ -391,15 +391,11 @@ export const tr: Dict = {
       body: 'Android, düzeltilmiş oyunu ancak orijinal kaldırıldıktan sonra kurmanıza izin verir. Oyunu kaldırmak bu telefonda kayıtlı dünyaları da siler — bu yüzden önce onları başka bir yere kaydedin.',
       calloutStrong: 'Bunu atlamayın.',
       callout:
-        'Yalnızca bu telefondaki dünyalar, oyunu kaldırdıktan sonra geri alınamaz. Sunucudaki dünyalar güvendedir.',
-      shotAlt: 'Ekran görüntüsü yer tutucusu: oyunun dünya listesi ve yedekleme seçeneği',
-      shot: '[EKRAN GÖRÜNTÜSÜ — dünya listesi ve yedekleme seçeneği]'
+        'Yalnızca bu telefondaki dünyalar, oyunu kaldırdıktan sonra geri alınamaz. Sunucudaki dünyalar güvendedir.'
     },
     s2: {
       title: 'Yüklü oyunu seçin',
-      body: 'Yamalayıcıyı açın ve **Yüklü oyunu kullan**’a dokunun. Yamalayıcı telefonunuzdaki oyunu okur ve sürümünü gösterir. Hiçbir şey yüklenmez.',
-      shotAlt: 'Ekran görüntüsü yer tutucusu: Yamalayıcı oyun seçme ekranı',
-      shot: '[EKRAN GÖRÜNTÜSÜ — Yamalayıcı “Oyununuzu seçin”]'
+      body: 'Yamalayıcıyı açın ve **Yüklü oyunu kullan**’a dokunun. Yamalayıcı telefonunuzdaki oyunu okur ve sürümünü gösterir. Hiçbir şey yüklenmez.'
     },
     s3: {
       title: 'Yamalayın',
@@ -409,7 +405,7 @@ export const tr: Dict = {
     },
     s4: {
       title: 'Oyunları değiştirin',
-      body: '**Orijinali kaldır**’a dokunun ve onaylayın. Ardından **Yamalı oyunu kur**’a dokunun. Android sorarsa Yamalayıcı’nın uygulama kurmasına izin verin.'
+      body: '**Dünyalarımı yedekledim ya da onlara ihtiyacım yok** kutusunu işaretleyin, **Orijinali kaldır**’a dokunun ve onaylayın. Ardından **Düzeltilmiş oyunu kur**’a dokunun. Android sorarsa Yamalayıcı’nın uygulama kurmasına izin verin.'
     },
     s5: {
       title: 'Dünyalarınızı geri getirin',
@@ -891,14 +887,14 @@ export const tr: Dict = {
   },
   legal: {
     title: 'Yasal bildirim',
-    lead: 'Önce sade bir özet. Son güncelleme {{[TARİH]}}.',
+    lead: 'Önce sade bir özet. Son güncelleme: 21 Ekim 2026.',
     shortTitle: 'Kısaca',
     short:
       'Biz hayranız, oyunun yapımcıları değil. Araçlarımız yalnızca sahibi olduğunuz bir The Blockheads kopyasıyla çalışır. Oyunu paylaşmayız, dosyalarınızı toplamayız ve araçlar hiçbir garanti vermez.',
     sections: [
       {
         title: '1. Bu projeyi kim yürütüyor',
-        body: 'Blockheads Club’ı {{[BAKIMCI ADI VEYA KURUM]}}, {{[ÜLKENİZDE GEREKİYORSA POSTA ADRESİ]}} sürdürür. İletişim: {{[İLETİŞİM E-POSTASI]}}.'
+        body: 'Blockheads Club’ı [GitHub’daki Blockheads Club organizasyonundaki](org) gönüllüler sürdürür. İletişim: [GitHub’da bir konu (issue) açın](websiteIssues).'
       },
       {
         title: '2. Bağlantı yok',
@@ -914,7 +910,7 @@ export const tr: Dict = {
       },
       {
         title: '5. Gizlilik',
-        body: 'Yamalayıcı dosyaları yalnızca cihazınızda işler; hiçbir şey yüklenmez. Bu web sitesi statiktir. {{[ANALİZ / ÇEREZ KULLANIMINI BELİRTİN YA DA “YOK” YAZIN]}}. Sunucu, oyuncu adlarını ve cihaz tanımlayıcılarını yalnızca onu çalıştıran makinede saklar.'
+        body: 'Yamalayıcı dosyaları yalnızca cihazınızda işler; hiçbir şey yüklenmez. Bu web sitesi statiktir: analiz, izleme veya çerez kullanmaz. Yalnızca tema ve dil seçiminizi tarayıcınızın yerel depolamasında hatırlar. Sunucu, oyuncu adlarını ve cihaz tanımlayıcılarını yalnızca onu çalıştıran makinede saklar.'
       },
       {
         title: '6. Garanti yok',
@@ -926,9 +922,63 @@ export const tr: Dict = {
       },
       {
         title: '8. Kaldırma talebi ve iletişim',
-        body: 'Hak sahipleri bize {{[İLETİŞİM E-POSTASI]}} adresinden ulaşabilir. İyi niyetli taleplere çabucak yanıt veririz.'
+        body: 'Hak sahipleri bize [GitHub’da bir konu (issue) açarak](websiteIssues) ulaşabilir. İyi niyetli taleplere çabucak yanıt veririz.'
       }
     ]
+  },
+  shots: {
+    'patcher/phone-choose': {
+      alt: 'Android’de Blockheads Yamalayıcı, “Oyununuzu seçin” adımı: “Bu telefonda bulundu” kartında The Blockheads 1.7.4 ve “Yüklü oyunu kullan” düğmesi, altında “APK dosyası seç”.',
+      caption: 'Yamalayıcı telefonunuzda kurulu oyunu bulur.'
+    },
+    'patcher/phone-review': {
+      alt: 'Android’de Yamalayıcı, “Düzeltmeleri gözden geçirin” adımı: algılanan oyun sürümünün ayrıntıları, imzalanacağı anahtar ve “Oyunu yamala (3 düzeltme)” düğmesi.',
+      caption: 'Sürümünüzün ihtiyaç duyduğu düzeltmeler zaten işaretli.'
+    },
+    'patcher/phone-uninstall-confirm': {
+      alt: 'Android’de Yamalayıcı, “Düzeltilmiş oyunu kurun”: dünyaların bu telefondan silineceği uyarısı, yedekleme onay kutusu, ardından 1. adım “Orijinali kaldır” ve 2. adım “Düzeltilmiş oyunu kur”.',
+      caption: 'Kutuyu yalnızca dünyalarınız yedeklendiyse işaretleyin.'
+    },
+    'patcher/phone-installed': {
+      alt: 'Android’de Yamalayıcı’nın son ekranı: düzeltilmiş oyun kuruldu; imza anahtarınızı saklamanız için bir hatırlatma ve dışa aktarma bağlantısı.',
+      caption: 'Bitti. Şimdi dünyalarınızı düzeltilmiş oyuna geri yükleyin.'
+    },
+    'patcher/choose': {
+      alt: 'Masaüstü Yamalayıcı, “Oyununuzu seçin” adımı: The Blockheads APK dosyası için bırakma alanı ve dosyaya göz atma düğmesi.',
+      caption: '.apk dosyasını bırakın ya da seçin.'
+    },
+    'patcher/keys-export': {
+      alt: 'Yamalayıcı “Anahtarlar” ekranı: SHA-256 parmak izli “Anahtarım” imzalama anahtarı ve parola ile parola tekrarı alanları ve “Yedeği kaydet” düğmesi olan açık yedek dışa aktarma formu.',
+      caption: 'İmzalama anahtarınızın parolalı bir yedeğini dışa aktarın.'
+    },
+    'server/worlds-create': {
+      alt: 'Blockheads Server masaüstü uygulaması, “Dünya oluştur” penceresi: dünya adı, 1/16× ile 16× arası dünya boyutu, uzman modu anahtarı ve oluşturma düğmesi.',
+      caption: 'Bir dünya oluşturun: ad, boyut ve isterseniz uzman modu.'
+    },
+    'server/dashboard': {
+      alt: 'Çalışan sunucunun paneli: durum Çalışıyor, 2 çevrimiçi oyuncu, çalışma süresi ve geçerli dünya “Sunny Isle”; QR kodu, 192.168.1.42 LAN adresi ve 15151 portu olan telefondan bağlanma kartı.',
+      caption: 'Panel LAN adresini, portu ve bir QR kodu gösterir.'
+    },
+    'server/access': {
+      alt: 'Sunucunun “Erişim listeleri” ekranında dört kart: yöneticiler, moderatörler, beyaz liste ve kara liste; her birinde ad alanı ve ekleme düğmesi.',
+      caption: 'Yöneticiler, moderatörler, beyaz liste ve kara liste tek yerde.'
+    },
+    'server/players-menu': {
+      alt: 'Sunucunun “Oyuncular” ekranında Sam adlı oyuncunun işlem menüsü açık: yönetici yap, moderatörlüğü kaldır, cihaz kimliğini kopyala, at ve yasakla.',
+      caption: 'Rolünü değiştirmek, atmak veya yasaklamak için bir oyuncuya dokunun.'
+    },
+    'server/settings': {
+      alt: 'Sunucunun “Ayarlar” ekranı, bağlantı bölümü: port 15151, en çok oyuncu ve parola (en çok 15 karakter).',
+      caption: 'Parola Ayarlar’daki bağlantı bölümündedir.'
+    },
+    'server/phone-worlds': {
+      alt: 'Android telefonda Blockheads Server uygulaması, “Dünyalar” ekranı: “Dünya oluştur” düğmesi ile “Sunny Isle” (şu an yüklü) ve “Cozy Harbor” dünyaları.',
+      caption: 'Bir dünya oluşturun, sonra sunucuyu başlatın.'
+    },
+    'server/phone-dashboard': {
+      alt: 'Android telefonda sunucu uygulamasının paneli: diğer telefonlar için LAN adresi, port ve QR kodu.',
+      caption: 'Arkadaşlarınız panelde gösterilen adresle katılır.'
+    }
   },
   footer: {
     tagline: 'The Blockheads için topluluk araçları. Gönüllüler tarafından',

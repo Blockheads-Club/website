@@ -7,10 +7,12 @@
   import CodeBlock from '$lib/components/CodeBlock.svelte';
   import Icon from '$lib/components/Icon.svelte';
   import Rich from '$lib/components/Rich.svelte';
+  import Shot from '$lib/components/Shot.svelte';
   import StepNumber from '$lib/components/StepNumber.svelte';
   import Toc from '$lib/components/Toc.svelte';
   import { GUIDE_CODE } from '$lib/commands';
   import { guideById, neighbours } from '$lib/guides';
+  import { GUIDE_SHOTS } from '$lib/shots';
   import type { GuideDoc } from '$lib/i18n/en';
   import { dict } from '$lib/locale.svelte';
 
@@ -22,6 +24,7 @@
   const doc = $derived((d.docs as Record<string, GuideDoc>)[data.id]);
   const topic = $derived(d.guides.filters[meta.topic]);
   const code = $derived(GUIDE_CODE[data.id] ?? []);
+  const shots = $derived(GUIDE_SHOTS[data.id] ?? {});
   const near = $derived(neighbours(data.id));
   const titleOf = (id: string) => d.guides.items.find((item) => item.id === id)!.title;
   const tocItems = $derived([
@@ -75,6 +78,7 @@
           </ul>
         {/if}
         {#if code[i]}<CodeBlock lines={code[i]} />{/if}
+        {#if shots[i]}<Shot name={shots[i]} />{/if}
         {#if step.warn}<Callout tone="warn" icon="alert"><p><Rich text={step.warn} /></p></Callout>{/if}
         {#if step.tip}<Callout tone="info" icon="info"><p><Rich text={step.tip} /></p></Callout>{/if}
       {/each}

@@ -22,8 +22,24 @@ Sonra:
 2. **Sunucuyu başlat**’a basın.
 3. Uygulamada görünen adresi arkadaşlarınızla paylaşın. Telefonlar için bir QR kod da vardır.
 
+![Blockheads Server masaüstü uygulaması, dünya oluşturma penceresi: dünya adı, 1/16× ile 16× arası boyut, uzman modu anahtarı ve oluşturma düğmesi.](/shots/tr/server/worlds-create.webp)
+
+*Bir dünya oluşturun: ad, boyut ve isterseniz uzman modu.*
+
+![Çalışan Blockheads Server paneli: 2 çevrimiçi oyuncu, geçerli dünya “Sunny Isle” ve QR kodu, 192.168.1.42 LAN adresi ve 15151 portu olan telefondan bağlanma kartı.](/shots/tr/server/dashboard.webp)
+
+*Panel paylaşılacak adresi ve telefonlar için bir QR kodu gösterir.*
+
 Uygulamada canlı konsolu ve kimlerin çevrimiçi olduğunu da görebilir, yönetici, moderatör, beyaz ve kara listeleri
 düzenleyebilirsiniz. Port, en çok oyuncu sayısı ve parola **Ayarlar**’dadır.
+
+![Blockheads Server konsolu: katılma, sohbet ve hata satırlarıyla canlı günlük, filtreler, arama alanı ve çalıştırma düğmeli komut kutusu.](/shots/tr/server/console.webp)
+
+*Canlı konsol: günlükte arayın ve komut yazın.*
+
+![Blockheads Server ayarları, bağlantı: port 15151, en çok oyuncu ve parola; ardından kaydetme aralığı ve veri klasörüyle dünya ve kaydetme bölümü.](/shots/tr/server/settings.webp)
+
+*Port, en çok oyuncu ve parola Ayarlar’dadır.*
 
 ## Komut satırı
 
@@ -63,6 +79,10 @@ docker run -i --rm -p 15151:15151/udp -v bh-data:/data \
 2. Bir dünya oluşturun ve **Sunucuyu başlat**’a dokunun. Sunucu arka planda çalışmaya devam eder; bir bildirim durumunu
    gösterir.
 3. Telefonu şarjda tutun. Uygulama sorarsa onun için pil optimizasyonunu kapatın, böylece Android onu durdurmaz.
+
+![Android telefonda Blockheads Server uygulaması: çalışırken panel; diğer telefonlar için LAN adresi, port ve QR kodu.](/shots/tr/server/phone-dashboard.webp)
+
+*Android uygulaması aynı paneli gösterir.*
 
 ## Oyundan bağlanma {#connect-from-the-game}
 

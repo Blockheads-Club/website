@@ -61,6 +61,10 @@ Blockheads PC’yi ilk kez açtığınızda kısa bir kurulum size yol gösterir
    burada seçin.
 6. **Hazır** – bir özet. **Oyna**’ya basın.
 
+![Blockheads PC kurulumu, 6 adımın 2.si “Oyun dosyanızı seçin”: The Blockheads 1.7.6 seçilmiş ve desteklendiği gösteriliyor; veri klasöründe özel kopya tutma seçeneği açık.](/shots/tr/pc/setup-2-apk.webp)
+
+*Kurulumun 2. adımı: kendi APK’nızı seçin. Başlatıcı sürümü denetler.*
+
 Hepsini daha sonra **Ayarlar**’dan değiştirebilirsiniz.
 
 ### Kendi APK’nız
@@ -72,6 +76,10 @@ Dosyayı telefonunuzdan bilgisayarınıza kopyalayın, sonra kurulumda seçin. O
   silseniz de oyun çalışmaya devam eder.
 - Başka sürümleri ya da değiştirilmiş APK’ları **Gelişmiş → Bilinmeyen sürümlere izin ver** ile deneyebilirsiniz.
   Açılmayabilirler.
+
+![Blockheads PC ana ekranı: The Blockheads 1.7.6 için büyük Oyna düğmesi; oyun dosyasını değiştirme, kayıtları aktarma, veri klasörünü açma, günlükleri görme ve sunucuya katılmayı öğrenme düğmeleri.](/shots/tr/pc/home.webp)
+
+*Kurulumdan sonra ana ekran.*
 
 ## Ayarlar
 
@@ -85,6 +93,10 @@ Dosyayı telefonunuzdan bilgisayarınıza kopyalayın, sonra kurulumda seçin. O
 | **Güncelleme ve hakkında** | Sürüm, güncellemeler ve lisanslar |
 
 ### Grafik ve FPS
+
+![Blockheads PC ayarları, Pencere ve grafik: pencere ya da tam ekran, 1600 × 900 pencere boyutu, VSync açık, 60 FPS sınırı, FPS gösterme ve oyun hızı.](/shots/tr/pc/settings-graphics.webp)
+
+*Ayarlar → Pencere ve grafik.*
 
 - **Tam ekran**: Ayarlar’dan açın ya da oynarken **F11**’e basın.
 - **Dikey senkron (VSync)**: yırtılma olmadan daha akıcı görüntü. Yalnızca oyun geç tepki veriyorsa kapatın.
@@ -100,6 +112,10 @@ Dünyayı daha hızlı akıtır: yürüme, gece ve gündüz, ekinler, açlık ve
 
 ### Kontroller
 
+![Blockheads PC ayarları, Kontroller: oyunun ekrandaki yön tuşları anahtarı ve dokun-sürükle, kaydır, yakınlaştır, sıkıştır, geri fare atamaları; her birinde Değiştir düğmesi.](/shots/tr/pc/settings-controls.webp)
+
+*Ayarlar → Kontroller: istediğiniz atamayı değiştirin.*
+
 Oyun dokunmatik ekran için yapıldı, bu yüzden fareniz parmağınızın yerini alır:
 
 | Fare / tuş | Ne yapar |
@@ -114,6 +130,10 @@ Oyun dokunmatik ekran için yapıldı, bu yüzden fareniz parmağınızın yerin
 Bunların hepsini **Ayarlar → Kontroller**’den değiştirebilir ya da varsayılanlara döndürebilirsiniz.
 
 ### Oyun kumandası
+
+![Blockheads PC ayarları, Oyun kolu: oyun kolu kullanma ve imleci kare kare taşıma anahtarları, oyun kolu düğmeleri ve görevleri tablosu.](/shots/tr/pc/settings-controller.webp)
+
+*Oyun kolu bölümü her düğmenin ne yaptığını gösterir.*
 
 Bir oyun kumandasını istediğiniz zaman takın; ilk bağlanan oynar. Bir imleç, **A**’nın nereye dokunacağını gösterir.
 

@@ -14,6 +14,7 @@ import { entries, load } from './guides/[slug]/+page';
 import Guide from './guides/[slug]/+page.svelte';
 import { ARTICLE_IDS } from '$lib/guides';
 import { GUIDE_CODE } from '$lib/commands';
+import { GUIDE_SHOTS } from '$lib/shots';
 import Legal from './legal/+page.svelte';
 import Server from './server/+page.svelte';
 
@@ -105,7 +106,7 @@ describe('home', () => {
     expect(hrefs).toContain('https://blockheads.club/patcher/');
     expect(hrefs).toContain('https://github.com/Blockheads-Club/blockheads-patcher/releases');
     expect(hrefs).toContain('/server');
-    expect(screen.getByText('[VERSION]')).toHaveClass('ph');
+    expect(screen.getByText('0.1.0').tagName).toBe('STRONG');
     expect(screen.getByText('Is this the official Blockheads?').closest('details')).toHaveAttribute('open');
     expect(screen.queryByText('Coming soon')).toBeNull();
   });
@@ -171,13 +172,20 @@ describe('guides index', () => {
 });
 
 describe('article', () => {
-  it('has toc, placeholders and feedback', async () => {
+  it('has toc, screenshots and feedback', async () => {
     const user = userEvent.setup();
     render(Article);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Fix the game on your phone');
     expect(screen.getByRole('navigation', { name: 'On this page' })).toBeInTheDocument();
-    expect(screen.getByText('[SCREENSHOT — world list and backup option]')).toBeInTheDocument();
-    expect(screen.getByText('[DATE]')).toHaveClass('ph');
+    const shots = screen.getAllByRole('img').map((img) => img.getAttribute('src'));
+    expect(shots).toEqual([
+      '/shots/en/patcher/phone-choose.webp',
+      '/shots/en/patcher/phone-review.webp',
+      '/shots/en/patcher/phone-uninstall-confirm.webp',
+      '/shots/en/patcher/phone-installed.webp'
+    ]);
+    expect(screen.getByText(/Updated 21 October 2026/)).toBeInTheDocument();
+    expect(document.querySelector('.ph')).toBeNull();
     expect(within(screen.getByRole('navigation', { name: 'Breadcrumb' })).getAllByRole('link')).toHaveLength(2);
     await user.click(screen.getByRole('button', { name: 'Yes' }));
     expect(screen.getByRole('button', { name: 'Yes' })).toHaveAttribute('aria-pressed', 'true');
@@ -209,6 +217,8 @@ describe('guide articles', () => {
       const toc = within(screen.getByRole('navigation', { name: dictionaries[locale].article.toc }));
       expect(toc.getAllByRole('link')).toHaveLength(steps.length + 2);
       expect(container.querySelectorAll('pre')).toHaveLength(Object.keys(GUIDE_CODE[id] ?? {}).length);
+      const imgs = [...container.querySelectorAll('figure img')].map((img) => img.getAttribute('src'));
+      expect(imgs).toEqual(Object.values(GUIDE_SHOTS[id] ?? {}).map((n) => '/shots/' + locale + '/' + n + '.webp'));
       expect(container.querySelector('#help li')).not.toBeNull();
       for (const a of container.querySelectorAll('a')) expect(a.getAttribute('href')).toBeTruthy();
     }
@@ -252,9 +262,14 @@ describe('faq and legal', () => {
     );
   });
 
-  it('legal keeps placeholders and the disclaimer', () => {
+  it('legal has real contact links and the disclaimer', () => {
     render(Legal);
-    expect(screen.getAllByText('[CONTACT EMAIL]').length).toBe(2);
+    expect(document.querySelector('.ph')).toBeNull();
+    expect(screen.getByRole('link', { name: 'Blockheads Club organisation on GitHub' })).toHaveAttribute(
+      'href',
+      'https://github.com/Blockheads-Club'
+    );
+    expect(screen.getAllByRole('link', { name: /issue on GitHub/ })).toHaveLength(2);
     expect(screen.getByText(/not affiliated with, endorsed, sponsored or approved by/)).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(8);
   });
