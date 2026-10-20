@@ -1,4 +1,4 @@
-name = "blockheads-club"
+name = "blockheads-club-website"
 compatibility_date = "2025-01-01"
 
 # Deployed by Cloudflare Workers Builds: build `bun run build`, deploy `npx wrangler deploy`,
