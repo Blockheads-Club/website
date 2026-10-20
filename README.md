@@ -32,8 +32,9 @@ the key set matches `en`. Also add the code to the allow-list in the inline scri
 
 ## Releases
 
-semantic-release with Conventional Commits: `main` publishes stable releases (`v1.0.0`), `dev` publishes the
-prerelease channel `dev` (`v1.0.0-dev.N`). The workflows can also be started manually (`workflow_dispatch`).
+Push a signed tag `vX.Y.Z` on `dev` (version in `package.json`). `.github/workflows/release.yml` tests, builds and
+attaches `website-build.tar.gz` to a **draft** GitHub release for that tag (prerelease for `0.x` and `-pre` tags);
+publish the draft once CI is green. The workflows can also be started manually (`workflow_dispatch`).
 
 ## License
 

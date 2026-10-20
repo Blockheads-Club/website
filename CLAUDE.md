@@ -8,7 +8,7 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
 - NEVER commit or ship game files (APKs, assets, decompiled code). Keep the legal notice: not affiliated with
   Majic Jungle / Noodlecake, no game files distributed, patch only what you own.
 - 100% coverage thresholds (lines/branches/functions/statements) in `vite.config.ts` must never be lowered.
-- Releases: semantic-release; `main` = stable, `dev` = prerelease channel `dev`. Conventional Commits. Currently push only to `dev`.
+- Releases: push a signed `vX.Y.Z` tag; `release.yml` attaches the build to a draft GitHub release, published by hand once CI is green. Conventional Commits. Currently push only to `dev`.
 
 ## Conventions
 - SvelteKit 2, Svelte 5 runes, TypeScript strict, `adapter-static` (prerender, `404.html` fallback).

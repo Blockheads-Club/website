@@ -23,31 +23,3 @@ jobs:
         env:
           CI: '1'
 
-  release:
-    # main -> stable (v1.0.0), dev -> prerelease channel "dev" (v1.0.0-dev.N)
-    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')
-    needs: test
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - uses: oven-sh/setup-bun@v2
-      - run: bun install --frozen-lockfile
-      - run: bun run build
-      - run: tar -czf website-build.tar.gz -C build .
-      - name: Ensure main branch exists (semantic-release needs a release branch)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if ! git ls-remote --exit-code --heads origin main >/dev/null 2>&1; then
-            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/main
-          fi
-      - run: bunx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

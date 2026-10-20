@@ -1,0 +1,45 @@
+name: Release
+
+# Push a tag `vX.Y.Z` to test, build and attach the static site to a DRAFT GitHub release for that tag.
+# Publish the draft by hand once CI is green.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing tag to build and attach (e.g. v0.1.0)'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      TAG: ${{ inputs.tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun run check
+      - run: bun run test
+      - run: bun run build
+      - run: tar -czf website-build.tar.gz -C build .
+      - name: Create or update the draft release (prerelease for 0.x and -pre tags)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          case "$TAG" in v[0-9]*) ;; *) echo "::error::not a version tag: $TAG"; exit 1 ;; esac
+          pre=""
+          case "$TAG" in v0.*|*-*) pre="--prerelease" ;; esac
+          if gh release view "$TAG" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$TAG" 'website-build.tar.gz#Static site build' --clobber -R "$GITHUB_REPOSITORY"
+          else
+            gh release create "$TAG" 'website-build.tar.gz#Static site build' --draft $pre --verify-tag --title "$TAG" --generate-notes -R "$GITHUB_REPOSITORY"
+          fi
