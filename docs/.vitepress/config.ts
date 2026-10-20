@@ -213,6 +213,8 @@ export default defineConfig({
   // Built into the SvelteKit static output, so the deployed site serves it at /docs (see package.json "build").
   outDir: '../build/docs',
   cleanUrls: true,
+  // Maintainer notes, not a docs page.
+  srcExclude: ['development.md'],
   lastUpdated: false,
   title: 'Blockheads Club Docs',
   titleTemplate: ':title · Blockheads Club Docs',

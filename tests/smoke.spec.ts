@@ -5,7 +5,7 @@ test('landing page renders, links are real and language switches to Turkish', as
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Keep The Blockheads playable');
   await expect(page.getByRole('link', { name: 'Open the web Patcher' })).toHaveAttribute(
     'href',
-    'https://blockheads-club.github.io/blockheads-patcher/'
+    'https://blockheads.club/patcher/'
   );
   await page.getByRole('button', { name: 'Language: English' }).first().click();
   await page.getByRole('menuitemradio', { name: /Türkçe/ }).click();

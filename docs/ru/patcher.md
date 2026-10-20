@@ -10,7 +10,7 @@
 
 | Где | Как |
 | --- | --- |
-| **Веб** | Откройте [веб-версию Патчера](https://blockheads-club.github.io/blockheads-patcher/) в браузере. После первой загрузки работает и без интернета. |
+| **Веб** | Откройте [веб-версию Патчера](https://blockheads.club/patcher/) в браузере. После первой загрузки работает и без интернета. |
 | **Windows** | `_x64-setup.exe` или `.msi` со [страницы релизов](https://github.com/Blockheads-Club/blockheads-patcher/releases) |
 | **macOS** | `_universal.dmg` (Intel и Apple Silicon) |
 | **Linux** | `.AppImage` или `.deb` |

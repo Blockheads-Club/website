@@ -1,5 +1,5 @@
 export const LINKS = {
-  webPatcher: 'https://blockheads-club.github.io/blockheads-patcher/',
+  webPatcher: 'https://blockheads.club/patcher/',
   patcherReleases: 'https://github.com/Blockheads-Club/blockheads-patcher/releases',
   patcherRepo: 'https://github.com/Blockheads-Club/blockheads-patcher',
   serverRepo: 'https://github.com/Blockheads-Club/blockheads-server',

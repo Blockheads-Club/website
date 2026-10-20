@@ -102,7 +102,7 @@ describe('home', () => {
     render(Home);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Keep The Blockheads playable');
     const hrefs = screen.getAllByRole('link').map((a) => a.getAttribute('href'));
-    expect(hrefs).toContain('https://blockheads-club.github.io/blockheads-patcher/');
+    expect(hrefs).toContain('https://blockheads.club/patcher/');
     expect(hrefs).toContain('https://github.com/Blockheads-Club/blockheads-patcher/releases');
     expect(hrefs).toContain('/server');
     expect(screen.getByText('[VERSION]')).toHaveClass('ph');

@@ -59,8 +59,8 @@ bun run build      # static site in ./build
   in `src/lib/i18n/index.ts` (`LOCALE_NAMES`, `DOCS_DIRS`) and add the code to the allow-list in the inline script of `src/app.html`.
   Counts use `Plural` objects picked with `Intl.PluralRules` (`plural()`). Scripts the site fonts lack get a
   `unicode-range` companion font (see `src/lib/fonts/cyrillic.css`: Onest and Golos Text for Cyrillic).
-- **Deploy:** GitHub Pages (`pages.yml`, `BASE_PATH=/website`) and Cloudflare Pages (`cloudflare.yml`, project
-  `blockheads-club`, needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, skipped without them).
+- **Deploy:** Cloudflare Workers Builds (Worker `blockheads-club-website`, blockheads.club; `/patcher` is proxied to the
+  web Patcher Worker) and GitHub Pages (`pages.yml`, `BASE_PATH=/website`). See [docs/development.md](docs/development.md).
 - **Release:** push a signed tag `vX.Y.Z` on `dev` (version in `package.json`); `release.yml` builds
   `website-build.tar.gz` into a draft release, published once CI is green.
 

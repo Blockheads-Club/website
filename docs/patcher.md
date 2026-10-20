@@ -10,7 +10,7 @@ Everything happens on your device. Nothing is uploaded and no game files are dow
 
 | Where | How |
 | --- | --- |
-| **Web** | Open the [web Patcher](https://blockheads-club.github.io/blockheads-patcher/) in your browser. Works offline once loaded. |
+| **Web** | Open the [web Patcher](https://blockheads.club/patcher/) in your browser. Works offline once loaded. |
 | **Windows** | `_x64-setup.exe` or `.msi` from the [releases page](https://github.com/Blockheads-Club/blockheads-patcher/releases) |
 | **macOS** | `_universal.dmg` (Intel and Apple Silicon) |
 | **Linux** | `.AppImage` or `.deb` |

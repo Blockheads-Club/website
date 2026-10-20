@@ -10,7 +10,7 @@
 
 | Қайда | Қалай |
 | --- | --- |
-| **Веб** | [Веб-Патчерді](https://blockheads-club.github.io/blockheads-patcher/) браузерде ашыңыз. Бір рет жүктелген соң интернетсіз де жұмыс істейді. |
+| **Веб** | [Веб-Патчерді](https://blockheads.club/patcher/) браузерде ашыңыз. Бір рет жүктелген соң интернетсіз де жұмыс істейді. |
 | **Windows** | [Шығарылымдар бетінен](https://github.com/Blockheads-Club/blockheads-patcher/releases) `_x64-setup.exe` немесе `.msi` |
 | **macOS** | `_universal.dmg` (Intel және Apple Silicon) |
 | **Linux** | `.AppImage` немесе `.deb` |

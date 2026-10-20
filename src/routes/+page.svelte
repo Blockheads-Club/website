@@ -122,7 +122,7 @@
             </li>
           {/each}
         </ol>
-        <Button href={LINKS.webPatcher} rel="noopener" variant="primary" size="lg" icon="globe" class="self"
+        <Button href={LINKS.webPatcher} rel="noopener external" variant="primary" size="lg" icon="globe" class="self"
           >{d.patcher.ctaWeb}</Button
         >
       </div>

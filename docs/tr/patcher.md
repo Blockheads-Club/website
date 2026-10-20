@@ -10,7 +10,7 @@ Her şey cihazınızda olur. Hiçbir şey yüklenmez ve hiçbir oyun dosyası in
 
 | Nerede | Nasıl |
 | --- | --- |
-| **Web** | [Web Yamalayıcı](https://blockheads-club.github.io/blockheads-patcher/)’yı tarayıcınızda açın. Bir kez yüklendikten sonra çevrimdışı da çalışır. |
+| **Web** | [Web Yamalayıcı](https://blockheads.club/patcher/)’yı tarayıcınızda açın. Bir kez yüklendikten sonra çevrimdışı da çalışır. |
 | **Windows** | [Sürümler sayfasından](https://github.com/Blockheads-Club/blockheads-patcher/releases) `_x64-setup.exe` veya `.msi` |
 | **macOS** | `_universal.dmg` (Intel ve Apple Silicon) |
 | **Linux** | `.AppImage` veya `.deb` |
