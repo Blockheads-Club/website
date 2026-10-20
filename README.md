@@ -1,41 +1,71 @@
-# Blockheads Club website
+<p align="center">
+  <img width="120" height="120" src="static/logo.svg" alt="Blockheads Club logo">
+</p>
 
-Landing site for [Blockheads Club](https://github.com/Blockheads-Club): the web patcher, the clean-room
-dedicated server, guides, FAQ and the legal notice. SvelteKit 2 + Svelte 5 + TypeScript, prerendered with
-`adapter-static`. English by default, Turkish included (`src/lib/i18n/`), light/dark theme, responsive, accessible.
+<h1 align="center">Blockheads Club Website</h1>
 
-> Not affiliated with Majic Jungle Software or Noodlecake Studios. No game files are distributed here.
+<p align="center">
+  The Blockheads Club website: downloads, guides and docs. 🌐
+</p>
 
-## Develop
+<p align="center">
+  <img src="https://img.shields.io/maintenance/yes/2026?style=for-the-badge" alt="Maintained">
+  <a href="https://github.com/Blockheads-Club/website/releases"><img src="https://img.shields.io/github/v/release/Blockheads-Club/website?include_prereleases&style=for-the-badge" alt="Release"></a>
+  <a href="https://github.com/Blockheads-Club/website/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/Blockheads-Club/website/ci.yml?branch=dev&style=for-the-badge&label=CI" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/Blockheads-Club/website?style=for-the-badge" alt="License"></a>
+</p>
 
-```sh
+---
+
+## 🚀 Project Status
+**Current Status:** Live at [blockheads-club.github.io/website](https://blockheads-club.github.io/website/) (v0.1.0).
+
+The site introduces the Blockheads Club tools, links their downloads and has
+[guides](https://blockheads-club.github.io/website/guides/), an FAQ, the legal notice and the
+[docs](https://blockheads-club.github.io/website/docs/). English and Turkish, light and dark theme.
+
+---
+
+## 📦 Other Blockheads Club Repositories
+- [**blockheads-pc**](https://github.com/Blockheads-Club/blockheads-pc) - Play The Blockheads on your computer
+- [**blockheads-patcher**](https://github.com/Blockheads-Club/blockheads-patcher) - Fix crashes and add small improvements to the game on your phone
+- [**blockheads-server**](https://github.com/Blockheads-Club/blockheads-server) - Host your own Blockheads server for friends
+
+---
+
+## 🛠️ Requirements
+**For contributors / development:** [bun](https://bun.sh). The site is SvelteKit 2 + Svelte 5 + TypeScript, built as
+a static site.
+
+---
+
+## 🤝 Contributing
+Everyone can open [issues](https://github.com/Blockheads-Club/website/issues) and pull requests, including fixes to
+the guides and new translations. Irrelevant or abusive issues may be closed or removed.
+
+### Development Guide
+```bash
+git clone https://github.com/Blockheads-Club/website.git
+cd website
 bun install
 bun run dev        # dev server
 bun run check      # svelte-check
-bun run test       # vitest, 100% coverage thresholds (lines/branches/functions/statements)
-bun run test:e2e   # Playwright smoke (builds and previews the site)
+bun run test       # vitest, 100% coverage
+bun run test:e2e   # Playwright
 bun run build      # static site in ./build
 ```
 
-## Adding a language
+- **New language:** add `src/lib/i18n/<code>.ts` (typed as `Dict`, same keys as `en`, a test checks this), register it
+  in `src/lib/i18n/index.ts` and add the code to the allow-list in the inline script of `src/app.html`.
+- **Deploy:** GitHub Pages (`pages.yml`, `BASE_PATH=/website`) and Cloudflare Pages (`cloudflare.yml`, project
+  `blockheads-club`, needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, skipped without them).
+- **Release:** push a signed tag `vX.Y.Z` on `dev` (version in `package.json`); `release.yml` builds
+  `website-build.tar.gz` into a draft release, published once CI is green.
 
-Create `src/lib/i18n/<code>.ts` typed as `Dict`, register it in `src/lib/i18n/index.ts`. A test enforces that
-the key set matches `en`. Also add the code to the allow-list in the inline script of `src/app.html`.
+---
 
-## Deploy
+## 📄 License
+The website is licensed under **GNU GPLv3** (GPL-3.0-only). See the [LICENSE](LICENSE) file for details.
 
-- **GitHub Pages** (`.github/workflows/pages.yml`): built with `BASE_PATH=/website` (configurable; empty means
-  site root). Enable Pages with source "GitHub Actions". `.nojekyll` and `404.html` are included.
-- **Cloudflare Pages** (`.github/workflows/cloudflare.yml`, `wrangler.toml`, `static/_headers`,
-  `static/_redirects`): add repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`; the job is
-  skipped when they are absent. Project name: `blockheads-club`.
-
-## Releases
-
-Push a signed tag `vX.Y.Z` on `dev` (version in `package.json`). `.github/workflows/release.yml` tests, builds and
-attaches `website-build.tar.gz` to a **draft** GitHub release for that tag (prerelease for `0.x` and `-pre` tags);
-publish the draft once CI is green. The workflows can also be started manually (`workflow_dispatch`).
-
-## License
-
-GPL-3.0-only, see [LICENSE](LICENSE).
+Unofficial fan project, not affiliated with Majic Jungle Software or Noodlecake Studios. No game files are
+distributed here.
