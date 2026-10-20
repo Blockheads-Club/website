@@ -21,6 +21,22 @@ describe('locale', () => {
     expect(dict().nav.faq).toBe('SSS');
   });
 
+  it('follows the browser language when nothing is stored', () => {
+    vi.spyOn(navigator, 'languages', 'get').mockReturnValue(['ru-RU', 'en-US']);
+    initLocale();
+    expect(i18n.locale).toBe('ru');
+    expect(document.documentElement.lang).toBe('ru');
+  });
+
+  it('detects Kazakh, but a stored choice wins over the browser', () => {
+    vi.spyOn(navigator, 'languages', 'get').mockReturnValue(['kk-KZ']);
+    initLocale();
+    expect(i18n.locale).toBe('kk');
+    localStorage.setItem('bh-locale', 'en');
+    initLocale();
+    expect(i18n.locale).toBe('en');
+  });
+
   it('ignores an invalid stored locale', () => {
     localStorage.setItem('bh-locale', 'xx');
     initLocale();

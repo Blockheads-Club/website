@@ -6,6 +6,8 @@
       "name": "blockheads-club-website",
       "dependencies": {
         "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+        "@fontsource-variable/golos-text": "^5.3.0",
+        "@fontsource-variable/onest": "^5.3.1",
         "@fontsource/atkinson-hyperlegible-next": "^5.3.0",
         "@fontsource/jetbrains-mono": "^5.3.0",
       },
@@ -23,7 +25,7 @@
         "@vitest/coverage-v8": "3.2.4",
         "jsdom": "^26.0.0",
         "semantic-release": "^24.0.0",
-        "sirv": "^3",
+        "sirv": "^3.0.2",
         "svelte": "^5.0.0",
         "svelte-check": "^4.0.0",
         "typescript": "5.9.3",
@@ -161,6 +163,10 @@
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.28.2", "", { "os": "win32", "cpu": "x64" }, "sha512-5ebpxr3nWMzrL/rnUI755Jkuee0bHL/Gq0WTF9lvcpv73wAp5eu8MfBUgWK9bhWvZjj7yX8etf/8tI8Ney695g=="],
 
     "@fontsource-variable/bricolage-grotesque": ["@fontsource-variable/bricolage-grotesque@5.3.0", "", {}, "sha512-TLi9Q4hJjS2UvoTMRSS2nHu6c4R56lAw60NR9QYtVRCHn0XtsFpiEhNffZ8Glsoxu6wEEwLKBP8lb94J52PNBA=="],
+
+    "@fontsource-variable/golos-text": ["@fontsource-variable/golos-text@5.3.0", "", {}, "sha512-D+Evz5yqXYh6tsalc537FS+cPDWn2FTdO8j/K1ZZuFAvA7ib6WnusTiihciq7mMnm6GBo6XTlh0JXPrhBsam2g=="],
+
+    "@fontsource-variable/onest": ["@fontsource-variable/onest@5.3.1", "", {}, "sha512-xaaw6G4HDB2/RczsWLD/2bnib4ykmQlTlBUN3GOEOiyErilZukQWVJG95h9zwAy0i8KY+QzDa+COPfqhI72Acw=="],
 
     "@fontsource/atkinson-hyperlegible-next": ["@fontsource/atkinson-hyperlegible-next@5.3.0", "", {}, "sha512-8p1tHVoPDo6oYwSO3sMw5snGwFwSf3TmeSF9Gcj792GXdsg6oqvhoItbj6Hj/XZIk0Xs+Cwu6pkLBAl3Q5HrwA=="],
 

@@ -1,7 +1,8 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import { LINKS } from '$lib/config';
-  import { dict } from '$lib/locale.svelte';
+  import { docsPath } from '$lib/i18n';
+  import { dict, i18n } from '$lib/locale.svelte';
   import type { RouteKey } from '$lib/route';
   import { cycleThemePref, theme } from '$lib/theme.svelte';
   import Button from './Button.svelte';
@@ -38,7 +39,7 @@
         </nav>
         <nav aria-label={d.footer.help}>
           <p>{d.footer.help}</p>
-          <a href={base + '/docs/'} rel="external">{d.nav.docs}</a>
+          <a href={base + docsPath(i18n.locale)} rel="external">{d.nav.docs}</a>
           <a href={base + '/guides'}>{d.nav.guides}</a>
           <a href={base + '/faq'}>{d.nav.faq}</a>
           <a href={LINKS.websiteIssues} rel="noopener">{d.footer.reportBug}</a>
@@ -65,7 +66,7 @@
         {#if route !== 'legal'}<a href={base + '/legal'}>{d.footer.legal}</a>{/if}
       </p>
       <nav aria-label={d.footer.nav}>
-        <a href={base + '/docs/'} rel="external">{d.nav.docs}</a>
+        <a href={base + docsPath(i18n.locale)} rel="external">{d.nav.docs}</a>
         <a href={base + '/guides'}>{d.nav.guides}</a>
         <a href={base + '/faq'}>{d.nav.faq}</a>
         <a href={LINKS.org} rel="noopener">{d.nav.github}</a>

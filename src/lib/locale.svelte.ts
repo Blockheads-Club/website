@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, dictionaries, isLocale, type Locale } from './i18n';
+import { DEFAULT_LOCALE, detectLocale, dictionaries, isLocale, type Locale } from './i18n';
 
 export const STORAGE_KEY = 'bh-locale';
 
@@ -25,5 +25,6 @@ export function initLocale() {
   } catch {
     /* storage unavailable */
   }
-  setLocale(isLocale(stored) ? stored : DEFAULT_LOCALE);
+  // No saved choice yet: follow the browser language (ru-RU → ru, kk → kk), English otherwise.
+  setLocale(isLocale(stored) ? stored : detectLocale(navigator.languages));
 }

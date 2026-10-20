@@ -22,7 +22,7 @@
 
 The site introduces the Blockheads Club tools, links their downloads and has
 [guides](https://blockheads-club.github.io/website/guides/), an FAQ, the legal notice and the
-[docs](https://blockheads-club.github.io/website/docs/). English and Turkish, light and dark theme.
+[docs](https://blockheads-club.github.io/website/docs/). English, Turkish, Russian and Kazakh (picked from the browser language), light and dark theme.
 
 ---
 
@@ -56,7 +56,9 @@ bun run build      # static site in ./build
 ```
 
 - **New language:** add `src/lib/i18n/<code>.ts` (typed as `Dict`, same keys as `en`, a test checks this), register it
-  in `src/lib/i18n/index.ts` and add the code to the allow-list in the inline script of `src/app.html`.
+  in `src/lib/i18n/index.ts` (`LOCALE_NAMES`, `DOCS_DIRS`) and add the code to the allow-list in the inline script of `src/app.html`.
+  Counts use `Plural` objects picked with `Intl.PluralRules` (`plural()`). Scripts the site fonts lack get a
+  `unicode-range` companion font (see `src/lib/fonts/cyrillic.css`: Onest and Golos Text for Cyrillic).
 - **Deploy:** GitHub Pages (`pages.yml`, `BASE_PATH=/website`) and Cloudflare Pages (`cloudflare.yml`, project
   `blockheads-club`, needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, skipped without them).
 - **Release:** push a signed tag `vX.Y.Z` on `dev` (version in `package.json`); `release.yml` builds

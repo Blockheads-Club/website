@@ -121,7 +121,7 @@ export const tr: Dict = {
       eyebrow: 'Rehberler',
       title: 'Adım adım, resimlerle.',
       all: 'Tüm rehberler',
-      minRead: 'dk okuma'
+      minRead: { one: 'dk okuma', few: 'dk okuma', many: 'dk okuma', other: 'dk okuma' }
     },
     faq: {
       eyebrow: 'SSS',
@@ -312,7 +312,7 @@ export const tr: Dict = {
     comingSoon: 'Yakında',
     noResults: 'Aramanızla eşleşen rehber yok.',
     clear: 'Aramayı ve süzgeçleri temizle',
-    resultsStatus: 'rehber gösteriliyor',
+    resultsStatus: { one: 'rehber gösteriliyor', few: 'rehber gösteriliyor', many: 'rehber gösteriliyor', other: 'rehber gösteriliyor' },
     missing: 'Eksik bir rehber mi var ya da hata mı buldunuz?',
     suggest: 'GitHub’da önerin',
     items: [
@@ -922,7 +922,7 @@ export const tr: Dict = {
       },
       {
         title: '7. Lisanslar',
-        body: 'Kodumuz GPL-3.0-or-later altında yayımlanır. Üçüncü taraf bileşenler ve yazı tipleri (Bricolage Grotesque, Atkinson Hyperlegible Next, JetBrains Mono — SIL Open Font License) her uygulamada Ayarlar → Hakkında → Lisanslar altında listelenir.'
+        body: 'Kodumuz GPL-3.0-or-later altında yayımlanır. Üçüncü taraf bileşenler ve yazı tipleri (Bricolage Grotesque, Atkinson Hyperlegible Next, Onest, Golos Text, JetBrains Mono — SIL Open Font License) her uygulamada Ayarlar → Hakkında → Lisanslar altında listelenir.'
       },
       {
         title: '8. Kaldırma talebi ve iletişim',

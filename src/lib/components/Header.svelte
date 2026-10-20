@@ -2,7 +2,7 @@
   import { tick } from 'svelte';
   import { base } from '$app/paths';
   import { LINKS } from '$lib/config';
-  import { LOCALES, LOCALE_NAMES, isLocale } from '$lib/i18n';
+  import { LOCALES, LOCALE_NAMES, docsPath, isLocale } from '$lib/i18n';
   import { dict, i18n, setLocale } from '$lib/locale.svelte';
   import type { RouteKey } from '$lib/route';
   import { theme, setThemePref, type ThemePref } from '$lib/theme.svelte';
@@ -21,7 +21,8 @@
     { id: 'guides', label: d.nav.guides, href: base + '/guides', current: route === 'guides' || route === 'article' },
     { id: 'faq', label: d.nav.faq, href: base + '/faq', current: route === 'faq' },
     // The docs are a separate VitePress site: full page load (rel=external), and the prerender crawler skips it.
-    { id: 'docs', label: d.nav.docs, href: base + '/docs/', current: false, external: true }
+    // It opens in the docs locale matching the site language (/docs/ru/, /docs/kk/, ...).
+    { id: 'docs', label: d.nav.docs, href: base + docsPath(i18n.locale), current: false, external: true }
   ]);
   const themes: { id: ThemePref; label: () => string }[] = [
     { id: 'light', label: () => dict().nav.themeLight },

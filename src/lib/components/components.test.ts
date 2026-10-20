@@ -196,6 +196,10 @@ describe('LangSwitch', () => {
     await user.keyboard('{ArrowDown}');
     expect(screen.getByRole('menuitemradio', { name: /Türkçe/ })).toHaveFocus();
     await user.keyboard('{ArrowDown}');
+    expect(screen.getByRole('menuitemradio', { name: /Русский/ })).toHaveFocus();
+    await user.keyboard('{ArrowDown}');
+    expect(screen.getByRole('menuitemradio', { name: /Қазақша/ })).toHaveFocus();
+    await user.keyboard('{ArrowDown}');
     expect(screen.getByRole('menuitemradio', { name: /English/ })).toHaveFocus();
     await user.keyboard('{ArrowUp}');
     await user.keyboard('a');
@@ -216,6 +220,21 @@ describe('LangSwitch', () => {
     await user.click(screen.getByRole('menuitemradio', { name: /Türkçe/ }));
     expect(i18n.locale).toBe('tr');
     expect(screen.getByRole('button', { name: 'Dil: Türkçe' })).toHaveFocus();
+  });
+
+  it.each([
+    ['Русский', 'ru'],
+    ['Қазақша', 'kk']
+  ] as const)('switches to %s and sets <html lang>', async (name, code) => {
+    const user = userEvent.setup();
+    render(LangSwitch);
+    await user.click(screen.getByRole('button', { name: 'Language: English' }));
+    const item = screen.getByRole('menuitemradio', { name: new RegExp(name) });
+    expect(item).toHaveAttribute('lang', code);
+    await user.click(item);
+    expect(i18n.locale).toBe(code);
+    expect(document.documentElement.lang).toBe(code);
+    expect(screen.getByRole('button', { name: new RegExp(name + '$') })).toHaveTextContent(code.toUpperCase());
   });
 
   it('footer variant shows the full name', async () => {

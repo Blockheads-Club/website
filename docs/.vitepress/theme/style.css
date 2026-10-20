@@ -1,7 +1,7 @@
 /* "Sunlit Blocks" design tokens from src/app.css, mapped onto VitePress variables. Keep the colours in sync. */
 :root {
-  --f-display: 'Bricolage Grotesque Variable', ui-rounded, 'Segoe UI', system-ui, sans-serif;
-  --vp-font-family-base: 'Atkinson Hyperlegible Next', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --f-display: 'Bricolage Grotesque Variable', 'Onest Cyrillic', ui-rounded, 'Segoe UI', system-ui, sans-serif;
+  --vp-font-family-base: 'Atkinson Hyperlegible Next', 'Golos Cyrillic', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
 
   --vp-c-bg: #fbf8f4;

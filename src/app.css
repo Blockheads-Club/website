@@ -5,10 +5,11 @@
 @import '@fontsource/atkinson-hyperlegible-next/700.css';
 @import '@fontsource/jetbrains-mono/400.css';
 @import '@fontsource/jetbrains-mono/600.css';
+@import './lib/fonts/cyrillic.css';
 
 :root {
-  --f-display: 'Bricolage Grotesque Variable', ui-rounded, 'Segoe UI', system-ui, sans-serif;
-  --f-body: 'Atkinson Hyperlegible Next', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --f-display: 'Bricolage Grotesque Variable', 'Onest Cyrillic', ui-rounded, 'Segoe UI', system-ui, sans-serif;
+  --f-body: 'Atkinson Hyperlegible Next', 'Golos Cyrillic', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --f-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
 
   --bg: #fbf8f4;

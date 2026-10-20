@@ -14,7 +14,7 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
 - SvelteKit 2, Svelte 5 runes, TypeScript strict, `adapter-static` (prerender, `404.html` fallback).
 - `BASE_PATH` env sets the base path (`/website` for GitHub Pages, empty otherwise). Build internal URLs with
   `base` from `$app/paths`.
-- UI copy lives only in `src/lib/i18n/<code>.ts` (en default, tr). Key sets must match `en` (test enforces).
+- UI copy lives only in `src/lib/i18n/<code>.ts` (en default, tr, ru, kk; first visit follows the browser language). Key sets, links, code spans and placeholders must match `en` (test enforces). ru/kk await a native-speaker review.
 - Avoid string interpolation in Svelte attributes (`href="#{x}"`): the compiler emits `?? ''` branches that break the
   100% branch threshold; use `{"#" + x}` instead.
 - Theme: `data-theme` on `<html>`, set early by the inline script in `src/app.html`; stored in `localStorage` (`bh-theme`, `bh-locale`).

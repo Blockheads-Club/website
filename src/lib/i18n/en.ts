@@ -14,6 +14,14 @@ export interface GuideStep {
   warn?: string;
 }
 
+/** Plural forms picked with Intl.PluralRules (en/tr/kk use one/other; ru also uses few/many). */
+export interface Plural {
+  one: string;
+  few: string;
+  many: string;
+  other: string;
+}
+
 export interface GuideDoc {
   tags: string;
   title: string;
@@ -144,7 +152,7 @@ export const en = {
       eyebrow: 'Guides',
       title: 'Step by step, with pictures.',
       all: 'All guides',
-      minRead: 'min read'
+      minRead: { one: 'min read', few: 'min read', many: 'min read', other: 'min read' } as Plural
     },
     faq: {
       eyebrow: 'FAQ',
@@ -335,7 +343,7 @@ export const en = {
     comingSoon: 'Coming soon',
     noResults: 'No guides match your search.',
     clear: 'Clear search and filters',
-    resultsStatus: 'guides shown',
+    resultsStatus: { one: 'guide shown', few: 'guides shown', many: 'guides shown', other: 'guides shown' } as Plural,
     missing: 'Missing a guide, or found a mistake?',
     suggest: 'Suggest it on GitHub',
     items: [
@@ -945,7 +953,7 @@ export const en = {
       },
       {
         title: '7. Licences',
-        body: 'Our code is released under GPL-3.0-or-later. Third-party components and fonts (Bricolage Grotesque, Atkinson Hyperlegible Next, JetBrains Mono — SIL Open Font License) are listed in each app under Settings → About → Licences.'
+        body: 'Our code is released under GPL-3.0-or-later. Third-party components and fonts (Bricolage Grotesque, Atkinson Hyperlegible Next, Onest, Golos Text, JetBrains Mono — SIL Open Font License) are listed in each app under Settings → About → Licences.'
       },
       {
         title: '8. Takedown and contact',

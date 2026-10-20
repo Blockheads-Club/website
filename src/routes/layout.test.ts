@@ -2,6 +2,7 @@ import { render, screen, waitFor, within } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 import { createRawSnippet } from 'svelte';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { LOCALES, LOCALE_NAMES, dictionaries } from '$lib/i18n';
 import { i18n } from '$lib/locale.svelte';
 import { prerender } from './+layout';
 import Layout from './+layout.svelte';
@@ -81,6 +82,18 @@ describe('layout', () => {
     expect(document.documentElement.lang).toBe('tr');
     await user.click(screen.getByRole('button', { name: 'Koyu temaya geç' }));
     expect(document.documentElement.dataset.theme).toBe('dark');
+  });
+
+  it.each(['ru', 'kk'] as const)('in %s the docs links open the matching docs locale', async (code) => {
+    const user = userEvent.setup();
+    render(Layout, { children });
+    expect(screen.getByRole('navigation', { name: 'Main' }).querySelector('a[rel="external"]')).toHaveAttribute('href', '/docs/');
+    await user.click(screen.getAllByRole('button', { name: 'Language: English' })[0]);
+    await user.click(screen.getByRole('menuitemradio', { name: new RegExp(LOCALE_NAMES[code]) }));
+    expect(document.documentElement.lang).toBe(code);
+    const docs = screen.getAllByRole('link', { name: dictionaries[code].nav.docs });
+    expect(docs.length).toBeGreaterThan(1);
+    for (const link of docs) expect(link).toHaveAttribute('href', '/docs/' + code + '/');
   });
 });
 
@@ -185,7 +198,7 @@ describe('guide articles', () => {
     expect(() => run('nope')).toThrow();
   });
 
-  it.each(ARTICLE_IDS.flatMap((id) => [[id, 'en'] as const, [id, 'tr'] as const]))(
+  it.each(ARTICLE_IDS.flatMap((id) => LOCALES.map((locale) => [id, locale] as const)))(
     '%s renders in %s with toc, steps, code and help',
     (id, locale) => {
       i18n.locale = locale;
@@ -193,7 +206,7 @@ describe('guide articles', () => {
       const steps = container.querySelectorAll('h2');
       expect(screen.getByRole('heading', { level: 1 }).textContent).not.toBe('');
       expect(steps.length).toBeGreaterThan(1);
-      const toc = within(screen.getByRole('navigation', { name: locale === 'en' ? 'On this page' : 'Bu sayfada' }));
+      const toc = within(screen.getByRole('navigation', { name: dictionaries[locale].article.toc }));
       expect(toc.getAllByRole('link')).toHaveLength(steps.length + 2);
       expect(container.querySelectorAll('pre')).toHaveLength(Object.keys(GUIDE_CODE[id] ?? {}).length);
       expect(container.querySelector('#help li')).not.toBeNull();

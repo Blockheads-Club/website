@@ -6,6 +6,7 @@
   import Icon from '$lib/components/Icon.svelte';
   import { GUIDES, matchesFilter, type Filter } from '$lib/guides';
   import type { IconName } from '$lib/icons';
+  import { plural } from '$lib/i18n';
   import { dict, i18n } from '$lib/locale.svelte';
 
   const d = $derived(dict());
@@ -58,7 +59,7 @@
       <Chip pressed={filter === f.id} icon={f.icon} onclick={() => (filter = f.id)}>{g.filters[f.id]}</Chip>
     {/each}
   </div>
-  <p class="sr" role="status">{visible.length + ' ' + g.resultsStatus}</p>
+  <p class="sr" role="status">{visible.length + ' ' + plural(g.resultsStatus, visible.length, i18n.locale)}</p>
 
   {#if visible.length === 0}
     <div class="card empty">

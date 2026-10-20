@@ -1,7 +1,8 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import { guideById } from '$lib/guides';
-  import { dict } from '$lib/locale.svelte';
+  import { plural } from '$lib/i18n';
+  import { dict, i18n } from '$lib/locale.svelte';
   import Badge from './Badge.svelte';
   import Icon from './Icon.svelte';
 
@@ -15,7 +16,7 @@
   const href = $derived(meta.path ? base + meta.path : undefined);
   const topicTone = $derived(meta.topic === 'patcher' ? 'primary' : 'info');
   const topicLevel = $derived(topic + ' · ' + level);
-  const minRead = $derived(meta.minutes + ' ' + d.home.guides.minRead);
+  const minRead = $derived(meta.minutes + ' ' + plural(d.home.guides.minRead, meta.minutes, i18n.locale));
   const levelTime = $derived(`${level} · ${meta.minutes} ${d.guides.min}`);
 </script>
 
