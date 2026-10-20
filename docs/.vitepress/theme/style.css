@@ -1,0 +1,147 @@
+/* "Sunlit Blocks" design tokens from src/app.css, mapped onto VitePress variables. Keep the colours in sync. */
+:root {
+  --f-display: 'Bricolage Grotesque Variable', ui-rounded, 'Segoe UI', system-ui, sans-serif;
+  --vp-font-family-base: 'Atkinson Hyperlegible Next', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  --vp-c-bg: #fbf8f4;
+  --vp-c-bg-alt: #f5efe8;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #f5efe8;
+  --vp-c-divider: #e6dcd0;
+  --vp-c-border: #cfc1b1;
+  --vp-c-gutter: #e6dcd0;
+  --vp-c-text-1: #1f1a17;
+  --vp-c-text-2: #574c45;
+  --vp-c-text-3: #6e625a;
+
+  --vp-c-brand-1: #9a3412;
+  --vp-c-brand-2: #c2410c;
+  --vp-c-brand-3: #c2410c;
+  --vp-c-brand-soft: #fdebdf;
+
+  --vp-c-tip-1: #1e7a4c;
+  --vp-c-tip-2: #1e7a4c;
+  --vp-c-tip-3: #1e7a4c;
+  --vp-c-tip-soft: #dff3e7;
+  --vp-c-warning-1: #8a5800;
+  --vp-c-warning-2: #8a5800;
+  --vp-c-warning-3: #8a5800;
+  --vp-c-warning-soft: #fff0c7;
+  --vp-c-danger-1: #b42318;
+  --vp-c-danger-2: #b42318;
+  --vp-c-danger-3: #b42318;
+  --vp-c-danger-soft: #fde6e2;
+  --vp-c-note-1: #1d5fb8;
+  --vp-c-note-2: #1d5fb8;
+  --vp-c-note-3: #1d5fb8;
+  --vp-c-note-soft: #e2edfb;
+
+  --vp-code-block-bg: #231d19;
+  --vp-code-block-color: #f5ede5;
+  --vp-code-color: #9a3412;
+  --vp-code-bg: #f5efe8;
+  --vp-c-focus: #1d5fb8;
+
+  --vp-home-hero-name-color: #1f1a17;
+  --vp-button-brand-bg: #c2410c;
+  --vp-button-brand-hover-bg: #a93a0b;
+  --vp-button-brand-active-bg: #7a2a08;
+  --vp-button-brand-text: #ffffff;
+  --vp-button-brand-border: #7a2a08;
+}
+
+.dark {
+  --vp-c-bg: #14110f;
+  --vp-c-bg-alt: #1d1815;
+  --vp-c-bg-elv: #26201c;
+  --vp-c-bg-soft: #26201c;
+  --vp-c-divider: #3a312b;
+  --vp-c-border: #54483f;
+  --vp-c-gutter: #0e0b09;
+  --vp-c-text-1: #f5ede5;
+  --vp-c-text-2: #cbbeb2;
+  --vp-c-text-3: #ae9f92;
+
+  --vp-c-brand-1: #ffb08c;
+  --vp-c-brand-2: #ff7a45;
+  --vp-c-brand-3: #ff7a45;
+  --vp-c-brand-soft: #3b2117;
+
+  --vp-c-tip-1: #56c990;
+  --vp-c-tip-2: #56c990;
+  --vp-c-tip-3: #56c990;
+  --vp-c-tip-soft: #163a29;
+  --vp-c-warning-1: #f2c14e;
+  --vp-c-warning-2: #f2c14e;
+  --vp-c-warning-3: #f2c14e;
+  --vp-c-warning-soft: #3a2f12;
+  --vp-c-danger-1: #ff8f80;
+  --vp-c-danger-2: #ff8f80;
+  --vp-c-danger-3: #ff8f80;
+  --vp-c-danger-soft: #401d19;
+  --vp-c-note-1: #86b9ff;
+  --vp-c-note-2: #86b9ff;
+  --vp-c-note-3: #86b9ff;
+  --vp-c-note-soft: #172b45;
+
+  --vp-code-block-bg: #0e0b09;
+  --vp-code-color: #ffb08c;
+  --vp-code-bg: #26201c;
+  --vp-c-focus: #86b9ff;
+
+  --vp-home-hero-name-color: #f5ede5;
+  --vp-button-brand-bg: #ff7a45;
+  --vp-button-brand-hover-bg: #ff9466;
+  --vp-button-brand-active-bg: #9c3a12;
+  --vp-button-brand-text: #1c0d06;
+  --vp-button-brand-border: #9c3a12;
+}
+
+/* Headings and the site title use the display face, like the main site. */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.VPNavBarTitle .title,
+.VPHero .name,
+.VPHero .text {
+  font-family: var(--f-display);
+  letter-spacing: -0.012em;
+}
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  font-weight: 750;
+}
+.VPNavBarTitle .title {
+  font-weight: 800;
+  font-size: 19px;
+}
+.VPNavBarTitle .logo {
+  border-radius: 9px;
+}
+.vp-doc a {
+  text-underline-offset: 3px;
+}
+.vp-doc h2 {
+  border-top-width: 2px;
+}
+:focus-visible {
+  outline: 3px solid var(--vp-c-focus);
+  outline-offset: 2px;
+}
+
+/* Pressable "block edge" buttons, as on the main site. */
+.VPButton.medium,
+.VPButton.big {
+  border-width: 2px;
+  font-weight: 700;
+  box-shadow: 0 3px 0 var(--vp-c-border);
+}
+.VPButton.brand {
+  box-shadow: 0 3px 0 var(--vp-button-brand-border);
+}
+.VPButton:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}

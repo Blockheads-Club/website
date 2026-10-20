@@ -19,7 +19,9 @@
     { id: 'patcher', label: d.nav.patcher, href: base + '/#patcher', current: false },
     { id: 'server', label: d.nav.server, href: base + '/server', current: route === 'server' },
     { id: 'guides', label: d.nav.guides, href: base + '/guides', current: route === 'guides' || route === 'article' },
-    { id: 'faq', label: d.nav.faq, href: base + '/faq', current: route === 'faq' }
+    { id: 'faq', label: d.nav.faq, href: base + '/faq', current: route === 'faq' },
+    // The docs are a separate VitePress site: full page load (rel=external), and the prerender crawler skips it.
+    { id: 'docs', label: d.nav.docs, href: base + '/docs/', current: false, external: true }
   ]);
   const themes: { id: ThemePref; label: () => string }[] = [
     { id: 'light', label: () => dict().nav.themeLight },
@@ -79,7 +81,9 @@
       <Wordmark logo={hero ? 44 : 42} />
       <div class="nav-links">
         {#each links as link (link.id)}
-          <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>
+          <a href={link.href} rel={link.external ? 'external' : undefined} aria-current={link.current ? 'page' : undefined}
+            >{link.label}</a
+          >
         {/each}
       </div>
       <div class="nav-tools">
@@ -125,7 +129,11 @@
     </div>
     <nav class="mnav" aria-label={d.nav.label}>
       {#each links as link (link.id)}
-        <a class="mlink" href={link.href} aria-current={link.current ? 'page' : undefined} onclick={() => closeMenu(false)}
+        <a
+          class="mlink"
+          href={link.href}
+          rel={link.external ? 'external' : undefined}
+          aria-current={link.current ? 'page' : undefined} onclick={() => closeMenu(false)}
           >{link.label}<Icon name="chev-r" /></a
         >
       {/each}

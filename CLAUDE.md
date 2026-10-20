@@ -23,3 +23,7 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
   `@fontsource*` (no Google Fonts, CSP unchanged). Inline markup in dictionary strings: `**bold**`, `` `mono` ``, `{{placeholder}}`,
   `[label](linkKey)` (see `src/lib/rich.ts`, `Rich.svelte`). Avoid `{a} {b}` text interpolation (use `{a + ' ' + b}`) for the same branch-coverage reason.
 - Routes: `/`, `/server`, `/guides`, `/guides/fix-game-on-phone`, `/faq`, `/legal`. Old `/#faq` etc. anchors redirect client-side.
+- Docs: VitePress project in `docs/` (config `docs/.vitepress/config.ts`, locales en root + `tr/`, `ru/`, `kk/` with the same pages),
+  served at `<BASE_PATH>/docs/`. `bun run build` runs `vite build` then `vitepress build docs` into `build/docs`; `bun run dev`
+  starts both (the SvelteKit dev server proxies `/docs` to :5174). No SvelteKit route may use `/docs`; link to it with
+  `rel="external"` (full page load, skipped by the prerender crawler). Theme colours mirror `src/app.css` in `docs/.vitepress/theme/style.css`.

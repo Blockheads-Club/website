@@ -262,6 +262,14 @@ describe('Header', () => {
     expect(screen.getAllByRole('link', { name: 'FAQ' })[1]).toHaveAttribute('aria-current', 'page');
   });
 
+  it('links the VitePress docs with a full page load', () => {
+    render(Header, { route: 'home' });
+    const docs = screen.getByRole('link', { name: 'Docs' });
+    expect(docs).toHaveAttribute('href', '/docs/');
+    expect(docs).toHaveAttribute('rel', 'external');
+    expect(screen.getByRole('link', { name: 'FAQ' })).not.toHaveAttribute('rel');
+  });
+
   it('opens and closes the menu sheet, traps focus, changes language and theme', async () => {
     const user = userEvent.setup();
     render(Header, { route: 'home' });
@@ -344,6 +352,7 @@ describe('Footer', () => {
     render(Footer, { route: 'faq' });
     expect(screen.getByText(/Unofficial community project/)).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: /Legal/ })).toHaveLength(2);
+    expect(screen.getByRole('link', { name: 'Docs' })).toHaveAttribute('rel', 'external');
   });
 
   it('slim footer on legal page', () => {

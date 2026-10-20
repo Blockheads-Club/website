@@ -38,6 +38,7 @@
         </nav>
         <nav aria-label={d.footer.help}>
           <p>{d.footer.help}</p>
+          <a href={base + '/docs/'} rel="external">{d.nav.docs}</a>
           <a href={base + '/guides'}>{d.nav.guides}</a>
           <a href={base + '/faq'}>{d.nav.faq}</a>
           <a href={LINKS.websiteIssues} rel="noopener">{d.footer.reportBug}</a>
@@ -64,6 +65,7 @@
         {#if route !== 'legal'}<a href={base + '/legal'}>{d.footer.legal}</a>{/if}
       </p>
       <nav aria-label={d.footer.nav}>
+        <a href={base + '/docs/'} rel="external">{d.nav.docs}</a>
         <a href={base + '/guides'}>{d.nav.guides}</a>
         <a href={base + '/faq'}>{d.nav.faq}</a>
         <a href={LINKS.org} rel="noopener">{d.nav.github}</a>

@@ -44,6 +44,7 @@ export const en = {
     server: 'Server',
     guides: 'Guides',
     faq: 'FAQ',
+    docs: 'Docs',
     github: 'GitHub',
     menu: 'Menu',
     openMenu: 'Open menu',

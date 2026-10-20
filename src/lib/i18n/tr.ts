@@ -21,6 +21,7 @@ export const tr: Dict = {
     server: 'Sunucu',
     guides: 'Rehberler',
     faq: 'SSS',
+    docs: 'Belgeler',
     github: 'GitHub',
     menu: 'Menü',
     openMenu: 'Menüyü aç',
