@@ -33,13 +33,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - run: tar -czf website-build.tar.gz -C build .
-      - name: Create or update the draft release (prerelease for 0.x and -pre tags)
+      - name: Create or update the draft release (prerelease only for -pre tags such as v0.2.0-rc.1)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           case "$TAG" in v[0-9]*) ;; *) echo "::error::not a version tag: $TAG"; exit 1 ;; esac
           pre=""
-          case "$TAG" in v0.*|*-*) pre="--prerelease" ;; esac
+          case "$TAG" in *-*) pre="--prerelease" ;; esac
           if gh release view "$TAG" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             gh release upload "$TAG" 'website-build.tar.gz#Static site build' --clobber -R "$GITHUB_REPOSITORY"
           else
