@@ -1,17 +1,17 @@
 # PC Sürümü
 
-**Blockheads PC**, Android oyununun kendi kopyanızı bilgisayarınızda çalıştırır. Windows, macOS ve Linux’ta, hem
+**Blockheads PC**, Android oyununun kendi kopyanı bilgisayarında çalıştırır. Windows, macOS ve Linux’ta, hem
 normal (x86_64) hem de ARM (arm64) bilgisayarlarda çalışır.
 
 ::: warning Erken sürüm
-PC Sürümü yeni. Oyunun büyük kısmı çalışıyor ama bazı pürüzler olabilir. Bulduğunuz sorunları lütfen
-[bildirin](https://github.com/Blockheads-Club/blockheads-pc/issues).
+PC Sürümü yeni. Oyunun büyük kısmı çalışıyor ama bazı pürüzler olabilir. Bulduğun sorunları lütfen
+[bildir](https://github.com/Blockheads-Club/blockheads-pc/issues).
 :::
 
 ## İndirme ve kurulum {#download-and-install}
 
-En son sürümü [sürümler sayfasından](https://github.com/Blockheads-Club/blockheads-pc/releases) indirin.
-Sisteminize uygun dosyayı seçin:
+En son sürümü [sürümler sayfasından](https://github.com/Blockheads-Club/blockheads-pc/releases) indir.
+Sistemine uygun dosyayı seç:
 
 | Sistem | Dosya |
 | --- | --- |
@@ -22,7 +22,7 @@ Sisteminize uygun dosyayı seçin:
 
 ### Linux
 
-- **AppImage** (her dağıtımda): çalıştırılabilir yapın ve açın.
+- **AppImage** (her dağıtımda): çalıştırılabilir yap ve aç.
   ```sh
   chmod +x Blockheads*.AppImage
   ./Blockheads*.AppImage
@@ -32,49 +32,49 @@ Sisteminize uygun dosyayı seçin:
 
 ### Windows
 
-`setup.exe` dosyasını (yalnızca sizin kullanıcınız için kurar, yönetici izni gerekmez) ya da `.msi` dosyasını
-çalıştırın.
+`setup.exe` dosyasını (yalnızca senin kullanıcın için kurar, yönetici izni gerekmez) ya da `.msi` dosyasını
+çalıştır.
 
 ::: tip "Windows bilgisayarınızı korudu"
 Yükleyici henüz kod imzalı değil, bu yüzden SmartScreen uyarı verebilir. **Ek bilgi**’ye, ardından **Yine de çalıştır**’a
-tıklayın.
+tıkla.
 :::
 
 ### macOS
 
-`.dmg` dosyasını açın, lisansı kabul edin ve **Blockheads PC**’yi **Uygulamalar** klasörüne sürükleyin.
+`.dmg` dosyasını aç, lisansı kabul et ve **Blockheads PC**’yi **Uygulamalar** klasörüne sürükle.
 
 ::: tip "Blockheads PC açılamıyor"
-Uygulama Apple tarafından onaylanmış (notarize) değil. İlk seferde uygulamaya **sağ tıklayıp** **Aç**’ı seçin. Ya da
-**Sistem Ayarları → Gizlilik ve Güvenlik**’e gidip **Yine de Aç**’a tıklayın.
+Uygulama Apple tarafından onaylanmış (notarize) değil. İlk seferde uygulamaya **sağ tıklayıp** **Aç**’ı seç. Ya da
+**Sistem Ayarları → Gizlilik ve Güvenlik**’e gidip **Yine de Aç**’a tıkla.
 :::
 
-## İlk açılış: oyun dosyanız
+## İlk açılış: oyun dosyan
 
-Blockheads PC’yi ilk kez açtığınızda kısa bir kurulum size yol gösterir:
+Blockheads PC’yi ilk kez açtığında kısa bir kurulum sana yol gösterir:
 
-1. **Hoş geldin** – oyuna sahip olduğunuzu ve yalnızca kendi kopyanızı kullanacağınızı onaylayın.
-2. **Oyun dosyası** – APK’nızı seçin ya da sürükleyip bırakın.
+1. **Hoş geldin** – oyuna sahip olduğunu ve yalnızca kendi kopyanı kullanacağını onayla.
+2. **Oyun dosyası** – APK’nı seç ya da sürükleyip bırak.
 3. **Pencere ve grafik** – pencere boyutu ve görüntü seçenekleri.
-4. **Kontroller** – fare ve klavye tuşlarına göz atın.
-5. **Kayıtları aktar** – isteğe bağlı: oyunun kayıt klasörünü telefonunuzdan (ya da bir zip yedeğini) kopyalayıp
-   burada seçin.
-6. **Hazır** – bir özet. **Oyna**’ya basın.
+4. **Kontroller** – fare ve klavye tuşlarına göz at.
+5. **Kayıtları aktar** – isteğe bağlı: oyunun kayıt klasörünü telefonundan (ya da bir zip yedeğini) kopyalayıp
+   burada seç.
+6. **Hazır** – bir özet. **Oyna**’ya bas.
 
-![Blockheads PC kurulumu, 6 adımın 2.si “Oyun dosyanızı seçin”: The Blockheads 1.7.6 seçilmiş ve desteklendiği gösteriliyor; veri klasöründe özel kopya tutma seçeneği açık.](/shots/tr/pc/setup-2-apk.webp)
+![Blockheads PC kurulumu, 6 adımın 2.si “Oyun dosyanı seç”: The Blockheads 1.7.6 seçilmiş ve desteklendiği gösteriliyor; veri klasöründe özel kopya tutma seçeneği açık.](/shots/tr/pc/setup-2-apk.webp)
 
-*Kurulumun 2. adımı: kendi APK’nızı seçin. Başlatıcı sürümü denetler.*
+*Kurulumun 2. adımı: kendi APK’nı seç. Başlatıcı sürümü denetler.*
 
-Hepsini daha sonra **Ayarlar**’dan değiştirebilirsiniz.
+Hepsini daha sonra **Ayarlar**’dan değiştirebilirsin.
 
-### Kendi APK’nız
+### Kendi APK’n
 
-Blockheads PC’nin, sahip olduğunuz The Blockheads’in APK’sına ihtiyacı var: **1.7.4, 1.7.5 veya 1.7.6** sürümü.
-Dosyayı telefonunuzdan bilgisayarınıza kopyalayın, sonra kurulumda seçin. Oyunu asla indirmeyiz ve paylaşmayız.
+Blockheads PC’nin, sahip olduğun The Blockheads’in APK’sına ihtiyacı var: **1.7.4, 1.7.5 veya 1.7.6** sürümü.
+Dosyayı telefonundan bilgisayarına kopyala, sonra kurulumda seç. Oyunu asla indirmeyiz ve paylaşmayız.
 
-- **Veri klasöründe özel bir kopya tut** seçeneğini açık bırakın (önerilir). Böylece asıl dosyayı taşısanız ya da
-  silseniz de oyun çalışmaya devam eder.
-- Başka sürümleri ya da değiştirilmiş APK’ları **Gelişmiş → Bilinmeyen sürümlere izin ver** ile deneyebilirsiniz.
+- **Veri klasöründe özel bir kopya tut** seçeneğini açık bırak (önerilir). Böylece asıl dosyayı taşısan ya da
+  silsen de oyun çalışmaya devam eder.
+- Başka sürümleri ya da değiştirilmiş APK’ları **Gelişmiş → Bilinmeyen sürümlere izin ver** ile deneyebilirsin.
   Açılmayabilirler.
 
 ![Blockheads PC ana ekranı: The Blockheads 1.7.6 için büyük Oyna düğmesi; oyun dosyasını değiştirme, kayıtları aktarma, veri klasörünü açma, günlükleri görme ve sunucuya katılmayı öğrenme düğmeleri.](/shots/tr/pc/home.webp)
@@ -83,9 +83,9 @@ Dosyayı telefonunuzdan bilgisayarınıza kopyalayın, sonra kurulumda seçin. O
 
 ## Ayarlar
 
-| Bölüm | Neleri değiştirebilirsiniz |
+| Bölüm | Neleri değiştirebilirsin |
 | --- | --- |
-| **Oyun ve veri** | Oyun dosyanız ve dünyalarınızın bulunduğu veri klasörü |
+| **Oyun ve veri** | Oyun dosyan ve dünyalarının bulunduğu veri klasörü |
 | **Pencere ve grafik** | Pencere boyutu veya tam ekran, dikey senkron, FPS sınırı, FPS sayacı, oyun arayüzü ölçeği, oyun hızı |
 | **Kontroller** | Fare ve klavye atamaları, oyun kolu, ekrandaki yön tuşları |
 | **Ses** | Sesi açma ve kapatma (ses düzeyi oyunun içinden ayarlanır) |
@@ -98,11 +98,11 @@ Dosyayı telefonunuzdan bilgisayarınıza kopyalayın, sonra kurulumda seçin. O
 
 *Ayarlar → Pencere ve grafik.*
 
-- **Tam ekran**: Ayarlar’dan açın ya da oynarken **F11**’e basın.
-- **Dikey senkron (VSync)**: yırtılma olmadan daha akıcı görüntü. Yalnızca oyun geç tepki veriyorsa kapatın.
+- **Tam ekran**: Ayarlar’dan aç ya da oynarken **F11**’e bas.
+- **Dikey senkron (VSync)**: yırtılma olmadan daha akıcı görüntü. Yalnızca oyun geç tepki veriyorsa kapat.
 - **FPS sınırı**: en yüksek kare hızı. Telefondaki oyun 30 FPS ile çalışır; daha yüksek bir sınır görüntüyü akıcı
   yapar ama oyunu hızlandırmaz. Düşük bir sınır enerji tasarrufu sağlar ve dizüstü bilgisayarları serin tutar.
-- **FPS göster**: küçük bir kare hızı sayacı. Hangi köşede duracağını seçebilirsiniz.
+- **FPS göster**: küçük bir kare hızı sayacı. Hangi köşede duracağını seçebilirsin.
 - **Oyun arayüzü ölçeği**: oyundaki düğmeleri ve yazıları büyütür ya da küçültür.
 
 ### Oyun hızı
@@ -114,20 +114,20 @@ Dünyayı daha hızlı akıtır: yürüme, gece ve gündüz, ekinler, açlık ve
 
 ![Blockheads PC ayarları, Kontroller: oyunun ekrandaki yön tuşları anahtarı ve dokun-sürükle, kaydır, yakınlaştır, sıkıştır, geri fare atamaları; her birinde Değiştir düğmesi.](/shots/tr/pc/settings-controls.webp)
 
-*Ayarlar → Kontroller: istediğiniz atamayı değiştirin.*
+*Ayarlar → Kontroller: istediğin atamayı değiştir.*
 
-Oyun dokunmatik ekran için yapıldı, bu yüzden fareniz parmağınızın yerini alır:
+Oyun dokunmatik ekran için yapıldı, bu yüzden faren parmağının yerini alır:
 
 | Fare / tuş | Ne yapar |
 | --- | --- |
-| Sol tuş | Dokunma ve sürükleme (uzun basmak için basılı tutun) |
+| Sol tuş | Dokunma ve sürükleme (uzun basmak için basılı tut) |
 | Sağ tuşla sürükleme | Görünümü kaydırır |
 | Fare tekerleği | Yakınlaştırır ve uzaklaştırır |
 | Esc | Geri |
 | F11 | Tam ekranı açar veya kapatır |
 | H | Oyunun düğmelerini gizler veya gösterir |
 
-Bunların hepsini **Ayarlar → Kontroller**’den değiştirebilir ya da varsayılanlara döndürebilirsiniz.
+Bunların hepsini **Ayarlar → Kontroller**’den değiştirebilir ya da varsayılanlara döndürebilirsin.
 
 ### Oyun kolu
 
@@ -135,45 +135,45 @@ Bunların hepsini **Ayarlar → Kontroller**’den değiştirebilir ya da varsay
 
 *Oyun kolu bölümü her düğmenin ne yaptığını gösterir.*
 
-Bir oyun kolunu istediğiniz zaman takın; ilk bağlanan oynar. Bir imleç, **A**’nın nereye dokunacağını gösterir.
+Bir oyun kolunu istediğin zaman tak; ilk bağlanan oynar. Bir imleç, **A**’nın nereye dokunacağını gösterir.
 
 | Tuş | Ne yapar |
 | --- | --- |
 | Sol çubuk | Yürür |
 | Sağ çubuk | İmleci taşır |
 | Yön tuşları | İmleci bir blok taşır, menülerde de |
-| A | Dokunur; kazmak veya sürüklemek için basılı tutun |
+| A | Dokunur; kazmak veya sürüklemek için basılı tut |
 | B | Geri |
 | X | Oyunun düğmelerini gizler veya gösterir |
 | Y | Sonraki yakınlaştırma düzeyi |
 | LB / RB | Uzaklaştırır / yakınlaştırır |
 | Start | Duraklatma menüsü |
 
-İmlecin bloktan bloğa atlamasını isterseniz **Oyun kolu imlecini kare kare taşı** seçeneğini açın.
+İmlecin bloktan bloğa atlamasını istersen **Oyun kolu imlecini kare kare taşı** seçeneğini aç.
 
 ### Ekrandaki yön tuşları
 
 Telefondaki oyun, bir dünyadayken ekrana ok tuşları çizer. PC’de bunlar gizlidir, çünkü fare, klavye ve oyun kolu
-blockhead’inizi zaten hareket ettirir. Geri isterseniz **Oyunun ekrandaki yön tuşlarını göster** seçeneğini açın.
+blockhead’ini zaten hareket ettirir. Geri istersen **Oyunun ekrandaki yön tuşlarını göster** seçeneğini aç.
 
 ## Çevrimiçi oynama
 
-Sunuculara telefondaki gibi katılabilirsiniz. Adresle katılmak için oyunda: **Join World → Advanced… → Online IP/Port…**,
-adresi ve portu girin, ardından **Join Online World**. [Sunucu](/tr/server#connect-from-the-game) sayfasına bakın.
+Sunuculara telefondaki gibi katılabilirsin. Adresle katılmak için oyunda: **Join World → Advanced… → Online IP/Port…**,
+adresi ve portu gir, ardından **Join Online World**. [Sunucu](/tr/server#connect-from-the-game) sayfasına bak.
 
 ## Sorun giderme
 
 - **İlk açılış yavaş.** Oyunun yüklenmesi birkaç saniye sürer, ilk seferde daha uzun. Bir yükleme ekranı ilerlemeyi
   gösterir.
 - **"Bu The Blockheads değil" / "Bu sürüm desteklenmiyor".** The Blockheads’in 1.7.4, 1.7.5 veya 1.7.6 sürümünün
-  APK’sını seçin.
-- **"Dosya hasarlı".** Kopyalama tamamlanmamış. APK’yı telefonunuzdan yeniden kopyalayın.
-- **"Oyun dosyanı bulamıyoruz".** Dosyayı taşıdınız ya da sildiniz ve özel kopya tutulmadı. Dosyayı yeniden seçin;
-  dünyalarınız etkilenmez.
-- **Oyun beklenmedik şekilde kapandı.** Bir log dosyası kaydedilir. Ana ekrandaki **GitHub’da bildir**’i kullanın ya da
-  günlükleri **Günlükleri gör** ile açıp [hata bildiriminize](https://github.com/Blockheads-Club/blockheads-pc/issues)
-  ekleyin.
-- **Oyun yavaş.** Kalabalık sahneler telefondan daha yavaş çalışabilir. Ağır programları kapatın ve ekran kartı
-  sürücülerinizi güncel tutun.
-- **Windows veya macOS uygulamayı engelliyor.** [İndirme ve kurulum](#download-and-install) bölümündeki ipuçlarına bakın.
-- **Dünyalarım nerede?** Ana ekrandaki **Veri klasörünü aç**’ı kullanın.
+  APK’sını seç.
+- **"Dosya hasarlı".** Kopyalama tamamlanmamış. APK’yı telefonundan yeniden kopyala.
+- **"Oyun dosyanı bulamıyoruz".** Dosyayı taşıdın ya da sildin ve özel kopya tutulmadı. Dosyayı yeniden seç;
+  dünyaların etkilenmez.
+- **Oyun beklenmedik şekilde kapandı.** Bir log dosyası kaydedilir. Ana ekrandaki **GitHub’da bildir**’i kullan ya da
+  günlükleri **Günlükleri gör** ile açıp [hata bildirimine](https://github.com/Blockheads-Club/blockheads-pc/issues)
+  ekle.
+- **Oyun yavaş.** Kalabalık sahneler telefondan daha yavaş çalışabilir. Ağır programları kapat ve ekran kartı
+  sürücülerini güncel tut.
+- **Windows veya macOS uygulamayı engelliyor.** [İndirme ve kurulum](#download-and-install) bölümündeki ipuçlarına bak.
+- **Dünyalarım nerede?** Ana ekrandaki **Veri klasörünü aç**’ı kullan.

@@ -4,7 +4,7 @@ title: Başlarken
 hero:
   name: Blockheads Club Dokümanları
   text: The Blockheads oynanabilir kalsın
-  tagline: Ücretsiz ve açık kaynaklı topluluk araçları. Bilgisayarınızda oynayın, oyunu bugünün telefonlarında düzeltin ve kendi dünyalarınızı barındırın.
+  tagline: Ücretsiz ve açık kaynaklı topluluk araçları. Bilgisayarında oyna, oyunu bugünün telefonlarında düzelt ve kendi dünyalarını barındır.
   image:
     src: /logo.svg
     alt: Blockheads Club
@@ -20,15 +20,15 @@ hero:
       link: /tr/server
 features:
   - title: PC Sürümü
-    details: Android oyununun kendi kopyanızı Windows, macOS ve Linux’ta fare, klavye ya da oyun koluyla oynayın.
+    details: Android oyununun kendi kopyanı Windows, macOS ve Linux’ta fare, klavye ya da oyun koluyla oyna.
     link: /tr/pc-port
-    linkText: Kurun
+    linkText: Kur
   - title: Patcher
-    details: Android oyununun kendi kopyanızı düzeltin, modern telefonlarda çalışsın. Tarayıcıda, masaüstünde ve Android’de çalışır.
+    details: Android oyununun kendi kopyanı düzelt, modern telefonlarda çalışsın. Tarayıcıda, masaüstünde ve Android’de çalışır.
     link: /tr/patcher
     linkText: Oyunumu düzelt
   - title: Sunucu
-    details: Arkadaşlarınız için bir bilgisayarda, Raspberry Pi’de, Docker’da ya da bir Android telefonda dünya barındırın.
+    details: Arkadaşların için bir bilgisayarda, Raspberry Pi’de, Docker’da ya da bir Android telefonda dünya barındır.
     link: /tr/server
     linkText: Dünya barındır
 ---
@@ -40,13 +40,13 @@ araç geliştiriyoruz:
 
 | Araç | Ne yapar | Nerede çalışır |
 | --- | --- | --- |
-| [PC Sürümü](/tr/pc-port) | Android oyununu bilgisayarınızda çalıştırır | Windows, macOS, Linux |
-| [Patcher](/tr/patcher) | Android oyununun kopyanızdaki hataları düzeltir | Web, Windows, macOS, Linux, Android |
+| [PC Sürümü](/tr/pc-port) | Android oyununu bilgisayarında çalıştırır | Windows, macOS, Linux |
+| [Patcher](/tr/patcher) | Android oyununun kopyandaki hataları düzeltir | Web, Windows, macOS, Linux, Android |
 | [Sunucu](/tr/server) | Çok oyunculu dünyaları barındırır | Windows, macOS, Linux, Docker, Android |
 
-::: info Oyunu siz getirirsiniz
-Araçlarımızın hiçbiri oyunu içermez. The Blockheads’in Android sürümünün kendi kopyanızı (bir `.apk` dosyası)
-kullanırsınız: **1.7.4, 1.7.5 veya 1.7.6** sürümü. Dosyalarınız cihazınızda kalır; hiçbir şey internete yüklenmez.
+::: info Oyunu sen getirirsin
+Araçlarımızın hiçbiri oyunu içermez. The Blockheads’in Android sürümünün kendi kopyanı (bir `.apk` dosyası)
+kullanırsın: **1.7.4, 1.7.5 veya 1.7.6** sürümü. Dosyaların cihazında kalır; hiçbir şey internete yüklenmez.
 :::
 
 ## Hangisine ihtiyacım var?
@@ -55,4 +55,4 @@ kullanırsınız: **1.7.4, 1.7.5 veya 1.7.6** sürümü. Dosyalarınız cihazın
 - **Oyun telefonumda donuyor veya çöküyor** → [Patcher](/tr/patcher)
 - **Arkadaşlarımla kendi dünyamda oynamak istiyorum** → [Sunucu](/tr/server)
 
-Sorularınız mı var? [SSS](/tr/faq) sayfasına bakın.
+Soruların mı var? [SSS](/tr/faq) sayfasına bak.

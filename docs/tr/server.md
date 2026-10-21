@@ -1,14 +1,14 @@
 # Sunucu
 
-**Blockheads Sunucu**, siz ve arkadaşlarınız için çok oyunculu dünyalar barındırır. Oyunun özel sunucusunun (1.7.1
+**Blockheads Sunucu**, sen ve arkadaşların için çok oyunculu dünyalar barındırır. Oyunun özel sunucusunun (1.7.1
 sürümü) ücretsiz ve açık kaynaklı yeniden yazımıdır; bu yüzden oyun ve mevcut dünyalar onunla değişiklik olmadan
 çalışır.
 
-[Sürümler sayfasından](https://github.com/Blockheads-Club/blockheads-server/releases) indirin.
+[Sürümler sayfasından](https://github.com/Blockheads-Club/blockheads-server/releases) indir.
 
 ## Masaüstü uygulaması
 
-Bilgisayarda en kolay yol. Sisteminize uygun uygulamayı indirin:
+Bilgisayarda en kolay yol. Sistemine uygun uygulamayı indir:
 
 | Sistem | Dosya |
 | --- | --- |
@@ -18,24 +18,24 @@ Bilgisayarda en kolay yol. Sisteminize uygun uygulamayı indirin:
 
 Sonra:
 
-1. **Dünya oluştur** (ad, boyut, isterseniz uzman modu).
-2. **Sunucuyu başlat**’a basın.
-3. Uygulamada görünen adresi arkadaşlarınızla paylaşın. Telefonlar için bir QR kod da vardır.
+1. **Dünya oluştur** (ad, boyut, istersen uzman modu).
+2. **Sunucuyu başlat**’a bas.
+3. Uygulamada görünen adresi arkadaşlarınla paylaş. Telefonlar için bir QR kod da vardır.
 
 ![Blockheads Server masaüstü uygulaması, dünya oluşturma penceresi: dünya adı, 1/16× ile 16× arası boyut, uzman modu anahtarı ve oluşturma düğmesi.](/shots/tr/server/worlds-create.webp)
 
-*Bir dünya oluşturun: ad, boyut ve isterseniz uzman modu.*
+*Bir dünya oluştur: ad, boyut ve istersen uzman modu.*
 
 ![Çalışan Blockheads Server paneli: 2 çevrimiçi oyuncu, geçerli dünya “Sunny Isle” ve QR kodu, 192.168.1.42 LAN adresi ve 15151 portu olan telefondan bağlanma kartı.](/shots/tr/server/dashboard.webp)
 
 *Panel paylaşılacak adresi ve telefonlar için bir QR kodu gösterir.*
 
 Uygulamada canlı konsolu ve kimlerin çevrimiçi olduğunu da görebilir, yönetici, moderatör, beyaz ve kara listeleri
-düzenleyebilirsiniz. Port, en çok oyuncu sayısı ve parola **Ayarlar**’dadır.
+düzenleyebilirsin. Port, en çok oyuncu sayısı ve parola **Ayarlar**’dadır.
 
 ![Blockheads Server konsolu: katılma, sohbet ve hata satırlarıyla canlı log, filtreler, arama alanı ve çalıştırma düğmeli komut kutusu.](/shots/tr/server/console.webp)
 
-*Canlı konsol: logda arayın ve komut yazın.*
+*Canlı konsol: logda ara ve komut yaz.*
 
 ![Blockheads Server ayarları, bağlantı: port 15151, en çok oyuncu ve parola; ardından kaydetme aralığı ve veri klasörüyle dünya ve kaydetme bölümü.](/shots/tr/server/settings.webp)
 
@@ -43,8 +43,8 @@ düzenleyebilirsiniz. Port, en çok oyuncu sayısı ve parola **Ayarlar**’dad�
 
 ## Komut satırı
 
-Ekranı olmayan sunucular için ya da terminali tercih ediyorsanız. Sisteminize uygun arşivi (`x86_64`, `aarch64` ya da
-Raspberry Pi için `armv7`) indirin, açın ve çalıştırın:
+Ekranı olmayan sunucular için ya da terminali tercih ediyorsan. Sistemine uygun arşivi (`x86_64`, `aarch64` ya da
+Raspberry Pi için `armv7`) indir, aç ve çalıştır:
 
 ```sh
 ./blockheads_server --new world1 --port 15151
@@ -56,10 +56,10 @@ Windows’ta (PowerShell):
 .\blockheads_server.exe --new world1 --port 15151
 ```
 
-Tüm seçenekler için `--help` ile çalıştırın. Seçenekler asıl sunucudakilerle aynıdır.
+Tüm seçenekler için `--help` ile çalıştır. Seçenekler asıl sunucudakilerle aynıdır.
 
-Dünyalar ev klasörünüzdeki `GNUstep/Library/ApplicationSupport/TheBlockheads` klasörüne kaydedilir. Başka bir klasör
-kullanmak için `BLOCKHEADS_DATA_DIR` ortam değişkenini ayarlayın.
+Dünyalar ev klasöründeki `GNUstep/Library/ApplicationSupport/TheBlockheads` klasörüne kaydedilir. Başka bir klasör
+kullanmak için `BLOCKHEADS_DATA_DIR` ortam değişkenini ayarla.
 
 ## Docker
 
@@ -68,17 +68,17 @@ docker run -i --rm -p 15151:15151/udp -v bh-data:/data \
   ghcr.io/blockheads-club/blockheads-server:0.1.1 --new MYWORLD
 ```
 
-- Konsola yazabilmek için (`/stop`, sohbet) `-i`’yi koruyun.
-- Dünyalarınız `bh-data` volume’ünde saklanır, böylece güncellemelerden sonra da kalır.
+- Konsola yazabilmek için (`/stop`, sohbet) `-i`’yi koru.
+- Dünyaların `bh-data` volume’ünde saklanır, böylece güncellemelerden sonra da kalır.
 - İmaj x86_64 ve ARM’de çalışır.
 
 ## Android
 
-1. `blockheads-server-…-android.apk` dosyasını indirip açarak kurun. Android, tarayıcınızdan yüklemeye izin vermenizi
+1. `blockheads-server-…-android.apk` dosyasını indirip açarak kur. Android, tarayıcından yüklemeye izin vermeni
    isteyebilir.
-2. Bir dünya oluşturun ve **Sunucuyu başlat**’a dokunun. Sunucu arka planda çalışmaya devam eder; bir bildirim durumunu
+2. Bir dünya oluştur ve **Sunucuyu başlat**’a dokun. Sunucu arka planda çalışmaya devam eder; bir bildirim durumunu
    gösterir.
-3. Telefonu şarjda tutun. Uygulama sorarsa onun için pil optimizasyonunu kapatın, böylece Android onu durdurmaz.
+3. Telefonu şarjda tut. Uygulama sorarsa onun için pil optimizasyonunu kapat, böylece Android onu durdurmaz.
 
 ![Android telefonda Blockheads Server uygulaması: çalışırken panel; diğer telefonlar için LAN adresi, port ve QR kodu.](/shots/tr/server/phone-dashboard.webp)
 
@@ -86,9 +86,9 @@ docker run -i --rm -p 15151:15151/udp -v bh-data:/data \
 
 ## Oyundan bağlanma {#connect-from-the-game}
 
-1. Sunucuyu başlatın ve adresini ve portunu not edin; örneğin `192.168.1.42` ve port `15151`.
-2. Oyunda **Join World → Advanced… → Online IP/Port…** menüsünü açın.
-3. Adresi ve portu girip katılın. Sunucunun parolası varsa oyun onu sorar.
+1. Sunucuyu başlat ve adresini ve portunu not et; örneğin `192.168.1.42` ve port `15151`.
+2. Oyunda **Join World → Advanced… → Online IP/Port…** menüsünü aç.
+3. Adresi ve portu girip katıl. Sunucunun parolası varsa oyun onu sorar.
 
 ::: tip Android oyuncuları
 Oyunun modern Android sürümleri, bir sunucuya katılabilmek için [Patcher](/tr/patcher)’daki karşılama penceresi
@@ -100,12 +100,12 @@ düzeltmesine ihtiyaç duyar.
 Birlikte oynamanın en kolay yolu aynı ağda olmaktır:
 
 - Telefon (veya bilgisayar) ile sunucu **aynı Wi-Fi ağında ya da yerel ağda** olmalıdır.
-- Sunucunun gösterdiği **Yerel ağ adresini** kullanın (`192.168.`, `10.` veya benzeriyle başlar). Telefonda
-  kopyalamak için QR kodu okutun.
-- Varsayılan port **15151**’dir (UDP). Arkadaşlarınız bağlanamıyorsa adresi ve portu kontrol edin ve güvenlik duvarında
-  sunucuya izin verin.
+- Sunucunun gösterdiği **Yerel ağ adresini** kullan (`192.168.`, `10.` veya benzeriyle başlar). Telefonda
+  kopyalamak için QR kodu okut.
+- Varsayılan port **15151**’dir (UDP). Arkadaşların bağlanamıyorsa adresi ve portu kontrol et ve güvenlik duvarında
+  sunucuya izin ver.
 
-::: warning İnternet üzerinden mi oynayacaksınız?
-Modeminizde UDP 15151 portunu sunucu bilgisayarına yönlendirin ve genel IP adresinizi paylaşın. Önce bir parola
-belirleyin ya da beyaz listeyi kullanın.
+::: warning İnternet üzerinden mi oynayacaksın?
+Modeminde UDP 15151 portunu sunucu bilgisayarına yönlendir ve genel IP adresini paylaş. Önce bir parola
+belirle ya da beyaz listeyi kullan.
 :::

@@ -36,7 +36,7 @@ test('guide content switches to Turkish', async ({ page }) => {
   await page.goto('/guides/lan-play');
   await page.getByRole('button', { name: 'Language: English' }).first().click();
   await page.getByRole('menuitemradio', { name: /Türkçe/ }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Aynı Wi-Fi ağındaki arkadaşlarınızla oynayın');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Aynı Wi-Fi ağındaki arkadaşlarınla oyna');
 });
 
 test('copy button copies a guide command', async ({ page, context }) => {
