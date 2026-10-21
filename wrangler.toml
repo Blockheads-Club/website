@@ -1,19 +1,12 @@
 name = "blockheads-club-website"
 compatibility_date = "2025-10-01"
-# Tiny router (src/worker.ts): /patcher and /patcher/* go to the web Patcher Worker through the PATCHER service
-# binding; everything else is the static site, served straight from assets without running the script.
-main = "src/worker.ts"
 
+# Assets-only Worker (no script, so requests never count as Worker invocations).
 # Deployed by Cloudflare Workers Builds: build `bun run build`, deploy `npx wrangler deploy`,
-# non-production branches `npx wrangler versions upload`. The static site is served from build/.
+# non-production branches `npx wrangler versions upload`. The static site is served from build/, including the
+# web Patcher under build/patcher/ (scripts/build-patcher.mjs; see docs/development.md).
 [assets]
 directory = "./build"
-binding = "ASSETS"
+# Unknown paths get the nearest 404.html walking up: build/patcher/404.html (the Patcher's app shell) for
+# /patcher/*, build/404.html (the site's) elsewhere.
 not_found_handling = "404-page"
-run_worker_first = ["/patcher", "/patcher/*"]
-
-# The web Patcher: assets-only Worker "blockheads-patcher-web" deployed from Blockheads-Club/blockheads-patcher
-# (its own Workers Build). It must exist before this Worker is deployed.
-[[services]]
-binding = "PATCHER"
-service = "blockheads-patcher-web"

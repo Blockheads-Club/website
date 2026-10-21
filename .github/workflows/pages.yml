@@ -28,6 +28,8 @@ jobs:
       - run: bun run build
         env:
           BASE_PATH: /website
+          # scripts/build-patcher.ts looks up the latest Patcher release; the token lifts the API rate limit.
+          GITHUB_TOKEN: ${{ github.token }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

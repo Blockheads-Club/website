@@ -27,3 +27,7 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
   served at `<BASE_PATH>/docs/`. `bun run build` runs `vite build` then `vitepress build docs` into `build/docs`; `bun run dev`
   starts both (the SvelteKit dev server proxies `/docs` to :5174). No SvelteKit route may use `/docs`; link to it with
   `rel="external"` (full page load, skipped by the prerender crawler). Theme colours mirror `src/app.css` in `docs/.vitepress/theme/style.css`.
+- Web Patcher: not part of this repo's source. `bun run build` ends with `scripts/build-patcher.ts`, which clones the latest
+  published blockheads-patcher release, builds it with `BASE_PATH=<base>/patcher` into `build/patcher/` and merges its
+  `_headers` (pure helpers in `src/lib/patcher-build.ts`). No SvelteKit route may use `/patcher`. The Worker stays
+  assets-only (no script, no bindings). Details in `docs/development.md`.

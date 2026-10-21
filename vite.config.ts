@@ -9,16 +9,19 @@ declare const process: { env: Record<string, string | undefined> };
 
 const base = process.env.BASE_PATH ?? '';
 const docsPath = base + '/docs';
+const patcherPath = base + '/patcher';
 
 /**
- * The VitePress docs are built into build/docs (see package.json "build"), outside SvelteKit's own output, so
- * `vite preview` (and the Playwright tests) would not see them. Serve them like the static hosts do (clean URLs).
+ * The VitePress docs (build/docs) and the web Patcher (build/patcher, scripts/build-patcher.ts) are built outside
+ * SvelteKit's own output (see package.json "build"), so `vite preview` (and the Playwright tests) would not see them.
+ * Serve them like the static hosts do (clean URLs).
  */
 function previewDocs(): Plugin {
   return {
     name: 'preview-docs',
     configurePreviewServer(server) {
       server.middlewares.use(docsPath, sirv('build/docs', { extensions: ['html'], dev: true }));
+      server.middlewares.use(patcherPath, sirv('build/patcher', { extensions: ['html'], dev: true }));
     }
   };
 }

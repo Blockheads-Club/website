@@ -22,4 +22,6 @@ jobs:
       - run: bun run test:e2e
         env:
           CI: '1'
+          # The e2e web server runs `bun run build`, which bundles the latest Patcher release (scripts/build-patcher.ts).
+          GITHUB_TOKEN: ${{ github.token }}
 

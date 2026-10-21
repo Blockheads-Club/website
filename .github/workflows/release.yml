@@ -30,6 +30,8 @@ jobs:
       - run: bun run check
       - run: bun run test
       - run: bun run build
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - run: tar -czf website-build.tar.gz -C build .
       - name: Create or update the draft release (prerelease for 0.x and -pre tags)
         env:
