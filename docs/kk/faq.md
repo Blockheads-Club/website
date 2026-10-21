@@ -16,14 +16,14 @@ Blockheads Club — ресми емес жанкүйерлер жобасы. О�
 
 ## Ойынның қай нұсқалары жұмыс істейді?
 
-PC нұсқасы мен Патчер ойынның Android-тағы **1.7.4, 1.7.5 және 1.7.6** нұсқаларын қолдайды.
+PC нұсқасы мен Patcher ойынның Android-тағы **1.7.4, 1.7.5 және 1.7.6** нұсқаларын қолдайды.
 
 ## Қандай платформалар қолдауға ие?
 
 | Құрал | Платформалар |
 | --- | --- |
 | PC нұсқасы | Windows, macOS, Linux (x86_64 және arm64) |
-| Патчер | Веб-браузер, Windows, macOS, Linux, Android |
+| Patcher | Веб-браузер, Windows, macOS, Linux, Android |
 | Сервер | Windows, macOS, Linux (Raspberry Pi-ды қоса), Docker, Android |
 
 ## Ойынды патчтасам, әлемдерім жоғала ма?
@@ -44,7 +44,7 @@ PC нұсқасы мен Патчер ойынның Android-тағы **1.7.4, 1
 
 - GitHub-та қате туралы хабарлаңыз немесе сұрақ қойыңыз:
   [PC нұсқасы](https://github.com/Blockheads-Club/blockheads-pc/issues),
-  [Патчер](https://github.com/Blockheads-Club/blockheads-patcher/issues),
+  [Patcher](https://github.com/Blockheads-Club/blockheads-patcher/issues),
   [Сервер](https://github.com/Blockheads-Club/blockheads-server/issues),
   [Сайт және құжаттама](https://github.com/Blockheads-Club/website/issues).
 - Бірдеңе істен шықса, қолданбаның журналын тіркеңіз. Бұл бізге көп көмектеседі.

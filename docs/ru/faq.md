@@ -15,14 +15,14 @@ Blockheads Club — неофициальный фанатский проект. 
 
 ## Какие версии игры работают?
 
-PC-версия и Патчер поддерживают Android-версии игры **1.7.4, 1.7.5 и 1.7.6**.
+PC-версия и Patcher поддерживают Android-версии игры **1.7.4, 1.7.5 и 1.7.6**.
 
 ## Какие платформы поддерживаются?
 
 | Инструмент | Платформы |
 | --- | --- |
 | PC-версия | Windows, macOS, Linux (x86_64 и arm64) |
-| Патчер | Браузер, Windows, macOS, Linux, Android |
+| Patcher | Браузер, Windows, macOS, Linux, Android |
 | Сервер | Windows, macOS, Linux (включая Raspberry Pi), Docker, Android |
 
 ## Потеряю ли я миры, если пропатчу игру?
@@ -43,7 +43,7 @@ PC-версия и Патчер поддерживают Android-версии и
 
 - Сообщите об ошибке или задайте вопрос на GitHub:
   [PC-версия](https://github.com/Blockheads-Club/blockheads-pc/issues),
-  [Патчер](https://github.com/Blockheads-Club/blockheads-patcher/issues),
+  [Patcher](https://github.com/Blockheads-Club/blockheads-patcher/issues),
   [Сервер](https://github.com/Blockheads-Club/blockheads-server/issues),
   [Сайт и документация](https://github.com/Blockheads-Club/website/issues).
 - Если что-то вылетело, приложите журнал из приложения. Это очень помогает.

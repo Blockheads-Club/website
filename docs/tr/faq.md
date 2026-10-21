@@ -15,14 +15,14 @@ onlar tarafından desteklenmez ya da sponsor edilmez. "The Blockheads" sahibinin
 
 ## Hangi oyun sürümleri çalışır?
 
-PC Sürümü ve Yamalayıcı, Android oyununun **1.7.4, 1.7.5 ve 1.7.6** sürümlerini destekler.
+PC Sürümü ve Patcher, Android oyununun **1.7.4, 1.7.5 ve 1.7.6** sürümlerini destekler.
 
 ## Hangi platformlar destekleniyor?
 
 | Araç | Platformlar |
 | --- | --- |
 | PC Sürümü | Windows, macOS, Linux (x86_64 ve arm64) |
-| Yamalayıcı | Web tarayıcısı, Windows, macOS, Linux, Android |
+| Patcher | Web tarayıcısı, Windows, macOS, Linux, Android |
 | Sunucu | Windows, macOS, Linux (Raspberry Pi dahil), Docker, Android |
 
 ## Oyunu yamalayınca dünyalarımı kaybeder miyim?
@@ -42,7 +42,7 @@ Evet. Her şey ücretsiz ve açık kaynaklıdır (GPL-3.0-or-later).
 
 - GitHub’da hata bildirin ya da soru sorun:
   [PC Sürümü](https://github.com/Blockheads-Club/blockheads-pc/issues),
-  [Yamalayıcı](https://github.com/Blockheads-Club/blockheads-patcher/issues),
+  [Patcher](https://github.com/Blockheads-Club/blockheads-patcher/issues),
   [Sunucu](https://github.com/Blockheads-Club/blockheads-server/issues),
-  [Web sitesi ve belgeler](https://github.com/Blockheads-Club/website/issues).
-- Bir şey çöktüğünde uygulamanın günlüğünü ekleyin. Bize çok yardımcı olur.
+  [Web sitesi ve dokümanlar](https://github.com/Blockheads-Club/website/issues).
+- Bir şey çöktüğünde uygulamanın log dosyasını ekleyin. Bize çok yardımcı olur.

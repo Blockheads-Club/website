@@ -79,7 +79,7 @@ describe('layout', () => {
     render(Layout, { children });
     await user.click(screen.getAllByRole('button', { name: 'Language: English' })[0]);
     await user.click(screen.getByRole('menuitemradio', { name: /Türkçe/ }));
-    expect(screen.getAllByRole('link', { name: 'Yamalayıcı' }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('link', { name: 'Sunucu' }).length).toBeGreaterThan(0);
     expect(document.documentElement.lang).toBe('tr');
     await user.click(screen.getByRole('button', { name: 'Koyu temaya geç' }));
     expect(document.documentElement.dataset.theme).toBe('dark');

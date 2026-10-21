@@ -33,9 +33,9 @@ Sonra:
 Uygulamada canlı konsolu ve kimlerin çevrimiçi olduğunu da görebilir, yönetici, moderatör, beyaz ve kara listeleri
 düzenleyebilirsiniz. Port, en çok oyuncu sayısı ve parola **Ayarlar**’dadır.
 
-![Blockheads Server konsolu: katılma, sohbet ve hata satırlarıyla canlı günlük, filtreler, arama alanı ve çalıştırma düğmeli komut kutusu.](/shots/tr/server/console.webp)
+![Blockheads Server konsolu: katılma, sohbet ve hata satırlarıyla canlı log, filtreler, arama alanı ve çalıştırma düğmeli komut kutusu.](/shots/tr/server/console.webp)
 
-*Canlı konsol: günlükte arayın ve komut yazın.*
+*Canlı konsol: logda arayın ve komut yazın.*
 
 ![Blockheads Server ayarları, bağlantı: port 15151, en çok oyuncu ve parola; ardından kaydetme aralığı ve veri klasörüyle dünya ve kaydetme bölümü.](/shots/tr/server/settings.webp)
 
@@ -69,7 +69,7 @@ docker run -i --rm -p 15151:15151/udp -v bh-data:/data \
 ```
 
 - Konsola yazabilmek için (`/stop`, sohbet) `-i`’yi koruyun.
-- Dünyalarınız `bh-data` biriminde saklanır, böylece güncellemelerden sonra da kalır.
+- Dünyalarınız `bh-data` volume’ünde saklanır, böylece güncellemelerden sonra da kalır.
 - İmaj x86_64 ve ARM’de çalışır.
 
 ## Android
@@ -91,7 +91,7 @@ docker run -i --rm -p 15151:15151/udp -v bh-data:/data \
 3. Adresi ve portu girip katılın. Sunucunun parolası varsa oyun onu sorar.
 
 ::: tip Android oyuncuları
-Oyunun modern Android sürümleri, bir sunucuya katılabilmek için [Yamalayıcı](/tr/patcher)’daki karşılama penceresi
+Oyunun modern Android sürümleri, bir sunucuya katılabilmek için [Patcher](/tr/patcher)’daki karşılama penceresi
 düzeltmesine ihtiyaç duyar.
 :::
 
@@ -99,7 +99,7 @@ düzeltmesine ihtiyaç duyar.
 
 Birlikte oynamanın en kolay yolu aynı ağda olmaktır:
 
-- Telefon (veya bilgisayar) ile sunucu **aynı Wi-Fi’de ya da ağda** olmalıdır.
+- Telefon (veya bilgisayar) ile sunucu **aynı Wi-Fi ağında ya da yerel ağda** olmalıdır.
 - Sunucunun gösterdiği **Yerel ağ adresini** kullanın (`192.168.`, `10.` veya benzeriyle başlar). Telefonda
   kopyalamak için QR kodu okutun.
 - Varsayılan port **15151**’dir (UDP). Arkadaşlarınız bağlanamıyorsa adresi ve portu kontrol edin ve güvenlik duvarında

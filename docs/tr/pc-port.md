@@ -87,7 +87,7 @@ Dosyayı telefonunuzdan bilgisayarınıza kopyalayın, sonra kurulumda seçin. O
 | --- | --- |
 | **Oyun ve veri** | Oyun dosyanız ve dünyalarınızın bulunduğu veri klasörü |
 | **Pencere ve grafik** | Pencere boyutu veya tam ekran, dikey senkron, FPS sınırı, FPS sayacı, oyun arayüzü ölçeği, oyun hızı |
-| **Kontroller** | Fare ve klavye atamaları, oyun kumandası, ekrandaki yön tuşları |
+| **Kontroller** | Fare ve klavye atamaları, oyun kolu, ekrandaki yön tuşları |
 | **Ses** | Sesi açma ve kapatma (ses düzeyi oyunun içinden ayarlanır) |
 | **Dil ve tema** | Dil, açık veya koyu tema |
 | **Güncelleme ve hakkında** | Sürüm, güncellemeler ve lisanslar |
@@ -129,13 +129,13 @@ Oyun dokunmatik ekran için yapıldı, bu yüzden fareniz parmağınızın yerin
 
 Bunların hepsini **Ayarlar → Kontroller**’den değiştirebilir ya da varsayılanlara döndürebilirsiniz.
 
-### Oyun kumandası
+### Oyun kolu
 
 ![Blockheads PC ayarları, Oyun kolu: oyun kolu kullanma ve imleci kare kare taşıma anahtarları, oyun kolu düğmeleri ve görevleri tablosu.](/shots/tr/pc/settings-controller.webp)
 
 *Oyun kolu bölümü her düğmenin ne yaptığını gösterir.*
 
-Bir oyun kumandasını istediğiniz zaman takın; ilk bağlanan oynar. Bir imleç, **A**’nın nereye dokunacağını gösterir.
+Bir oyun kolunu istediğiniz zaman takın; ilk bağlanan oynar. Bir imleç, **A**’nın nereye dokunacağını gösterir.
 
 | Tuş | Ne yapar |
 | --- | --- |
@@ -153,7 +153,7 @@ Bir oyun kumandasını istediğiniz zaman takın; ilk bağlanan oynar. Bir imle�
 
 ### Ekrandaki yön tuşları
 
-Telefondaki oyun, bir dünyadayken ekrana ok tuşları çizer. PC’de bunlar gizlidir, çünkü fare, klavye ve kumanda
+Telefondaki oyun, bir dünyadayken ekrana ok tuşları çizer. PC’de bunlar gizlidir, çünkü fare, klavye ve oyun kolu
 blockhead’inizi zaten hareket ettirir. Geri isterseniz **Oyunun ekrandaki yön tuşlarını göster** seçeneğini açın.
 
 ## Çevrimiçi oynama
@@ -170,7 +170,7 @@ adresi ve portu girin, ardından **Join Online World**. [Sunucu](/tr/server#conn
 - **"Dosya hasarlı".** Kopyalama tamamlanmamış. APK’yı telefonunuzdan yeniden kopyalayın.
 - **"Oyun dosyanı bulamıyoruz".** Dosyayı taşıdınız ya da sildiniz ve özel kopya tutulmadı. Dosyayı yeniden seçin;
   dünyalarınız etkilenmez.
-- **Oyun beklenmedik şekilde kapandı.** Bir günlük kaydedilir. Ana ekrandaki **GitHub’da bildir**’i kullanın ya da
+- **Oyun beklenmedik şekilde kapandı.** Bir log dosyası kaydedilir. Ana ekrandaki **GitHub’da bildir**’i kullanın ya da
   günlükleri **Günlükleri gör** ile açıp [hata bildiriminize](https://github.com/Blockheads-Club/blockheads-pc/issues)
   ekleyin.
 - **Oyun yavaş.** Kalabalık sahneler telefondan daha yavaş çalışabilir. Ağır programları kapatın ve ekran kartı

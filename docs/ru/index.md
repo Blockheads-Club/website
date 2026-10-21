@@ -13,7 +13,7 @@ hero:
       text: PC-версия
       link: /ru/pc-port
     - theme: alt
-      text: Патчер
+      text: Patcher
       link: /ru/patcher
     - theme: alt
       text: Сервер
@@ -23,7 +23,7 @@ features:
     details: Играйте в свою копию Android-игры на Windows, macOS и Linux — мышью, клавиатурой или геймпадом.
     link: /ru/pc-port
     linkText: Установить
-  - title: Патчер
+  - title: Patcher
     details: Исправьте свою копию Android-игры, чтобы она работала на современных телефонах. Работает в браузере, на компьютере и на Android.
     link: /ru/patcher
     linkText: Исправить игру
@@ -41,7 +41,7 @@ Blockheads Club — неофициальный проект волонтёров
 | Инструмент | Что делает | Где работает |
 | --- | --- | --- |
 | [PC-версия](/ru/pc-port) | Запускает Android-игру на компьютере | Windows, macOS, Linux |
-| [Патчер](/ru/patcher) | Исправляет ошибки в вашей копии Android-игры | Веб, Windows, macOS, Linux, Android |
+| [Patcher](/ru/patcher) | Исправляет ошибки в вашей копии Android-игры | Веб, Windows, macOS, Linux, Android |
 | [Сервер](/ru/server) | Запускает многопользовательские миры | Windows, macOS, Linux, Docker, Android |
 
 ::: info Игра — ваша
@@ -52,7 +52,7 @@ Blockheads Club — неофициальный проект волонтёров
 ## Что мне нужно?
 
 - **Хочу играть на компьютере** → [PC-версия](/ru/pc-port)
-- **Игра зависает или вылетает на телефоне** → [Патчер](/ru/patcher)
+- **Игра зависает или вылетает на телефоне** → [Patcher](/ru/patcher)
 - **Хочу играть с друзьями в своём мире** → [Сервер](/ru/server)
 
 Остались вопросы? Загляните в раздел [Вопросы и ответы](/ru/faq).

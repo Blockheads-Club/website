@@ -17,11 +17,11 @@ export const tr: Dict = {
     skip: 'İçeriğe geç',
     label: 'Ana gezinme',
     home: 'Blockheads Club ana sayfa',
-    patcher: 'Yamalayıcı',
+    patcher: 'Patcher',
     server: 'Sunucu',
     guides: 'Rehberler',
     faq: 'SSS',
-    docs: 'Belgeler',
+    docs: 'Dokümanlar',
     github: 'GitHub',
     menu: 'Menü',
     openMenu: 'Menüyü aç',
@@ -52,7 +52,7 @@ export const tr: Dict = {
     },
     what: {
       eyebrow: 'Blockheads Club nedir?',
-      title: 'Hâlâ sevdiğimiz bir oyun için dost canlısı bir alet çantası.',
+      title: 'Hâlâ sevdiğimiz bir oyun için kullanımı kolay araçlar.',
       lead: 'The Blockheads telefonlar için bir kum havuzu oyunudur. Bazı sürümler yeni Android telefonlarda düzgün açılmaz ve pek çok oyuncu kendi sunucusunu ister. İkisi için de ücretsiz araçlar geliştiriyoruz.',
       items: [
         {
@@ -61,7 +61,7 @@ export const tr: Dict = {
         },
         {
           title: 'Kopyanız sizin kalır',
-          body: 'Yamalayıcı, zaten sahip olduğunuz oyunu kendi cihazınızda değiştirir. Oyunu asla barındırmaz veya paylaşmayız.'
+          body: 'Patcher, zaten sahip olduğunuz oyunu kendi cihazınızda değiştirir. Oyunu asla barındırmaz veya paylaşmayız.'
         },
         {
           title: 'Oyuncular tarafından yapıldı',
@@ -70,9 +70,9 @@ export const tr: Dict = {
       ]
     },
     patcher: {
-      eyebrow: 'Blockheads Yamalayıcı',
+      eyebrow: 'Blockheads Patcher',
       title: 'Oyun “Hoş geldin” penceresinde mi takıldı? Düzeltelim.',
-      lead: 'Modern Android’de 1.7.4 ile 1.7.6 arası oyun sürümleri ilk pencerede donabilir. 1.7.6 ayrıca bir dünya yüklerken çökebilir. Yamalayıcı, kendi oyun kopyanızı birkaç tıklamayla onarır.',
+      lead: 'Modern Android’de 1.7.4 ile 1.7.6 arası oyun sürümleri ilk pencerede donabilir. 1.7.6 ayrıca bir dünya yüklerken çökebilir. Patcher, kendi oyun kopyanızı birkaç tıklamayla onarır.',
       fixes: [
         {
           title: 'Karşılama penceresi donması',
@@ -85,19 +85,19 @@ export const tr: Dict = {
           body: 'Dünyalarınız oyun kapanmadan yüklenir.'
         }
       ],
-      noteStrong: 'Hiçbir şey yüklenmez.',
+      noteStrong: 'Hiçbir şey internete yüklenmez.',
       note: 'Yama işlemi cihazınızda çalışır — web uygulaması bile tarayıcınızda çevrimdışı çalışır. Oyunun kendi kopyasına sahip olmanız gerekir.',
       howTitle: 'Nasıl çalışır',
       steps: [
         { title: 'Oyununuzu verin', body: 'APK dosyasını bırakın. Android’de yüklü oyunu seçmeniz yeterli.' },
-        { title: 'Düzeltmeleri kontrol edin', body: 'Yamalayıcı sürümünüzü bulur ve gereken düzeltmeleri işaretler.' },
+        { title: 'Düzeltmeleri kontrol edin', body: 'Patcher sürümünüzü bulur ve gereken düzeltmeleri işaretler.' },
         {
           title: 'Kurun ve oynayın',
           body: 'Düzeltilmiş oyunu kaydedin ya da doğrudan telefonunuza kurun. Önce dünyalarınızı yedekleyin — rehber nasıl yapılacağını gösterir.'
         }
       ],
-      ctaWeb: 'Web yamalayıcıyı aç',
-      getTitle: 'Yamalayıcıyı edinin',
+      ctaWeb: 'Web Patcher’ı aç',
+      getTitle: 'Patcher’ı indirin',
       platforms: [
         { name: 'Web uygulaması', hint: 'Herhangi bir modern tarayıcı' },
         { name: 'Android', hint: 'APK · Android 7.0+' },
@@ -125,7 +125,7 @@ export const tr: Dict = {
     },
     faq: {
       eyebrow: 'SSS',
-      title: 'İyi sorular',
+      title: 'Merak edilenler',
       lead: 'Yanıtı bulamadınız mı? [Tüm soruları görün](faq) ya da [GitHub](websiteIssues)’da sorun.',
       items: [
         {
@@ -134,7 +134,7 @@ export const tr: Dict = {
         },
         {
           q: 'Güvenli mi? Dosyalarımı görüyor musunuz?',
-          a: 'Yama işlemi cihazınızda gerçekleşir. Bize veya başkasına hiçbir şey yüklenmez.'
+          a: 'Yama işlemi cihazınızda gerçekleşir. Bize veya başka birine hiçbir şey gönderilmez.'
         },
         {
           q: 'Dünyalarımı kaybeder miyim?',
@@ -205,7 +205,7 @@ export const tr: Dict = {
             { title: 'İndirin ve açın' },
             {
               title: 'Sunucuyu başlatın',
-              hint: 'Raspberry Pi rehberiyle hizmet olarak çalıştırın — oradaki systemd adımları her systemd Linux’ta çalışır.'
+              hint: 'Raspberry Pi rehberiyle servis olarak çalıştırın — oradaki systemd adımları her systemd Linux’ta çalışır.'
             }
           ]
         },
@@ -218,7 +218,7 @@ export const tr: Dict = {
             },
             {
               title: 'Her açılışta başlatın',
-              text: '[Raspberry Pi rehberindeki](raspberryPi) gibi bir systemd hizmeti oluşturun, sonra etkinleştirin:'
+              text: '[Raspberry Pi rehberindeki](raspberryPi) gibi bir systemd servisi oluşturun, sonra etkinleştirin:'
             }
           ]
         },
@@ -226,8 +226,8 @@ export const tr: Dict = {
           label: 'Docker',
           steps: [
             {
-              title: 'Kapsayıcıyı çalıştırın',
-              text: 'Bağlantı noktasını UDP olarak eşleyin. Dünyalar `bh-data` biriminde tutulur, böylece güncellemelerde korunur. Aynı dünyayı sonra yeniden başlatmak için `--load` kullanın (bkz. [Docker rehberi](docker)).'
+              title: 'Konteyneri çalıştırın',
+              text: 'Portu UDP olarak eşleyin. Dünyalar `bh-data` volume’ünde tutulur, böylece güncellemelerde korunur. Aynı dünyayı sonra yeniden başlatmak için `--load` kullanın (bkz. [Docker rehberi](docker)).'
             },
             { title: 'Konsolu açın' }
           ]
@@ -242,11 +242,11 @@ export const tr: Dict = {
             },
             {
               title: 'Bir dünya oluşturun ve Başlat’a dokunun',
-              text: 'Sunucu arka planda çalışmaya devam eder. Bir bildirim durumunu, oyuncuları ve adresi bir Sunucuyu durdur düğmesiyle gösterir.'
+              text: 'Sunucu arka planda çalışmaya devam eder. Bildirimde durum, oyuncular, adres ve bir Sunucuyu durdur düğmesi görünür.'
             },
             {
               title: 'Telefonu şarjda tutun',
-              text: 'Barındırma pil harcar. Sunucu çalışırken uygulama telefonu ve Wi-Fi’ı uyanık tutar. Telefonunuz yine de durduruyorsa Android ayarlarında uygulama için pil optimizasyonunu kapatın.'
+              text: 'Barındırma pil harcar. Sunucu çalışırken uygulama telefonu ve Wi-Fi bağlantısını uyanık tutar. Telefonunuz yine de durduruyorsa Android ayarlarında uygulama için pil optimizasyonunu kapatın.'
             }
           ]
         }
@@ -255,11 +255,11 @@ export const tr: Dict = {
     connect: {
       eyebrow: 'Bağlan',
       title: 'Telefonunuzdan katılın',
-      lead: 'Telefonunuz ve sunucu aynı Wi-Fi’de olmalı. Masaüstü ve Android uygulamaları adresi panelde ve QR kod olarak gösterir. Komut satırı sunucusunda bilgisayarın yerel IP adresini kullanın.',
+      lead: 'Telefonunuz ve sunucu aynı Wi-Fi ağında olmalı. Masaüstü ve Android uygulamaları adresi panelde ve QR kod olarak gösterir. Komut satırı sunucusunda bilgisayarın yerel IP adresini kullanın.',
       steps: [
         {
           title: 'Adresi bulun',
-          body: 'Örneğin `192.168.1.42` ve `15151` bağlantı noktası. Telefonda kopyalamak için QR kodu tarayın.'
+          body: 'Örneğin `192.168.1.42` ve `15151` portu. Telefonda kopyalamak için QR kodu tarayın.'
         },
         {
           title: 'Oyunun çok oyunculu menüsünü açın',
@@ -271,11 +271,11 @@ export const tr: Dict = {
         }
       ],
       qrLabel: '192.168.1.42:15151 için örnek QR kod',
-      wifi: 'Wi-Fi’nizde',
-      addressHint: 'Örnek adres; Sunucu panosunda göründüğü gibi.',
+      wifi: 'Wi-Fi ağınızda',
+      addressHint: 'Örnek adres; Sunucu panelinde göründüğü gibi.',
       warnTitle: 'İnternet üzerinden mi oynuyorsunuz?',
       warnBody:
-        'Yönlendiricinizde UDP 15151 numaralı bağlantı noktasını sunucu bilgisayarına yönlendirin ve genel IP’nizi paylaşın. Önce bir parola belirleyin veya beyaz listeyi açın. [Rehberi okuyun](openInternet)',
+        'Modeminizde UDP 15151 portunu sunucu bilgisayarına yönlendirin ve genel IP’nizi paylaşın. Önce bir parola belirleyin veya beyaz listeyi açın. [Rehberi okuyun](openInternet)',
       info: 'Telefonunuzdaki oyun sürümü sunucuyla eşleşmelidir. Yamalı ve orijinal oyunlar birlikte oynayabilir.'
     },
     downloads: {
@@ -296,22 +296,22 @@ export const tr: Dict = {
     lead: 'Oyuncular ve sunucu sahipleri için kısa, resimli rehberler. Her biri ne kadar sürdüğünü ve nelere ihtiyaç olduğunu söyler.',
     searchLabel: 'Rehberlerde ara',
     searchPlaceholder: 'Rehberlerde ara, örn. “yedek” veya “port”',
-    filterLabel: 'Konuya göre süz',
+    filterLabel: 'Konuya göre filtrele',
     filters: {
       all: 'Tüm rehberler',
-      patcher: 'Yamalayıcı',
+      patcher: 'Patcher',
       server: 'Sunucu',
       android: 'Android',
       beginner: 'Başlangıç',
       advanced: 'İleri'
     },
     startHere: 'Buradan başlayın',
-    patcherTitle: 'Yamalayıcı',
+    patcherTitle: 'Patcher',
     serverTitle: 'Sunucu',
     min: 'dk',
     comingSoon: 'Yakında',
     noResults: 'Aramanızla eşleşen rehber yok.',
-    clear: 'Aramayı ve süzgeçleri temizle',
+    clear: 'Aramayı ve filtreleri temizle',
     resultsStatus: { one: 'rehber gösteriliyor', few: 'rehber gösteriliyor', many: 'rehber gösteriliyor', other: 'rehber gösteriliyor' },
     missing: 'Eksik bir rehber mi var ya da hata mı buldunuz?',
     suggest: 'GitHub’da önerin',
@@ -323,7 +323,7 @@ export const tr: Dict = {
       },
       {
         id: 'lan-play',
-        title: 'Aynı Wi-Fi’de arkadaşlarla oynayın',
+        title: 'Aynı Wi-Fi ağındaki arkadaşlarla oynayın',
         summary: 'Bilgisayarınızda bir sunucu başlatın ve evdeki her telefondan katılın.'
       },
       {
@@ -338,7 +338,7 @@ export const tr: Dict = {
       },
       {
         id: 'signing-key',
-        title: 'İmzalama anahtarınızı güvende tutun',
+        title: 'İmza anahtarınızı güvende tutun',
         summary: 'Güncellemelerin neden aynı anahtarı gerektirdiği ve onu nasıl dışa/içe aktaracağınız.'
       },
       {
@@ -349,7 +349,7 @@ export const tr: Dict = {
       {
         id: 'open-internet',
         title: 'Sunucunuzu internete açın',
-        summary: 'Bağlantı noktası yönlendirme, parolalar ve beyaz listeler, adım adım.'
+        summary: 'Port yönlendirme, parolalar ve beyaz listeler, adım adım.'
       },
       {
         id: 'admins-mods',
@@ -364,25 +364,25 @@ export const tr: Dict = {
       {
         id: 'docker',
         title: 'Docker ve Docker Compose',
-        summary: 'Kapsayıcı sunucular için birimler, güncellemeler ve günlükler.'
+        summary: 'Konteynerde çalışan sunucular için volume’ler, güncellemeler ve loglar.'
       }
     ]
   },
   article: {
     breadcrumb: 'Sayfa yolu',
     guides: 'Rehberler',
-    topic: 'Yamalayıcı',
-    tags: 'Yamalayıcı · Android',
+    topic: 'Patcher',
+    tags: 'Patcher · Android',
     level: 'Başlangıç',
     title: 'Oyunu telefonunuzda baştan sona düzeltin',
-    lead: 'Bu rehber Android için Blockheads Yamalayıcı uygulamasını kullanır. Dünyalarınızı korur, “Hoş geldin” donmasını ve — 1.7.6’da — dünya yükleme çökmesini düzeltirsiniz.',
+    lead: 'Bu rehber Android için Blockheads Patcher uygulamasını kullanır. Dünyalarınızı korur, “Hoş geldin” donmasını ve — 1.7.6’da — dünya yükleme çökmesini düzeltirsiniz.',
     updated: 'Güncellendi: 21 Ekim 2026 · [Bu sayfayı GitHub’da düzenleyin](websiteRepo)',
     toc: 'Bu sayfada',
     need: {
       title: 'Nelere ihtiyacınız var',
       items: [
         'Telefonunuza kurulu The Blockheads 1.7.4, 1.7.5 veya 1.7.6',
-        'Blockheads Yamalayıcı uygulaması ([indir](patcherReleases))',
+        'Blockheads Patcher uygulaması ([indir](patcherReleases))',
         'Yaklaşık 200 MB boş alan'
       ]
     },
@@ -395,17 +395,17 @@ export const tr: Dict = {
     },
     s2: {
       title: 'Yüklü oyunu seçin',
-      body: 'Yamalayıcıyı açın ve **Yüklü oyunu kullan**’a dokunun. Yamalayıcı telefonunuzdaki oyunu okur ve sürümünü gösterir. Hiçbir şey yüklenmez.'
+      body: 'Patcher’ı açın ve **Yüklü oyunu kullan**’a dokunun. Patcher telefonunuzdaki oyunu okur ve sürümünü gösterir. Hiçbir şey internete yüklenmez.'
     },
     s3: {
       title: 'Yamalayın',
       body: 'Sürümünüzün ihtiyaç duyduğu düzeltmeler zaten işaretli. **Oyunu yamala**’ya dokunun ve yaklaşık bir dakika bekleyin. Uygulamayı açık tutun.',
       callout:
-        'Yamalayıcı oyunu **kendi anahtarınızla** imzalar. O anahtarı saklayın — gelecekteki güncellemeleri dünyalarınızı yeniden kaybetmeden kurmak için aynısına ihtiyacınız olacak. [İmzalama anahtarları hakkında bilgi alın](signingKey)'
+        'Patcher oyunu **kendi anahtarınızla** imzalar. O anahtarı saklayın — gelecekteki güncellemeleri dünyalarınızı yeniden kaybetmeden kurmak için aynısına ihtiyacınız olacak. [İmza anahtarları hakkında bilgi alın](signingKey)'
     },
     s4: {
       title: 'Oyunları değiştirin',
-      body: '**Dünyalarımı yedekledim ya da onlara ihtiyacım yok** kutusunu işaretleyin, **Orijinali kaldır**’a dokunun ve onaylayın. Ardından **Düzeltilmiş oyunu kur**’a dokunun. Android sorarsa Yamalayıcı’nın uygulama kurmasına izin verin.'
+      body: '**Dünyalarımı yedekledim ya da onlara ihtiyacım yok** kutusunu işaretleyin, **Orijinali kaldır**’a dokunun ve onaylayın. Ardından **Düzeltilmiş oyunu kur**’a dokunun. Android sorarsa Patcher’ın uygulama kurmasına izin verin.'
     },
     s5: {
       title: 'Dünyalarınızı geri getirin',
@@ -416,7 +416,7 @@ export const tr: Dict = {
       items: [
         '**“Uygulama yüklenmedi”** — orijinal oyun hâlâ telefonda. Önce onu kaldırın.',
         '**“Sürüm desteklenmiyor”** — bu rehber yalnızca 1.7.4–1.7.6 içindir.',
-        'Hâlâ takıldınız mı? [GitHub’da bir sorun açın](patcherIssues) ve Yamalayıcı günlüğünü ekleyin.'
+        'Hâlâ takıldınız mı? [GitHub’da sorun bildirin](patcherIssues) ve Patcher logunu ekleyin.'
       ]
     },
     helpful: 'Bu rehber yardımcı oldu mu?',
@@ -426,15 +426,15 @@ export const tr: Dict = {
     previous: 'Önceki',
     next: 'Sonraki',
     prevTitle: 'Sahip olduğunuz oyunun APK’sını alın',
-    nextTitle: 'İmzalama anahtarınızı güvende tutun'
+    nextTitle: 'İmza anahtarınızı güvende tutun'
   },
   docs: {
     'lan-play': {
       tags: 'Sunucu · Wi-Fi',
-      title: 'Aynı Wi-Fi’daki arkadaşlarınızla oynayın',
-      lead: 'Evdeki bir bilgisayarda sunucu başlatın; Wi-Fi’nıza bağlı her telefon aynı dünyaya katılsın. Yaklaşık dört dakika sürer.',
+      title: 'Aynı Wi-Fi ağındaki arkadaşlarınızla oynayın',
+      lead: 'Evdeki bir bilgisayarda sunucu başlatın; Wi-Fi ağınıza bağlı her telefon aynı dünyaya katılsın. Yaklaşık dört dakika sürer.',
       need: [
-        'Telefonlarla aynı Wi-Fi’da bir Windows, macOS ya da Linux bilgisayar',
+        'Telefonlarla aynı Wi-Fi ağında bir Windows, macOS ya da Linux bilgisayar',
         'Blockheads Sunucu — masaüstü uygulaması ya da komut satırı sunucusu ([indirmeler](serverReleases))',
         'Her telefonda The Blockheads. Yeni Android sürümlerinde [önce oyunu düzeltin](fixGameOnPhone)'
       ],
@@ -450,13 +450,13 @@ export const tr: Dict = {
         {
           title: 'Güvenlik duvarından geçirin',
           body: [
-            'Sunucu **UDP 15151** numaralı bağlantı noktasını kullanır. Windows Güvenlik Duvarı sorduğunda **özel ağlarda** erişime izin verin. Başka sistemlerde güvenlik duvarı kullanıyorsanız 15151’e gelen UDP trafiğine izin verin.'
+            'Sunucu **UDP 15151** portunu kullanır. Windows Güvenlik Duvarı sorduğunda **özel ağlarda** erişime izin verin. Başka sistemlerde güvenlik duvarı kullanıyorsanız 15151’e gelen UDP trafiğine izin verin.'
           ]
         },
         {
           title: 'Sunucunun adresini bulun',
           body: [
-            'Masaüstü uygulamasında **Panel**’deki **Telefondan bağlan** kartı **Yerel ağ adresi**ni, bağlantı noktasını ve bir QR kodu gösterir. Adresi kopyalamak için kodu telefon kamerasıyla tarayın.',
+            'Masaüstü uygulamasında **Panel**’deki **Telefondan bağlan** kartı **Yerel ağ adresi**ni, portu ve bir QR kodu gösterir. Adresi kopyalamak için kodu telefon kamerasıyla tarayın.',
             'Komut satırında bilgisayarınızın yerel IP adresini ağ ayarlarından bulun, örneğin `192.168.1.42`.'
           ]
         },
@@ -465,20 +465,20 @@ export const tr: Dict = {
           body: ['Her telefonda oyunu açın ve şuraya gidin:'],
           list: [
             '**Join World** → **Advanced...** → **Online IP/Port...**',
-            'Adresi ve bağlantı noktasını girin (alanda zaten `15151` yazar)',
+            'Adresi ve portu girin (alanda zaten `15151` yazar)',
             '**Join Online World**’e dokunun'
           ],
           tip: 'Sunucunun parolası varsa oyun onu sorar.'
         }
       ],
       help: [
-        '**Kimse bağlanamıyor** — telefonların aynı Wi-Fi’da (misafir ağında değil) olduğunu ve güvenlik duvarının UDP 15151’e izin verdiğini kontrol edin.',
+        '**Kimse bağlanamıyor** — telefonların aynı Wi-Fi ağında (misafir ağında değil) olduğunu ve güvenlik duvarının UDP 15151’e izin verdiğini kontrol edin.',
         '**Bir arkadaşınız reddediliyor** — beyaz listede isim varsa yalnızca o isimler katılabilir. Bkz. [Yöneticiler, moderatörler ve yasaklar](adminsMods).',
-        'Hâlâ takıldınız mı? [GitHub’da bir sorun açın](serverIssues) ve sunucu günlüğünü ekleyin.'
+        'Hâlâ takıldınız mı? [GitHub’da sorun bildirin](serverIssues) ve sunucu logunu ekleyin.'
       ]
     } as GuideDoc,
     'backup-worlds': {
-      tags: 'Yamalayıcı · Android',
+      tags: 'Patcher · Android',
       title: 'Yamalamadan önce dünyalarınızı yedekleyin',
       lead: 'Android’de düzeltilmiş oyunu kurmadan önce orijinali kaldırmanız gerekir — bu da telefonda kayıtlı dünyaları siler. Nedenini ve dünyaları nasıl koruyacağınızı anlatıyoruz.',
       need: ['Telefonunuzda kurulu The Blockheads', 'Yamalamaya başlamadan önce birkaç dakika'],
@@ -486,20 +486,20 @@ export const tr: Dict = {
         {
           title: 'Orijinalin neden kaldırılması gerektiğini bilin',
           body: [
-            'Yamalayıcı düzeltilmiş oyunu orijinal anahtarla değil **kendi anahtarınızla** imzalar. Android, imzası farklı bir uygulamayı mevcut uygulamanın üzerine kurmaz; bu yüzden önce orijinal kaldırılmalıdır.'
+            'Patcher düzeltilmiş oyunu orijinal anahtarla değil **kendi anahtarınızla** imzalar. Android, imzası farklı bir uygulamayı mevcut uygulamanın üzerine kurmaz; bu yüzden önce orijinal kaldırılmalıdır.'
           ],
           warn: '**O telefonda kayıtlı dünyalar oyunla birlikte silinir.** Sunucularda barındırılan dünyalar etkilenmez.'
         },
         {
           title: 'Her dünyayı oyunun içinden yedekleyin',
           body: [
-            'Telefonunuzdaki orijinal oyunu açın ve saklamak istediğiniz her dünya için oyunun kendi yedeklemesini kullanın. Yamalayıcı bunu sizin yerinize yapamaz: kayıtlarınıza hiç dokunmaz.'
+            'Telefonunuzdaki orijinal oyunu açın ve saklamak istediğiniz her dünya için oyunun kendi yedeklemesini kullanın. Patcher bunu sizin yerinize yapamaz: kayıtlarınıza hiç dokunmaz.'
           ]
         },
         {
-          title: 'Yamalayıcı’da onaylayın',
+          title: 'Patcher’da onaylayın',
           body: [
-            'Yamalayıcı orijinali kaldırmadan önce **Bu telefondaki dünyalarınız silinecek** uyarısını gösterir. Devam etmek için **Dünyalarımı yedekledim ya da onlara ihtiyacım yok** kutusunu işaretleyin.'
+            'Patcher orijinali kaldırmadan önce **Bu telefondaki dünyalarınız silinecek** uyarısını gösterir. Devam etmek için **Dünyalarımı yedekledim ya da onlara ihtiyacım yok** kutusunu işaretleyin.'
           ]
         },
         {
@@ -516,22 +516,22 @@ export const tr: Dict = {
       ],
       help: [
         'Bir dünyanın kaydedildiğinden emin değil misiniz? Yeniden yedekleyin — yalnızca bir dakika sürer.',
-        'Sorunuz mu var? [GitHub’da sorun](patcherIssues).'
+        'Sorunuz mu var? [GitHub’da sorabilirsiniz](patcherIssues).'
       ]
     } as GuideDoc,
     'get-apk': {
-      tags: 'Yamalayıcı · Android',
+      tags: 'Patcher · Android',
       title: 'Sahip olduğunuz oyunun APK’sını alın',
-      lead: 'Web ve masaüstü Yamalayıcı oyunu bir `.apk` dosyası olarak ister. Android’de bu rehberi genellikle atlayabilirsiniz.',
+      lead: 'Web ve masaüstü Patcher oyunu bir `.apk` dosyası olarak ister. Android’de bu rehberi genellikle atlayabilirsiniz.',
       need: [
         'Android telefonunuzda kurulu The Blockheads',
-        'Bilgisayar yolu için: bir USB kablosu ve Android’in `adb` aracı'
+        'Bilgisayarla yapacaksanız: bir USB kablosu ve Android’in `adb` aracı'
       ],
       steps: [
         {
           title: 'Android’de misiniz? Yüklü oyunu kullanın',
           body: [
-            'Android için Blockheads Yamalayıcı uygulaması telefonunuzdaki oyunu bulur. **Yüklü oyunu kullan**’a dokunun — dosya gerekmez. Elinizde zaten bir dosya varsa **APK dosyası seç**’e dokunun.'
+            'Android için Blockheads Patcher uygulaması telefonunuzdaki oyunu bulur. **Yüklü oyunu kullan**’a dokunun — dosya gerekmez. Elinizde zaten bir dosya varsa **APK dosyası seç**’e dokunun.'
           ]
         },
         {
@@ -539,12 +539,12 @@ export const tr: Dict = {
           body: [
             'Telefonda USB hata ayıklamayı açın, telefonu bağlayın ve Android’e oyunun nerede olduğunu sorun. Ardından o dosyayı kopyalayın:'
           ],
-          warn: 'İlk komut **birden fazla** satır yazarsa oyun birden çok APK dosyasına bölünmüştür. Yamalayıcı bunları güvenle yamalayamaz — tam (evrensel) bir APK gerekir.'
+          warn: 'İlk komut **birden fazla** satır yazarsa oyun birden çok APK dosyasına bölünmüştür. Patcher bunları güvenle yamalayamaz — tam (evrensel) bir APK gerekir.'
         },
         {
-          title: 'Yamalayıcı’da açın',
+          title: 'Patcher’da açın',
           body: [
-            '[Web Yamalayıcı](webPatcher)’yı ya da masaüstü uygulamasını açın ve dosyayı bırakın. **Yalnızca .apk dosyaları** kabul edilir. Hiçbir şey yüklenmez.'
+            '[Web Patcher](webPatcher)’ı ya da masaüstü uygulamasını açın ve dosyayı bırakın. **Yalnızca .apk dosyaları** kabul edilir. Hiçbir şey internete yüklenmez.'
           ],
           tip: 'Yalnızca kendi kopyanızı kullanın ve APK’yı başkalarıyla paylaşmayın.'
         }
@@ -556,15 +556,15 @@ export const tr: Dict = {
       ]
     } as GuideDoc,
     'signing-key': {
-      tags: 'Yamalayıcı',
+      tags: 'Patcher',
       title: 'İmza anahtarınızı güvende tutun',
       lead: 'Yamaladığınız her oyun yalnızca cihazınızda duran bir anahtarla imzalanır. Bir yedeğini saklarsanız gelecekteki düzeltmeler kaldırmadan kurulur.',
-      need: ['Blockheads Yamalayıcı (web, masaüstü ya da Android)', 'Küçük bir dosya için güvenli bir yer ve hatırlayacağınız bir parola'],
+      need: ['Blockheads Patcher (web, masaüstü ya da Android)', 'Küçük bir dosya için güvenli bir yer ve hatırlayacağınız bir parola'],
       steps: [
         {
           title: 'Anahtarın ne işe yaradığını bilin',
           body: [
-            'Yamalayıcı anahtarı ilk yamalamada oluşturur. Android, düzeltilmiş oyununuzun üzerine bir güncellemeyi yalnızca **ikisi de aynı anahtarla imzalanmışsa** kurar. Yeni anahtar, yeniden kaldırmak demektir — yedeklemediyseniz yerel dünyaları kaybedersiniz.'
+            'Patcher anahtarı ilk yamalamada oluşturur. Android, düzeltilmiş oyununuzun üzerine bir güncellemeyi yalnızca **ikisi de aynı anahtarla imzalanmışsa** kurar. Yeni anahtar, yeniden kaldırmak demektir — yedeklemediyseniz yerel dünyaları kaybedersiniz.'
           ],
           warn: '**Gizli tutun.** Anahtarınıza sahip olan biri, oyununuzun güncellemesi gibi görünen uygulamalar yapabilir.'
         },
@@ -590,9 +590,9 @@ export const tr: Dict = {
         }
       ],
       help: [
-        'Web Yamalayıcı anahtarı tarayıcınızın bu siteye ait depolamasında tutar. Sitenin verilerini temizlemek onu siler — önce bir yedek alın.',
-        'İçe aktarma yalnızca Yamalayıcı’nın dışa aktardığı `.json` yedeklerini kabul eder.',
-        'Sorunuz mu var? [GitHub’da sorun](patcherIssues).'
+        'Web Patcher anahtarı tarayıcınızın bu siteye ait depolamasında tutar. Sitenin verilerini temizlemek onu siler — önce bir yedek alın.',
+        'İçe aktarma yalnızca Patcher’ın dışa aktardığı `.json` yedeklerini kabul eder.',
+        'Sorunuz mu var? [GitHub’da sorabilirsiniz](patcherIssues).'
       ]
     } as GuideDoc,
     'raspberry-pi': {
@@ -622,14 +622,14 @@ export const tr: Dict = {
           body: [
             'Dünyayı bir kez elle oluşturun. Dünyalar `~/GNUstep/Library/ApplicationSupport/TheBlockheads` klasörüne kaydedilir.'
           ],
-          tip: 'Seçenek verilmezse sunucu en son dünyayı yükler. Aşağıdaki hizmet bunu kullanır.'
+          tip: 'Seçenek verilmezse sunucu en son dünyayı yükler. Aşağıdaki servis bunu kullanır.'
         },
         {
           title: 'Her açılışta başlatın',
           body: [
-            'Bir systemd hizmeti oluşturun. `pi` yerine dünyayı oluşturan kullanıcının adını yazın.'
+            'Bir systemd servisi oluşturun. `pi` yerine dünyayı oluşturan kullanıcının adını yazın.'
           ],
-          tip: 'Hizmetin konsolu yoktur. Komutları oyun sohbetinde yönetici olarak verin (bkz. [Yöneticiler, moderatörler ve yasaklar](adminsMods)) ve günlüğü `journalctl` ile izleyin.'
+          tip: 'Servisin konsolu yoktur. Komutları oyun sohbetinde yönetici olarak verin (bkz. [Yöneticiler, moderatörler ve yasaklar](adminsMods)) ve logları `journalctl` ile izleyin.'
         },
         {
           title: 'Her gece yedek alın',
@@ -641,17 +641,17 @@ export const tr: Dict = {
       ],
       help: [
         '**“Exec format error”** — yanlış yapı. `uname -m` ile yeniden kontrol edin.',
-        '**Arkadaşlar bağlanamıyor** — [Aynı Wi-Fi’daki arkadaşlarınızla oynayın](lanPlay) rehberindeki kontrollerin aynısı.',
-        'Hâlâ takıldınız mı? `journalctl` çıktısıyla [GitHub’da bir sorun açın](serverIssues).'
+        '**Arkadaşlar bağlanamıyor** — [Aynı Wi-Fi ağındaki arkadaşlarınızla oynayın](lanPlay) rehberindeki kontrollerin aynısı.',
+        'Hâlâ takıldınız mı? `journalctl` çıktısıyla [GitHub’da sorun bildirin](serverIssues).'
       ]
     } as GuideDoc,
     'open-internet': {
       tags: 'Sunucu · Ağ',
       title: 'Sunucunuzu internete açın',
-      lead: 'Evinizin dışındaki arkadaşlarınız da dünyanıza katılsın. Önce sunucuyu kilitleyecek, sonra yönlendiricinizde tek bir bağlantı noktasını yönlendireceksiniz.',
+      lead: 'Evinizin dışındaki arkadaşlarınız da dünyanıza katılsın. Önce sunucuyu kilitleyecek, sonra modeminizde tek bir portu yönlendireceksiniz.',
       need: [
-        'Wi-Fi’nızda zaten çalışan bir sunucu ([yerel ağ rehberi](lanPlay))',
-        'Yönlendiricinizin ayarlar sayfasına erişim'
+        'Wi-Fi ağınızda zaten çalışan bir sunucu ([yerel ağ rehberi](lanPlay))',
+        'Modeminizin arayüzüne erişim'
       ],
       steps: [
         {
@@ -664,34 +664,34 @@ export const tr: Dict = {
         {
           title: 'Sunucuya sabit bir adres verin',
           body: [
-            'Yönlendiricinizde sunucu bilgisayarının yerel IP adresini ayırın (genellikle DHCP rezervasyonu denir); böylece yeniden başlatınca değişmez.'
+            'Modeminizde sunucu bilgisayarının yerel IP adresini ayırın (genellikle DHCP rezervasyonu denir); böylece yeniden başlatınca değişmez.'
           ]
         },
         {
-          title: 'Bağlantı noktasını yönlendirin',
+          title: 'Portu yönlendirin',
           body: [
-            'Yönlendiricinin bağlantı noktası yönlendirme sayfasında **UDP 15151**’i sunucu bilgisayarının yerel adresine yönlendirin. Bağlantı noktasını değiştirdiyseniz kendinizinkini kullanın.'
+            'Modemin port yönlendirme sayfasında **UDP 15151**’i sunucu bilgisayarının yerel adresine yönlendirin. Portu değiştirdiyseniz kendinizinkini kullanın.'
           ]
         },
         {
           title: 'Genel adresinizi paylaşın',
           body: [
-            'Genel IP adresinizi öğrenin ve bağlantı noktasıyla birlikte arkadaşlarınıza gönderin. **Join World** → **Advanced...** → **Online IP/Port...** ile katılırlar.'
+            'Genel IP adresinizi öğrenin ve portla birlikte arkadaşlarınıza gönderin. **Join World** → **Advanced...** → **Online IP/Port...** ile katılırlar.'
           ],
           warn: 'Genel IP’niz kabaca nerede olduğunuzu gösterir. Yalnızca güvendiğiniz kişilerle paylaşın.'
         }
       ],
       help: [
-        '**Evde çalışıyor, dışarıdan çalışmıyor** — yönlendiricinin internet adresi genel IP’nizden farklı olabilir (bazı sağlayıcılar bir adresi müşteriler arasında paylaştırır). O zaman yönlendirme çalışamaz; sağlayıcınıza sorun.',
+        '**Evde çalışıyor, dışarıdan çalışmıyor** — modemin internet (WAN) adresi genel IP’nizden farklı olabilir (bazı sağlayıcılar bir adresi müşteriler arasında paylaştırır). O zaman yönlendirme çalışamaz; sağlayıcınıza sorun.',
         '**Hâlâ engelli** — sunucu bilgisayarındaki güvenlik duvarının UDP 15151’e izin verdiğini kontrol edin.',
-        'Yardım mı lazım? [GitHub’da bir sorun açın](serverIssues).'
+        'Yardım mı lazım? [GitHub’da sorun bildirin](serverIssues).'
       ]
     } as GuideDoc,
     'admins-mods': {
       tags: 'Sunucu',
       title: 'Yöneticiler, moderatörler ve yasaklar',
       lead: 'Sunucunuzda kim ne yapabilir; oyuncuları uygulamadan, konsoldan ya da oyun sohbetinden nasıl yönetirsiniz.',
-      need: ['Çalışan bir Blockheads Sunucu', 'Yönetmek istediğiniz oyuncu adları'],
+      need: ['Çalışan bir Blockheads sunucusu', 'Yönetmek istediğiniz oyuncu adları'],
       steps: [
         {
           title: 'Rolleri tanıyın',
@@ -732,7 +732,7 @@ export const tr: Dict = {
       help: [
         '**“Sorry, you do not have permission to issue that command.”** — bu sunucuda moderatör ya da yönetici değilsiniz.',
         'Sunucu çalışırken uygulama liste değişikliklerini konsol komutlarıyla uygular.',
-        'Sorunuz mu var? [GitHub’da sorun](serverIssues).'
+        'Sorunuz mu var? [GitHub’da sorabilirsiniz](serverIssues).'
       ]
     } as GuideDoc,
     'host-android': {
@@ -740,7 +740,7 @@ export const tr: Dict = {
       title: 'Android telefondan sunucu barındırın',
       lead: 'Boşta duran bir Android telefonu sunucuya çevirin. Blockheads Sunucu uygulaması arka planda çalışmaya devam eder ve onu bir bildirimden yönetirsiniz.',
       need: [
-        'Wi-Fi’nıza bağlı bir Android telefon',
+        'Wi-Fi ağınıza bağlı bir Android telefon',
         'Blockheads Sunucu APK’sı (`blockheads-server-…-android.apk`, [sürümler](serverReleases))',
         'Bir şarj aleti'
       ],
@@ -760,7 +760,7 @@ export const tr: Dict = {
           body: [
             'Bir bildirim durumu, dünyayı, çevrimiçi oyuncu sayısını ve adresi gösterir. Düğmeleri **Sunucuyu durdur**, **Adresi kopyala** ve **Konsol**’dur.'
           ],
-          tip: 'Sunucu çalışırken uygulama telefonu ve Wi-Fi’ını uyanık tutar. Telefonunuz yine de durduruyorsa Android ayarlarında Blockheads Sunucu için pil optimizasyonunu kapatın.'
+          tip: 'Sunucu çalışırken uygulama telefonu ve Wi-Fi bağlantısını uyanık tutar. Telefonunuz yine de durduruyorsa Android ayarlarında Blockheads Sunucu için pil optimizasyonunu kapatın.'
         },
         {
           title: 'Telefonu şarjda tutun',
@@ -776,13 +776,13 @@ export const tr: Dict = {
       help: [
         '**“Sunucu beklenmedik şekilde durdu”** — nedenini görmek için bildirime dokunun ve **Günlüğü aç**’ı seçin.',
         'Dünyalar bu telefondaki uygulamanın özel depolamasında saklanır.',
-        'Hâlâ takıldınız mı? [GitHub’da bir sorun açın](serverIssues).'
+        'Hâlâ takıldınız mı? [GitHub’da sorun bildirin](serverIssues).'
       ]
     } as GuideDoc,
     docker: {
       tags: 'Sunucu · Docker',
       title: 'Docker ve Docker Compose',
-      lead: 'Sunucuyu bir konteyner olarak çalıştırın. Dünyalar bir birimde durur; böylece güncellemelerden sonra da kalır.',
+      lead: 'Sunucuyu bir konteyner olarak çalıştırın. Dünyalar bir volume’de durur; böylece güncellemelerden sonra da kalır.',
       need: [
         'Docker (isterseniz Docker Compose da)',
         'Çok mimarili `ghcr.io/blockheads-club/blockheads-server` imajı (amd64, arm64, arm/v7)'
@@ -791,23 +791,23 @@ export const tr: Dict = {
         {
           title: 'Bir dünya oluşturun',
           body: [
-            'Konsolu almak için konteyneri bir kez `-it` ile çalıştırın. Dünyalar `bh-data` birimine gider. **World load complete.** yazısını bekleyin, sonra `/stop` yazın.'
+            'Konsolu almak için konteyneri bir kez `-it` ile çalıştırın. Dünyalar `bh-data` volume’üne gider. **World load complete.** yazısını bekleyin, sonra `/stop` yazın.'
           ],
           tip: 'Örnekler 0.1.1 sürümünü kullanır. Her sürümün bir sürüm etiketi vardır; en yenisini seçin.'
         },
         {
           title: 'Dünya kimliğini bulun',
-          body: ['Birimdeki dünyaları listeleyin. Uzun onaltılık ad dünya kimliğidir.']
+          body: ['Volume’deki dünyaları listeleyin. Uzun onaltılık ad dünya kimliğidir.']
         },
         {
           title: 'Arka planda çalıştırın',
           body: [
-            'Dünyayı `--load` ile başlatın. Konsolu sonra açabilmek için `-i` ve `-t` kalsın; bağlantı noktasını **UDP** olarak eşleyin.'
+            'Dünyayı `--load` ile başlatın. Konsolu sonra açabilmek için `-i` ve `-t` kalsın; portu **UDP** olarak eşleyin.'
           ]
         },
         {
-          title: 'Günlükler ve konsol',
-          body: ['Günlüğü izleyin ya da `/players` veya `/stop` gibi komutlar yazmak için konsola bağlanın.']
+          title: 'Loglar ve konsol',
+          body: ['Logları izleyin ya da `/players` veya `/stop` gibi komutlar yazmak için konsola bağlanın.']
         },
         {
           title: 'Ya da Docker Compose kullanın',
@@ -816,8 +816,8 @@ export const tr: Dict = {
       ],
       help: [
         '**Konteyner yalnızca yardım metnini yazıyor** — `--new` ya da `--load` gibi seçenekler vermezseniz imaj `--help` ile başlar.',
-        '**Güncelleme** — konteyneri durdurup silin, sonra yeni etiketle yeniden çalıştırın. `bh-data` birimi dünyalarınızı saklar. `docker stop` sunucuyu son kaydı yapmadan kapatır; kimse oynamıyorken durdurun.',
-        '**Bağlantı yok** — bağlantı noktası `15151:15151/udp` olarak eşlenmelidir.'
+        '**Güncelleme** — konteyneri durdurup silin, sonra yeni etiketle yeniden çalıştırın. `bh-data` volume’ü dünyalarınızı saklar. `docker stop` sunucuyu son kaydı yapmadan kapatır; kimse oynamıyorken durdurun.',
+        '**Bağlantı yok** — port `15151:15151/udp` olarak eşlenmelidir.'
       ]
     } as GuideDoc
   },
@@ -843,14 +843,14 @@ export const tr: Dict = {
       },
       {
         id: 'patcher',
-        title: 'Yamalayıcı',
+        title: 'Patcher',
         items: [
           {
             q: 'Hangi oyun sürümlerini düzeltir?',
             a: '“Hoş geldin” penceresi donması için 1.7.4, 1.7.5 ve 1.7.6. 1.7.6 ayrıca dünya yüklerken çökmeye karşı da düzeltme alır.'
           },
           {
-            q: 'Oyun dosyamı yüklüyor musunuz?',
+            q: 'Oyun dosyamı bir yere yüklüyor musunuz?',
             a: 'Asla. Web uygulaması, masaüstü uygulamaları ve Android uygulaması kendi cihazınızda yama yapar. Web uygulaması bir kez yüklendikten sonra internet olmadan da çalışır.'
           },
           {
@@ -858,7 +858,7 @@ export const tr: Dict = {
             a: 'Yamalı oyun orijinal anahtarla değil kendi anahtarınızla imzalanır. Android, farklı imzalı bir uygulamanın yüklü uygulamanın yerine geçmesine izin vermez. Önce dünyalarınızı yedekleyin.'
           },
           {
-            q: 'İmzalama anahtarı nedir ve neden saklamalıyım?',
+            q: 'İmza anahtarı nedir ve neden saklamalıyım?',
             a: 'Bir uygulamanın aynı kaynaktan geldiğini kanıtlar. Daha sonra aynı anahtarla yeniden yamalarsanız yamalı oyunun üzerine kurabilir ve dünyalarınızı koruyabilirsiniz. Dışa aktarın ve güvenli bir yerde saklayın.'
           }
         ]
@@ -870,7 +870,7 @@ export const tr: Dict = {
           { q: 'Kaç oyuncu katılabilir?', a: '1 ile 32 arası. Sınırı Ayarlar’dan seçersiniz.' },
           {
             q: 'Arkadaşım bağlanamıyor. Nelere bakmalıyım?',
-            a: 'Aynı Wi-Fi, doğru adres ve bağlantı noktası, güvenlik duvarının sunucuya izin vermesi ve (açıksa) beyaz listede adının bulunması. [Bağlantı rehberi](lanPlay)'
+            a: 'Aynı Wi-Fi, doğru adres ve port, güvenlik duvarının sunucuya izin vermesi ve (açıksa) beyaz listede adının bulunması. [Bağlantı rehberi](lanPlay)'
           },
           {
             q: 'Eski bir Android telefonda çalıştırabilir miyim?',
@@ -881,8 +881,8 @@ export const tr: Dict = {
     ],
     helpTitle: 'Hâlâ yardıma mı ihtiyacınız var?',
     helpBody:
-      'GitHub’da bir sorun açın. Cihazınızı, oyun sürümünü ve — Yamalayıcı için — hata ekranından kopyalanan günlüğü ekleyin.',
-    helpButton: 'Sorun aç',
+      'GitHub’da sorun bildirin. Cihazınızı, oyun sürümünü ve — Patcher için — hata ekranından kopyalanan logu ekleyin.',
+    helpButton: 'Sorun bildir',
     helpSection: 'Yardım alma'
   },
   legal: {
@@ -906,11 +906,11 @@ export const tr: Dict = {
       },
       {
         title: '4. Kendi kopyanızla kullanım',
-        body: 'Yamalayıcı, kendi cihazınızda sağladığınız bir oyun kopyasını değiştirir. O kopyayı değiştirmeye ve kullanmaya izniniz olduğundan emin olmak sizin sorumluluğunuzdadır. Araçlarımızı oyunu paylaşmak veya satmak için kullanmayın.'
+        body: 'Patcher, kendi cihazınızda sağladığınız bir oyun kopyasını değiştirir. O kopyayı değiştirmeye ve kullanmaya izniniz olduğundan emin olmak sizin sorumluluğunuzdadır. Araçlarımızı oyunu paylaşmak veya satmak için kullanmayın.'
       },
       {
         title: '5. Gizlilik',
-        body: 'Yamalayıcı dosyaları yalnızca cihazınızda işler; hiçbir şey yüklenmez. Bu web sitesi statiktir: analiz, izleme veya çerez kullanmaz. Yalnızca tema ve dil seçiminizi tarayıcınızın yerel depolamasında hatırlar. Sunucu, oyuncu adlarını ve cihaz tanımlayıcılarını yalnızca onu çalıştıran makinede saklar.'
+        body: 'Patcher dosyaları yalnızca cihazınızda işler; hiçbir şey internete yüklenmez. Bu web sitesi statiktir: analiz, izleme veya çerez kullanmaz. Yalnızca tema ve dil seçiminizi tarayıcınızın yerel depolamasında hatırlar. Sunucu, oyuncu adlarını ve cihaz tanımlayıcılarını yalnızca onu çalıştıran makinede saklar.'
       },
       {
         title: '6. Garanti yok',
@@ -928,28 +928,28 @@ export const tr: Dict = {
   },
   shots: {
     'patcher/phone-choose': {
-      alt: 'Android’de Blockheads Yamalayıcı, “Oyununuzu seçin” adımı: “Bu telefonda bulundu” kartında The Blockheads 1.7.4 ve “Yüklü oyunu kullan” düğmesi, altında “APK dosyası seç”.',
-      caption: 'Yamalayıcı telefonunuzda kurulu oyunu bulur.'
+      alt: 'Android’de Blockheads Patcher, “Oyununuzu seçin” adımı: “Bu telefonda bulundu” kartında The Blockheads 1.7.4 ve “Yüklü oyunu kullan” düğmesi, altında “APK dosyası seç”.',
+      caption: 'Patcher telefonunuzda kurulu oyunu bulur.'
     },
     'patcher/phone-review': {
-      alt: 'Android’de Yamalayıcı, “Düzeltmeleri gözden geçirin” adımı: algılanan oyun sürümünün ayrıntıları, imzalanacağı anahtar ve “Oyunu yamala (3 düzeltme)” düğmesi.',
+      alt: 'Android’de Patcher, “Düzeltmeleri gözden geçirin” adımı: algılanan oyun sürümünün ayrıntıları, imzalanacağı anahtar ve “Oyunu yamala (3 düzeltme)” düğmesi.',
       caption: 'Sürümünüzün ihtiyaç duyduğu düzeltmeler zaten işaretli.'
     },
     'patcher/phone-uninstall-confirm': {
-      alt: 'Android’de Yamalayıcı, “Düzeltilmiş oyunu kurun”: dünyaların bu telefondan silineceği uyarısı, yedekleme onay kutusu, ardından 1. adım “Orijinali kaldır” ve 2. adım “Düzeltilmiş oyunu kur”.',
+      alt: 'Android’de Patcher, “Düzeltilmiş oyunu kurun”: dünyaların bu telefondan silineceği uyarısı, yedekleme onay kutusu, ardından 1. adım “Orijinali kaldır” ve 2. adım “Düzeltilmiş oyunu kur”.',
       caption: 'Kutuyu yalnızca dünyalarınız yedeklendiyse işaretleyin.'
     },
     'patcher/phone-installed': {
-      alt: 'Android’de Yamalayıcı’nın son ekranı: düzeltilmiş oyun kuruldu; imza anahtarınızı saklamanız için bir hatırlatma ve dışa aktarma bağlantısı.',
+      alt: 'Android’de Patcher’ın son ekranı: düzeltilmiş oyun kuruldu; imza anahtarınızı saklamanız için bir hatırlatma ve dışa aktarma bağlantısı.',
       caption: 'Bitti. Şimdi dünyalarınızı düzeltilmiş oyuna geri yükleyin.'
     },
     'patcher/choose': {
-      alt: 'Masaüstü Yamalayıcı, “Oyununuzu seçin” adımı: The Blockheads APK dosyası için bırakma alanı ve dosyaya göz atma düğmesi.',
+      alt: 'Masaüstü Patcher, “Oyununuzu seçin” adımı: The Blockheads APK dosyası için bırakma alanı ve dosyaya göz atma düğmesi.',
       caption: '.apk dosyasını bırakın ya da seçin.'
     },
     'patcher/keys-export': {
-      alt: 'Yamalayıcı “Anahtarlar” ekranı: SHA-256 parmak izli “Anahtarım” imzalama anahtarı ve parola ile parola tekrarı alanları ve “Yedeği kaydet” düğmesi olan açık yedek dışa aktarma formu.',
-      caption: 'İmzalama anahtarınızın parolalı bir yedeğini dışa aktarın.'
+      alt: 'Patcher “Anahtarlar” ekranı: SHA-256 parmak izli “Anahtarım” imza anahtarı ve parola ile parola tekrarı alanları ve “Yedeği kaydet” düğmesi olan açık yedek dışa aktarma formu.',
+      caption: 'İmza anahtarınızın parolalı bir yedeğini dışa aktarın.'
     },
     'server/worlds-create': {
       alt: 'Blockheads Server masaüstü uygulaması, “Dünya oluştur” penceresi: dünya adı, 1/16× ile 16× arası dünya boyutu, uzman modu anahtarı ve oluşturma düğmesi.',
