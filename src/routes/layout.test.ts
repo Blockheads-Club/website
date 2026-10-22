@@ -18,11 +18,14 @@ import { GUIDE_SHOTS } from '$lib/shots';
 import Legal from './legal/+page.svelte';
 import Server from './server/+page.svelte';
 
-const nav = vi.hoisted(() => ({ path: '/', hash: '', goto: vi.fn() }));
+const nav = vi.hoisted(() => ({ path: '/', hash: '', goto: vi.fn(), data: {} as Record<string, unknown> }));
 vi.mock('$app/state', () => ({
   page: {
     get url() {
       return new URL('http://localhost' + nav.path);
+    },
+    get data() {
+      return nav.data;
     }
   }
 }));
@@ -33,6 +36,7 @@ const children = createRawSnippet(() => ({ render: () => '<p>child</p>' }));
 beforeEach(() => {
   vi.stubGlobal('matchMedia', () => ({ matches: false }));
   nav.path = '/';
+  nav.data = {};
 });
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -72,6 +76,26 @@ describe('layout', () => {
     nav.path = '/guides/docker';
     render(Layout, { children });
     expect(document.title).toBe('Docker and Docker Compose · Blockheads Club');
+  });
+
+  it('titles the mod pages', () => {
+    nav.path = '/mods';
+    const list = render(Layout, { children });
+    expect(document.title).toBe('Mods · Blockheads Club');
+    expect(screen.getAllByRole('link', { name: 'Mods' })[0]).toHaveAttribute('aria-current', 'page');
+    list.unmount();
+    nav.path = '/mods/submit';
+    const submit = render(Layout, { children });
+    expect(document.title).toBe('Submit a mod · Blockheads Club');
+    submit.unmount();
+    nav.path = '/mods/hello-lua';
+    nav.data = { mod: { name: 'Hello (Lua)' } };
+    const detail = render(Layout, { children });
+    expect(document.title).toBe('Hello (Lua) · Blockheads Club');
+    detail.unmount();
+    nav.data = {};
+    render(Layout, { children });
+    expect(document.title).toBe('Mods · Blockheads Club');
   });
 
   it('switches language from the header menu and theme', async () => {

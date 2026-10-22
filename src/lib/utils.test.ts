@@ -33,6 +33,9 @@ describe('routeKey', () => {
     ['/website/guides/nope', 'other'],
     ['/website/faq', 'faq'],
     ['/website/legal', 'legal'],
+    ['/website/mods', 'mods'],
+    ['/website/mods/submit', 'modsSubmit'],
+    ['/website/mods/hello-lua', 'modDetail'],
     ['/website/nope', 'other']
   ])('%s -> %s', (path, key) => {
     expect(routeKey(path, '/website')).toBe(key);
