@@ -22,7 +22,7 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
 - Design: "Sunlit Blocks" tokens + shared classes (`.btn`, `.card`, `.badge`, ...) live in `src/app.css`; fonts are self-hosted via
   `@fontsource*` (no Google Fonts, CSP unchanged). Inline markup in dictionary strings: `**bold**`, `` `mono` ``, `{{placeholder}}`,
   `[label](linkKey)` (see `src/lib/rich.ts`, `Rich.svelte`). Avoid `{a} {b}` text interpolation (use `{a + ' ' + b}`) for the same branch-coverage reason.
-- Routes: `/`, `/server`, `/guides`, `/guides/fix-game-on-phone`, `/faq`, `/legal`. Old `/#faq` etc. anchors redirect client-side.
+- Routes: `/`, `/server`, `/guides`, `/guides/fix-game-on-phone`, `/faq`, `/legal`, `/mods`, `/mods/<id>`, `/mods/submit`. Old `/#faq` etc. anchors redirect client-side.
 - Docs: VitePress project in `docs/` (config `docs/.vitepress/config.ts`, locales en root + `tr/`, `ru/`, `kk/` with the same pages),
   served at `<BASE_PATH>/docs/`. `bun run build` runs `vite build` then `vitepress build docs` into `build/docs`; `bun run dev`
   starts both (the SvelteKit dev server proxies `/docs` to :5174). No SvelteKit route may use `/docs`; link to it with
@@ -31,3 +31,7 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
   published blockheads-patcher release, builds it with `BASE_PATH=<base>/patcher` into `build/patcher/` and merges its
   `_headers` (pure helpers in `src/lib/patcher-build.ts`). No SvelteKit route may use `/patcher`. The Worker stays
   assets-only (no script, no bindings). Details in `docs/development.md`.
+- Mods: pages read the mod index (`src/lib/mods-index.ts`) at build time from `MODS_INDEX_URL` (default
+  `https://blockheads-club.github.io/mods/index.json`); unreachable/invalid -> bundled `src/lib/data/mods-sample.json`
+  (the page shows a sample notice). The build never fails on it. Playwright points it at a closed port. TODO: verify
+  `index.json.minisig` once the public key exists.
