@@ -82,6 +82,20 @@ To rebuild the site when the index changes, the mods repo's `publish.yml` POSTs 
 `mods-index` for the production branch, and add its URL as the secret `WEBSITE_DEPLOY_HOOK` in
 Blockheads-Club/mods → Settings → Secrets and variables → Actions.
 
+### Mod API reference (generated)
+
+`docs/mods/api/` (and the same folder in `tr/`, `ru/`, `kk/`) is generated from the mod SDK's WIT files
+(`wit/blockheads-api/*.wit`) by `scripts/gen-mod-api.ts`; the parser and Markdown renderer are
+`src/lib/wit-docs.ts` (unit-tested). The pages and `docs/.vitepress/mod-api.json` (the sidebar list) are committed,
+so the build needs no SDK checkout. After an API change:
+
+```sh
+bun scripts/gen-mod-api.ts --sdk ../mod-sdk      # or MOD_SDK_DIR=...; default ../mod-sdk
+bun scripts/gen-mod-api.ts --sdk ../mod-sdk --check   # exit 1 when the committed pages are out of date
+```
+
+Translated locales get the English reference with a translated note and index intro (`TEXT` in `wit-docs.ts`).
+
 ### Local check
 
 ```sh
