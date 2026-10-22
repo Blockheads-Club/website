@@ -14,7 +14,7 @@ interface Strings {
   description: string;
   site: string;
   docs: string;
-  pages: { start: string; pc: string; patcher: string; server: string; faq: string };
+  pages: { start: string; pc: string; patcher: string; server: string; mods: string; faq: string };
   outline: string;
   prev: string;
   next: string;
@@ -51,6 +51,7 @@ function themeConfig(s: Strings): DefaultTheme.Config {
           { text: s.pages.pc, link: p + 'pc-port' },
           { text: s.pages.patcher, link: p + 'patcher' },
           { text: s.pages.server, link: p + 'server' },
+          { text: s.pages.mods, link: p + 'mods' },
           { text: s.pages.faq, link: p + 'faq' }
         ]
       }
@@ -76,7 +77,7 @@ const en: Strings = {
   description: 'How to install and use the Blockheads Club tools: PC Port, Patcher and Server.',
   site: 'Main site',
   docs: 'Docs',
-  pages: { start: 'Getting started', pc: 'PC Port', patcher: 'Patcher', server: 'Server', faq: 'FAQ' },
+  pages: { start: 'Getting started', pc: 'PC Port', patcher: 'Patcher', server: 'Server', mods: 'Making a mod', faq: 'FAQ' },
   outline: 'On this page',
   prev: 'Previous page',
   next: 'Next page',
@@ -107,7 +108,7 @@ const tr: Strings = {
   description: 'Blockheads Club araçlarının kurulumu ve kullanımı: PC Sürümü, Patcher ve Sunucu.',
   site: 'Ana site',
   docs: 'Dokümanlar',
-  pages: { start: 'Başlarken', pc: 'PC Sürümü', patcher: 'Patcher', server: 'Sunucu', faq: 'SSS' },
+  pages: { start: 'Başlarken', pc: 'PC Sürümü', patcher: 'Patcher', server: 'Sunucu', mods: 'Mod yapma', faq: 'SSS' },
   outline: 'Bu sayfada',
   prev: 'Önceki sayfa',
   next: 'Sonraki sayfa',
@@ -138,7 +139,7 @@ const ru: Strings = {
   description: 'Как установить и использовать инструменты Blockheads Club: PC-версию, Patcher и Сервер.',
   site: 'Главный сайт',
   docs: 'Документация',
-  pages: { start: 'Начало работы', pc: 'PC-версия', patcher: 'Patcher', server: 'Сервер', faq: 'Вопросы и ответы' },
+  pages: { start: 'Начало работы', pc: 'PC-версия', patcher: 'Patcher', server: 'Сервер', mods: 'Как сделать мод', faq: 'Вопросы и ответы' },
   outline: 'На этой странице',
   prev: 'Предыдущая страница',
   next: 'Следующая страница',
@@ -169,7 +170,7 @@ const kk: Strings = {
   description: 'Blockheads Club құралдарын орнату және пайдалану: PC нұсқасы, Patcher және Сервер.',
   site: 'Басты сайт',
   docs: 'Құжаттама',
-  pages: { start: 'Бастау', pc: 'PC нұсқасы', patcher: 'Patcher', server: 'Сервер', faq: 'Жиі сұрақтар' },
+  pages: { start: 'Бастау', pc: 'PC нұсқасы', patcher: 'Patcher', server: 'Сервер', mods: 'Мод жасау', faq: 'Жиі сұрақтар' },
   outline: 'Осы бетте',
   prev: 'Алдыңғы бет',
   next: 'Келесі бет',
