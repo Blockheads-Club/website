@@ -11,7 +11,7 @@
 
 | Баптау | Модтар қалтасы |
 | --- | --- |
-| Компьютер / пәрмен жолы | `<data folder>/mods` (деректер қалтасы: `BLOCKHEADS_DATA_DIR`, болмаса үй қалтаңыздағы `GNUstep/Library/ApplicationSupport/TheBlockheads`) |
+| Компьютер / пәрмен жолы | `<деректер қалтасы>/mods` (деректер қалтасы: `BLOCKHEADS_DATA_DIR`, болмаса үй қалтаңыздағы `GNUstep/Library/ApplicationSupport/TheBlockheads`) |
 | Docker | томдағы `/data/mods` |
 | Кез келген жерде | `BLOCKHEADS_MODS_DIR` айнымалысын басқа қалтаға орнатыңыз |
 

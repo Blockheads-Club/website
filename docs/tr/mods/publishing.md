@@ -1,4 +1,4 @@
-# Yayınlama
+# Yayımlama
 
 Herkese açık liste [Blockheads-Club/mods](https://github.com/Blockheads-Club/mods) içinde durur ve
 <a href="../../../mods/" target="_self">Modlar sayfasında</a> gösterilir. Modlar çekme isteğiyle eklenir.
@@ -24,7 +24,7 @@ Tüm alanlar ve bir örnek: <a href="../../../mods/submit" target="_self">Mod g�
 
 ## Güncellemeler
 
-- Girdine yeni bir sürüm ekle; yayınlanmış sürümler asla düzenlenmez ya da silinmez.
+- Girdine yeni bir sürüm ekle; yayımlanmış sürümler asla düzenlenmez ya da silinmez.
 - Bozuk bir sürüm `yanked = true` ile işaretlenebilir.
 - Girdiyi yalnızca modun `owners` kişileri değiştirebilir.
 

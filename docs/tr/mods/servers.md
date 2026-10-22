@@ -58,14 +58,14 @@ sohbet ve bağlı olduğu modların servisleri. Modun herkese açık listedeki s
 
 ## Süre ve bellek sınırları {#time-and-memory-limits}
 
-Modlar sunucunun ana iş parçacığında çalışır, bu yüzden her biri kısa tutulur:
+Modlar sunucunun ana iş parçacığında çalışır, bu yüzden her birinin süresi ve belleği sınırlıdır:
 
 - Bir moda yapılan her çağrı en fazla **25 ms** sürebilir (5 ms'den sonra günlüğe uyarı yazılır).
 - Tüm modlar birlikte dünya adımı başına **20 ms** alır; fazlası için zamanlayıcılar sonraki adımı bekler.
 - Her mod **32 MiB** bellek alır.
 
-Bir hata, zaman aşımı ya da belleğin bitmesi bir **arızadır**. **60 sn içinde 3 arıza modu kapatır**, ta ki sonraki
-yeniden başlatmaya kadar; günlük `disabled: 3 faults within 60 s` der ve hatayı belirtir. Modun yazarına bildir.
+Bir hata, zaman aşımı ya da belleğin bitmesi bir **arızadır**. **60 sn içinde 3 arıza, modu bir sonraki yeniden başlatmaya kadar kapatır**;
+günlük `disabled: 3 faults within 60 s` der ve hatayı belirtir. Modun yazarına bildir.
 
 ## Depolama
 

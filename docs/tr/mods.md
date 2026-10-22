@@ -13,9 +13,9 @@ modlarını çalıştırıyor. **WASM** (Rust) modları ve **istemci** modları 
 1. [İlk Lua modun](./mods/first-lua-mod): `bhmod new`'den çalışan bir sunucuya.
 2. [Olaylar](./mods/events), [komutlar ve zamanlayıcılar](./mods/commands), [depolama](./mods/storage).
 3. [Başka modlarla çalışmak](./mods/interop): servisler, özel olaylar, kanallar.
-4. Herkese açık listede [yayınlama](./mods/publishing).
+4. Herkese açık listede [yayımlama](./mods/publishing).
 
-Rust mı istersin? [İlk Rust modun](./mods/first-rust-mod) sayfasına bak. Tüm fonksiyonlar
+Rust mı tercih edersin? [İlk Rust modun](./mods/first-rust-mod) sayfasına bak. Tüm fonksiyonlar
 [API başvurusunda](./mods/api/).
 
 ## Taraflar
@@ -58,8 +58,8 @@ Bir mod yalnızca izinlerinin verdiği kadarını yapabilir ve her birini sunucu
 
 Yalnızca ihtiyacın olanı iste. Sunucu sahiplerinin gördüğü: [Sunucunda modlar](./mods/servers#permissions).
 
-## Yayınla
+## Yayımla
 
-Modlar, [Blockheads-Club/mods](https://github.com/Blockheads-Club/mods) deposuna gönderilen bir çekme isteğiyle listelenir.
+Modlar, [Blockheads-Club/mods](https://github.com/Blockheads-Club/mods) deposuna gönderilen bir çekme isteğiyle (pull request) listelenir.
 Adımlar, kurallar ve kontroller <a href="../../mods/submit" target="_self">Mod gönder</a> sayfasında, kısaca da
-[Yayınlama](./mods/publishing) sayfasında.
+[Yayımlama](./mods/publishing) sayfasında.

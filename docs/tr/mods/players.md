@@ -1,7 +1,7 @@
 # Oyuncular için modlar
 
 **Modlar** The Blockheads'e `/balance` ya da `/claim` gibi sohbet komutları, yeni kurallar, mini oyunlar ve ileride
-oyunda göreceğin şeyler ekler. <a href="../../../mods/" target="_self">Modlar sayfasından</a> bak.
+oyunda göreceğin şeyler ekler. Hepsine <a href="../../../mods/" target="_self">Modlar sayfasından</a> göz atabilirsin.
 
 ## Sunucu modları: kurman gereken bir şey yok
 
