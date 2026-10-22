@@ -39,13 +39,13 @@ describe('loadModsIndex', () => {
     expect(a).toBe(b);
     expect(a.sample).toBe(true);
     expect(fetchFn).toHaveBeenCalledTimes(1);
-    expect(fetchFn.mock.calls[0][0]).toBe(DEFAULT_INDEX_URL);
+    expect((fetchFn.mock.calls as unknown as string[][])[0][0]).toBe(DEFAULT_INDEX_URL);
   });
   it('honours MODS_INDEX_URL', async () => {
     const fetchFn = vi.fn(() => json(real));
     const result = await loadModsIndex({ MODS_INDEX_URL: 'https://mine.invalid/i.json' }, fetchFn as unknown as typeof fetch, () => {});
     expect(result.sample).toBe(false);
-    expect(fetchFn.mock.calls[0][0]).toBe('https://mine.invalid/i.json');
+    expect((fetchFn.mock.calls as unknown as string[][])[0][0]).toBe('https://mine.invalid/i.json');
   });
   it('logs to the console by default and uses the global fetch', async () => {
     const spy = vi.spyOn(console, 'log').mockImplementation(() => {});
