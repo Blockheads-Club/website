@@ -17,12 +17,21 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
 - UI copy lives only in `src/lib/i18n/<code>.ts` (en default, tr, ru, kk; first visit follows the browser language). Key sets, links, code spans and placeholders must match `en` (test enforces). ru/kk await a native-speaker review.
 - Avoid string interpolation in Svelte attributes (`href="#{x}"`): the compiler emits `?? ''` branches that break the
   100% branch threshold; use `{"#" + x}` instead.
+- App icons: `static/apps/{pc,patcher,server}.svg` (from the app repos / design artifact).
 - Theme: `data-theme` on `<html>`, set early by the inline script in `src/app.html`; stored in `localStorage` (`bh-theme`, `bh-locale`).
 - External links live in `src/lib/config.ts`.
 - Design: "Sunlit Blocks" tokens + shared classes (`.btn`, `.card`, `.badge`, ...) live in `src/app.css`; fonts are self-hosted via
   `@fontsource*` (no Google Fonts, CSP unchanged). Inline markup in dictionary strings: `**bold**`, `` `mono` ``, `{{placeholder}}`,
   `[label](linkKey)` (see `src/lib/rich.ts`, `Rich.svelte`). Avoid `{a} {b}` text interpolation (use `{a + ' ' + b}`) for the same branch-coverage reason.
-- Routes: `/`, `/server`, `/guides`, `/guides/fix-game-on-phone`, `/faq`, `/legal`. Old `/#faq` etc. anchors redirect client-side.
+- Routes: `/`, `/download` (task + device in the query string), app pages `/pc`, `/patcher-app`, `/server` (one
+  `ProductPage.svelte`; `/patcher` is the bundled web Patcher), `/mods` (coming soon), `/contribute`, `/about` (`#legal`).
+  Old `/guides`, `/guides/<id>`, `/faq`, `/legal` are prerendered redirect pages into the docs (`MOVED` in
+  `src/lib/route.ts`, `Moved.svelte`); old anchors (`/#patcher`, `/server#start` ...) redirect client-side (`LEGACY_ANCHORS`).
+  Long copy (install steps, guides, FAQ) lives only in the docs; the site links to it.
+- Release data: `src/routes/+layout.server.ts` fetches the latest GitHub release of each app once per build
+  (`src/lib/server/releases.ts`; `GITHUB_TOKEN` optional, `RELEASES_OFFLINE=1` skips it). A failed request never fails
+  the build: pages then link to the GitHub releases page. Which asset each device gets: `DOWNLOADS` in `src/lib/releases.ts`.
+  OS detection (`src/lib/platform.ts`) runs client-side only.
 - Docs: VitePress project in `docs/` (config `docs/.vitepress/config.ts`, locales en root + `tr/`, `ru/`, `kk/` with the same pages),
   served at `<BASE_PATH>/docs/`. `bun run build` runs `vite build` then `vitepress build docs` into `build/docs`; `bun run dev`
   starts both (the SvelteKit dev server proxies `/docs` to :5174). No SvelteKit route may use `/docs`; link to it with

@@ -76,3 +76,12 @@ npx wrangler dev --port 8787                    # http://localhost:8787/, /docs/
 The patcher's own e2e suite (at a tag that supports `BASE_PATH`, v0.1.1 or later) runs against that server from a
 checkout of the same tag: `BASE_PATH=/patcher E2E_PORT=8787 bunx playwright test` in its `app/` (it reuses the running
 server). `bun run test:e2e` here also checks `/patcher/` and `/patcher/splash` (`tests/patcher.spec.ts`).
+
+## Release data on the site
+
+`src/routes/+layout.server.ts` reads the latest published release of blockheads-pc, blockheads-patcher and
+blockheads-server from the GitHub REST API while the site is prerendered (one request per repo per build, shared by
+every page). Download buttons, the download table and the "Latest releases" list use it. When a request fails
+(rate limit, network), the build continues and those places link to the repo's releases page instead. Set
+`GITHUB_TOKEN` to raise the rate limit, or `RELEASES_OFFLINE=1` to skip the API (e.g. offline development). The site
+only updates when it is rebuilt, so a new app release needs a rebuild (see the deploy hook above).
