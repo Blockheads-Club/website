@@ -1,4 +1,6 @@
 import { defineConfig, type DefaultTheme } from 'vitepress';
+// Written by scripts/gen-mod-api.ts together with the API reference pages (docs/**/mods/api/).
+import modApi from './mod-api.json';
 
 // Same BASE_PATH as the SvelteKit site ("/website" on GitHub Pages, empty elsewhere); the docs live under <base>/docs/.
 const siteBase = process.env.BASE_PATH ?? '';
@@ -14,7 +16,22 @@ interface Strings {
   description: string;
   site: string;
   docs: string;
-  pages: { start: string; pc: string; patcher: string; server: string; mods: string; faq: string };
+  pages: { start: string; pc: string; patcher: string; server: string; faq: string };
+  mods: {
+    section: string;
+    players: string;
+    servers: string;
+    making: string;
+    lua: string;
+    rust: string;
+    events: string;
+    commands: string;
+    storage: string;
+    interop: string;
+    publish: string;
+    versions: string;
+    api: string;
+  };
   outline: string;
   prev: string;
   next: string;
@@ -51,8 +68,29 @@ function themeConfig(s: Strings): DefaultTheme.Config {
           { text: s.pages.pc, link: p + 'pc-port' },
           { text: s.pages.patcher, link: p + 'patcher' },
           { text: s.pages.server, link: p + 'server' },
-          { text: s.pages.mods, link: p + 'mods' },
           { text: s.pages.faq, link: p + 'faq' }
+        ]
+      },
+      {
+        text: s.mods.section,
+        items: [
+          { text: s.mods.players, link: p + 'mods/players' },
+          { text: s.mods.servers, link: p + 'mods/servers' },
+          { text: s.mods.making, link: p + 'mods' },
+          { text: s.mods.lua, link: p + 'mods/first-lua-mod' },
+          { text: s.mods.rust, link: p + 'mods/first-rust-mod' },
+          { text: s.mods.events, link: p + 'mods/events' },
+          { text: s.mods.commands, link: p + 'mods/commands' },
+          { text: s.mods.storage, link: p + 'mods/storage' },
+          { text: s.mods.interop, link: p + 'mods/interop' },
+          { text: s.mods.publish, link: p + 'mods/publishing' },
+          { text: s.mods.versions, link: p + 'mods/api-versions' },
+          {
+            text: s.mods.api,
+            link: p + 'mods/api/',
+            collapsed: true,
+            items: modApi.pages.map((name) => ({ text: name, link: p + 'mods/api/' + name }))
+          }
         ]
       }
     ],
@@ -77,7 +115,22 @@ const en: Strings = {
   description: 'How to install and use the Blockheads Club tools: PC Port, Patcher and Server.',
   site: 'Main site',
   docs: 'Docs',
-  pages: { start: 'Getting started', pc: 'PC Port', patcher: 'Patcher', server: 'Server', mods: 'Making a mod', faq: 'FAQ' },
+  pages: { start: 'Getting started', pc: 'PC Port', patcher: 'Patcher', server: 'Server', faq: 'FAQ' },
+  mods: {
+    section: 'Mods',
+    players: 'For players',
+    servers: 'For server owners',
+    making: 'Making a mod',
+    lua: 'First Lua mod',
+    rust: 'First Rust mod',
+    events: 'Events',
+    commands: 'Commands and timers',
+    storage: 'Storage',
+    interop: 'Working with other mods',
+    publish: 'Publishing',
+    versions: 'API versions',
+    api: 'API reference'
+  },
   outline: 'On this page',
   prev: 'Previous page',
   next: 'Next page',
@@ -108,7 +161,22 @@ const tr: Strings = {
   description: 'Blockheads Club araçlarının kurulumu ve kullanımı: PC Sürümü, Patcher ve Sunucu.',
   site: 'Ana site',
   docs: 'Dokümanlar',
-  pages: { start: 'Başlarken', pc: 'PC Sürümü', patcher: 'Patcher', server: 'Sunucu', mods: 'Mod yapma', faq: 'SSS' },
+  pages: { start: 'Başlarken', pc: 'PC Sürümü', patcher: 'Patcher', server: 'Sunucu', faq: 'SSS' },
+  mods: {
+    section: 'Modlar',
+    players: 'Oyuncular için',
+    servers: 'Sunucu sahipleri için',
+    making: 'Mod yapma',
+    lua: 'İlk Lua modun',
+    rust: 'İlk Rust modun',
+    events: 'Olaylar',
+    commands: 'Komutlar ve zamanlayıcılar',
+    storage: 'Depolama',
+    interop: 'Diğer modlarla çalışma',
+    publish: 'Yayımlama',
+    versions: 'API sürümleri',
+    api: 'API başvurusu'
+  },
   outline: 'Bu sayfada',
   prev: 'Önceki sayfa',
   next: 'Sonraki sayfa',
@@ -139,7 +207,22 @@ const ru: Strings = {
   description: 'Как установить и использовать инструменты Blockheads Club: PC-версию, Patcher и Сервер.',
   site: 'Главный сайт',
   docs: 'Документация',
-  pages: { start: 'Начало работы', pc: 'PC-версия', patcher: 'Patcher', server: 'Сервер', mods: 'Как сделать мод', faq: 'Вопросы и ответы' },
+  pages: { start: 'Начало работы', pc: 'PC-версия', patcher: 'Patcher', server: 'Сервер', faq: 'Вопросы и ответы' },
+  mods: {
+    section: 'Моды',
+    players: 'Игрокам',
+    servers: 'Владельцам серверов',
+    making: 'Как сделать мод',
+    lua: 'Первый мод на Lua',
+    rust: 'Первый мод на Rust',
+    events: 'События',
+    commands: 'Команды и таймеры',
+    storage: 'Хранилище',
+    interop: 'Взаимодействие модов',
+    publish: 'Публикация',
+    versions: 'Версии API',
+    api: 'Справочник API'
+  },
   outline: 'На этой странице',
   prev: 'Предыдущая страница',
   next: 'Следующая страница',
@@ -170,7 +253,22 @@ const kk: Strings = {
   description: 'Blockheads Club құралдарын орнату және пайдалану: PC нұсқасы, Patcher және Сервер.',
   site: 'Басты сайт',
   docs: 'Құжаттама',
-  pages: { start: 'Бастау', pc: 'PC нұсқасы', patcher: 'Patcher', server: 'Сервер', mods: 'Мод жасау', faq: 'Жиі сұрақтар' },
+  pages: { start: 'Бастау', pc: 'PC нұсқасы', patcher: 'Patcher', server: 'Сервер', faq: 'Жиі сұрақтар' },
+  mods: {
+    section: 'Модтар',
+    players: 'Ойыншыларға',
+    servers: 'Сервер иелеріне',
+    making: 'Мод жасау',
+    lua: 'Алғашқы Lua моды',
+    rust: 'Алғашқы Rust моды',
+    events: 'Оқиғалар',
+    commands: 'Командалар мен таймерлер',
+    storage: 'Сақтау орны',
+    interop: 'Басқа модтармен жұмыс',
+    publish: 'Жариялау',
+    versions: 'API нұсқалары',
+    api: 'API анықтамасы'
+  },
   outline: 'Осы бетте',
   prev: 'Алдыңғы бет',
   next: 'Келесі бет',

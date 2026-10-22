@@ -3,37 +3,33 @@
 **Mods** add features to The Blockheads: chat commands, new rules, tools for server admins and, later, changes that
 players see in the game. You can browse what others made on the <a href="../mods/" target="_self">Mods page</a>.
 
-::: warning Servers can't load mods yet
-The mod tools below already work, but the Blockheads Server cannot load mods yet. That comes in a later release.
+::: warning What works today
+`bhmod` (create, check, pack) works, and the [Blockheads Server](./server) runs **Lua** mods in its development
+builds. Running **WASM** (Rust) mods and **client** mods is coming soon.
 :::
+
+## Start here
+
+1. [Your first Lua mod](./mods/first-lua-mod), from `bhmod new` to a running server.
+2. [Events](./mods/events), [commands and timers](./mods/commands), [storage](./mods/storage).
+3. [Working with other mods](./mods/interop): services, custom events, channels.
+4. [Publishing](./mods/publishing) on the public list.
+
+Prefer Rust? See [your first Rust mod](./mods/first-rust-mod). Every function is in the
+[API reference](./mods/api/).
 
 ## Sides
 
 A mod runs on one or both **sides**:
 
 - **server**: runs on the server.
-- **client**: runs in the game on a player's device.
+- **client**: runs in the game on a player's device (coming soon).
 - **both**: has a server part and a client part. It can be marked *client-required*, so players without it cannot join.
 
 ## Languages
 
-You can write a mod in **Lua/Luau** or in **Rust compiled to WebAssembly (WASM)**. More languages will follow.
-
-## Install the tool
-
-```sh
-cargo install --git https://github.com/Blockheads-Club/mod-sdk bhmod
-```
-
-Then:
-
-```sh
-bhmod new my-mod     # create a new mod from a template
-bhmod check          # check mod.toml and the code
-bhmod pack           # build my-mod-0.1.0.bhmod
-```
-
-The SDK is at [github.com/Blockheads-Club/mod-sdk](https://github.com/Blockheads-Club/mod-sdk).
+**Lua (Luau)** is the easiest. **Rust compiled to WebAssembly (WASM)** also works; C, Zig, Go and others that
+build WASM components will follow. Mods in different languages can call each other.
 
 ## mod.toml
 
@@ -41,16 +37,18 @@ Every mod has a `mod.toml` file. The main fields:
 
 | Field | Meaning |
 | --- | --- |
-| `id`, `version`, `name`, `description` | Who the mod is. The id is lowercase letters, digits and `-`. |
+| `id`, `version`, `name`, `description` | Who the mod is. The id is lowercase letters, digits, `-` and `_`. |
 | `authors`, `license` | Who made it and under which licence. |
-| `sides` | `server`, `client` or both. |
-| `api` | The mod API versions it works with. |
-| `depends` | Other mods it needs. |
-| `permissions` | What it is allowed to do (below). |
+| `api` | The mod API versions it works with, for example `^0.2` ([API versions](./mods/api-versions)). |
+| `[sides]`, `[entry]` | Where it runs and which file starts it. |
+| `[dependencies]` | Other mods it needs. |
+| `[permissions]` | What it is allowed to do (below). |
+
+The full format is in the [SDK docs](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/package.md).
 
 ## Permissions
 
-A mod can only do what its permissions allow:
+A mod can only do what its permissions allow, and the server owner must grant each one:
 
 - `world`: `none`, `read` or `write`.
 - `players`: any of `chat`, `teleport`, `kick`, `ban`, `inventory`, `health`.
@@ -58,14 +56,10 @@ A mod can only do what its permissions allow:
 - `channels`: its own messages between server, clients and other mods.
 - `native`: native code outside the sandbox. This is shown with a **red warning** and is reviewed by hand.
 
-Ask only for what you need.
+Ask only for what you need. What server owners see: [Mods on your server](./mods/servers#permissions).
 
 ## Publish it
 
 Mods are listed by a pull request to [Blockheads-Club/mods](https://github.com/Blockheads-Club/mods). The steps,
-rules and checks are on the <a href="../mods/submit" target="_self">Submit a mod</a> page.
-
-Every new mod gets a **security review**: a maintainer reads its code before it is listed. Updates are reviewed
-again when they add permissions or native code. The published list is at
-[blockheads.club/mods/index.json](https://blockheads.club/mods/index.json); every download is checked against the
-SHA-256 and size it lists.
+rules and checks are on the <a href="../mods/submit" target="_self">Submit a mod</a> page, and in short in
+[Publishing](./mods/publishing).
