@@ -18,13 +18,17 @@ export function setLocale(locale: Locale) {
   }
 }
 
-export function initLocale() {
+/** The saved choice, else the browser language (ru-RU → ru, kk → kk), else English. */
+export function preferredLocale(): Locale {
   let stored: string | null = null;
   try {
     stored = localStorage.getItem(STORAGE_KEY);
   } catch {
     /* storage unavailable */
   }
-  // No saved choice yet: follow the browser language (ru-RU → ru, kk → kk), English otherwise.
-  setLocale(isLocale(stored) ? stored : detectLocale(navigator.languages));
+  return isLocale(stored) ? stored : detectLocale(navigator.languages);
+}
+
+export function initLocale() {
+  setLocale(preferredLocale());
 }

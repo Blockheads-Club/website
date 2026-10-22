@@ -1,15 +1,25 @@
+const GH = 'https://github.com/Blockheads-Club';
+
 export const LINKS = {
-  webPatcher: 'https://blockheads.club/patcher/',
-  patcherReleases: 'https://github.com/Blockheads-Club/blockheads-patcher/releases',
-  patcherRepo: 'https://github.com/Blockheads-Club/blockheads-patcher',
-  serverRepo: 'https://github.com/Blockheads-Club/blockheads-server',
-  serverIssues: 'https://github.com/Blockheads-Club/blockheads-server/issues',
-  serverReleases: 'https://github.com/Blockheads-Club/blockheads-server/releases',
-  org: 'https://github.com/Blockheads-Club',
-  websiteRepo: 'https://github.com/Blockheads-Club/website',
-  websiteIssues: 'https://github.com/Blockheads-Club/website/issues',
-  patcherIssues: 'https://github.com/Blockheads-Club/blockheads-patcher/issues'
+  org: GH,
+  pcRepo: GH + '/blockheads-pc',
+  pcIssues: GH + '/blockheads-pc/issues',
+  patcherRepo: GH + '/blockheads-patcher',
+  patcherIssues: GH + '/blockheads-patcher/issues',
+  serverRepo: GH + '/blockheads-server',
+  serverIssues: GH + '/blockheads-server/issues',
+  websiteRepo: GH + '/website',
+  websiteIssues: GH + '/website/issues',
+  modSdk: GH + '/mod-sdk',
+  modSdkIssues: GH + '/mod-sdk/issues',
+  i18nFiles: GH + '/website/tree/dev/src/lib/i18n',
+  docsSource: GH + '/website/tree/dev/docs',
+  goodFirstIssues: 'https://github.com/issues?q=is%3Aopen+is%3Aissue+org%3ABlockheads-Club+label%3A%22good+first+issue%22',
+  openIssues: 'https://github.com/issues?q=is%3Aopen+is%3Aissue+org%3ABlockheads-Club',
+  licence: GH + '/website/blob/dev/LICENSE'
 } as const;
+
+export type LinkKey = keyof typeof LINKS;
 
 /** Canonical site URL (GitHub Pages); used for absolute OpenGraph URLs. Ends with a slash. */
 export const SITE_URL = 'https://blockheads-club.github.io/website/';

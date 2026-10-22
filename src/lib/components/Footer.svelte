@@ -1,108 +1,79 @@
 <script lang="ts">
   import { base } from '$app/paths';
+  import { APPS, appName } from '$lib/apps';
   import { LINKS } from '$lib/config';
   import { docsPath } from '$lib/i18n';
   import { dict, i18n } from '$lib/locale.svelte';
-  import type { RouteKey } from '$lib/route';
-  import { cycleThemePref, theme } from '$lib/theme.svelte';
-  import Button from './Button.svelte';
-  import Icon from './Icon.svelte';
+  import { PATHS } from '$lib/route';
   import LangSwitch from './LangSwitch.svelte';
+  import ThemeToggle from './ThemeToggle.svelte';
   import Wordmark from './Wordmark.svelte';
 
-  let { route, rich = false }: { route: RouteKey; rich?: boolean } = $props();
-
   const d = $derived(dict());
-  const themeLabel = $derived(
-    { system: d.nav.themeNowSystem, light: d.nav.themeNowLight, dark: d.nav.themeNowDark }[theme.pref]
-  );
-  const themeIcon = $derived(({ system: 'monitor', light: 'sun', dark: 'moon' } as const)[theme.pref]);
+  const docs = (page = '') => base + docsPath(i18n.locale, page);
 </script>
 
-<footer class="foot">
-  {#if rich}
-    <div class="wrap rich">
-      <div class="cols">
-        <div class="brand">
-          <Wordmark logo={40} />
-          <p class="muted">
-            <span>{d.footer.tagline}</span>
-            <Icon name="heart" size={15} label={d.footer.love} class="love" />
-            <span>{d.footer.taglineEnd}</span>
-          </p>
-        </div>
-        <nav aria-label={d.footer.products}>
-          <p>{d.footer.products}</p>
-          <a href={base + '/#patcher'}>{d.nav.patcher}</a>
-          <a href={base + '/server'}>{d.nav.server}</a>
-          <a href={base + '/server#downloads'}>{d.footer.downloads}</a>
-        </nav>
-        <nav aria-label={d.footer.help}>
-          <p>{d.footer.help}</p>
-          <a href={base + docsPath(i18n.locale)} rel="external">{d.nav.docs}</a>
-          <a href={base + '/guides'}>{d.nav.guides}</a>
-          <a href={base + '/faq'}>{d.nav.faq}</a>
-          <a href={LINKS.websiteIssues} rel="noopener">{d.footer.reportBug}</a>
-        </nav>
-        <nav aria-label={d.footer.project}>
-          <p>{d.footer.project}</p>
-          <a href={LINKS.org} rel="noopener">{d.nav.github}</a>
-          <a href={LINKS.websiteRepo} rel="noopener">{d.footer.translate}</a>
-          <a href={base + '/legal'} aria-current={route === 'legal' ? 'page' : undefined}>{d.footer.legal}</a>
-        </nav>
-      </div>
-      <div class="bottom">
+<footer class="ftr">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brand">
+        <Wordmark logo={36} />
+        <p class="muted tag">{d.footer.tagline}</p>
         <p class="hint">{d.footer.disclaimer}</p>
-        <div class="prefs">
-          <LangSwitch variant="footer" />
-          <Button size="sm" icon={themeIcon} onclick={cycleThemePref}>{themeLabel}</Button>
-        </div>
       </div>
-    </div>
-  {:else}
-    <div class="wrap slim">
-      <p class="hint">
-        <span>{d.footer.short}</span>
-        {#if route !== 'legal'}<a href={base + '/legal'}>{d.footer.legal}</a>{/if}
-      </p>
-      <nav aria-label={d.footer.nav}>
-        <a href={base + docsPath(i18n.locale)} rel="external">{d.nav.docs}</a>
-        <a href={base + '/guides'}>{d.nav.guides}</a>
-        <a href={base + '/faq'}>{d.nav.faq}</a>
-        <a href={LINKS.org} rel="noopener">{d.nav.github}</a>
-        <a href={base + '/legal'} aria-current={route === 'legal' ? 'page' : undefined}>{d.footer.legalShort}</a>
+      <nav aria-label={d.footer.nav} class="links">
+        <div>
+          <h2>{d.footer.apps}</h2>
+          <ul>
+            {#each APPS as a (a.id)}<li><a href={base + a.path}>{appName(a.id, d)}</a></li>{/each}
+            <li><a href={base + PATHS.mods}>{d.footer.modsSoon}</a></li>
+            <li><a href={base + PATHS.download}>{d.footer.allDownloads}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>{d.footer.help}</h2>
+          <ul>
+            <li><a href={docs()} rel="external">{d.nav.docs + ' ↗'}</a></li>
+            <li><a href={docs('guides/')} rel="external">{d.footer.guides + ' ↗'}</a></li>
+            <li><a href={docs('faq')} rel="external">{d.footer.faq + ' ↗'}</a></li>
+            <li><a href={LINKS.websiteIssues}>{d.footer.bug + ' ↗'}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>{d.footer.project}</h2>
+          <ul>
+            <li><a href={base + PATHS.contribute}>{d.nav.contribute}</a></li>
+            <li><a href={base + PATHS.about}>{d.nav.about}</a></li>
+            <li><a href={LINKS.org}>{'GitHub ↗'}</a></li>
+            <li><a href={base + PATHS.about + '#lic'}>{d.footer.licence}</a></li>
+          </ul>
+        </div>
       </nav>
     </div>
-  {/if}
+    <div class="bottom">
+      <p class="hint">{d.footer.fine}</p>
+      <div class="row tools">
+        <LangSwitch variant="footer" />
+        <ThemeToggle labelled />
+      </div>
+    </div>
+  </div>
 </footer>
 
 <style>
-  .foot {
-    border-top: 3px solid #1f1a17;
+  .ftr {
     background: var(--surface-2);
-  }
-  .foot a {
-    color: var(--text-2);
-    text-decoration: none;
-  }
-  .foot a:hover {
-    color: var(--text);
-    text-decoration: underline;
-  }
-  .foot a[aria-current='page'] {
-    color: var(--text);
-    font-weight: 700;
-  }
-  .rich {
-    padding-top: 56px;
-    padding-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    border-top: 2px solid var(--line);
+    padding: 56px 0 36px;
   }
   .cols {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 3fr);
+    gap: 32px;
+  }
+  .links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 32px;
   }
   .brand {
@@ -110,59 +81,56 @@
     flex-direction: column;
     gap: 14px;
   }
-  .brand p {
-    font-size: 14.5px;
+  .tag {
+    font-size: 15px;
   }
-  .brand :global(.love) {
-    width: 15px;
-    height: 15px;
-    vertical-align: -2px;
-    color: var(--primary);
+  h2 {
+    font: 700 15px var(--f-body);
+    color: var(--text-3);
+    margin-bottom: 10px;
   }
-  nav {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 2px;
   }
-  nav p {
+  li a {
+    color: var(--text);
+    text-decoration: none;
     font-weight: 700;
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+  }
+  li a:hover {
+    color: var(--primary-ink);
+    text-decoration: underline;
   }
   .bottom {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 16px;
     flex-wrap: wrap;
     align-items: center;
+    margin-top: 40px;
+    padding-top: 20px;
     border-top: 2px solid var(--line);
-    padding-top: 24px;
   }
-  .bottom .hint {
-    max-width: 720px;
+  .tools {
+    gap: 6px;
   }
-  .prefs {
-    display: flex;
-    gap: 8px;
+  @media (max-width: 860px) {
+    .cols {
+      grid-template-columns: 1fr;
+    }
   }
-  .slim {
-    padding-top: 32px;
-    padding-bottom: 32px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .slim .hint {
-    max-width: 640px;
-  }
-  .slim nav {
-    flex-direction: row;
-    gap: 18px;
-    flex-wrap: wrap;
-  }
-  .slim nav a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
+  @media (max-width: 560px) {
+    .links {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
   }
 </style>

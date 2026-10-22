@@ -1,10 +1,4 @@
-import { error } from '@sveltejs/kit';
-import { ARTICLE_IDS } from '$lib/guides';
-import type { EntryGenerator, PageLoad } from './$types';
+import { OLD_GUIDES } from '$lib/route';
 
-export const entries: EntryGenerator = () => ARTICLE_IDS.map((slug) => ({ slug }));
-
-export const load: PageLoad = ({ params }) => {
-  if (!ARTICLE_IDS.includes(params.slug)) error(404, 'Not found');
-  return { id: params.slug };
-};
+// Every old guide URL is prerendered as a redirect page to docs/guides/<id>.
+export const entries = () => OLD_GUIDES.map((slug) => ({ slug }));

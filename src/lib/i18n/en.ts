@@ -1,1032 +1,462 @@
-export interface Step {
+/** One numbered step, feature card or link card. */
+export interface Item {
   title: string;
-  text?: string;
-  hint?: string;
-  button?: string;
-}
-
-export interface GuideStep {
-  title: string;
-  /** Paragraphs (inline markup allowed). */
-  body: string[];
-  list?: string[];
-  tip?: string;
-  warn?: string;
-}
-
-/** Plural forms picked with Intl.PluralRules (en/tr/kk use one/other; ru also uses few/many). */
-export interface Plural {
-  one: string;
-  few: string;
-  many: string;
-  other: string;
-}
-
-export interface GuideDoc {
-  tags: string;
-  title: string;
-  lead: string;
-  need: string[];
-  steps: GuideStep[];
-  help: string[];
+  body: string;
 }
 
 export const en = {
   meta: {
     title: 'Blockheads Club',
     description:
-      'A community project around The Blockheads: a patcher that fixes the game on modern Android and a clean-room open-source dedicated server.',
+      'Free, open-source tools for The Blockheads, made by players: play on your computer, fix the game on new phones and host worlds for friends.',
     titles: {
       home: 'Blockheads Club',
-      server: 'Server quick start · Blockheads Club',
-      guides: 'Guides · Blockheads Club',
-      faq: 'FAQ · Blockheads Club',
-      legal: 'Legal notice · Blockheads Club'
+      download: 'Download · Blockheads Club',
+      pc: 'Blockheads PC · Blockheads Club',
+      patcher: 'Patcher · Blockheads Club',
+      server: 'Server · Blockheads Club',
+      mods: 'Mods · Blockheads Club',
+      contribute: 'Get involved · Blockheads Club',
+      about: 'About & legal · Blockheads Club',
+      moved: 'This page moved · Blockheads Club'
     }
   },
   nav: {
     skip: 'Skip to content',
     label: 'Main',
     home: 'Blockheads Club home',
-    patcher: 'Patcher',
-    server: 'Server',
-    guides: 'Guides',
-    faq: 'FAQ',
+    apps: 'Apps',
     docs: 'Docs',
-    github: 'GitHub',
+    contribute: 'Get involved',
+    about: 'About & legal',
+    download: 'Download',
+    github: 'Source code on GitHub',
     menu: 'Menu',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     language: 'Language',
-    theme: 'Theme',
     themeToLight: 'Switch to light theme',
     themeToDark: 'Switch to dark theme',
     themeLight: 'Light',
     themeDark: 'Dark',
-    themeSystem: 'System',
-    themeNowSystem: 'System theme',
-    themeNowLight: 'Light theme',
-    themeNowDark: 'Dark theme'
+    notSure: 'Not sure which one you need?',
+    helpChoose: 'Help me choose',
+    soon: 'Coming soon',
+    soonShort: 'Soon'
+  },
+  apps: {
+    pc: {
+      task: 'Play on my computer',
+      menu: 'Play your own copy on Windows, macOS and Linux',
+      card: 'Play your own copy of the game in a window or full screen, with keyboard and mouse.',
+      get: 'Get Blockheads PC'
+    },
+    patcher: {
+      task: 'Fix the game on my phone',
+      menu: 'Fix the game on new Android phones',
+      card: 'Stops the game from freezing or crashing on new Android versions. Works in your browser too.',
+      get: 'Get the Patcher'
+    },
+    server: {
+      task: 'Play with friends',
+      menu: 'Host a world for your friends',
+      card: 'Host a world your friends can join — on a PC, an old phone, a Raspberry Pi or with Docker.',
+      get: 'Get the Server'
+    },
+    mods: {
+      task: 'Add mods',
+      menu: 'Add new things to servers and the game'
+    },
+    names: { server: 'Server', mods: 'Mods' }
+  },
+  devices: {
+    windows: 'Windows',
+    macos: 'macOS',
+    linux: 'Linux',
+    android: 'Android',
+    pi: 'Raspberry Pi',
+    docker: 'Docker',
+    ios: 'iPhone / iPad',
+    web: 'Web',
+    desktop: 'Desktop'
+  },
+  common: {
+    unofficial: 'Unofficial fan project. Not affiliated with Majic Jungle Software or Noodlecake.',
+    free: 'Free',
+    openSource: 'Open source',
+    learnMore: 'Learn more'
   },
   home: {
-    hero: {
-      badge: 'Free · open source · made by players',
-      title: 'Keep The Blockheads playable — on today’s phones and your own servers.',
-      lead: 'Blockheads Club is a community project. We fix the game when new Android versions break it, and we let you host worlds for your friends.',
-      ctaFix: 'Fix my game',
-      ctaHost: 'Host a server',
-      disclaimer: 'Unofficial fan project. Not affiliated with Majic Jungle Software or Noodlecake.',
-      cardTitle: 'Game 1.7.6 found',
-      ready: 'Ready',
-      fixPopup: 'Welcome popup freeze',
-      fixWorld: 'World loading crash'
+    badge: 'Free · Open source · Made by players',
+    title: 'The Blockheads, kept alive by its players.',
+    lead: 'Free tools to play the game on your computer, fix it on new phones and host worlds for friends.',
+    cta: 'Get the right download',
+    ctaWhat: 'What is Blockheads Club?',
+    tileSoon: 'soon',
+    q: 'What do you want to do?',
+    qLead: 'Three free apps. Pick the one for what you want to do.',
+    mods: {
+      title: 'Mods are coming',
+      body: 'New things for servers and the game, from a public list reviewed by the maintainers. You can make your own.',
+      link: 'See what’s planned'
     },
     what: {
       eyebrow: 'What is Blockheads Club?',
-      title: 'A friendly toolbox for a game we still love.',
-      lead: 'The Blockheads is a sandbox game for phones. Some versions no longer start properly on new Android phones, and many players want their own servers. We build free tools for both.',
-      items: [
-        {
-          title: 'Open source, always free',
-          body: 'Every tool is on GitHub. Anyone can read the code, report bugs or help translate.'
-        },
-        {
-          title: 'Your copy stays yours',
-          body: 'The Patcher changes the game you already have, on your own device. We never host or share the game.'
-        },
-        {
-          title: 'Made by players',
-          body: 'Volunteers run this project for fun. We are not the game’s developers and not connected to them.'
-        }
-      ]
-    },
-    patcher: {
-      eyebrow: 'Blockheads Patcher',
-      title: 'Game stuck on the “Welcome” popup? Let’s fix it.',
-      lead: 'On modern Android, game versions 1.7.4 to 1.7.6 can freeze on the first popup. Version 1.7.6 can also crash while loading a world. The Patcher repairs your own copy of the game in a few clicks.',
-      fixes: [
-        {
-          title: 'Welcome popup freeze',
-          versions: '1.7.4 · 1.7.5 · 1.7.6',
-          body: 'The game opens normally again on modern Android.'
-        },
-        {
-          title: 'World loading crash',
-          versions: '1.7.6',
-          body: 'Your worlds load without the game closing.'
-        }
-      ],
-      noteStrong: 'Nothing is uploaded.',
-      note: 'Patching runs on your device — even the web app works offline in your browser. You need your own copy of the game.',
-      howTitle: 'How it works',
+      title: 'A group of players keeping a game we love playable.',
+      lead: 'The Blockheads is a sandbox game from 2013. New phones and computers broke parts of it. We build free tools so people can keep playing — and we share all the code.',
+      free: 'Free, no ads',
+      gpl: 'Open source (GPL)',
       steps: [
-        { title: 'Give it your game', body: 'Drop the APK file. On Android, just pick the installed game.' },
-        { title: 'Check the fixes', body: 'The Patcher finds your version and ticks the fixes you need.' },
+        { title: 'Bring your own copy', body: 'You use the game file you already have. We never share or sell the game.' },
         {
-          title: 'Install and play',
-          body: 'Save the fixed game, or install it right away on your phone. Back up your worlds first — the guide shows how.'
-        }
-      ],
-      ctaWeb: 'Open the web Patcher',
-      getTitle: 'Get the Patcher',
-      platforms: [
-        { name: 'Web app', hint: 'Any modern browser' },
-        { name: 'Android', hint: 'APK · Android 7.0+' },
-        { name: 'Windows', hint: '10 / 11 · x64' },
-        { name: 'macOS', hint: 'Apple silicon & Intel' },
-        { name: 'Linux', hint: 'AppImage · .deb' }
-      ],
-      version:
-        'Current version **0.1.0** (pre-release, 20 October 2026) · [Release notes](patcherReleases) · [Checksums](patcherReleases)'
-    },
-    server: {
-      eyebrow: 'Blockheads Server',
-      title: 'Your world, your rules, always online.',
-      lead: 'An open-source dedicated server for The Blockheads. Run it on a PC, a Raspberry Pi or in Docker — or turn an old Android phone into a server with our app.',
-      platforms: ['Windows', 'macOS', 'Linux', 'Raspberry Pi / ARM', 'Docker', 'Android app'],
-      ctaStart: 'Start in 5 minutes',
-      ctaDownloads: 'Downloads',
-      exampleNote: 'Example output. Commands on the Server page use your real platform.'
-    },
-    guides: {
-      eyebrow: 'Guides',
-      title: 'Step by step, with pictures.',
-      all: 'All guides',
-      minRead: { one: 'min read', few: 'min read', many: 'min read', other: 'min read' } as Plural
-    },
-    faq: {
-      eyebrow: 'FAQ',
-      title: 'Good questions',
-      lead: 'Can’t find your answer? [See all questions](faq) or ask on [GitHub](websiteIssues).',
-      items: [
-        {
-          q: 'Is this the official Blockheads?',
-          a: 'No. Blockheads Club is an independent fan project. We are not connected to Majic Jungle Software or Noodlecake, and we do not distribute the game.'
+          title: 'Pick a free tool',
+          body: 'Blockheads PC, Patcher or Server. Each one is open source, so anyone can check what it does.'
         },
-        {
-          q: 'Is it safe? Do you see my files?',
-          a: 'Patching happens on your device. Nothing is uploaded to us or anyone else.'
-        },
-        {
-          q: 'Will I lose my worlds?',
-          a: 'On Android you must remove the original game first. Back up your worlds before you do.'
-        }
-      ]
+        { title: 'Play', body: 'Your worlds stay on your devices. Guides in the docs help when you get stuck.' }
+      ] as Item[]
+    },
+    join: {
+      eyebrow: 'Made by players',
+      title: 'Come help — every skill counts.',
+      lead: 'You don’t need to be a programmer. Translations, bug reports and guides help as much as code.',
+      cta: 'Get involved',
+      code: 'See the code',
+      cards: [
+        { title: 'Write code', body: 'Rust, TypeScript and Svelte — good first issues are labelled' },
+        { title: 'Translate', body: 'English, Türkçe, Русский, Қазақша — and new languages' },
+        { title: 'Test and report bugs', body: 'Try new releases, tell us what breaks' },
+        { title: 'Write guides', body: 'Help other players in the docs' }
+      ] as Item[]
+    },
+    releases: {
+      title: 'Latest releases',
+      all: 'All releases on GitHub',
+      whatsNew: 'What’s new',
+      note: 'Filled from GitHub releases when the site is built, so it never goes out of date.',
+      failed: 'See GitHub for the latest version'
+    },
+    docs: {
+      eyebrow: 'Docs',
+      title: 'Stuck? The docs have step-by-step guides.',
+      lead: 'Install steps for every platform, backups, hosting, and answers to common questions. In 4 languages.',
+      cta: 'Open the docs'
     }
+  },
+  product: {
+    home: 'Home',
+    apps: 'Apps',
+    breadcrumb: 'Breadcrumb',
+    what: 'What it does',
+    how: 'How it works',
+    before: 'Before you start',
+    platforms: 'Platforms',
+    open: 'Open',
+    download: 'Download',
+    otherPlatforms: 'Other platforms',
+    help: 'Need help?',
+    helpLead: 'The docs have step-by-step guides with pictures, in 4 languages.',
+    report: 'Report a problem on GitHub',
+    latest: 'Latest version on GitHub'
+  },
+  pc: {
+    tagline: 'Play your own copy of The Blockheads on your computer.',
+    lead: 'A free launcher for Windows, macOS and Linux. Keyboard and mouse, a big window or full screen — with your worlds kept safe.',
+    features: [
+      { title: 'Play with keyboard and mouse', body: 'Set your own keys. Controllers work too.' },
+      { title: 'Any window size', body: 'From a small window to full screen, sharp on big monitors.' },
+      { title: 'Join any server', body: 'Play with friends on Blockheads Server worlds.' }
+    ] as Item[],
+    steps: [
+      { title: 'Install Blockheads PC', body: 'A normal installer. No account needed.' },
+      { title: 'Add your game file', body: 'Pick the APK of the game you own (1.7.4 to 1.7.6). We never share the game.' },
+      { title: 'Play', body: 'Your settings and worlds stay on your computer.' }
+    ] as Item[],
+    before: [
+      'Your own copy of the game (the APK file)',
+      '64-bit Windows 10 or 11, macOS 11 or newer, or Linux',
+      'An Intel, AMD or ARM processor'
+    ],
+    platforms: ['Windows 10, 11', 'macOS 11+', 'Linux · AppImage, .deb, .rpm'],
+    guides: ['Get the game file from your phone', 'Install, import saves and set up controls', 'Join a friend’s server'],
+    snipTitle: 'Your copy · ready',
+    snipPlay: 'Play'
+  },
+  patcher: {
+    tagline: 'Fix The Blockheads on new Android phones.',
+    lead: 'Some versions freeze or crash on new Android. The Patcher repairs your own copy in a few clicks — in your browser, on your phone or on a computer.',
+    primary: 'Open the web Patcher',
+    features: [
+      { title: 'Fixes the freeze and crashes', body: 'For versions 1.7.4 to 1.7.6. It ticks the fixes your version needs.' },
+      { title: 'Nothing is uploaded', body: 'Everything happens on your device, even in the browser.' },
+      { title: 'More fixes as packs', body: 'Optional: import patch packs to add more fixes.' }
+    ] as Item[],
+    steps: [
+      { title: 'Give it your game', body: 'Drop the APK file, or pick the installed game on Android.' },
+      { title: 'Check the fixes', body: 'The Patcher finds your version and ticks what it needs.' },
+      { title: 'Install and play', body: 'Back up your worlds first — the guide shows how.' }
+    ] as Item[],
+    before: [
+      'Your own copy of the game (version 1.7.4 – 1.7.6)',
+      'A browser, or Android 7.0 or newer for the app',
+      'A backup of your worlds'
+    ],
+    platforms: ['Any browser · no install', 'Android app', 'Windows', 'macOS', 'Linux'],
+    guides: ['Fix the game on your phone, start to finish', 'Back up your worlds before patching', 'Get the APK from your phone'],
+    snipFound: 'Game 1.7.6 found',
+    snipReady: 'Ready',
+    snipFix1: 'Welcome popup freeze',
+    snipFix2: 'World loading crash'
   },
   server: {
-    hero: {
-      eyebrow: 'Blockheads Server',
-      title: 'Host a world your friends can join any time.',
-      lead: 'A free, open-source dedicated server. Run it on a computer, a Raspberry Pi or Docker — or on an Android phone with our app.',
-      ctaQuick: 'Quick start',
-      ctaDownloads: 'All downloads',
-      whatTitle: 'What you get',
-      features: [
-        { title: 'Worlds', hint: 'Create, load, back up' },
-        { title: 'Live console', hint: 'Search, commands, history' },
-        { title: 'Players', hint: 'Kick, ban, admins, mods' },
-        { title: 'Access lists', hint: 'Whitelist, blacklist' }
-      ],
-      note: 'Desktop app, Android app and a browser admin panel share the same interface.'
-    },
-    quick: {
-      eyebrow: 'Quick start',
-      title: 'Pick your platform',
-      lead: 'Each step has a command you can copy. To stop the server cleanly, type /stop in its console: it saves the world and exits. Ctrl + C stops it without a final save.',
-      tabsLabel: 'Platform',
-      copy: 'Copy',
-      copied: 'Copied',
-      copyFailed: 'Copy failed',
-      copyLabel: 'Copy command',
-      platforms: {
-        win: {
-          label: 'Windows',
-          steps: [
-            {
-              title: 'Download and unzip',
-              text: 'Get `blockheads-server-v0.1.1-x86_64-pc-windows-msvc.zip` (or `aarch64-pc-windows-msvc` on ARM) and unzip it into a folder, for example Documents\\Blockheads Server.',
-              button: 'Download for Windows'
-            },
-            {
-              title: 'Start the server',
-              text: 'Open PowerShell in that folder and run:',
-              hint: 'Prefer clicking? Install the desktop app instead — it has the same features with buttons.'
-            },
-            {
-              title: 'Allow it on your network',
-              text: 'When Windows Firewall asks, allow access on **private networks**. Now connect from your phone (below).'
-            }
-          ] as Step[]
-        },
-        mac: {
-          label: 'macOS',
-          steps: [
-            { title: 'Download and unpack' },
-            {
-              title: 'Let macOS open it',
-              text: 'The first time, remove the download flag so Gatekeeper allows the program:'
-            },
-            { title: 'Start the server' }
-          ] as Step[]
-        },
-        linux: {
-          label: 'Linux',
-          steps: [
-            { title: 'Download and unpack' },
-            {
-              title: 'Start the server',
-              hint: 'Run it as a service with the Raspberry Pi guide — its systemd steps work on any systemd Linux.'
-            }
-          ] as Step[]
-        },
-        pi: {
-          label: 'Raspberry Pi',
-          steps: [
-            {
-              title: 'Download the ARM build',
-              text: 'Use the `aarch64` build on a 64-bit OS and the `armv7` build on a 32-bit OS.'
-            },
-            {
-              title: 'Start it on every boot',
-              text: 'Create a systemd service as shown in the [Raspberry Pi guide](raspberryPi), then enable it:'
-            }
-          ] as Step[]
-        },
-        docker: {
-          label: 'Docker',
-          steps: [
-            {
-              title: 'Run the container',
-              text: 'Map the port as UDP. Worlds are kept in the `bh-data` volume, so they survive updates. To restart the same world later, use `--load` (see the [Docker guide](docker)).'
-            },
-            { title: 'Open the console' }
-          ] as Step[]
-        },
-        android: {
-          label: 'Android',
-          steps: [
-            {
-              title: 'Install the Server app',
-              text: 'Download the APK and open it. Android may ask you to allow installs from your browser.',
-              button: 'Download for Android'
-            },
-            {
-              title: 'Create a world and tap Start',
-              text: 'The server keeps running in the background. A notification shows its status, the players and the address, with a Stop server button.'
-            },
-            {
-              title: 'Keep the phone charging',
-              text: 'Hosting uses battery. The app keeps the phone and Wi-Fi awake while the server runs. If your phone still stops it, turn off battery optimization for the app in Android’s settings.'
-            }
-          ] as Step[]
-        }
-      }
-    },
-    connect: {
-      eyebrow: 'Connect',
-      title: 'Join from your phone',
-      lead: 'Your phone and the server must be on the same Wi-Fi. The desktop and Android apps show the address on the dashboard and as a QR code. For the command-line server, use the computer’s local IP address.',
-      steps: [
-        {
-          title: 'Find the address',
-          body: 'For example `192.168.1.42` and port `15151`. Scan the QR code to copy it on the phone.'
-        },
-        {
-          title: 'Open the game’s multiplayer menu',
-          body: 'Go to **Join World** → **Advanced...** → **Online IP/Port...**.'
-        },
-        {
-          title: 'Enter the address and play',
-          body: 'If the server has a password, the game asks for it.'
-        }
-      ],
-      qrLabel: 'Example QR code for 192.168.1.42:15151',
-      wifi: 'On your Wi-Fi',
-      addressHint: 'Example address, as shown on the Server dashboard.',
-      warnTitle: 'Playing over the internet?',
-      warnBody:
-        'Forward UDP port 15151 on your router to the server computer and share your public IP. Set a password or turn on the whitelist first. [Read the guide](openInternet)',
-      info: 'Your phone needs a game version that matches the server. Patched and original games can play together.'
-    },
-    downloads: {
-      title: 'Downloads',
-      items: [
-        { name: 'Desktop app', hint: 'Windows · macOS · Linux' },
-        { name: 'Command-line server', hint: 'x64 · ARM64 · ARMv7' },
-        { name: 'Docker image', hint: 'multi-arch · `ghcr.io/blockheads-club/blockheads-server`' },
-        { name: 'Android app', hint: 'APK · Android 7.0+' }
-      ],
-      version:
-        'Version **0.1.1** (pre-release, 20 October 2026) · [Release notes](serverReleases) · [Checksums](serverReleases) · [Source on GitHub](serverRepo)'
-    }
-  },
-  guides: {
-    eyebrow: 'Guides',
-    title: 'Learn it step by step',
-    lead: 'Short, illustrated guides for players and server hosts. Each one says how long it takes and what you need.',
-    searchLabel: 'Search guides',
-    searchPlaceholder: 'Search guides, e.g. “backup” or “port”',
-    filterLabel: 'Filter by topic',
-    filters: {
-      all: 'All guides',
-      patcher: 'Patcher',
-      server: 'Server',
-      android: 'Android',
-      beginner: 'Beginner',
-      advanced: 'Advanced'
-    },
-    startHere: 'Start here',
-    patcherTitle: 'Patcher',
-    serverTitle: 'Server',
-    min: 'min',
-    comingSoon: 'Coming soon',
-    noResults: 'No guides match your search.',
-    clear: 'Clear search and filters',
-    resultsStatus: { one: 'guide shown', few: 'guides shown', many: 'guides shown', other: 'guides shown' } as Plural,
-    missing: 'Missing a guide, or found a mistake?',
-    suggest: 'Suggest it on GitHub',
-    items: [
-      {
-        id: 'fix-game-on-phone',
-        title: 'Fix the game on your phone, start to finish',
-        summary: 'Back up worlds, patch, uninstall the original and install the fixed game.'
-      },
-      {
-        id: 'lan-play',
-        title: 'Play with friends on the same Wi-Fi',
-        summary: 'Start a server on your computer and join from every phone at home.'
-      },
-      {
-        id: 'backup-worlds',
-        title: 'Back up your worlds before patching',
-        summary: 'Why the original game must be removed and how to keep your worlds.'
-      },
-      {
-        id: 'get-apk',
-        title: 'Get the APK of the game you own',
-        summary: 'Copy the installed game from your phone to your computer.'
-      },
-      {
-        id: 'signing-key',
-        title: 'Keep your signing key safe',
-        summary: 'Why updates need the same key, and how to export and import it.'
-      },
-      {
-        id: 'raspberry-pi',
-        title: 'Run a 24/7 server on a Raspberry Pi',
-        summary: 'Install the ARM build, start on boot and keep automatic backups.'
-      },
-      {
-        id: 'open-internet',
-        title: 'Open your server to the internet',
-        summary: 'Port forwarding, passwords and whitelists, step by step.'
-      },
-      {
-        id: 'admins-mods',
-        title: 'Admins, mods and bans explained',
-        summary: 'Who can do what, and how to manage players from the app.'
-      },
-      {
-        id: 'host-android',
-        title: 'Host from an Android phone',
-        summary: 'Keep the server running in the background without Android stopping it.'
-      },
-      {
-        id: 'docker',
-        title: 'Docker and Docker Compose',
-        summary: 'Volumes, updates and logs for container hosts.'
-      }
-    ]
-  },
-  article: {
-    breadcrumb: 'Breadcrumb',
-    guides: 'Guides',
-    topic: 'Patcher',
-    tags: 'Patcher · Android',
-    level: 'Beginner',
-    title: 'Fix the game on your phone, start to finish',
-    lead: 'This guide uses the Blockheads Patcher app for Android. You will keep your worlds, fix the “Welcome” freeze and — on 1.7.6 — the world-loading crash.',
-    updated: 'Updated 21 October 2026 · [Edit this page on GitHub](websiteRepo)',
-    toc: 'On this page',
-    need: {
-      title: 'What you need',
-      items: [
-        'The Blockheads 1.7.4, 1.7.5 or 1.7.6, installed on your phone',
-        'The Blockheads Patcher app ([download](patcherReleases))',
-        'About 200 MB of free space'
-      ]
-    },
-    s1: {
-      title: 'Back up your worlds',
-      body: 'Android only lets you install the fixed game after the original is removed. Removing the game also deletes the worlds saved on this phone — so save them somewhere else first.',
-      calloutStrong: 'Don’t skip this.',
-      callout:
-        'Worlds that are only on this phone can’t be recovered after you uninstall the game. Worlds on a server are safe.'
-    },
-    s2: {
-      title: 'Pick the installed game',
-      body: 'Open the Patcher and tap **Use installed game**. The Patcher reads the game on your phone and shows its version. Nothing is uploaded.'
-    },
-    s3: {
-      title: 'Patch it',
-      body: 'The fixes your version needs are already ticked. Tap **Patch game** and wait about a minute. Keep the app open.',
-      callout:
-        'The Patcher signs the game with **your own key**. Keep that key — you need the same one to install future updates without losing worlds again. [Learn about signing keys](signingKey)'
-    },
-    s4: {
-      title: 'Swap the games',
-      body: 'Tick **My worlds are backed up, or I don’t need them**, tap **Uninstall original** and confirm. Then tap **Install fixed game**. If Android asks, allow the Patcher to install apps.'
-    },
-    s5: {
-      title: 'Bring your worlds back',
-      body: 'Open the fixed game and restore the worlds you saved in step 1. The Welcome popup now closes normally.'
-    },
-    help: {
-      title: 'If something goes wrong',
-      items: [
-        '**“App not installed”** — the original game is still on the phone. Uninstall it first.',
-        '**“Version not supported”** — this guide is for 1.7.4–1.7.6 only.',
-        'Still stuck? [Open an issue on GitHub](patcherIssues) and attach the Patcher log.'
-      ]
-    },
-    helpful: 'Was this guide helpful?',
-    yes: 'Yes',
-    no: 'No',
-    thanks: 'Thanks for the feedback!',
-    previous: 'Previous',
-    next: 'Next',
-    prevTitle: 'Get the APK of the game you own',
-    nextTitle: 'Keep your signing key safe'
-  },
-  docs: {
-    'lan-play': {
-      tags: 'Server · Wi-Fi',
-      title: 'Play with friends on the same Wi-Fi',
-      lead: 'Start a server on a computer at home and let every phone on your Wi-Fi join the same world. It takes about four minutes.',
-      need: [
-        'A Windows, macOS or Linux computer on the same Wi-Fi as the phones',
-        'Blockheads Server — the desktop app or the command-line server ([downloads](serverReleases))',
-        'The Blockheads on every phone. On modern Android, [fix the game first](fixGameOnPhone)'
-      ],
-      steps: [
-        {
-          title: 'Start a server',
-          body: [
-            '**Desktop app:** open **Worlds**, tap **Create world**, give it a name and tap **Start server**.',
-            '**Command line:** unpack the download for your computer and create a world. The server starts right away:'
-          ],
-          tip: 'Stop the command-line server with `/stop`. Ctrl + C closes it without a final save.'
-        },
-        {
-          title: 'Let it through the firewall',
-          body: [
-            'The server uses **UDP port 15151**. When Windows Firewall asks, allow access on **private networks**. On other systems, allow incoming UDP on port 15151 if you use a firewall.'
-          ]
-        },
-        {
-          title: 'Find the server’s address',
-          body: [
-            'In the desktop app, the **Dashboard** has a **Connect from a phone** card with the **LAN address**, the port and a QR code. Scan the code with a phone camera to copy the address.',
-            'On the command line, look up your computer’s local IP address in its network settings, for example `192.168.1.42`.'
-          ]
-        },
-        {
-          title: 'Join from the game',
-          body: ['On each phone, open the game and go to:'],
-          list: [
-            '**Join World** → **Advanced...** → **Online IP/Port...**',
-            'Enter the address and the port (the field already says `15151`)',
-            'Tap **Join Online World**'
-          ],
-          tip: 'If the server has a password, the game asks for it.'
-        }
-      ],
-      help: [
-        '**Nobody can connect** — check that the phones are on the same Wi-Fi (not a guest network) and that the firewall allows UDP 15151.',
-        '**One friend is refused** — if the whitelist has names in it, only those names can join. See [Admins, mods and bans](adminsMods).',
-        'Still stuck? [Open an issue on GitHub](serverIssues) and paste the server log.'
-      ]
-    } as GuideDoc,
-    'backup-worlds': {
-      tags: 'Patcher · Android',
-      title: 'Back up your worlds before patching',
-      lead: 'On Android you must remove the original game before you can install the fixed one — and that deletes the worlds saved on the phone. Here is why, and how to keep them.',
-      need: ['The Blockheads installed on your phone', 'A few minutes before you start patching'],
-      steps: [
-        {
-          title: 'Know why the original has to go',
-          body: [
-            'The Patcher signs the fixed game with **your own key**, not the original one. Android won’t install an app over another app with a different signature, so the original must be uninstalled first.'
-          ],
-          warn: '**Worlds stored on that phone are deleted with it.** Worlds hosted on servers are not affected.'
-        },
-        {
-          title: 'Back up every world in the game',
-          body: [
-            'Open the original game on your phone and use its own backup for each world you want to keep. The Patcher can’t do this for you: it never touches your saves.'
-          ]
-        },
-        {
-          title: 'Confirm in the Patcher',
-          body: [
-            'Before the Patcher removes the original, it shows **Your worlds on this phone will be deleted**. Tick **My worlds are backed up, or I don’t need them** to go on.'
-          ]
-        },
-        {
-          title: 'Restore after installing',
-          body: ['When the fixed game is installed, open it and restore your worlds from your backup.'],
-          tip: 'The fix **Offer to keep game data when uninstalling** is on by default. With it, Android 10 and newer ask whether to keep the game’s data if you ever uninstall the fixed game.'
-        },
-        {
-          title: 'Skip this next time',
-          body: [
-            'Keep your signing key. If you patch again with the same key, the update installs over your fixed game and your worlds stay. [Keep your signing key safe](signingKey)'
-          ]
-        }
-      ],
-      help: [
-        'Not sure a world is saved? Back it up again — it only takes a moment.',
-        'Questions? [Ask on GitHub](patcherIssues).'
-      ]
-    } as GuideDoc,
-    'get-apk': {
-      tags: 'Patcher · Android',
-      title: 'Get the APK of the game you own',
-      lead: 'The web and desktop Patcher need the game as an `.apk` file. On Android you can usually skip this guide.',
-      need: [
-        'The Blockheads installed on your Android phone',
-        'For the computer route: a USB cable and Android’s `adb` tool'
-      ],
-      steps: [
-        {
-          title: 'On Android? Use the installed game',
-          body: [
-            'The Blockheads Patcher app for Android finds the game on your phone. Tap **Use installed game** — no file needed. Or tap **Pick an APK file** if you already have one.'
-          ]
-        },
-        {
-          title: 'Copy the game to a computer',
-          body: [
-            'Turn on USB debugging on the phone, connect it and ask Android where the game is. Then copy that file:'
-          ],
-          warn: 'If the first command prints **more than one** line, the game is split into several APK files. The Patcher can’t patch those safely — you need a full (universal) APK.'
-        },
-        {
-          title: 'Open it in the Patcher',
-          body: [
-            'Open the [web Patcher](webPatcher) or the desktop app and drop the file in. It takes **.apk files only**. Nothing is uploaded.'
-          ],
-          tip: 'Use only your own copy, and don’t share the APK with others.'
-        }
-      ],
-      help: [
-        '**“Choose the .apk of The Blockheads that you saved from your phone.”** — the file is a different app.',
-        '**“The installed game is split into several APK files…”** — supply a full (universal) APK instead.',
-        'Next: [Fix the game on your phone](fixGameOnPhone).'
-      ]
-    } as GuideDoc,
-    'signing-key': {
-      tags: 'Patcher',
-      title: 'Keep your signing key safe',
-      lead: 'Every game you patch is signed with a key that lives only on your device. Keep a backup, and future fixes install without uninstalling.',
-      need: ['The Blockheads Patcher (web, desktop or Android)', 'A safe place for one small file, and a password you can remember'],
-      steps: [
-        {
-          title: 'Know what the key does',
-          body: [
-            'The Patcher creates the key the first time you patch. Android only installs an update over your fixed game if **both are signed with the same key**. A new key means uninstalling again — and losing local worlds unless you back them up.'
-          ],
-          warn: '**Keep it private.** Anyone with your key could make apps that look like updates to your game.'
-        },
-        {
-          title: 'Export a backup',
-          body: [
-            'Open **Signing keys** and choose **Export backup…**. Set a password, repeat it and tap **Save backup**. You get a `.json` file, by default `blockheads-patcher-key.json`.'
-          ],
-          tip: 'We can’t recover the password, so write it down. Without a password the file is not encrypted, and anyone with it could sign apps as you.'
-        },
-        {
-          title: 'Move it to another device',
-          body: [
-            'On the new device, open **Signing keys**, choose **Import key** and pick the `.json` file. Enter the backup password, then tap **Use this key**.',
-            'Compare the first and last four pairs of the fingerprint on both devices to be sure it is the same key.'
-          ]
-        },
-        {
-          title: 'If the key is lost',
-          body: [
-            'Without a backup you can’t update games patched with that key. Back up your worlds, uninstall the fixed game and patch again with a new key. [How to back up worlds](backupWorlds)'
-          ]
-        }
-      ],
-      help: [
-        'The web Patcher keeps the key in your browser’s storage for this site. Clearing the site’s data removes it — export a backup first.',
-        'Import accepts only the `.json` backups exported by the Patcher.',
-        'Questions? [Ask on GitHub](patcherIssues).'
-      ]
-    } as GuideDoc,
-    'raspberry-pi': {
-      tags: 'Server · Linux',
-      title: 'Run a 24/7 server on a Raspberry Pi',
-      lead: 'A Raspberry Pi uses little power and can host your world day and night. You will install the ARM build, start it on boot and keep nightly backups.',
-      need: [
-        'A Raspberry Pi with Raspberry Pi OS (or another Linux), connected to your network',
-        'A terminal on the Pi (directly or over SSH)',
-        'The command-line server from the [releases page](serverReleases)'
-      ],
-      steps: [
-        {
-          title: 'Check 32-bit or 64-bit',
-          body: [
-            'Use the `aarch64` build on a 64-bit OS and the `armv7` build on a 32-bit OS. This command tells you which you have:'
-          ]
-        },
-        {
-          title: 'Download and unpack',
-          body: [
-            'These commands use version 0.1.1 and the 64-bit build. Take the newest version from the releases page, and use `armv7-unknown-linux-gnueabihf` instead of `aarch64-unknown-linux-gnu` on a 32-bit OS.'
-          ]
-        },
-        {
-          title: 'Create your world',
-          body: [
-            'Create the world once by hand. Worlds are saved in `~/GNUstep/Library/ApplicationSupport/TheBlockheads`.'
-          ],
-          tip: 'Without options, the server loads the most recent world. The service below uses that.'
-        },
-        {
-          title: 'Start it on every boot',
-          body: [
-            'Create a systemd service. Replace `pi` with your user name — the one that created the world.'
-          ],
-          tip: 'The service has no console. Give commands as an admin in the game chat (see [Admins, mods and bans](adminsMods)), and watch the log with `journalctl`.'
-        },
-        {
-          title: 'Keep nightly backups',
-          body: [
-            'Copy the world folder only while the server is stopped. This root cron job stops the server at 04:00, packs everything into a dated `.tar.gz` and starts it again. Replace `/home/pi` with your home folder.'
-          ],
-          warn: '`systemctl stop` ends the server without a final save. The server saves regularly, but the last few seconds can be lost — pick a quiet time.'
-        }
-      ],
-      help: [
-        '**“Exec format error”** — wrong build. Check `uname -m` again.',
-        '**Friends can’t connect** — the same checks as in [Play with friends on the same Wi-Fi](lanPlay).',
-        'Still stuck? [Open an issue on GitHub](serverIssues) with the `journalctl` output.'
-      ]
-    } as GuideDoc,
-    'open-internet': {
-      tags: 'Server · Network',
-      title: 'Open your server to the internet',
-      lead: 'Let friends outside your home join your world. You will lock the server first, then forward one port on your router.',
-      need: [
-        'A server that already works on your Wi-Fi ([LAN guide](lanPlay))',
-        'Access to your router’s settings page'
-      ],
-      steps: [
-        {
-          title: 'Lock the server first',
-          body: [
-            'Set a **password**: in the app under **Settings** → **Password** (up to 15 characters), or with `/set-password` in the console.',
-            'Or turn on the **whitelist** by adding names: in the app under **Access lists** → **Whitelist**, or with `/whitelist`. As soon as the whitelist has names, only those players can join.'
-          ]
-        },
-        {
-          title: 'Give the server a fixed address',
-          body: [
-            'In your router, reserve the server computer’s local IP address (often called DHCP reservation), so it doesn’t change after a restart.'
-          ]
-        },
-        {
-          title: 'Forward the port',
-          body: [
-            'In the router’s port forwarding page, forward **UDP port 15151** to the server computer’s local address. If you changed the port, use yours.'
-          ]
-        },
-        {
-          title: 'Share your public address',
-          body: [
-            'Look up your public IP address and send it to your friends with the port. They join with **Join World** → **Advanced...** → **Online IP/Port...**.'
-          ],
-          warn: 'Your public IP shows roughly where you are. Share it only with people you trust.'
-        }
-      ],
-      help: [
-        '**Works at home, not outside** — the router’s internet address may differ from your public IP (some providers share one address between customers). Then port forwarding can’t work; ask your provider.',
-        '**Still blocked** — check the firewall on the server computer allows UDP 15151.',
-        'Need help? [Open an issue on GitHub](serverIssues).'
-      ]
-    } as GuideDoc,
-    'admins-mods': {
-      tags: 'Server',
-      title: 'Admins, mods and bans explained',
-      lead: 'Who can do what on your server, and how to manage players from the app, the console or the game chat.',
-      need: ['A running Blockheads Server', 'The player names you want to manage'],
-      steps: [
-        {
-          title: 'Know the roles',
-          body: [
-            'The server console has every right. **Admins** have full control, including other admins. **Mods** can kick and ban players, but not change admins. Admins and mods type commands in the game chat, starting with `/`.'
-          ],
-          list: [
-            '**Mods:** `/players`, `/kick`, `/ban`, `/unban`, `/whitelist`, `/unwhitelist`, `/clear`',
-            '**Admins also:** `/stop`, `/pvp-on`, `/pvp-off`, `/mod`, `/unmod`, `/admin`, `/unadmin`, `/load-lists`',
-            '**Owner only:** `/set-password`, `/remove-password`'
-          ]
-        },
-        {
-          title: 'Add admins and mods',
-          body: [
-            'In the app, open **Access lists** → **Admins** or **Mods** and tap **Add admin** or **Add mod**. Or tap a player under **Players** and choose **Make admin** or **Make mod**. In the console:'
-          ]
-        },
-        {
-          title: 'Kick and ban',
-          body: [
-            'In the app, tap a player and choose **Kick…** or **Ban…**. A ban can **also block the IP address**, not only the name. `/ban` also bans the player’s device; `/ban-no-device` bans only the name.'
-          ]
-        },
-        {
-          title: 'Use a whitelist',
-          body: [
-            'The whitelist turns on as soon as it has a name in it. Then only listed players can join, and anyone not allowed is kicked.'
-          ]
-        },
-        {
-          title: 'Edit the list files',
-          body: [
-            'Each world keeps `adminlist.txt`, `modlist.txt`, `whitelist.txt` and `blacklist.txt` in its folder under `saves`. One name per line; names are not case sensitive and the first line is ignored. After editing by hand, reload them:'
-          ]
-        }
-      ],
-      help: [
-        '**“Sorry, you do not have permission to issue that command.”** — you are not a mod or admin on this server.',
-        'While the server runs, the app applies list changes through console commands.',
-        'Questions? [Ask on GitHub](serverIssues).'
-      ]
-    } as GuideDoc,
-    'host-android': {
-      tags: 'Server · Android',
-      title: 'Host from an Android phone',
-      lead: 'Turn a spare Android phone into a server. The Blockheads Server app keeps running in the background, with a notification to control it.',
-      need: [
-        'An Android phone on your Wi-Fi',
-        'The Blockheads Server APK (`blockheads-server-…-android.apk`, [releases](serverReleases))',
-        'A charger'
-      ],
-      steps: [
-        {
-          title: 'Install the app',
-          body: ['Download the APK and open it. Android may ask you to allow installs from your browser.']
-        },
-        {
-          title: 'Create a world and start',
-          body: [
-            'Open **Worlds** → **Create world**. Pick a name (up to 30 characters) and a size, keep **Use this world right away** on, then tap **Start server**.'
-          ]
-        },
-        {
-          title: 'Let it run in the background',
-          body: [
-            'A notification shows the state, the world, how many players are online and the address. Its buttons are **Stop server**, **Copy address** and **Console**.'
-          ],
-          tip: 'The app keeps the phone and its Wi-Fi awake while the server runs. If your phone still stops it, turn off battery optimization for Blockheads Server in Android’s settings.'
-        },
-        {
-          title: 'Keep the phone charging',
-          body: ['Hosting uses battery. Leave the phone on its charger while friends play.']
-        },
-        {
-          title: 'Connect your friends',
-          body: [
-            'The **Dashboard** shows the **LAN address** and a QR code. On the other phones, join with **Join World** → **Advanced...** → **Online IP/Port...**.'
-          ]
-        }
-      ],
-      help: [
-        '**“Server stopped unexpectedly”** — tap the notification and choose **Open log** to see why.',
-        'The worlds are stored in the app’s private storage on this phone.',
-        'Still stuck? [Open an issue on GitHub](serverIssues).'
-      ]
-    } as GuideDoc,
-    docker: {
-      tags: 'Server · Docker',
-      title: 'Docker and Docker Compose',
-      lead: 'Run the server as a container. Worlds live in a volume, so they survive updates.',
-      need: [
-        'Docker (and Docker Compose if you want it)',
-        'The multi-arch image `ghcr.io/blockheads-club/blockheads-server` (amd64, arm64, arm/v7)'
-      ],
-      steps: [
-        {
-          title: 'Create a world',
-          body: [
-            'Run the container once with `-it` so you get the console. Worlds go into the `bh-data` volume. Wait for **World load complete.**, then type `/stop`.'
-          ],
-          tip: 'The examples use version 0.1.1. Every release has a version tag; pick the newest one.'
-        },
-        {
-          title: 'Find the world ID',
-          body: ['List the worlds in the volume. The long hex name is the world ID.']
-        },
-        {
-          title: 'Run it in the background',
-          body: [
-            'Start the world with `--load`. Keep `-i` and `-t` so you can open the console later, and map the port as **UDP**.'
-          ]
-        },
-        {
-          title: 'Logs and console',
-          body: ['Follow the log, or attach to the console to type commands like `/players` or `/stop`.']
-        },
-        {
-          title: 'Or use Docker Compose',
-          body: ['The same setup as a `compose.yaml`. Start it with `docker compose up -d`.']
-        }
-      ],
-      help: [
-        '**The container only prints help** — the image starts with `--help` unless you give options such as `--new` or `--load`.',
-        '**Updating** — stop and remove the container, then run it again with the new tag. The `bh-data` volume keeps your worlds. `docker stop` ends the server without a final save, so stop when nobody is playing.',
-        '**No connection** — the port must be mapped as `15151:15151/udp`.'
-      ]
-    } as GuideDoc
-  },
-  faq: {
-    title: 'Frequently asked questions',
-    lead: 'Short answers first. Each answer links to a full guide when there is more to know.',
-    sidebar: 'FAQ sections',
-    sections: [
-      {
-        id: 'general',
-        title: 'About the project',
-        items: [
-          {
-            q: 'Is this the official Blockheads?',
-            a: 'No. Blockheads Club is an independent, non-commercial fan project. We are not connected to Majic Jungle Software or Noodlecake, and we don’t sell or share the game.'
-          },
-          { q: 'Does it cost anything?', a: 'No. All tools are free and open source.' },
-          {
-            q: 'Can I help?',
-            a: 'Yes — report bugs, write guides or translate the apps on GitHub.'
-          }
-        ]
-      },
-      {
-        id: 'patcher',
-        title: 'Patcher',
-        items: [
-          {
-            q: 'Which game versions does it fix?',
-            a: '1.7.4, 1.7.5 and 1.7.6 for the “Welcome” popup freeze. 1.7.6 also gets a fix for the crash while loading worlds.'
-          },
-          {
-            q: 'Do you upload my game file?',
-            a: 'Never. The web app, desktop apps and Android app all patch on your own device. The web app keeps working with no internet once it has loaded.'
-          },
-          {
-            q: 'Why must I uninstall the original game on Android?',
-            a: 'The patched game is signed with your own key, not the original one. Android doesn’t allow an app with a different signature to replace an installed app. Back up your worlds first.'
-          },
-          {
-            q: 'What is a signing key and why keep it?',
-            a: 'It proves an app comes from the same source. If you patch again later with the same key, you can install over your patched game and keep your worlds. Export it and store it somewhere safe.'
-          }
-        ]
-      },
-      {
-        id: 'server',
-        title: 'Server',
-        items: [
-          { q: 'How many players can join?', a: 'From 1 to 32. You choose the limit in Settings.' },
-          {
-            q: 'My friend can’t connect. What should I check?',
-            a: 'Same Wi-Fi, correct address and port, firewall allows the server, and the whitelist (if on) includes their name. [Connection guide](lanPlay)'
-          },
-          {
-            q: 'Can I run it on an old Android phone?',
-            a: 'Yes. Use the Server app, keep the phone charging and allow it to run in the background.'
-          }
-        ]
-      }
+    tagline: 'Host a world your friends can join.',
+    lead: 'Run it on a PC, turn an old Android phone into a server, or keep a world online 24/7 on a Raspberry Pi or with Docker.',
+    features: [
+      { title: 'Play with friends', body: 'On the same Wi-Fi in a minute, or over the internet with a port forward.' },
+      { title: 'Easy to manage', body: 'Start and stop, back up worlds and manage players from a simple app.' },
+      { title: 'Mods (soon)', body: 'Add server mods from a reviewed public list.' }
+    ] as Item[],
+    steps: [
+      { title: 'Install the Server', body: 'Desktop or Android app — or one command on Linux.' },
+      { title: 'Pick or create a world', body: 'Start fresh or bring a world you already have.' },
+      { title: 'Share the address', body: 'Friends join by address or by scanning a QR code.' }
+    ] as Item[],
+    before: [
+      'Any 64-bit computer, a Raspberry Pi or an Android 7.0+ phone',
+      'Players need their own copy of the game',
+      'For internet play: a port forward (guide below)'
     ],
-    helpTitle: 'Still need help?',
-    helpBody:
-      'Open an issue on GitHub. Include your device, game version and — for the Patcher — the copied log from the error screen.',
-    helpButton: 'Open an issue',
-    helpSection: 'Getting help'
+    platforms: ['Windows, macOS, Linux app', 'Android app', 'Raspberry Pi', 'Docker', 'Headless Linux'],
+    guides: ['Play with friends on the same Wi-Fi', 'Open your server to the internet', 'Run a 24/7 server on a Raspberry Pi'],
+    tech: {
+      eyebrow: 'For technical hosts',
+      title: 'One command on Linux, Pi or Docker.',
+      lead: 'A headless server with the same options as the original, worlds in one folder and logs on stdout.',
+      link: 'Server reference in the docs',
+      tabs: 'Platform'
+    }
   },
-  legal: {
-    title: 'Legal notice',
-    lead: 'Plain-language summary first. Last updated 21 October 2026.',
-    shortTitle: 'In short',
-    short:
-      'We are fans, not the game’s makers. Our tools work only with a copy of The Blockheads that you own. We don’t share the game, we don’t collect your files, and the tools come with no warranty.',
-    sections: [
+  copy: {
+    copy: 'Copy',
+    copied: 'Copied',
+    failed: 'Copy failed',
+    command: 'Copy command'
+  },
+  download: {
+    title: 'Get the right download',
+    lead: 'Answer two questions. We pick the file for you. Everything is free.',
+    q1: 'What do you want to do?',
+    q2: 'Which device?',
+    detected: 'We think you’re on',
+    yours: 'Your download',
+    for: {
+      windows: 'for Windows',
+      macos: 'for macOS',
+      linux: 'for Linux',
+      android: 'for Android',
+      pi: 'for Raspberry Pi',
+      docker: 'for Docker',
+      ios: 'for iPhone / iPad'
+    },
+    button: {
+      windows: 'Download for Windows',
+      macos: 'Download for macOS',
+      linux: 'Download for Linux',
+      android: 'Download the APK',
+      pi: 'Download for Raspberry Pi',
+      docker: 'Download',
+      ios: 'Download'
+    },
+    files: {
+      pcWin: 'Installer for Windows 10 and 11 (.exe) · 64-bit',
+      pcMac: 'App for macOS 11 or newer (.dmg) · Apple silicon',
+      pcLinux: 'AppImage · x86-64',
+      patcherWin: 'Desktop app for Windows (.exe) · 64-bit',
+      patcherMac: 'Desktop app for macOS (.dmg) · Apple silicon and Intel',
+      patcherLinux: 'AppImage · x86-64',
+      patcherAndroid: 'Android app (.apk) · Android 7.0 or newer',
+      serverWin: 'Desktop app for Windows (.exe) · 64-bit',
+      serverMac: 'Desktop app for macOS (.dmg) · Apple silicon',
+      serverLinux: 'Desktop app (AppImage) · x86-64',
+      serverAndroid: 'Android app (.apk) · turns a phone into a server',
+      serverPi: 'Headless server for 64-bit Raspberry Pi OS (.tar.gz)',
+      serverDocker: 'Official image on GitHub Container Registry · x86-64 and ARM'
+    },
+    alts: {
+      winArm: 'Windows on ARM',
+      macIntel: 'Intel Mac',
+      macArm: 'Apple silicon',
+      deb: '.deb',
+      rpm: '.rpm',
+      linuxArm: 'ARM64 AppImage',
+      headless: 'Headless server (.tar.gz)',
+      apk32: 'Older 32-bit phones',
+      piArmv7: '32-bit Raspberry Pi OS',
+      winCli: 'Command-line server (.zip)'
+    },
+    also: 'Also available:',
+    none: {
+      pcAndroid: 'Blockheads PC is for computers. On an Android phone, the Patcher fixes the game instead.',
+      pcPi: 'Blockheads PC doesn’t run on a Raspberry Pi yet. A Pi is great for hosting a server.',
+      pcDocker: 'Docker is for hosting a server, not for playing.',
+      pcIos: 'Our apps don’t run on iPhone or iPad. Use a Windows, Mac, Linux or Android device instead.',
+      patcherPi: 'Use the web Patcher in the Pi’s browser — nothing to install.',
+      patcherDocker: 'The Patcher has no Docker image. Use the web Patcher in any browser.',
+      patcherIos: 'The Patcher fixes the Android version of the game. It can’t change the game on iPhone or iPad.',
+      serverIos: 'The Server doesn’t run on iPhone or iPad. An old Android phone or any computer works.'
+    },
+    notHere: 'isn’t available here',
+    go: { patcher: 'Get the Patcher', server: 'Get the Server', web: 'Open the web Patcher' },
+    orWeb: 'Or skip the download:',
+    orWebLink: 'use the Patcher in your browser',
+    own: 'Bring your own game',
+    ownApk: 'You need the game’s APK file. We never share the game.',
+    ownServer: 'Players join with their own copy of the game. The Server never includes it.',
+    guide: 'Install guide',
+    guideHint: 'Step by step, with pictures',
+    notes: 'Release notes & checksums',
+    notesHint: 'Check the file is ours',
+    apkNote: 'Android asks you to allow installs from your browser. The guide shows how.',
+    failedTitle: 'We couldn’t load the latest version.',
+    failedBody: 'All files are always on GitHub Releases, with checksums.',
+    failedButton: 'Open GitHub Releases',
+    all: 'All downloads',
+    tableApp: 'App',
+    webRow: 'Patcher · web',
+    webOpen: 'Open in your browser',
+    webHint: '— works on any device with a modern browser, offline after the first visit',
+    image: 'Image',
+    older: 'Older versions, source code and checksums:',
+    olderLink: 'GitHub Releases',
+    footnote: 'Unofficial fan project. We never ship the game itself — you need your own copy.'
+  },
+  mods: {
+    eyebrow: 'Mods · coming soon',
+    title: 'Mods are coming to The Blockheads.',
+    lead: 'Add new things to your server or your game, from a public list the maintainers review. Or make your own. We’re building it in the open — follow along.',
+    follow: 'Follow progress on GitHub',
+    sdk: 'Read the mod SDK',
+    cards: [
       {
-        title: '1. Who runs this project',
-        body: 'Blockheads Club is maintained by volunteers in the [Blockheads Club organisation on GitHub](org). Contact: [open an issue on GitHub](websiteIssues).'
+        title: 'Server mods',
+        body: 'New commands, chat tools and mini-games. The Blockheads Server gets Lua mods first, then WebAssembly mods.'
       },
       {
-        title: '2. No affiliation',
-        body: 'Blockheads Club is an independent, non-commercial community project. It is not affiliated with, endorsed, sponsored or approved by Majic Jungle Software, Noodlecake or any other rights holder of The Blockheads.'
+        title: 'Player mods',
+        body: 'A mod can also have a part for players. It downloads straight from the server when you join.'
       },
+      { title: 'A reviewed public list', body: 'A maintainer checks every new mod before it appears on the public list.' },
       {
-        title: '3. Trademarks and game content',
-        body: '“The Blockheads” and related names, logos and artwork belong to their respective owners. We use the name only to describe what our tools work with. Our logo and design are our own. We do not distribute the game or any of its files.'
-      },
-      {
-        title: '4. Use with your own copy',
-        body: 'The Patcher modifies a copy of the game that you supply on your own device. You are responsible for making sure you are allowed to modify and use that copy. Do not use our tools to share or sell the game.'
-      },
-      {
-        title: '5. Privacy',
-        body: 'The Patcher processes files only on your device; nothing is uploaded. This website is static: it uses no analytics, no tracking and no cookies. It only remembers your theme and language choice in your browser’s local storage. The Server stores player names and device identifiers only on the machine that runs it.'
-      },
-      {
-        title: '6. No warranty',
-        body: 'The software is provided “as is”, without warranty of any kind, as set out in its licence. Back up your worlds before patching or updating.'
-      },
-      {
-        title: '7. Licences',
-        body: 'Our code is released under GPL-3.0-or-later. Third-party components and fonts (Bricolage Grotesque, Atkinson Hyperlegible Next, Onest, Golos Text, JetBrains Mono — SIL Open Font License) are listed in each app under Settings → About → Licences.'
-      },
-      {
-        title: '8. Takedown and contact',
-        body: 'Rights holders can reach us by [opening an issue on GitHub](websiteIssues). We respond to good-faith requests promptly.'
+        title: 'Make your own',
+        body: 'Write mods in Lua or in Rust (WebAssembly). The bhmod tool creates a starter mod for you.'
       }
+    ] as Item[],
+    safeTitle: 'Safe by default',
+    safeBody:
+      'Server owners decide what each mod may do: a mod only gets the permissions you grant it. WebAssembly mods run in a sandbox.',
+    permRead: 'Read world',
+    permChange: 'Change world',
+    permNet: 'Internet: one host',
+    nativeTitle: 'Native code · full access',
+    nativeBody:
+      'Mods that run outside the sandbox always get an extra security review, again whenever an update asks for more.',
+    statusBadge: 'Not released yet',
+    status:
+      'There is no release date yet. Watch the mod SDK on GitHub to see when servers can load the first mods. Mod authors can already try it.',
+    statusLink: 'Ask a question on GitHub'
+  },
+  contribute: {
+    eyebrow: 'Get involved',
+    title: 'Blockheads Club is made by people like you.',
+    lead: 'Everything here is free and open source under the GPL. Pick one small thing — every bit helps.',
+    github: 'Open GitHub',
+    issues: 'Browse good first issues',
+    cards: [
+      {
+        title: 'Write code',
+        body: 'Rust, TypeScript and Svelte in every app, a little Kotlin for Android. Start with an issue labelled “good first issue”.'
+      },
+      {
+        title: 'Translate',
+        body: 'Help keep English, Türkçe, Русский and Қазақша up to date — or add a new language. No coding needed.'
+      },
+      { title: 'Test and report bugs', body: 'Try new releases and tell us what breaks. Clear bug reports are a big help.' },
+      {
+        title: 'Write guides',
+        body: 'Explain something you figured out. Guides live in the docs and anyone can suggest changes.'
+      },
+      {
+        title: 'Help other players',
+        body: 'Answer questions in the GitHub issues. Many players are new to patching or hosting.'
+      },
+      { title: 'Make mods (soon)', body: 'When mods launch, publish yours on the public list for everyone.' }
+    ] as Item[],
+    links: ['Find a first issue', 'Open the translation files', 'Report a bug', 'Edit the docs', 'Open issues', 'About mods'],
+    langTitle: 'Translations',
+    langHint: 'Counted from the website’s translation files when the site builds.',
+    langReview: 'Waiting for a native speaker’s review',
+    goodTitle: 'Good to know',
+    good: [
+      'Be kind and patient. Everyone here is a volunteer.',
+      'Never share the game itself, in issues or anywhere else.',
+      'All code is GPL. By contributing, you agree to share your work under it.',
+      'Kids are welcome too — ask a grown-up before making a GitHub account.'
     ]
   },
-  shots: {
-    'patcher/phone-choose': {
-      alt: 'Blockheads Patcher on Android, step “Choose your game”: the card “Found on this phone” shows The Blockheads 1.7.4 with a “Use installed game” button, and below it “Pick an APK file”.',
-      caption: 'The Patcher finds the game installed on your phone.'
-    },
-    'patcher/phone-review': {
-      alt: 'Patcher on Android, step “Review the fixes”: details of the detected game version and the key it will be signed with, and a “Patch game (3 fixes)” button.',
-      caption: 'The fixes your version needs are already ticked.'
-    },
-    'patcher/phone-uninstall-confirm': {
-      alt: 'Patcher on Android, “Install the fixed game”: a warning “Your worlds on this phone will be deleted”, the checkbox “My worlds are backed up, or I don’t need them”, then step 1 “Uninstall original” and step 2 “Install fixed game”.',
-      caption: 'Tick the box only when your worlds are backed up.'
-    },
-    'patcher/phone-installed': {
-      alt: 'Patcher on Android, last screen “All fixed — have fun!”: the fixed game is installed, with a reminder to keep your signing key and an “Export it” link.',
-      caption: 'Done. Now restore your worlds in the fixed game.'
-    },
-    'patcher/choose': {
-      alt: 'Desktop Patcher, step “Choose your game”: a drop area for the APK file of The Blockheads, with a button to browse for the file.',
-      caption: 'Drop the .apk file in, or browse for it.'
-    },
-    'patcher/keys-export': {
-      alt: 'Patcher “Keys” screen: the signing key “My key” with its SHA-256 fingerprint, and the open “Export backup — set a password” form with Password and Repeat password fields and a “Save backup” button.',
-      caption: 'Export a password-protected backup of your signing key.'
-    },
-    'server/worlds-create': {
-      alt: 'Blockheads Server desktop app, “Create a world” dialog: World name, World size from 1/16× to 16×, the Expert mode switch and the “Create world” button.',
-      caption: 'Create a world: a name, a size and, if you like, expert mode.'
-    },
-    'server/dashboard': {
-      alt: 'Server dashboard while running: status Running, 2 players online, uptime and current world “Sunny Isle”, and the “Connect from a phone” card with a QR code, LAN address 192.168.1.42 and port 15151.',
-      caption: 'The dashboard shows the LAN address, the port and a QR code.'
-    },
-    'server/access': {
-      alt: 'Server “Access lists” screen with four cards: Admins, Mods, Whitelist and Blacklist, each with a name field and an Add button.',
-      caption: 'Admins, mods, whitelist and blacklist in one place.'
-    },
-    'server/players-menu': {
-      alt: 'Server “Players” screen with the actions menu of player Sam open: Make admin, Remove mod, Copy device ID, Kick… and Ban….',
-      caption: 'Tap a player to change their role, kick or ban them.'
-    },
-    'server/settings': {
-      alt: 'Server “Settings” screen, Connection section: Port 15151, Max players and Password (up to 15 characters).',
-      caption: 'The password is under Settings → Connection.'
-    },
-    'server/phone-worlds': {
-      alt: 'Blockheads Server app on an Android phone, “Worlds” screen: a “Create world” button and the worlds “Sunny Isle” (loaded now) and “Cozy Harbor”.',
-      caption: 'Create a world, then start the server.'
-    },
-    'server/phone-dashboard': {
-      alt: 'Server app on an Android phone, dashboard while running, with the LAN address, the port and a QR code for the other phones.',
-      caption: 'Friends join with the address shown on the dashboard.'
-    }
+  about: {
+    eyebrow: 'About',
+    title: 'Players keeping a game playable.',
+    lead: 'Blockheads Club is a volunteer, open-source project. We make free tools so people can keep playing The Blockheads on today’s devices.',
+    toc: 'On this page',
+    us: 'Who we are',
+    usBody: [
+      'A small group of players and developers. We started because new Android versions broke the game for many people: it froze on the first popup.',
+      'The Patcher came first. Then an open-source rewrite of the dedicated server, so anyone can host a world, and Blockheads PC to play on a computer. Mods are next.',
+      'Maintained by volunteers in the [Blockheads Club organisation on GitHub](org).'
+    ],
+    legal: 'An unofficial fan project',
+    legalBody: [
+      'Blockheads Club is **not** made by, connected to or endorsed by Majic Jungle Software or Noodlecake. “The Blockheads” is a trademark of its owners.',
+      'We never share or sell the game. Every tool works with a copy that you own, on your own device. Our logo and design are our own.',
+      'The software comes “as is”, without warranty. Back up your worlds before patching or updating. Rights holders can reach us by [opening an issue on GitHub](websiteIssues).'
+    ],
+    lic: 'Licences',
+    licBody: [
+      'All our code is free software under the GNU General Public License (GPL-3.0-or-later). You can use, study, change and share it. Third-party licences are listed in each app.',
+      'This website’s code and text are under the same licence. Fonts: SIL Open Font License.'
+    ],
+    priv: 'Privacy',
+    privBody:
+      'This website has no analytics, tracking or cookies. It only remembers your theme and language in your browser. Our apps work on your device: your game file and worlds are never uploaded to us.',
+    contact: 'Contact',
+    contactBody: 'The fastest way is GitHub: open an issue for bugs or questions.',
+    issue: 'Open an issue'
+  },
+  moved: {
+    title: 'This page moved to the docs.',
+    body: 'Taking you there now.',
+    link: 'Open it'
+  },
+  notFound: {
+    title: 'This block is missing.',
+    body: 'The page moved or never existed.',
+    home: 'Go home',
+    docs: 'Search the docs'
   },
   footer: {
-    tagline: 'Community tools for The Blockheads. Made with',
-    love: 'love',
-    taglineEnd: 'by volunteers.',
-    products: 'Products',
+    tagline: 'Free, open-source tools for The Blockheads, made by players.',
+    disclaimer:
+      'Unofficial fan project. Not affiliated with Majic Jungle Software or Noodlecake. You need your own copy of the game.',
+    apps: 'Apps',
     help: 'Help',
     project: 'Project',
-    downloads: 'Downloads',
-    reportBug: 'Report a bug',
-    translate: 'Help translate',
-    legal: 'Legal notice',
-    legalShort: 'Legal',
-    nav: 'Footer',
-    short: 'Unofficial community project. Not affiliated with Majic Jungle Software or Noodlecake.',
-    disclaimer:
-      'Blockheads Club is an unofficial, non-commercial community project. It is not affiliated with, endorsed or sponsored by Majic Jungle Software or Noodlecake. “The Blockheads” is a trademark of its respective owner. Code released under GPL-3.0-or-later.'
+    modsSoon: 'Mods · soon',
+    allDownloads: 'All downloads',
+    guides: 'Install guides',
+    faq: 'FAQ',
+    bug: 'Report a bug',
+    licence: 'Licence (GPL)',
+    fine: 'Code licensed under the GPL · “The Blockheads” is a trademark of its owners.',
+    nav: 'Footer'
   }
 };
 

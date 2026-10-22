@@ -1,465 +1,439 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
   import { base } from '$app/paths';
-  import Badge from '$lib/components/Badge.svelte';
-  import Button from '$lib/components/Button.svelte';
-  import Callout from '$lib/components/Callout.svelte';
-  import CodeBlock from '$lib/components/CodeBlock.svelte';
-  import FaqItem from '$lib/components/FaqItem.svelte';
-  import GuideCard from '$lib/components/GuideCard.svelte';
+  import { APPS, appName } from '$lib/apps';
   import Icon from '$lib/components/Icon.svelte';
-  import Rich from '$lib/components/Rich.svelte';
-  import StepNumber from '$lib/components/StepNumber.svelte';
-  import { HOME_EXAMPLE } from '$lib/commands';
   import { LINKS } from '$lib/config';
-  import { HOME_GUIDES } from '$lib/guides';
+  import { docsPath } from '$lib/i18n';
   import type { IconName } from '$lib/icons';
-  import { dict } from '$lib/locale.svelte';
+  import { dict, i18n } from '$lib/locale.svelte';
+  import { formatDate, releasesPage, type Releases } from '$lib/releases';
+  import { PATHS } from '$lib/route';
 
-  const d = $derived(dict().home);
-  const platformIcons: IconName[] = ['globe', 'phone', 'monitor', 'monitor', 'monitor'];
-  const platformLinks = [
-    LINKS.webPatcher,
-    LINKS.patcherReleases,
-    LINKS.patcherReleases,
-    LINKS.patcherReleases,
-    LINKS.patcherReleases
-  ];
-  const serverIcons: IconName[] = ['monitor', 'monitor', 'monitor', 'chip', 'box', 'phone'];
+  let { data }: { data: { releases: Releases } } = $props();
 
-  /** Old single-page anchors now live on their own routes. */
-  const LEGACY: Record<string, string> = {
-    '#server': '/server',
-    '#guides': '/guides',
-    '#faq': '/faq',
-    '#legal': '/legal'
+  const d = $derived(dict());
+  const h = $derived(d.home);
+  const docs = $derived(base + docsPath(i18n.locale));
+
+  const CHIP_ICONS: Record<string, IconName> = {
+    windows: 'win',
+    macos: 'apple',
+    linux: 'linux',
+    android: 'phone',
+    pi: 'pi',
+    docker: 'docker',
+    web: 'globe',
+    desktop: 'monitor'
   };
-
-  onMount(() => {
-    const target = LEGACY[location.hash];
-    if (target) goto(base + target, { replaceState: true });
-  });
+  const JOIN: { icon: IconName; bg: string }[] = [
+    { icon: 'code', bg: '#ffd27a' },
+    { icon: 'lang', bg: '#b9d7f5' },
+    { icon: 'bug', bg: '#bfe8cf' },
+    { icon: 'book', bg: '#f6c79c' }
+  ];
+  // Release rows: newest tools first, as in the design.
+  const ROWS = ['patcher', 'server', 'pc'] as const;
 </script>
 
 <section class="hero">
   <div class="wrap hero-g">
-    <div class="hero-copy">
-      <Badge class="hero-badge">{d.hero.badge}</Badge>
-      <h1>{d.hero.title}</h1>
-      <p class="hero-lead">{d.hero.lead}</p>
+    <div class="copy">
+      <div class="mini-tiles" aria-hidden="true">
+        {#each APPS as a, i (a.id)}<img class="tile" src={base + a.icon} alt="" width="56" height="56" style:rotate={[-6, 4, -2][i] + 'deg'} />{/each}
+      </div>
+      <span class="badge dark-badge"><Icon name="heartf" size={14} />{h.badge}</span>
+      <h1>{h.title}</h1>
+      <p class="lead">{h.lead}</p>
       <div class="row">
-        <Button href="#patcher" variant="primary" size="lg" icon="patch">{d.hero.ctaFix}</Button>
-        <Button href={base + '/server'} size="lg" icon="server" hero>{d.hero.ctaHost}</Button>
+        <a class="btn btn-p btn-lg" href={base + PATHS.download}><Icon name="download" />{h.cta}</a>
+        <a class="btn btn-lg btn-ink what-btn" href="#what">{h.ctaWhat}</a>
       </div>
-      <p class="fine">{d.hero.disclaimer}</p>
+      <p class="fine"><Icon name="info" size={14} />{d.common.unofficial}</p>
     </div>
-    <div class="hero-art">
-      <img src={base + '/logo.svg'} alt="" width="360" height="360" />
-      <div class="card mock" aria-hidden="true">
-        <div class="mock-h">
-          <span class="mock-t">{d.hero.cardTitle}</span>
-          <Badge tone="ok" dot>{d.hero.ready}</Badge>
-        </div>
-        <div class="mock-r"><Icon name="check" class="okc" />{d.hero.fixPopup}</div>
-        <div class="mock-r"><Icon name="check" class="okc" />{d.hero.fixWorld}</div>
-      </div>
+    <div class="art" aria-hidden="true">
+      <img class="tile t1" src={base + '/apps/pc.svg'} alt="" width="190" height="190" />
+      <img class="tile t2" src={base + '/apps/patcher.svg'} alt="" width="170" height="170" />
+      <img class="tile t3" src={base + '/apps/server.svg'} alt="" width="180" height="180" />
+      <span class="t4">{d.apps.names.mods}<br />{h.tileSoon}</span>
     </div>
   </div>
 </section>
 
-<section class="sec" aria-labelledby="what">
+<section class="sec" aria-labelledby="q">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">{d.what.eyebrow}</span>
-      <h2 id="what">{d.what.title}</h2>
-      <p class="muted lead-l">{d.what.lead}</p>
+    <div class="sec-h">
+      <h2 id="q">{h.q}</h2>
+      <p class="muted lead-l">{h.qLead}</p>
     </div>
-    <div class="grid-a">
-      {#each d.what.items as item, i (item.title)}
-        <div class="card feature">
-          <StepNumber n={i + 1} />
-          <h3>{item.title}</h3>
-          <p class="muted">{item.body}</p>
-        </div>
-      {/each}
-    </div>
-  </div>
-</section>
-
-<section class="sec patcher" id="patcher" aria-labelledby="ph">
-  <div class="wrap">
-    <div class="split top">
-      <div class="col18">
-        <span class="eyebrow"><Icon name="patch" />{d.patcher.eyebrow}</span>
-        <h2 id="ph" class="h-sec">{d.patcher.title}</h2>
-        <p class="muted lead-l">{d.patcher.lead}</p>
-        <div class="col12">
-          {#each d.patcher.fixes as fix (fix.title)}
-            <div class="card fix">
-              <Icon name="check" class="okc" />
-              <div class="grow">
-                <div class="fix-h"><span class="b">{fix.title}</span><Badge>{fix.versions}</Badge></div>
-                <p class="muted s15">{fix.body}</p>
-              </div>
+    <div class="tasks">
+      {#each APPS as a (a.id)}
+        <article class="card task">
+          <div class="task-h">
+            <img class="tile" src={base + a.icon} alt="" width="60" height="60" />
+            <div>
+              <p class="tk">{d.apps[a.id].task}</p>
+              <h3>{appName(a.id, d)}</h3>
             </div>
-          {/each}
-        </div>
-        <Callout tone="info" icon="shield">
-          <p class="s155"><strong>{d.patcher.noteStrong}</strong>{' ' + d.patcher.note}</p>
-        </Callout>
-      </div>
-      <div class="card how">
-        <h3>{d.patcher.howTitle}</h3>
-        <ol>
-          {#each d.patcher.steps as step, i (step.title)}
-            <li>
-              <StepNumber n={i + 1} />
-              <div>
-                <p class="b">{step.title}</p>
-                <p class="muted s15">{step.body}</p>
-              </div>
-            </li>
-          {/each}
-        </ol>
-        <Button href={LINKS.webPatcher} rel="noopener external" variant="primary" size="lg" icon="globe" class="self"
-          >{d.patcher.ctaWeb}</Button
-        >
+          </div>
+          <p class="muted body">{d.apps[a.id].card}</p>
+          <div class="chiprow">
+            {#each a.chips as chip (chip)}<span class="pchip"><Icon name={CHIP_ICONS[chip]} size={14} />{d.devices[chip]}</span>{/each}
+          </div>
+          <div class="go">
+            <a class="btn btn-p" href={base + PATHS.download + '?task=' + a.id}><Icon name="download" size={16} />{d.apps[a.id].get}</a>
+            <a class="b700" href={base + a.path}>{d.common.learnMore}<span class="sr">{': ' + appName(a.id, d)}</span></a>
+          </div>
+        </article>
+      {/each}
+      <a class="card mods-card" href={base + PATHS.mods}>
+        <span class="dashed-box mods-ico"><Icon name="puzzle" /></span>
+        <span class="mods-text">
+          <span class="hint b700 blk">{d.apps.mods.task}</span>
+          <span class="mods-title blk">{h.mods.title + ' '}<span class="soonb">{d.nav.soon}</span></span>
+          <span class="muted blk small">{h.mods.body}</span>
+        </span>
+        <span class="more">{h.mods.link}<Icon name="arrow-r" size={16} /></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="what" class="sec band" aria-labelledby="w">
+  <div class="wrap split">
+    <div class="sec-h flat">
+      <span class="eyebrow">{h.what.eyebrow}</span>
+      <h2 id="w">{h.what.title}</h2>
+      <p class="muted lead-l">{h.what.lead}</p>
+      <div class="chiprow">
+        <span class="badge b-ok"><Icon name="check" size={14} />{h.what.free}</span>
+        <span class="badge b-info"><Icon name="code" size={14} />{h.what.gpl}</span>
+        <span class="badge b-p"><Icon name="globe" size={14} />EN · TR · RU · KK</span>
       </div>
     </div>
-    <h3 class="get">{d.patcher.getTitle}</h3>
-    <div class="grid-p">
-      {#each d.patcher.platforms as platform, i (platform.name)}
-        <a class="card plat" href={platformLinks[i]} rel="noopener">
-          <Icon name={platformIcons[i]} size={26} class="pi" />
-          <span class="b">{platform.name}</span>
-          <span class="hint"><Rich text={platform.hint} /></span>
+    <ol class="steps">
+      {#each h.what.steps as step, i (i)}
+        <li><span class="num" aria-hidden="true">{i + 1}</span><div><p class="t">{step.title}</p><p class="muted b">{step.body}</p></div></li>
+      {/each}
+    </ol>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="inv">
+  <div class="wrap split">
+    <div class="sec-h flat">
+      <span class="eyebrow"><Icon name="users" size={16} />{h.join.eyebrow}</span>
+      <h2 id="inv">{h.join.title}</h2>
+      <p class="muted lead-l">{h.join.lead}</p>
+      <div class="row">
+        <a class="btn btn-p" href={base + PATHS.contribute}>{h.join.cta}</a>
+        <a class="btn" href={LINKS.org}><Icon name="github" />{h.join.code}</a>
+      </div>
+    </div>
+    <div class="join">
+      {#each h.join.cards as card, i (i)}
+        <a class="card join-card" href={base + PATHS.contribute}>
+          <span class="icon-box pastel" style:background={JOIN[i].bg}><Icon name={JOIN[i].icon} /></span>
+          <span class="grow"><span class="b700 blk">{card.title}</span><span class="hint blk">{card.body}</span></span>
+          <Icon name="arrow-r" size={16} />
         </a>
       {/each}
     </div>
-    <p class="hint ver"><Rich text={d.patcher.version} /></p>
   </div>
 </section>
 
-<section class="sec dark-band" aria-labelledby="sh">
-  <div class="wrap">
-    <div class="split mid">
-      <div class="col18">
-        <span class="eyebrow"><Icon name="server" />{d.server.eyebrow}</span>
-        <h2 id="sh" class="h-sec">{d.server.title}</h2>
-        <p class="lead-l srv-lead">{d.server.lead}</p>
-        <div class="badges">
-          {#each d.server.platforms as name, i (name)}
-            <Badge icon={serverIcons[i]}>{name}</Badge>
-          {/each}
-        </div>
-        <div class="row top6">
-          <Button href={base + '/server'} variant="primary" size="lg" iconEnd="arrow-r">{d.server.ctaStart}</Button>
-          <Button href={base + '/server#downloads'} size="lg" icon="download">{d.server.ctaDownloads}</Button>
-        </div>
+<section class="sec top0" aria-labelledby="new">
+  <div class="wrap news">
+    <div class="card rels">
+      <div class="rels-h">
+        <h2 id="new">{h.releases.title}</h2>
+        <a class="b700 small" href={LINKS.org}>{h.releases.all + ' ↗'}</a>
       </div>
-      <div class="col12 term">
-        <div class="termbox"><CodeBlock lines={HOME_EXAMPLE} copyable={false} /></div>
-        <p class="hint">{d.server.exampleNote}</p>
-      </div>
+      <ul>
+        {#each ROWS as id (id)}
+          {@const r = data.releases[id]}
+          <li class="rel">
+            <img src={base + '/apps/' + id + '.svg'} alt="" width="40" height="40" />
+            <div class="grow">
+              <p class="b700">{appName(id, d)}{#if r}{' '}<span class="mono">{r.version}</span>{/if}</p>
+              <p class="hint">{r ? formatDate(r.date, i18n.locale) : h.releases.failed}</p>
+            </div>
+            <a class="b700 small" href={r ? r.url : releasesPage(id)}>{h.releases.whatsNew}<span class="sr">{': ' + appName(id, d)}</span></a>
+          </li>
+        {/each}
+      </ul>
+      <p class="hint">{h.releases.note}</p>
     </div>
-  </div>
-</section>
-
-<section class="sec" aria-labelledby="gh">
-  <div class="wrap">
-    <div class="gh-head">
-      <div class="sec-head nomb">
-        <span class="eyebrow"><Icon name="book" />{d.guides.eyebrow}</span>
-        <h2 id="gh" class="h-sec">{d.guides.title}</h2>
-      </div>
-      <Button href={base + '/guides'} iconEnd="arrow-r">{d.guides.all}</Button>
-    </div>
-    <div class="grid-a">
-      {#each HOME_GUIDES as id (id)}
-        <GuideCard {id} variant="home" />
-      {/each}
-    </div>
-  </div>
-</section>
-
-<section class="sec nopt" aria-labelledby="fh">
-  <div class="wrap faq-g">
-    <div class="sec-head nomb">
-      <span class="eyebrow">{d.faq.eyebrow}</span>
-      <h2 id="fh" class="h-sec">{d.faq.title}</h2>
-      <p class="muted"><Rich text={d.faq.lead} /></p>
-    </div>
-    <div class="col12">
-      {#each d.faq.items as item, i (item.q)}
-        <FaqItem q={item.q} a={item.a} open={i === 0} />
-      {/each}
+    <div class="card docs-card">
+      <span class="eyebrow"><Icon name="book" size={16} />{h.docs.eyebrow}</span>
+      <h2>{h.docs.title}</h2>
+      <p>{h.docs.lead}</p>
+      <a class="btn sun-btn" href={docs} rel="external">{h.docs.cta + ' ↗'}</a>
     </div>
   </div>
 </section>
 
 <style>
-  .hero {
-    position: relative;
-    padding-top: 76px;
-    background-color: var(--hero-bg);
-    background-image: repeating-conic-gradient(
-      from -3deg at 72% 120%,
-      var(--hero-ray) 0deg 7deg,
-      transparent 7deg 22deg
-    );
-    color: var(--hero-text);
-    border-bottom: 3px solid #1f1a17;
-  }
   .hero-g {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
-    gap: 48px;
+    display: flex;
+    gap: 40px;
     align-items: center;
-    padding-top: 72px;
-    padding-bottom: 88px;
+    justify-content: space-between;
+    padding-top: calc(var(--hdr-h) + 40px);
+    padding-bottom: 64px;
+    flex-wrap: wrap;
   }
-  .hero-copy {
+  .copy {
+    flex: 1 1 520px;
+    max-width: 660px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
+    min-width: 0;
   }
-  .hero-copy :global(.hero-badge) {
+  .dark-badge {
     background: #1f1a17;
     color: #ffd27a;
     align-self: flex-start;
-    font-size: 13.5px;
-    padding: 5px 12px;
     white-space: normal;
+    max-width: 100%;
+  }
+  .copy .btn {
+    white-space: normal;
+    text-align: center;
   }
   h1 {
-    font-size: clamp(42px, 6vw, 76px);
+    font-size: clamp(36px, 6vw, 64px);
     font-weight: 800;
     letter-spacing: -0.03em;
     line-height: 1.02;
   }
-  .hero-lead {
-    font-size: clamp(18px, 1.6vw, 21px);
+  .lead {
+    font-size: clamp(16.5px, 2vw, 20px);
     color: var(--hero-text-2);
-    max-width: 600px;
+    max-width: 560px;
   }
   .fine {
     font-size: 14px;
     color: var(--hero-text-2);
-  }
-  .row {
     display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
   }
-  .hero-art {
+  .what-btn {
+    color: var(--hero-text);
+  }
+  .art {
     position: relative;
-    display: flex;
-    justify-content: center;
-    min-height: 400px;
-    align-items: center;
+    width: 440px;
+    height: 400px;
+    flex: none;
   }
-  .hero-art img {
-    width: min(360px, 80%);
-    height: auto;
-    aspect-ratio: 1;
-    border-radius: 19%;
-    transform: rotate(-6deg);
-    box-shadow:
-      0 10px 0 #9c3a12,
-      0 40px 80px rgba(31, 26, 23, 0.35);
-  }
-  .mock {
+  .art > * {
     position: absolute;
-    right: 0;
-    bottom: 8px;
-    padding: 16px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 290px;
-    max-width: 100%;
-    box-shadow: var(--lift);
-    transform: rotate(2deg);
-    border-color: var(--line-strong);
-    color: var(--text);
   }
-  .mock-h {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .t1 {
+    left: 40px;
+    top: 40px;
+    rotate: -8deg;
+  }
+  .t2 {
+    left: 230px;
+    top: 10px;
+    rotate: 6deg;
+  }
+  .t3 {
+    left: 170px;
+    top: 200px;
+    rotate: -3deg;
+  }
+  .t4 {
+    left: 40px;
+    top: 262px;
+    width: 110px;
+    height: 110px;
+    border-radius: 24px;
+    border: 3px dashed var(--hero-text-2);
+    opacity: 0.7;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    rotate: 5deg;
+    color: var(--hero-text-2);
+    font: 800 15px var(--f-body);
+  }
+  .mini-tiles {
+    display: none;
     gap: 8px;
   }
-  .mock-t {
-    font-weight: 700;
+  @media (max-width: 960px) {
+    .art {
+      display: none;
+    }
+    .mini-tiles {
+      display: flex;
+    }
+    .hero-g {
+      padding-top: calc(var(--hdr-h) + 14px);
+      padding-bottom: 32px;
+    }
   }
-  .mock-r {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    font-size: 14.5px;
-  }
-  :global(.okc) {
-    color: var(--ok);
-  }
-  .feature {
-    padding: 26px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .feature h3 {
-    font-size: 22px;
-  }
-  .patcher {
-    background: var(--surface-2);
-    border-block: 2px solid var(--line);
-  }
-  .split {
+  .tasks {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr));
-    gap: 48px;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 20px;
   }
-  .split.top {
-    align-items: start;
-  }
-  .split.mid {
-    align-items: center;
-  }
-  .col18,
-  .col12 {
+  .task {
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 14px;
   }
-  .col12 {
-    gap: 12px;
-  }
-  .fix {
-    padding: 16px 18px;
+  .task-h {
     display: flex;
     gap: 14px;
-    align-items: flex-start;
+    align-items: center;
   }
-  .fix :global(.ico) {
-    margin-top: 3px;
+  .tk {
+    font: 700 14px var(--f-body);
+    color: var(--text-3);
+  }
+  .task h3 {
+    font-size: 24px;
+  }
+  .go {
+    margin-top: auto;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .mods-card {
+    grid-column: 1 / -1;
+    padding: 18px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    border-style: dashed;
+  }
+  .mods-ico {
+    width: 52px;
+    height: 52px;
+  }
+  .mods-text {
+    flex: 1 1 300px;
+  }
+  .mods-title {
+    font: 750 21px var(--f-display);
+  }
+  .more {
+    font-weight: 700;
+    color: var(--primary-ink);
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .blk {
+    display: block;
+  }
+  .small {
+    font-size: 15px;
+  }
+  .flat {
+    margin: 0;
+  }
+  .join {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: 12px;
+  }
+  .join-card {
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
   }
   .grow {
     flex: 1;
+    min-width: 0;
   }
-  .fix-h {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .b {
-    font-weight: 700;
-  }
-  .s15 {
-    font-size: 15px;
-  }
-  .s155 {
-    font-size: 15.5px;
-  }
-  .how {
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-    box-shadow: var(--lift);
-  }
-  .how h3 {
-    font-size: 24px;
-  }
-  .how ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-  .how li {
-    display: flex;
-    gap: 16px;
-  }
-  .how :global(.self) {
-    align-self: flex-start;
-    white-space: normal;
-    text-align: start;
-  }
-  .get {
-    font-size: 22px;
-    margin: 56px 0 18px;
-  }
-  .grid-p {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
-    gap: 14px;
-  }
-  .plat {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 18px;
-  }
-  .plat :global(.pi) {
-    color: var(--primary-ink);
-  }
-  .ver {
-    margin-top: 14px;
-  }
-  .srv-lead {
-    color: #cbbeb2;
-  }
-  .badges {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .top6 {
-    margin-top: 6px;
-  }
-  .termbox {
-    border: 2px solid #3a312b;
-    border-radius: 14px;
-  }
-  .gh-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 32px;
-  }
-  .nomb {
-    margin: 0;
-  }
-  .nopt {
+  .top0 {
     padding-top: 0;
   }
-  .faq-g {
+  .news {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
     gap: 40px;
     align-items: start;
   }
-  @media (max-width: 900px) {
-    .sec:not(.nopt) {
-      padding: 64px 0;
+  .rels {
+    padding: 22px 24px;
+  }
+  .rels-h {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .rels h2 {
+    font-size: 24px;
+  }
+  .rels ul {
+    list-style: none;
+    margin: 10px 0 8px;
+    padding: 0;
+  }
+  .rel {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+  }
+  .rel:first-child {
+    border-top: 0;
+  }
+  .rel img {
+    border-radius: 10px;
+  }
+  .docs-card {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #1f1a17;
+    border-color: #1f1a17;
+    color: #f5ede5;
+  }
+  .docs-card .eyebrow {
+    color: #ffb08c;
+  }
+  .docs-card h2 {
+    font-size: 26px;
+  }
+  .docs-card p {
+    color: #cbbeb2;
+  }
+  .sun-btn {
+    align-self: flex-start;
+    background: #ffd27a;
+    border-color: #1f1a17;
+    box-shadow: 0 3px 0 #c98a2e;
+    color: #1f1a17;
+  }
+  .sun-btn:hover {
+    background: #ffdf9a;
+    color: #1f1a17;
+  }
+  @media (max-width: 640px) {
+    .task .body,
+    .task .chiprow {
+      display: none;
     }
-    .hero-g {
-      padding-top: 40px;
-      padding-bottom: 56px;
-    }
-    .hero-art {
-      min-height: 0;
-      padding-bottom: 80px;
-    }
-    .hero-copy .row :global(.btn) {
-      flex: 1 1 auto;
+    .task {
+      padding: 16px;
+      gap: 12px;
     }
   }
 </style>

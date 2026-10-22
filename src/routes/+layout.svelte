@@ -4,26 +4,30 @@
   import { base } from '$app/paths';
   import { page } from '$app/state';
   import Footer from '$lib/components/Footer.svelte';
-  import { SITE_URL } from '$lib/config';
   import Header from '$lib/components/Header.svelte';
-  import { dict, initLocale } from '$lib/locale.svelte';
-  import { guideSlug, routeKey } from '$lib/route';
+  import { SITE_URL } from '$lib/config';
+  import { DOCS_DIRS } from '$lib/i18n';
+  import { dict, initLocale, preferredLocale } from '$lib/locale.svelte';
+  import { legacyAnchor, routeKey, targetHref } from '$lib/route';
+  import { redirect } from '$lib/nav';
   import { initTheme } from '$lib/theme.svelte';
 
   let { children } = $props();
 
   const route = $derived(routeKey(page.url.pathname, base));
-  const home = $derived(route === 'home');
-  const slug = $derived(guideSlug(page.url.pathname, base));
+  /** Pages whose hero runs under the (transparent) header. */
+  const onHero = $derived(route === 'home' || route === 'pc' || route === 'patcher' || route === 'server');
   const title = $derived.by(() => {
-    const d = dict();
-    if (route === 'article') return d.guides.items.find((item) => item.id === slug)!.title + ' · ' + d.meta.title;
-    return route === 'other' ? d.meta.title : d.meta.titles[route];
+    const titles = dict().meta.titles;
+    return route in titles ? titles[route as keyof typeof titles] : dict().meta.title;
   });
 
   onMount(() => {
     initLocale();
     initTheme();
+    // Old one-page anchors (/#patcher, /server#start ...) moved to their own pages or into the docs.
+    const target = legacyAnchor(location.pathname, location.hash, base);
+    if (target) redirect(targetHref(target, base, DOCS_DIRS[preferredLocale()]));
   });
 </script>
 
@@ -45,8 +49,8 @@
 </svelte:head>
 
 <a class="skip" href="#main">{dict().nav.skip}</a>
-<Header {route} hero={home} />
-<main id="main">
+<Header {route} {onHero} />
+<main id="main" tabindex="-1">
   {@render children()}
 </main>
-<Footer {route} rich={home} />
+<Footer />

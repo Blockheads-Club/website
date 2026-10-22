@@ -18,7 +18,7 @@ describe('locale', () => {
     localStorage.setItem('bh-locale', 'tr');
     initLocale();
     expect(i18n.locale).toBe('tr');
-    expect(dict().nav.faq).toBe('SSS');
+    expect(dict().nav.docs).toBe('Dokümanlar');
   });
 
   it('follows the browser language when nothing is stored', () => {

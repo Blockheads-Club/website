@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_LOCALE, LOCALES, LOCALE_NAMES, detectLocale, dictionaries, docsPath, isLocale, plural } from './index';
+import { DEFAULT_LOCALE, LOCALES, LOCALE_NAMES, detectLocale, dictionaries, docsPath, isLocale, translationProgress } from './index';
 
 function shape(value: unknown, prefix = ''): string[] {
   if (Array.isArray(value)) {
@@ -53,8 +53,8 @@ describe('i18n', () => {
   });
 
   it.each(['ru', 'kk'] as const)('%s is written in Cyrillic', (locale) => {
-    expect(dictionaries[locale].nav.guides).toMatch(/^[Ѐ-ӿ ]+$/);
-    expect(dictionaries[locale].home.hero.title).toMatch(/[Ѐ-ӿ]/);
+    expect(dictionaries[locale].nav.docs).toMatch(/^[Ѐ-ӿ ]+$/);
+    expect(dictionaries[locale].home.title).toMatch(/[Ѐ-ӿ]/);
   });
 
   it('has no empty strings', () => {
@@ -87,17 +87,20 @@ describe('i18n', () => {
     expect(docsPath('kk')).toBe('/docs/kk/');
   });
 
-  it('plural uses the CLDR rules of each locale', () => {
-    const forms = { one: 'one', few: 'few', many: 'many', other: 'other' };
-    expect([1, 3, 5, 21, 22, 25, 11].map((n) => plural(forms, n, 'ru'))).toEqual(['one', 'few', 'many', 'one', 'few', 'many', 'many']);
-    expect([1, 2, 5].map((n) => plural(forms, n, 'en'))).toEqual(['one', 'other', 'other']);
-    expect([1, 5].map((n) => plural(forms, n, 'kk'))).toEqual(['one', 'other']);
-    // Categories a dictionary does not carry (Arabic "two") fall back to "other".
-    expect(plural(forms, 2, 'ar')).toBe('other');
+  it('docsPath takes a page', () => {
+    expect(docsPath('kk', 'guides/docker')).toBe('/docs/kk/guides/docker');
   });
 
-  it('Russian counts read naturally', () => {
-    const { resultsStatus } = dictionaries.ru.guides;
-    expect(new Set([plural(resultsStatus, 1, 'ru'), plural(resultsStatus, 3, 'ru'), plural(resultsStatus, 10, 'ru')]).size).toBe(3);
+  it('counts every locale as complete', () => {
+    expect(translationProgress()).toEqual({ en: 100, tr: 100, ru: 100, kk: 100 });
+  });
+
+  it('keeps product names untranslated and Turkish informal', () => {
+    for (const locale of LOCALES) {
+      expect(dictionaries[locale].apps.pc.get).toContain('Blockheads PC');
+      expect(dictionaries[locale].patcher.primary).toContain('Patcher');
+    }
+    expect(dictionaries.tr.nav.docs).toBe('Dokümanlar');
+    expect(JSON.stringify(dictionaries.tr)).not.toMatch(/\b\w+(sınız|siniz|sunuz|sünüz)\b/);
   });
 });

@@ -4,7 +4,7 @@
   import { dict, i18n, setLocale } from '$lib/locale.svelte';
   import Icon from './Icon.svelte';
 
-  let { variant = 'header' }: { variant?: 'header' | 'footer' } = $props();
+  let { variant = 'header', class: className = '' }: { variant?: 'header' | 'footer'; class?: string } = $props();
 
   const d = $derived(dict());
   let open = $state(false);
@@ -49,11 +49,11 @@
 
 <svelte:window onclick={onwindowclick} />
 
-<div class="lang" bind:this={root} {onkeydown} role="presentation">
+<div class={['lang', className]} bind:this={root} {onkeydown} role="presentation">
   <button
     bind:this={trigger}
     type="button"
-    class="btn btn-sm"
+    class={['btn', 'btn-sm', variant === 'header' && 'btn-g']}
     aria-haspopup="menu"
     aria-expanded={open}
     aria-label={d.nav.language + ': ' + LOCALE_NAMES[i18n.locale]}
@@ -86,6 +86,9 @@
 <style>
   .lang {
     position: relative;
+  }
+  .lang > :global(.btn) {
+    width: 100%;
   }
   .pop {
     position: absolute;

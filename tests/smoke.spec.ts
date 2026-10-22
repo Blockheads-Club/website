@@ -1,76 +1,58 @@
 import { expect, test } from '@playwright/test';
 
-test('landing page renders, links are real and language switches to Turkish', async ({ page }) => {
+test('home says what we are and routes to the apps', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Keep The Blockheads playable');
-  await expect(page.getByRole('link', { name: 'Open the web Patcher' })).toHaveAttribute(
-    'href',
-    'https://blockheads.club/patcher/'
-  );
-  await page.getByRole('button', { name: 'Language: English' }).first().click();
-  await page.getByRole('menuitemradio', { name: /Türkçe/ }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('oynanabilir');
-  await expect(page.locator('html')).toHaveAttribute('lang', 'tr');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('The Blockheads, kept alive by its players.');
+  await expect(page.getByRole('link', { name: 'Get the right download' })).toHaveAttribute('href', '/download');
+  await expect(page.getByRole('link', { name: 'Get the Server' })).toHaveAttribute('href', '/download?task=server');
+  await expect(page.getByText('Unofficial fan project. Not affiliated with Majic Jungle Software or Noodlecake.').first()).toBeVisible();
+  // Release rows are filled at build time: a version, or a link to GitHub when the API was unavailable.
+  const rows = page.locator('li.rel');
+  await expect(rows).toHaveCount(3);
+  for (const row of await rows.all()) await expect(row.getByRole('link')).toHaveAttribute('href', /^https:\/\/github\.com\/Blockheads-Club\//);
+});
+
+test('the Apps menu reaches every app page', async ({ page }) => {
+  await page.goto('/');
+  const nav = page.getByRole('navigation', { name: 'Main' });
+  for (const [name, path, h1] of [
+    ['Blockheads PC', '/pc', 'Blockheads PC'],
+    ['Patcher', '/patcher-app', 'Patcher'],
+    ['Server', '/server', 'Server'],
+    ['Mods', '/mods', 'Mods are coming to The Blockheads.']
+  ]) {
+    await nav.getByRole('button', { name: 'Apps' }).click();
+    await page.locator('#apps-panel').getByRole('link', { name: new RegExp('^' + name) }).click();
+    await expect(page).toHaveURL(new RegExp(path + '$'));
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(h1);
+  }
+  await nav.getByRole('link', { name: 'Get involved' }).click();
+  await expect(page).toHaveURL(/\/contribute$/);
+  await page.getByRole('contentinfo').getByRole('link', { name: 'About & legal' }).click();
+  await expect(page).toHaveURL(/\/about$/);
+  await expect(page.locator('#legal')).toContainText('Majic Jungle Software');
+});
+
+test('app pages offer a real download and link into the docs', async ({ page }) => {
+  await page.goto('/server');
+  const primary = page.getByRole('link', { name: /^Download for / });
+  await expect(primary).toHaveAttribute('href', /^https:\/\/github\.com\/Blockheads-Club\/blockheads-server\/releases/);
+  await expect(page.getByRole('link', { name: 'Play with friends on the same Wi-Fi' })).toHaveAttribute('href', '/docs/guides/lan-play');
+  await page.goto('/patcher-app');
+  await expect(page.getByRole('link', { name: 'Open the web Patcher' })).toHaveAttribute('href', '/patcher/');
 });
 
 test('theme toggles and persists', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: /Switch to (dark|light) theme/ }).click();
+  await page.getByRole('button', { name: /Switch to (dark|light) theme/ }).first().click();
   const theme = await page.locator('html').getAttribute('data-theme');
   expect(['light', 'dark']).toContain(theme);
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', theme!);
 });
 
-test('navigation reaches every page', async ({ page }) => {
-  await page.goto('/');
-  const nav = page.getByRole('navigation', { name: 'Main' });
-  await nav.getByRole('link', { name: 'Server' }).click();
-  await expect(page).toHaveURL(/\/server$/);
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Host a world');
-  await nav.getByRole('link', { name: 'Guides' }).click();
-  await expect(page).toHaveURL(/\/guides$/);
-  await page.getByRole('link', { name: /Fix the game on your phone/ }).first().click();
-  await expect(page).toHaveURL(/\/guides\/fix-game-on-phone$/);
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Fix the game on your phone');
-  await nav.getByRole('link', { name: 'FAQ' }).click();
-  await expect(page).toHaveURL(/\/faq$/);
-  await page.getByRole('link', { name: 'Legal', exact: true }).click();
-  await expect(page).toHaveURL(/\/legal$/);
-});
-
-test('server quick start tabs switch', async ({ page }) => {
-  await page.goto('/server');
-  await expect(page.getByRole('tab', { name: 'Linux' })).toHaveAttribute('aria-selected', 'true');
-  await page.getByRole('tab', { name: 'Windows' }).click();
-  await expect(page.getByText('blockheads_server.exe')).toBeVisible();
-  await page.getByRole('tab', { name: 'Docker' }).click();
-  await expect(page.getByText('docker run')).toBeVisible();
-});
-
-test('guides search filters', async ({ page }) => {
-  await page.goto('/guides');
-  await page.getByRole('searchbox').fill('docker');
-  await expect(page.getByText('Docker and Docker Compose')).toBeVisible();
-  await expect(page.getByText('Open your server to the internet')).toHaveCount(0);
-});
-
-test('mobile menu opens at 390px', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/');
-  await expect(page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'FAQ' })).toHaveCount(0);
-  await page.getByRole('button', { name: 'Open menu' }).click();
-  const dialog = page.getByRole('dialog');
-  await expect(dialog).toBeVisible();
-  await dialog.getByRole('link', { name: 'Server' }).click();
-  await expect(page).toHaveURL(/\/server$/);
-  await expect(dialog).toHaveCount(0);
-  await page.getByRole('button', { name: 'Open menu' }).click();
-  await page.keyboard.press('Escape');
-  await expect(page.getByRole('dialog')).toHaveCount(0);
-});
-
 test('unknown route serves the 404 page', async ({ page }) => {
   const res = await page.goto('/nope');
   expect(res?.status()).toBe(404);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('This block is missing.');
 });

@@ -41,7 +41,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/**/*.{ts,svelte}'],
-      exclude: ['src/**/*.test.ts', 'src/**/*.d.ts'],
+      exclude: ['src/**/*.test.ts', 'src/**/*.d.ts', 'src/test/**'],
       reporter: ['text', 'lcov'],
       thresholds: { lines: 100, branches: 100, functions: 100, statements: 100 }
     }
