@@ -7,10 +7,10 @@
     tone,
     icon,
     children
-  }: { tone: 'info' | 'warn'; icon: IconName; children: Snippet } = $props();
+  }: { tone: 'info' | 'warn' | 'bad'; icon: IconName; children: Snippet } = $props();
 </script>
 
-<div class={['call', tone === 'info' ? 'call-info' : 'call-warn']} role="note">
+<div class={['call', `call-${tone}`]} role="note">
   <Icon name={icon} />
   <div>{@render children()}</div>
 </div>

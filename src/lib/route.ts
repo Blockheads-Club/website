@@ -1,6 +1,6 @@
 import { WRITTEN } from './guides';
 
-export type RouteKey = 'home' | 'server' | 'guides' | 'article' | 'faq' | 'legal' | 'other';
+export type RouteKey = 'home' | 'server' | 'guides' | 'article' | 'faq' | 'legal' | 'mods' | 'modsSubmit' | 'modDetail' | 'other';
 
 function strip(pathname: string, base: string): string {
   const path = pathname.startsWith(base) ? pathname.slice(base.length) : pathname;
@@ -27,7 +27,12 @@ export function routeKey(pathname: string, base: string): RouteKey {
       return 'faq';
     case '/legal':
       return 'legal';
+    case '/mods':
+      return 'mods';
+    case '/mods/submit':
+      return 'modsSubmit';
     default:
+      if (path.startsWith('/mods/')) return 'modDetail';
       return guideSlug(pathname, base) ? 'article' : 'other';
   }
 }

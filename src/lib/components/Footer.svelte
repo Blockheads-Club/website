@@ -36,6 +36,7 @@
           <a href={base + '/#patcher'}>{d.nav.patcher}</a>
           <a href={base + '/server'}>{d.nav.server}</a>
           <a href={base + '/server#downloads'}>{d.footer.downloads}</a>
+          <a href={base + '/mods'}>{d.nav.mods}</a>
         </nav>
         <nav aria-label={d.footer.help}>
           <p>{d.footer.help}</p>
@@ -67,6 +68,7 @@
       </p>
       <nav aria-label={d.footer.nav}>
         <a href={base + docsPath(i18n.locale)} rel="external">{d.nav.docs}</a>
+        <a href={base + '/mods'}>{d.nav.mods}</a>
         <a href={base + '/guides'}>{d.nav.guides}</a>
         <a href={base + '/faq'}>{d.nav.faq}</a>
         <a href={LINKS.org} rel="noopener">{d.nav.github}</a>

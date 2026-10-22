@@ -17,6 +17,7 @@
   const slug = $derived(guideSlug(page.url.pathname, base));
   const title = $derived.by(() => {
     const d = dict();
+    if (route === 'modDetail') return ((page.data.mod?.name as string | undefined) ?? d.nav.mods) + ' · ' + d.meta.title;
     if (route === 'article') return d.guides.items.find((item) => item.id === slug)!.title + ' · ' + d.meta.title;
     return route === 'other' ? d.meta.title : d.meta.titles[route];
   });

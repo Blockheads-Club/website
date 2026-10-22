@@ -8,6 +8,8 @@ export const LINKS = {
   org: 'https://github.com/Blockheads-Club',
   websiteRepo: 'https://github.com/Blockheads-Club/website',
   websiteIssues: 'https://github.com/Blockheads-Club/website/issues',
+  modSdk: 'https://github.com/Blockheads-Club/mod-sdk',
+  modsRepo: 'https://github.com/Blockheads-Club/mods',
   patcherIssues: 'https://github.com/Blockheads-Club/blockheads-patcher/issues'
 } as const;
 

@@ -10,7 +10,9 @@ export const tr: Dict = {
       server: 'Sunucu hızlı başlangıç · Blockheads Club',
       guides: 'Rehberler · Blockheads Club',
       faq: 'SSS · Blockheads Club',
-      legal: 'Yasal bildirim · Blockheads Club'
+      legal: 'Yasal bildirim · Blockheads Club',
+      mods: 'Modlar · Blockheads Club',
+      modsSubmit: 'Mod gönder · Blockheads Club'
     }
   },
   nav: {
@@ -21,6 +23,7 @@ export const tr: Dict = {
     server: 'Sunucu',
     guides: 'Rehberler',
     faq: 'SSS',
+    mods: 'Modlar',
     docs: 'Dokümanlar',
     github: 'GitHub',
     menu: 'Menü',
@@ -978,6 +981,140 @@ export const tr: Dict = {
     'server/phone-dashboard': {
       alt: 'Android telefonda sunucu uygulamasının paneli: diğer telefonlar için LAN adresi, port ve QR kodu.',
       caption: 'Arkadaşların panelde gösterilen adresle katılır.'
+    }
+  },
+  mods: {
+    eyebrow: 'Modlar',
+    title: 'The Blockheads için modlar',
+    lead: 'Sunucular ve istemciler için topluluk modlarına göz at. Her mod, neler yapabildiğini açıkça listeler.',
+    sample: 'Örnek veri: mod dizini henüz yayında değil, aşağıdaki modlar örnektir.',
+    searchLabel: 'Modlarda ara',
+    searchPlaceholder: 'Ada, kimliğe, açıklamaya veya etikete göre ara',
+    tagsLabel: 'Etikete göre süz',
+    allTags: 'Tüm etiketler',
+    resultsStatus: { one: 'mod gösteriliyor', few: 'mod gösteriliyor', many: 'mod gösteriliyor', other: 'mod gösteriliyor' },
+    noResults: 'Aramana uyan mod yok.',
+    clear: 'Aramayı temizle',
+    by: 'yazan:',
+    draft: 'Taslak',
+    allYanked: 'Tüm sürümler geri çekildi',
+    submitButton: 'Mod gönder',
+    makeButton: 'Mod yap',
+    clientRequired: 'Oyuncular da kurmalı',
+    version: 'Sürüm',
+    sides: { server: 'Sunucu', client: 'İstemci', both: 'Sunucu + istemci' },
+    native: {
+      badge: 'Yerel kod',
+      warn: 'Yerel kodu korumalı alanın dışında çalıştırır. Yalnızca yazarına güveniyorsan kur.'
+    },
+    perms: {
+      none: 'Özel bir izne ihtiyacı yok.',
+      world: {
+        read: { label: 'Dünya: okuma', text: 'Dünyayı okuyabilir: blokları, eşyaları ve diğer verileri.' },
+        write: { label: 'Dünya: yazma', text: 'Dünyayı değiştirebilir: blok koyabilir ve kırabilir, eşya ekleyebilir.' }
+      },
+      players: {
+        chat: { label: 'Sohbet', text: 'Oyunculara sohbet mesajı gönderebilir.' },
+        teleport: { label: 'Işınlama', text: 'Oyuncuları ışınlayabilir.' },
+        kick: { label: 'Atma', text: 'Oyuncuları sunucudan atabilir.' },
+        ban: { label: 'Yasaklama', text: 'Oyuncuları yasaklayabilir.' },
+        inventory: { label: 'Envanter', text: 'Oyuncuların taşıdıklarına bakabilir ve değiştirebilir.' },
+        health: { label: 'Can', text: 'Oyuncuların canını değiştirebilir.' }
+      },
+      http: { label: 'İnternet', text: 'Şu sitelere bağlanabilir:' },
+      channels: { label: 'Mesajlar', text: 'Sunucu, istemciler ve diğer modlar arasında kendi mesajlarını gönderebilir.' }
+    },
+    detail: {
+      breadcrumb: 'Gezinti yolu',
+      all: 'Tüm modlar',
+      noDescription: 'Açıklama yok.',
+      owners: 'Sahipler',
+      repo: 'Kaynak kod',
+      tags: 'Etiketler',
+      versions: 'Sürümler',
+      columns: { version: 'Sürüm', published: 'Yayın tarihi', size: 'Boyut', sides: 'Çalıştığı yer', download: 'İndir' },
+      select: 'Ayrıntıları göster',
+      selected: 'Gösterilen',
+      yanked: 'Geri çekildi',
+      latest: 'En yeni',
+      download: 'İndir',
+      mirror: 'Yansı',
+      sha: 'SHA-256',
+      copy: 'Kopyala',
+      copied: 'Kopyalandı',
+      copyFailed: 'Kopyalanamadı',
+      copyLabel: 'SHA-256’yı kopyala',
+      noDownload: 'Bu modun tüm sürümleri geri çekildi, indirilecek bir şey yok.',
+      api: 'Gereken mod API’si',
+      loader: 'Yükleyici',
+      depends: 'Gerektirdiği modlar',
+      softDepends: 'Şunlarla daha iyi çalışır',
+      notInIndex: 'dizinde yok',
+      noDepends: 'Başka mod gerekmiyor.',
+      permsTitle: 'Bu sürüm neler yapabilir',
+      draftNote: 'Bu bir taslak kayıt: mod henüz yayında değil ve indirilecek bir şey yok.',
+      installTitle: 'Nasıl kurulur',
+      players: 'Oyuncular',
+      playersBody: 'İstemci modları oyun içi mod tarayıcısından veya Patcher ile kurulacak. Bu daha sonra geliyor.',
+      admins: 'Sunucu yöneticileri',
+      adminsBody:
+        '`.bhmod` dosyasını indirip sunucunun `mods/` klasörüne at. İleride `/mods install <id>` bunu senin yerine yapacak. Sunucular henüz mod yükleyemiyor: bu sonraki bir sürümde gelecek.',
+      nativeTitle: 'Yerel kod: dikkatli ol',
+      nativeBody:
+        'Bu sürüm yerel kodu korumalı alanın dışında çalıştırır. Bilgisayarında programın yapabildiği her şeyi yapabilir. Yalnızca yazarına güveniyorsan ve kaynağı okuduysan kur.'
+    },
+    submit: {
+      eyebrow: 'Modlar',
+      title: 'Mod gönder',
+      lead: 'Modlar, Blockheads-Club/mods deposuna gönderilen bir çekme isteğiyle (pull request) listelenir. CI dosyaları kontrol eder, gerisini bir bakımcı inceler.',
+      stepsTitle: 'Nasıl gönderilir',
+      steps: [
+        {
+          title: 'Modunu derle ve yayınla',
+          body: '`bhmod pack` çalıştır ve `.bhmod` dosyasını kendi deponun bir sürümüne ekle. İndirme bağlantısı `.bhmod` ile biten herkese açık bir `https://` adresi olmalı.'
+        },
+        {
+          title: 'Blockheads-Club/mods deposunu çatalla',
+          body: 'Tek bir dosya ekle: `mods/<first letter>/<id>.toml` (ilk harf, mod kimliğinin ilk harfidir), örneğin `mods/h/hello-lua.toml`. Modun adı, sahipleri, deposu ve yayınlanmış tüm sürümleri bu dosyada durur.'
+        },
+        {
+          title: 'Sürümü tanımla',
+          body: 'Her sürüm için indirme adresini, `.bhmod` dosyasının SHA-256 değerini ve boyutunu, tarafları, API aralığını, izinleri ve tarihi yaz.'
+        },
+        {
+          title: 'Çekme isteği aç',
+          body: 'CI aşağıdaki kontrolleri çalıştırır ve sonucu yorum olarak yazar. Bir bakımcı inceleyip birleştirir. Sonra dizin yeniden oluşturulur ve bu sayfa bir sonraki derlemede onu alır.'
+        }
+      ],
+      rulesTitle: 'Kurallar',
+      rules: [
+        'Her çekme isteğinde tek mod.',
+        'Dosyada listelenen sahipler dışında kimse sürüm ekleyemez. İlk gönderen ilk sahip olur.',
+        'Sürümler yalnızca eklenir. Yayınlanmış bir sürümü asla düzenleme veya silme; izin verilen tek değişiklik bozuk ya da güvensiz bir sürümü geri çekmek için `yanked = true` yazmaktır.',
+        'Yalnızca kendi yaptığın veya paylaşma hakkın olan modları gönder ve lisansını deponda tut.',
+        'Yalnızca modun gerçekten ihtiyaç duyduğu izinleri iste.',
+        'Oyun dosyası ve kopyalanmış oyun varlığı yok.'
+      ],
+      ciTitle: 'CI neleri kontrol eder',
+      ci: [
+        'Dosya dizin şemasına uyar ve yolu mod kimliğiyle eşleşir.',
+        'Çekme isteği tam olarak bir moda dokunur.',
+        'Sürümler yalnızca eklenir; mevcut olanlar yalnızca `yanked` ile değişir.',
+        'Çekme isteğini açan kişi `owners` listesindedir.',
+        'İndirme çalışır; SHA-256 ve boyut eşleşir.',
+        'Paket, paket kurallarına uyar ve `mod.toml` dosyası kayıtla eşleşir.',
+        'Bağımlılıklar dizinde vardır ve sürüm aralıkları karşılanabilir.',
+        'WASM modülleri doğrulanır, Lua/Luau betikleri derlenir.',
+        'İzin farkı paylaşılır. Yerel modlar ve her yeni izin `needs-security-review` etiketini alır ve bir bakımcıyı bekler.'
+      ],
+      nativeTitle: 'Yerel modlar',
+      nativeBody: '`native = true` olan modlar korumalı alanın dışında kod çalıştırır. İzin verilir, ama elle incelenir ve kırmızı bir uyarıyla gösterilir.',
+      toolsTitle: 'Araçlar',
+      toolsBody: 'Mod SDK’sında `bhmod` komut satırı aracı, şemalar ve örnekler var.',
+      sdkButton: 'Mod SDK’sını aç',
+      modsButton: 'Blockheads-Club/mods’u aç',
+      docsButton: 'Mod yapma (dokümanlar)',
+      notPublic: 'mod-sdk ve mods depoları henüz herkese açık değil, bu yüzden bu bağlantılar şimdilik çalışmayabilir.'
     }
   },
   footer: {

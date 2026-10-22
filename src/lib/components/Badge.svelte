@@ -10,7 +10,7 @@
     class: className = '',
     children
   }: {
-    tone?: 'neutral' | 'ok' | 'primary' | 'info';
+    tone?: 'neutral' | 'ok' | 'primary' | 'info' | 'bad';
     icon?: IconName;
     dot?: boolean;
     class?: string;
@@ -18,7 +18,7 @@
   } = $props();
 </script>
 
-<span class={['badge', tone === 'ok' && 'b-ok', tone === 'primary' && 'b-p', tone === 'info' && 'b-info', className]}>
+<span class={['badge', tone === 'ok' && 'b-ok', tone === 'primary' && 'b-p', tone === 'info' && 'b-info', tone === 'bad' && 'b-bad', className]}>
   {#if dot}<span class="dot"></span>{/if}
   {#if icon}<Icon name={icon} size={14} />{/if}
   {@render children()}

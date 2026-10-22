@@ -11,6 +11,8 @@
     guides: base + '/guides',
     faq: base + '/faq',
     server: base + '/server',
+    mods: base + '/mods',
+    modsSubmit: base + '/mods/submit',
     ...Object.fromEntries(WRITTEN.map((g) => [linkKey(g.id), base + g.path]))
   };
 

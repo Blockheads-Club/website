@@ -394,6 +394,10 @@ a.card:hover {
   background: var(--info-soft);
   color: var(--info);
 }
+.b-bad {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
 .dot {
   width: 8px;
   height: 8px;
@@ -483,6 +487,14 @@ a.card:hover {
 }
 .call-warn .ico {
   color: var(--warn);
+}
+
+.call-bad {
+  background: var(--bad-soft);
+  border: 2px solid var(--bad);
+}
+.call-bad .ico {
+  color: var(--bad);
 }
 
 body.menu-open {

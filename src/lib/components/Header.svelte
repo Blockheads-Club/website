@@ -19,6 +19,7 @@
     { id: 'patcher', label: d.nav.patcher, href: base + '/#patcher', current: false },
     { id: 'server', label: d.nav.server, href: base + '/server', current: route === 'server' },
     { id: 'guides', label: d.nav.guides, href: base + '/guides', current: route === 'guides' || route === 'article' },
+    { id: 'mods', label: d.nav.mods, href: base + '/mods', current: route === 'mods' || route === 'modsSubmit' || route === 'modDetail' },
     { id: 'faq', label: d.nav.faq, href: base + '/faq', current: route === 'faq' },
     // The docs are a separate VitePress site: full page load (rel=external), and the prerender crawler skips it.
     // It opens in the docs locale matching the site language (/docs/ru/, /docs/kk/, ...).
