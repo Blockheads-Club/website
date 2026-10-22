@@ -16,7 +16,7 @@ import {
 } from './releases';
 import { parseRich } from './rich';
 import { legacyAnchor, movedTarget, routeKey, targetHref } from './route';
-import { fetchReleases, loadReleases, resetReleases } from './server/releases';
+import { ATTEMPTS, fetchReleases, loadReleases, resetReleases } from './server/releases';
 
 describe('parseRich', () => {
   it('parses all inline kinds', () => {
@@ -181,28 +181,93 @@ describe('releases', () => {
 
 describe('build-time release fetch', () => {
   const ok = (body: unknown) => Promise.resolve(new Response(JSON.stringify(body), { status: 200 }));
+  const noWait = (_ms: number) => Promise.resolve();
+  const stable = api('v0.1.0', '2026-10-20T00:00:00Z');
 
   it('fetches every app, sends the token and survives failures', async () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     const fetcher = vi.fn((url: string, _init: RequestInit) => {
-      if (url.includes('blockheads-pc')) return ok([api('v0.1.0', '2026-10-20T00:00:00Z')]);
+      if (url.includes('blockheads-pc')) return ok([stable]);
       if (url.includes('patcher')) return Promise.resolve(new Response('limit', { status: 403 }));
       return Promise.reject(new Error('offline'));
     });
-    const r = await fetchReleases(fetcher, 'tok');
+    const wait = vi.fn(noWait);
+    const r = await fetchReleases(fetcher, 'tok', wait);
     expect(r.pc!.version).toBe('0.1.0');
     expect(r.patcher).toBeNull();
     expect(r.server).toBeNull();
     expect(fetcher.mock.calls[0][1].headers).toMatchObject({ authorization: 'Bearer tok' });
-    expect(warn).toHaveBeenCalledTimes(2);
-    await fetchReleases(fetcher);
-    expect((fetcher.mock.calls[3][1].headers as Record<string, string>).authorization).toBeUndefined();
+    // pc once; patcher and server six tries each, alternating between the list and /releases/latest.
+    expect(fetcher).toHaveBeenCalledTimes(1 + 2 * ATTEMPTS);
+    const patcherUrls = fetcher.mock.calls.map((c) => c[0]).filter((u) => u.includes('patcher'));
+    expect(patcherUrls).toHaveLength(ATTEMPTS);
+    expect(patcherUrls[0]).toMatch(/\/releases\?per_page=10$/);
+    expect(patcherUrls[1]).toMatch(/\/releases\/latest$/);
+    const pauses = wait.mock.calls.map((c) => c[0]).sort((a, b) => a - b);
+    expect(pauses).toEqual([2000, 2000, 4000, 4000, 6000, 6000, 8000, 8000, 10000, 10000]);
+    expect(warn.mock.calls.filter((c) => String(c[0]).includes('linking to GitHub releases'))).toHaveLength(2);
+    fetcher.mockClear();
+    await fetchReleases(fetcher, undefined, noWait);
+    expect((fetcher.mock.calls[0][1].headers as Record<string, string>).authorization).toBeUndefined();
+    warn.mockRestore();
+  });
+
+  it('retries an empty release list until the list answers', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const calls: Record<string, number> = {};
+    const fetcher = vi.fn((url: string) => {
+      const repo = url.split('/')[5];
+      calls[repo] = (calls[repo] ?? 0) + 1;
+      // First the list is empty, then /latest finds no stable release (pre-releases only), then the list recovers.
+      if (calls[repo] === 1) return ok([]);
+      if (calls[repo] === 2) return Promise.resolve(new Response('{"message":"Not Found"}', { status: 404 }));
+      return ok([api('v0.2.0-beta.1', '2026-10-21T00:00:00Z', { prerelease: true })]);
+    });
+    const r = await fetchReleases(fetcher, undefined, noWait);
+    expect(r.pc!.version).toBe('0.2.0-beta.1');
+    expect(r.server!.version).toBe('0.2.0-beta.1');
+    expect(fetcher).toHaveBeenCalledTimes(9);
+    expect(warn.mock.calls.every((c) => String(c[0]).endsWith('retrying'))).toBe(true);
+    warn.mockRestore();
+  });
+
+  it('falls back to /releases/latest when the list stays empty', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const fetcher = vi.fn((url: string) => (url.endsWith('/latest') ? ok(stable) : ok([])));
+    const r = await fetchReleases(fetcher, undefined, noWait);
+    expect(r.pc).toMatchObject({ version: '0.1.0', tag: 'v0.1.0' });
+    expect(r.patcher!.version).toBe('0.1.0');
+    expect(r.server!.version).toBe('0.1.0');
+    expect(fetcher).toHaveBeenCalledTimes(6);
+    expect(warn.mock.calls[0][0]).toContain('no published release');
+    warn.mockRestore();
+  });
+
+  it('links to GitHub releases when every attempt fails', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const fetcher = vi.fn((url: string) => (url.endsWith('/latest') ? Promise.reject(new Error('timeout')) : ok([])));
+    expect(await fetchReleases(fetcher, undefined, noWait)).toEqual(NO_RELEASES);
+    expect(fetcher).toHaveBeenCalledTimes(3 * ATTEMPTS);
+    expect(warn).toHaveBeenCalledTimes(3 * ATTEMPTS);
+    warn.mockRestore();
+  });
+
+  it('pauses between attempts by default', async () => {
+    vi.useFakeTimers();
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const fetcher = vi.fn((url: string) => (url.endsWith('/latest') ? ok(stable) : ok([])));
+    const pending = fetchReleases(fetcher);
+    await vi.advanceTimersByTimeAsync(1999);
+    expect(fetcher).toHaveBeenCalledTimes(3);
+    await vi.advanceTimersByTimeAsync(1);
+    expect((await pending).pc!.version).toBe('0.1.0');
+    vi.useRealTimers();
     warn.mockRestore();
   });
 
   it('loads once per build, or not at all offline', async () => {
     resetReleases();
-    const fetcher = vi.fn(() => ok([]));
+    const fetcher = vi.fn(() => ok([stable]));
     expect(await loadReleases({ RELEASES_OFFLINE: '1' }, fetcher)).toEqual(NO_RELEASES);
     expect(fetcher).not.toHaveBeenCalled();
     await loadReleases({}, fetcher);

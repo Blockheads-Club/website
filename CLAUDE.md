@@ -29,8 +29,9 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
   `src/lib/route.ts`, `Moved.svelte`); old anchors (`/#patcher`, `/server#start` ...) redirect client-side (`LEGACY_ANCHORS`).
   Long copy (install steps, guides, FAQ) lives only in the docs; the site links to it.
 - Release data: `src/routes/+layout.server.ts` fetches the latest GitHub release of each app once per build
-  (`src/lib/server/releases.ts`; `GITHUB_TOKEN` optional, `RELEASES_OFFLINE=1` skips it). A failed request never fails
-  the build: pages then link to the GitHub releases page. Which asset each device gets: `DOWNLOADS` in `src/lib/releases.ts`.
+  (`src/lib/server/releases.ts`; `GITHUB_TOKEN` optional, `RELEASES_OFFLINE=1` skips it). Each app gets six tries alternating between
+  the release list and `/releases/latest` (the list sometimes answers `[]`); a failed fetch never fails the build: pages
+  then link to the GitHub releases page. Which asset each device gets: `DOWNLOADS` in `src/lib/releases.ts`.
   OS detection (`src/lib/platform.ts`) runs client-side only.
 - Docs: VitePress project in `docs/` (config `docs/.vitepress/config.ts`, locales en root + `tr/`, `ru/`, `kk/` with the same pages),
   served at `<BASE_PATH>/docs/`. `bun run build` runs `vite build` then `vitepress build docs` into `build/docs`; `bun run dev`
