@@ -1,10 +1,10 @@
-# PC Port
+# Blockheads PC
 
 **Blockheads PC** runs your own copy of the Android game on your computer. It works on Windows, macOS and Linux,
 on both normal (x86_64) and ARM (arm64) machines.
 
 ::: warning Early version
-The PC Port is new. Most of the game works, but expect a few rough edges. Please
+The Blockheads PC is new. Most of the game works, but expect a few rough edges. Please
 [report problems](https://github.com/Blockheads-Club/blockheads-pc/issues) you find.
 :::
 

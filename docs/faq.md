@@ -15,13 +15,13 @@ Software or Noodlecake. "The Blockheads" is a trademark of its owner.
 
 ## Which game versions work?
 
-The PC Port and the Patcher support the Android game versions **1.7.4, 1.7.5 and 1.7.6**.
+The Blockheads PC and the Patcher support the Android game versions **1.7.4, 1.7.5 and 1.7.6**.
 
 ## Which platforms are supported?
 
 | Tool | Platforms |
 | --- | --- |
-| PC Port | Windows, macOS, Linux (x86_64 and arm64) |
+| Blockheads PC | Windows, macOS, Linux (x86_64 and arm64) |
 | Patcher | Web browser, Windows, macOS, Linux, Android |
 | Server | Windows, macOS, Linux (incl. Raspberry Pi), Docker, Android |
 
@@ -38,10 +38,34 @@ Yes. They can join the same servers.
 
 Yes. Everything is free and open source (GPL-3.0-or-later).
 
+## Why must I uninstall the original game on Android?
+
+The patched game is signed with your own key, not the original one. Android doesn’t allow an app with a different signature to replace an installed app. Back up your worlds first.
+
+## What is a signing key and why keep it?
+
+It proves an app comes from the same source. If you patch again later with the same key, you can install over your patched game and keep your worlds. Export it and store it somewhere safe.
+
+## How many players can join?
+
+From 1 to 32. You choose the limit in Settings.
+
+## My friend can’t connect. What should I check?
+
+Same Wi-Fi, correct address and port, firewall allows the server, and the whitelist (if on) includes their name. [Connection guide](./guides/lan-play)
+
+## Can I run it on an old Android phone?
+
+Yes. Use the Server app, keep the phone charging and allow it to run in the background.
+
+## Can I help?
+
+Yes — report bugs, write guides or translate the apps on GitHub.
+
 ## Where do I get help?
 
 - Report a bug or ask a question on GitHub:
-  [PC Port](https://github.com/Blockheads-Club/blockheads-pc/issues),
+  [Blockheads PC](https://github.com/Blockheads-Club/blockheads-pc/issues),
   [Patcher](https://github.com/Blockheads-Club/blockheads-patcher/issues),
   [Server](https://github.com/Blockheads-Club/blockheads-server/issues),
   [Website and docs](https://github.com/Blockheads-Club/website/issues).

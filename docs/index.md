@@ -10,7 +10,7 @@ hero:
     alt: Blockheads Club
   actions:
     - theme: brand
-      text: PC Port
+      text: Blockheads PC
       link: /pc-port
     - theme: alt
       text: Patcher
@@ -19,7 +19,7 @@ hero:
       text: Server
       link: /server
 features:
-  - title: PC Port
+  - title: Blockheads PC
     details: Play your own copy of the Android game on Windows, macOS and Linux, with mouse, keyboard or a controller.
     link: /pc-port
     linkText: Install it
@@ -39,7 +39,7 @@ Blockheads Club is an unofficial, volunteer project for fans of **The Blockheads
 
 | Tool | What it does | Runs on |
 | --- | --- | --- |
-| [PC Port](/pc-port) | Runs the Android game on your computer | Windows, macOS, Linux |
+| [Blockheads PC](/pc-port) | Runs the Android game on your computer | Windows, macOS, Linux |
 | [Patcher](/patcher) | Fixes bugs in your copy of the Android game | Web, Windows, macOS, Linux, Android |
 | [Server](/server) | Hosts multiplayer worlds | Windows, macOS, Linux, Docker, Android |
 
@@ -50,7 +50,7 @@ version **1.7.4, 1.7.5 or 1.7.6**. Your files stay on your device; nothing is up
 
 ## Which one do I need?
 
-- **I want to play on my computer** → [PC Port](/pc-port)
+- **I want to play on my computer** → [Blockheads PC](/pc-port)
 - **The game freezes or crashes on my phone** → [Patcher](/patcher)
 - **I want to play with friends on my own world** → [Server](/server)
 

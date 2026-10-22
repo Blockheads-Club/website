@@ -15,13 +15,13 @@ onlar tarafından desteklenmez ya da sponsor edilmez. "The Blockheads" sahibinin
 
 ## Hangi oyun sürümleri çalışır?
 
-PC Sürümü ve Patcher, Android oyununun **1.7.4, 1.7.5 ve 1.7.6** sürümlerini destekler.
+Blockheads PC ve Patcher, Android oyununun **1.7.4, 1.7.5 ve 1.7.6** sürümlerini destekler.
 
 ## Hangi platformlar destekleniyor?
 
 | Araç | Platformlar |
 | --- | --- |
-| PC Sürümü | Windows, macOS, Linux (x86_64 ve arm64) |
+| Blockheads PC | Windows, macOS, Linux (x86_64 ve arm64) |
 | Patcher | Web tarayıcısı, Windows, macOS, Linux, Android |
 | Sunucu | Windows, macOS, Linux (Raspberry Pi dahil), Docker, Android |
 
@@ -38,10 +38,34 @@ Evet. Aynı sunuculara katılabilirler.
 
 Evet. Her şey ücretsiz ve açık kaynaklıdır (GPL-3.0-or-later).
 
+## Android’de orijinal oyunu neden kaldırmalıyım?
+
+Yamalı oyun orijinal anahtarla değil kendi anahtarınla imzalanır. Android, farklı imzalı bir uygulamanın yüklü uygulamanın yerine geçmesine izin vermez. Önce dünyalarını yedekle.
+
+## İmza anahtarı nedir ve neden saklamalıyım?
+
+Bir uygulamanın aynı kaynaktan geldiğini kanıtlar. Daha sonra aynı anahtarla yeniden yamalarsan yamalı oyunun üzerine kurabilir ve dünyalarını koruyabilirsin. Dışa aktar ve güvenli bir yerde sakla.
+
+## Kaç oyuncu katılabilir?
+
+1 ile 32 arası. Sınırı Ayarlar’dan seçersin.
+
+## Arkadaşım bağlanamıyor. Nelere bakmalıyım?
+
+Aynı Wi-Fi, doğru adres ve port, güvenlik duvarının sunucuya izin vermesi ve (açıksa) beyaz listede adının bulunması. [Bağlantı rehberi](./guides/lan-play)
+
+## Eski bir Android telefonda çalıştırabilir miyim?
+
+Evet. Sunucu uygulamasını kullan, telefonu şarjda tut ve arka planda çalışmasına izin ver.
+
+## Yardım edebilir miyim?
+
+Evet — GitHub’da hata bildir, rehber yaz veya uygulamaları çevir.
+
 ## Nereden yardım alabilirim?
 
 - GitHub’da hata bildir ya da soru sor:
-  [PC Sürümü](https://github.com/Blockheads-Club/blockheads-pc/issues),
+  [Blockheads PC](https://github.com/Blockheads-Club/blockheads-pc/issues),
   [Patcher](https://github.com/Blockheads-Club/blockheads-patcher/issues),
   [Sunucu](https://github.com/Blockheads-Club/blockheads-server/issues),
   [Web sitesi ve dokümanlar](https://github.com/Blockheads-Club/website/issues).

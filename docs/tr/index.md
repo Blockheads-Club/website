@@ -10,7 +10,7 @@ hero:
     alt: Blockheads Club
   actions:
     - theme: brand
-      text: PC Sürümü
+      text: Blockheads PC
       link: /tr/pc-port
     - theme: alt
       text: Patcher
@@ -19,7 +19,7 @@ hero:
       text: Sunucu
       link: /tr/server
 features:
-  - title: PC Sürümü
+  - title: Blockheads PC
     details: Android oyununun kendi kopyanı Windows, macOS ve Linux’ta fare, klavye ya da oyun koluyla oyna.
     link: /tr/pc-port
     linkText: Kur
@@ -40,7 +40,7 @@ araç geliştiriyoruz:
 
 | Araç | Ne yapar | Nerede çalışır |
 | --- | --- | --- |
-| [PC Sürümü](/tr/pc-port) | Android oyununu bilgisayarında çalıştırır | Windows, macOS, Linux |
+| [Blockheads PC](/tr/pc-port) | Android oyununu bilgisayarında çalıştırır | Windows, macOS, Linux |
 | [Patcher](/tr/patcher) | Android oyununun kopyandaki hataları düzeltir | Web, Windows, macOS, Linux, Android |
 | [Sunucu](/tr/server) | Çok oyunculu dünyaları barındırır | Windows, macOS, Linux, Docker, Android |
 
@@ -51,7 +51,7 @@ kullanırsın: **1.7.4, 1.7.5 veya 1.7.6** sürümü. Dosyaların cihazında kal
 
 ## Hangisine ihtiyacım var?
 
-- **Bilgisayarımda oynamak istiyorum** → [PC Sürümü](/tr/pc-port)
+- **Bilgisayarımda oynamak istiyorum** → [Blockheads PC](/tr/pc-port)
 - **Oyun telefonumda donuyor veya çöküyor** → [Patcher](/tr/patcher)
 - **Arkadaşlarımla kendi dünyamda oynamak istiyorum** → [Sunucu](/tr/server)
 

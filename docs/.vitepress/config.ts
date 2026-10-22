@@ -15,6 +15,8 @@ interface Strings {
   site: string;
   docs: string;
   pages: { start: string; pc: string; patcher: string; server: string; faq: string };
+  /** Sidebar group for docs/<dir>/guides/, guide id → title. */
+  guides: { title: string; items: Record<string, string> };
   outline: string;
   prev: string;
   next: string;
@@ -53,6 +55,14 @@ function themeConfig(s: Strings): DefaultTheme.Config {
           { text: s.pages.server, link: p + 'server' },
           { text: s.pages.faq, link: p + 'faq' }
         ]
+      },
+      {
+        text: s.guides.title,
+        collapsed: false,
+        items: [
+          { text: s.guides.title, link: p + 'guides/' },
+          ...Object.entries(s.guides.items).map(([id, text]) => ({ text, link: p + 'guides/' + id }))
+        ]
       }
     ],
     socialLinks: [{ icon: 'github', link: GITHUB }],
@@ -73,10 +83,25 @@ const en: Strings = {
   dir: '',
   label: 'English',
   lang: 'en',
-  description: 'How to install and use the Blockheads Club tools: PC Port, Patcher and Server.',
+  description: 'How to install and use the Blockheads Club tools: Blockheads PC, Patcher and Server.',
   site: 'Main site',
   docs: 'Docs',
-  pages: { start: 'Getting started', pc: 'PC Port', patcher: 'Patcher', server: 'Server', faq: 'FAQ' },
+  pages: { start: 'Getting started', pc: 'Blockheads PC', patcher: 'Patcher', server: 'Server', faq: 'FAQ' },
+  guides: {
+    title: 'Guides',
+    items: {
+      'fix-game-on-phone': 'Fix the game on your phone, start to finish',
+      'lan-play': 'Play with friends on the same Wi-Fi',
+      'backup-worlds': 'Back up your worlds before patching',
+      'get-apk': 'Get the APK of the game you own',
+      'signing-key': 'Keep your signing key safe',
+      'raspberry-pi': 'Run a 24/7 server on a Raspberry Pi',
+      'open-internet': 'Open your server to the internet',
+      'admins-mods': 'Admins, mods and bans explained',
+      'host-android': 'Host from an Android phone',
+      'docker': 'Docker and Docker Compose'
+    }
+  },
   outline: 'On this page',
   prev: 'Previous page',
   next: 'Next page',
@@ -104,10 +129,25 @@ const tr: Strings = {
   dir: 'tr',
   label: 'Türkçe',
   lang: 'tr',
-  description: 'Blockheads Club araçlarının kurulumu ve kullanımı: PC Sürümü, Patcher ve Sunucu.',
+  description: 'Blockheads Club araçlarının kurulumu ve kullanımı: Blockheads PC, Patcher ve Sunucu.',
   site: 'Ana site',
   docs: 'Dokümanlar',
-  pages: { start: 'Başlarken', pc: 'PC Sürümü', patcher: 'Patcher', server: 'Sunucu', faq: 'SSS' },
+  pages: { start: 'Başlarken', pc: 'Blockheads PC', patcher: 'Patcher', server: 'Sunucu', faq: 'SSS' },
+  guides: {
+    title: 'Rehberler',
+    items: {
+      'fix-game-on-phone': 'Oyunu telefonunda baştan sona düzelt',
+      'lan-play': 'Aynı Wi-Fi ağındaki arkadaşlarla oyna',
+      'backup-worlds': 'Yamalamadan önce dünyalarını yedekle',
+      'get-apk': 'Sahip olduğun oyunun APK’sını al',
+      'signing-key': 'İmza anahtarını güvende tut',
+      'raspberry-pi': 'Raspberry Pi’de 7/24 sunucu çalıştır',
+      'open-internet': 'Sunucunu internete aç',
+      'admins-mods': 'Yöneticiler, moderatörler ve yasaklar',
+      'host-android': 'Android telefondan barındır',
+      'docker': 'Docker ve Docker Compose'
+    }
+  },
   outline: 'Bu sayfada',
   prev: 'Önceki sayfa',
   next: 'Sonraki sayfa',
@@ -135,10 +175,25 @@ const ru: Strings = {
   dir: 'ru',
   label: 'Русский',
   lang: 'ru',
-  description: 'Как установить и использовать инструменты Blockheads Club: PC-версию, Patcher и Сервер.',
+  description: 'Как установить и использовать инструменты Blockheads Club: Blockheads PC, Patcher и Сервер.',
   site: 'Главный сайт',
   docs: 'Документация',
-  pages: { start: 'Начало работы', pc: 'PC-версия', patcher: 'Patcher', server: 'Сервер', faq: 'Вопросы и ответы' },
+  pages: { start: 'Начало работы', pc: 'Blockheads PC', patcher: 'Patcher', server: 'Сервер', faq: 'Вопросы и ответы' },
+  guides: {
+    title: 'Руководства',
+    items: {
+      'fix-game-on-phone': 'Починить игру на телефоне от начала до конца',
+      'lan-play': 'Играть с друзьями по одной сети Wi-Fi',
+      'backup-worlds': 'Резервная копия миров перед патчем',
+      'get-apk': 'Как получить APK своей игры',
+      'signing-key': 'Берегите ключ подписи',
+      'raspberry-pi': 'Сервер 24/7 на Raspberry Pi',
+      'open-internet': 'Открыть сервер для интернета',
+      'admins-mods': 'Админы, модераторы и баны',
+      'host-android': 'Сервер на Android-телефоне',
+      'docker': 'Docker и Docker Compose'
+    }
+  },
   outline: 'На этой странице',
   prev: 'Предыдущая страница',
   next: 'Следующая страница',
@@ -166,10 +221,25 @@ const kk: Strings = {
   dir: 'kk',
   label: 'Қазақша',
   lang: 'kk',
-  description: 'Blockheads Club құралдарын орнату және пайдалану: PC нұсқасы, Patcher және Сервер.',
+  description: 'Blockheads Club құралдарын орнату және пайдалану: Blockheads PC, Patcher және Сервер.',
   site: 'Басты сайт',
   docs: 'Құжаттама',
-  pages: { start: 'Бастау', pc: 'PC нұсқасы', patcher: 'Patcher', server: 'Сервер', faq: 'Жиі сұрақтар' },
+  pages: { start: 'Бастау', pc: 'Blockheads PC', patcher: 'Patcher', server: 'Сервер', faq: 'Жиі сұрақтар' },
+  guides: {
+    title: 'Нұсқаулықтар',
+    items: {
+      'fix-game-on-phone': 'Ойынды телефонда басынан аяғына дейін жөндеу',
+      'lan-play': 'Достармен бір Wi-Fi желісінде ойнау',
+      'backup-worlds': 'Патчтамас бұрын әлемдерді сақтау',
+      'get-apk': 'Өзіңізде бар ойынның APK файлын алу',
+      'signing-key': 'Қолтаңба кілтін сақтаңыз',
+      'raspberry-pi': 'Raspberry Pi-да тәулік бойы сервер',
+      'open-internet': 'Серверді интернетке ашу',
+      'admins-mods': 'Админдер, модераторлар және бандар',
+      'host-android': 'Android телефонда сервер ашу',
+      'docker': 'Docker және Docker Compose'
+    }
+  },
   outline: 'Осы бетте',
   prev: 'Алдыңғы бет',
   next: 'Келесі бет',

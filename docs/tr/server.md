@@ -56,6 +56,12 @@ Windows’ta (PowerShell):
 .\blockheads_server.exe --new world1 --port 15151
 ```
 
+**macOS:** İlk seferde, Gatekeeper’ın programa izin vermesi için indirme işaretini kaldır:
+
+```sh
+xattr -d com.apple.quarantine ./blockheads_server
+```
+
 Tüm seçenekler için `--help` ile çalıştır. Seçenekler asıl sunucudakilerle aynıdır.
 
 Dünyalar ev klasöründeki `GNUstep/Library/ApplicationSupport/TheBlockheads` klasörüne kaydedilir. Başka bir klasör

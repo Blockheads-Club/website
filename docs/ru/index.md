@@ -10,7 +10,7 @@ hero:
     alt: Blockheads Club
   actions:
     - theme: brand
-      text: PC-версия
+      text: Blockheads PC
       link: /ru/pc-port
     - theme: alt
       text: Patcher
@@ -19,7 +19,7 @@ hero:
       text: Сервер
       link: /ru/server
 features:
-  - title: PC-версия
+  - title: Blockheads PC
     details: Играйте в свою копию Android-игры на Windows, macOS и Linux — мышью, клавиатурой или геймпадом.
     link: /ru/pc-port
     linkText: Установить
@@ -40,7 +40,7 @@ Blockheads Club — неофициальный проект волонтёров
 
 | Инструмент | Что делает | Где работает |
 | --- | --- | --- |
-| [PC-версия](/ru/pc-port) | Запускает Android-игру на компьютере | Windows, macOS, Linux |
+| [Blockheads PC](/ru/pc-port) | Запускает Android-игру на компьютере | Windows, macOS, Linux |
 | [Patcher](/ru/patcher) | Исправляет ошибки в вашей копии Android-игры | Веб, Windows, macOS, Linux, Android |
 | [Сервер](/ru/server) | Запускает многопользовательские миры | Windows, macOS, Linux, Docker, Android |
 
@@ -51,7 +51,7 @@ Blockheads Club — неофициальный проект волонтёров
 
 ## Что мне нужно?
 
-- **Хочу играть на компьютере** → [PC-версия](/ru/pc-port)
+- **Хочу играть на компьютере** → [Blockheads PC](/ru/pc-port)
 - **Игра зависает или вылетает на телефоне** → [Patcher](/ru/patcher)
 - **Хочу играть с друзьями в своём мире** → [Сервер](/ru/server)
 

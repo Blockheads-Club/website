@@ -10,7 +10,7 @@ hero:
     alt: Blockheads Club
   actions:
     - theme: brand
-      text: PC нұсқасы
+      text: Blockheads PC
       link: /kk/pc-port
     - theme: alt
       text: Patcher
@@ -19,7 +19,7 @@ hero:
       text: Сервер
       link: /kk/server
 features:
-  - title: PC нұсқасы
+  - title: Blockheads PC
     details: Android ойынының өз көшірмеңізді Windows, macOS және Linux жүйелерінде тінтуірмен, пернетақтамен немесе геймпадпен ойнаңыз.
     link: /kk/pc-port
     linkText: Орнату
@@ -40,7 +40,7 @@ Blockheads Club — **The Blockheads** ойынын жақсы көретінд�
 
 | Құрал | Не істейді | Қайда жұмыс істейді |
 | --- | --- | --- |
-| [PC нұсқасы](/kk/pc-port) | Android ойынын компьютерде іске қосады | Windows, macOS, Linux |
+| [Blockheads PC](/kk/pc-port) | Android ойынын компьютерде іске қосады | Windows, macOS, Linux |
 | [Patcher](/kk/patcher) | Android ойынының сіздегі көшірмесіндегі қателерді түзетеді | Веб, Windows, macOS, Linux, Android |
 | [Сервер](/kk/server) | Көп ойыншы әлемдерін іске қосады | Windows, macOS, Linux, Docker, Android |
 
@@ -52,7 +52,7 @@ Blockheads Club — **The Blockheads** ойынын жақсы көретінд�
 
 ## Маған қайсысы керек?
 
-- **Компьютерде ойнағым келеді** → [PC нұсқасы](/kk/pc-port)
+- **Компьютерде ойнағым келеді** → [Blockheads PC](/kk/pc-port)
 - **Ойын телефонымда қатып қалады немесе жабылып қалады** → [Patcher](/kk/patcher)
 - **Достарыммен өз әлемімде ойнағым келеді** → [Сервер](/kk/server)
 

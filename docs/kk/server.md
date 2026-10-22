@@ -56,6 +56,12 @@ Windows-та (PowerShell):
 .\blockheads_server.exe --new world1 --port 15151
 ```
 
+**macOS:** Бірінші рет жүктеу белгісін алып тастаңыз, сонда Gatekeeper бағдарламаға рұқсат береді:
+
+```sh
+xattr -d com.apple.quarantine ./blockheads_server
+```
+
 Барлық параметрлерді көру үшін `--help` арқылы іске қосыңыз. Олар бастапқы сервердегідей.
 
 Әлемдер үй қалтаңыздағы `GNUstep/Library/ApplicationSupport/TheBlockheads` қалтасына сақталады. Басқа қалтаны

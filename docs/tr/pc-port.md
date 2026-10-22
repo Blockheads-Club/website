@@ -1,10 +1,10 @@
-# PC Sürümü
+# Blockheads PC
 
 **Blockheads PC**, Android oyununun kendi kopyanı bilgisayarında çalıştırır. Windows, macOS ve Linux’ta, hem
 normal (x86_64) hem de ARM (arm64) bilgisayarlarda çalışır.
 
 ::: warning Erken sürüm
-PC Sürümü yeni. Oyunun büyük kısmı çalışıyor ama bazı pürüzler olabilir. Bulduğun sorunları lütfen
+Blockheads PC yeni. Oyunun büyük kısmı çalışıyor ama bazı pürüzler olabilir. Bulduğun sorunları lütfen
 [bildir](https://github.com/Blockheads-Club/blockheads-pc/issues).
 :::
 

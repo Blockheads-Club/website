@@ -55,6 +55,12 @@ On Windows (PowerShell):
 .\blockheads_server.exe --new world1 --port 15151
 ```
 
+**macOS:** The first time, remove the download flag so Gatekeeper allows the program:
+
+```sh
+xattr -d com.apple.quarantine ./blockheads_server
+```
+
 Run `--help` for all options. They are the same as in the original server.
 
 Worlds are saved in `GNUstep/Library/ApplicationSupport/TheBlockheads` in your home folder. Set the

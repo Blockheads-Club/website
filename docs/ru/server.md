@@ -56,6 +56,12 @@
 .\blockheads_server.exe --new world1 --port 15151
 ```
 
+**macOS:** При первом запуске снимите отметку о загрузке, чтобы Gatekeeper разрешил программу:
+
+```sh
+xattr -d com.apple.quarantine ./blockheads_server
+```
+
 Запустите с `--help`, чтобы увидеть все параметры. Они такие же, как у оригинального сервера.
 
 Миры сохраняются в папке `GNUstep/Library/ApplicationSupport/TheBlockheads` в вашей домашней папке. Чтобы
