@@ -40,15 +40,20 @@ async function get(url: string, accept: string): Promise<Response> {
 // Only the REST API tells published releases from drafts (the releases.atom feed also lists bare tags, e.g. a tag
 // whose release is still a draft), so there is no unauthenticated fallback: after retries the build fails and the
 // previous deployment stays live. Unauthenticated calls allow 60 requests/hour per IP; GITHUB_TOKEN lifts that.
+// The release list sometimes comes back empty for a while (seen 2026-10-22 from Cloudflare builds and locally), so
+// attempts alternate between the list and /releases/latest, which reports the newest published stable release.
 async function latestRelease(): Promise<string> {
+  const api = `https://api.github.com/repos/${GH}/releases`;
   for (let attempt = 1; ; attempt++) {
     try {
-      const res = await get(`https://api.github.com/repos/${GH}/releases?per_page=30`, 'application/vnd.github+json');
-      const tag = latestFromApi((await res.json()) as Release[]);
+      const latest = attempt % 2 === 0;
+      const res = await get(latest ? `${api}/latest` : `${api}?per_page=30&attempt=${attempt}`, 'application/vnd.github+json');
+      const body = (await res.json()) as Release | Release[];
+      const tag = latestFromApi(Array.isArray(body) ? body : [body]);
       if (!tag) throw new Error('no published patcher release found');
       return tag;
     } catch (e) {
-      if (attempt === 3) throw e;
+      if (attempt === 6) throw e;
       log(`GitHub API attempt ${attempt} failed (${(e as Error).message}), retrying`);
       await new Promise((r) => setTimeout(r, 5000 * attempt));
     }
