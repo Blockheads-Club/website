@@ -65,6 +65,23 @@ Hook limits: 10 builds/minute per Worker; repeated calls before a build starts a
 Optional: add a `GITHUB_TOKEN` build variable (a fine-grained token with public read-only access) under the Worker's
 Settings → Builds → Variables to avoid the shared-IP API rate limit.
 
+### Mod index (`/mods/index.json`, deploy hook)
+
+The `/mods` pages and `/mods/index.json` come from the mod index that Blockheads-Club/mods publishes on every push to
+its `dev` branch as the asset `index.json` of the fixed release `index`
+(`https://github.com/Blockheads-Club/mods/releases/download/index/index.json`; `MODS_INDEX_URL` overrides it).
+`src/lib/mods-index.ts` fetches it once per build and checks it against schema 1. A valid file is copied byte for byte
+to `build/mods/index.json` (prerendered by `src/routes/mods/index.json/+server.ts`, served with
+`Access-Control-Allow-Origin: *` and a 5-minute cache). When the fetch fails or the file is invalid, the pages show
+the bundled sample with a notice and `/mods/index.json` is not written (the build still succeeds); the sample is never
+served as the real index. The index is not signed: integrity comes from HTTPS and the `sha256` and `size` of every
+package version.
+
+To rebuild the site when the index changes, the mods repo's `publish.yml` POSTs to its `WEBSITE_DEPLOY_HOOK` secret
+(skipped with a notice when unset). Set up once like the Patcher hook above: create a deploy hook named
+`mods-index` for the production branch, and add its URL as the secret `WEBSITE_DEPLOY_HOOK` in
+Blockheads-Club/mods → Settings → Secrets and variables → Actions.
+
 ### Local check
 
 ```sh

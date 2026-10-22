@@ -9,7 +9,7 @@ describe('fetchIndex', () => {
     const log = vi.fn();
     const fetchFn = vi.fn(() => json(real));
     const result = await fetchIndex('https://i.invalid/index.json', fetchFn as unknown as typeof fetch, log);
-    expect(result).toEqual({ index: real, sample: false });
+    expect(result).toEqual({ index: real, sample: false, raw: JSON.stringify(real) });
     expect(fetchFn).toHaveBeenCalledWith('https://i.invalid/index.json', expect.objectContaining({ headers: { accept: 'application/json' } }));
     expect(log).toHaveBeenCalledWith('using https://i.invalid/index.json (1 mods)');
   });

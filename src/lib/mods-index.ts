@@ -1,18 +1,20 @@
 // Build-time loader for the mod index. Mirrors how the patcher build treats the network: it must never fail the build.
-// The index is fetched from MODS_INDEX_URL; when it is unreachable, invalid or not published yet, the bundled sample
-// (src/lib/data/mods-sample.json) is used and the site shows a "sample data" notice.
-//
-// TODO: the index is signed (index.json.minisig next to it). Verifying the signature on the site is out of scope for
-// now; the public key has not been generated yet.
+// The index is fetched from MODS_INDEX_URL (default: the `index` release of Blockheads-Club/mods, replaced by its
+// publish workflow on every push to dev). A valid index is also served unchanged at /mods/index.json
+// (src/routes/mods/index.json/+server.ts). When it is unreachable, invalid or not published yet, the pages use the
+// bundled sample (src/lib/data/mods-sample.json) with a "sample data" notice, and /mods/index.json is not written.
+// The index is not signed: it travels over HTTPS and every package version carries its sha256 and size.
 import sample from './data/mods-sample.json';
 import { isModsIndex, type ModsIndex } from './mods';
 
-export const DEFAULT_INDEX_URL = 'https://blockheads-club.github.io/mods/index.json';
+export const DEFAULT_INDEX_URL = 'https://github.com/Blockheads-Club/mods/releases/download/index/index.json';
 
 export interface LoadedIndex {
   index: ModsIndex;
   /** True when the bundled sample is shown instead of a published index. */
   sample: boolean;
+  /** The fetched file, byte for byte, when it is a valid published index (served at /mods/index.json). */
+  raw?: string;
 }
 
 export const SAMPLE_INDEX = sample as ModsIndex;
@@ -26,10 +28,11 @@ export async function fetchIndex(
   try {
     const res = await fetchFn(url, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(15_000) });
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    const json: unknown = await res.json();
+    const raw = await res.text();
+    const json: unknown = JSON.parse(raw);
     if (!isModsIndex(json)) throw new Error('not a valid schema 1 index');
     log(`using ${url} (${json.mods.length} mods)`);
-    return { index: json, sample: false };
+    return { index: json, sample: false, raw };
   } catch (e) {
     log(`${url} unavailable (${(e as Error).message}), using the bundled sample index`);
     return { index: SAMPLE_INDEX, sample: true };

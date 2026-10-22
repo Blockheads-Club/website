@@ -8,6 +8,7 @@ import { load as layoutLoad } from './+layout.server';
 import { load as listLoad } from './+page.server';
 import List from './+page.svelte';
 import { entries, load as detailLoad } from './[id]/+page.server';
+import { GET as indexJson, prerender as indexPrerender } from './index.json/+server';
 import Detail from './[id]/+page.svelte';
 import Submit from './submit/+page.svelte';
 
@@ -34,6 +35,16 @@ describe('server loaders (build time, no network)', () => {
     expect(await (entries as () => Promise<{ id: string }[]>)()).toEqual(ids.map((id) => ({ id })));
     const detail = await detailLoad({ params: { id: 'hello-lua' } } as never);
     expect(detail).toEqual({ mod: byId('hello-lua'), ids });
+  });
+  it('serve /mods/index.json only for a published index', async () => {
+    expect(indexPrerender).toBe(true);
+    await expect(indexJson({} as never)).rejects.toMatchObject({ status: 404 });
+    resetModsIndexCache();
+    const text = JSON.stringify({ ...SAMPLE_INDEX, generated: '2026-01-01T00:00:00Z' }, null, 2) + '\n';
+    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response(text))));
+    const res = await indexJson({} as never);
+    expect(res.headers.get('content-type')).toBe('application/json; charset=utf-8');
+    expect(await res.text()).toBe(text);
   });
   it('404s for unknown mods', async () => {
     await expect(detailLoad({ params: { id: 'nope' } } as never)).rejects.toMatchObject({ status: 404 });
@@ -181,7 +192,7 @@ describe('submit page', () => {
     expect(document.body).toHaveTextContent('mods/<first letter>/<id>.toml');
     expect(document.body).toHaveTextContent('needs-security-review');
     expect(document.body).toHaveTextContent('Versions are append-only');
-    expect(document.body).toHaveTextContent('The repositories are not public yet'.replace('The repositories', 'The mod-sdk and mods repositories'));
+    expect(document.body).toHaveTextContent('Every new mod gets a security review');
     expect(screen.getByRole('link', { name: 'Open the mod SDK' })).toHaveAttribute('href', 'https://github.com/Blockheads-Club/mod-sdk');
     expect(screen.getByRole('link', { name: 'Open Blockheads-Club/mods' })).toHaveAttribute('href', 'https://github.com/Blockheads-Club/mods');
     expect(screen.getByRole('link', { name: 'Making a mod (docs)' })).toHaveAttribute('href', '/docs/mods');

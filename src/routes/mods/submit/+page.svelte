@@ -62,7 +62,6 @@
       <Button href={LINKS.modsRepo} rel="noopener" icon="code">{s.modsButton}</Button>
       <Button href={base + docsPath(i18n.locale) + 'mods'} rel="external" icon="book">{s.docsButton}</Button>
     </div>
-    <p class="hint">{s.notPublic}</p>
   </section>
 </div>
 

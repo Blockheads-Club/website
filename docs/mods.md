@@ -64,3 +64,8 @@ Ask only for what you need.
 
 Mods are listed by a pull request to [Blockheads-Club/mods](https://github.com/Blockheads-Club/mods). The steps,
 rules and checks are on the <a href="../mods/submit" target="_self">Submit a mod</a> page.
+
+Every new mod gets a **security review**: a maintainer reads its code before it is listed. Updates are reviewed
+again when they add permissions or native code. The published list is at
+[blockheads.club/mods/index.json](https://blockheads.club/mods/index.json); every download is checked against the
+SHA-256 and size it lists.

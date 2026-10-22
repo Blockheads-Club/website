@@ -1089,6 +1089,7 @@ export const tr: Dict = {
       rulesTitle: 'Kurallar',
       rules: [
         'Her çekme isteğinde tek mod.',
+        'Her yeni mod güvenlik incelemesinden geçer: listelenmeden önce bir bakımcı kodunu okur. Güncellemeler yeni izin veya yerel kod eklediğinde tekrar incelenir.',
         'Dosyada listelenen sahipler dışında kimse sürüm ekleyemez. İlk gönderen ilk sahip olur.',
         'Sürümler yalnızca eklenir. Yayınlanmış bir sürümü asla düzenleme veya silme; izin verilen tek değişiklik bozuk ya da güvensiz bir sürümü geri çekmek için `yanked = true` yazmaktır.',
         'Yalnızca kendi yaptığın veya paylaşma hakkın olan modları gönder ve lisansını deponda tut.',
@@ -1105,7 +1106,7 @@ export const tr: Dict = {
         'Paket, paket kurallarına uyar ve `mod.toml` dosyası kayıtla eşleşir.',
         'Bağımlılıklar dizinde vardır ve sürüm aralıkları karşılanabilir.',
         'WASM modülleri doğrulanır, Lua/Luau betikleri derlenir.',
-        'İzin farkı paylaşılır. Yerel modlar ve her yeni izin `needs-security-review` etiketini alır ve bir bakımcıyı bekler.'
+        'İzin farkı paylaşılır. Her yeni mod, yerel kod kullanan sürümler ve yeni izin ekleyen güncellemeler `needs-security-review` etiketini alır ve bir bakımcının incelemesini bekler.'
       ],
       nativeTitle: 'Yerel modlar',
       nativeBody: '`native = true` olan modlar korumalı alanın dışında kod çalıştırır. İzin verilir, ama elle incelenir ve kırmızı bir uyarıyla gösterilir.',
@@ -1114,7 +1115,6 @@ export const tr: Dict = {
       sdkButton: 'Mod SDK’sını aç',
       modsButton: 'Blockheads-Club/mods’u aç',
       docsButton: 'Mod yapma (dokümanlar)',
-      notPublic: 'mod-sdk ve mods depoları henüz herkese açık değil, bu yüzden bu bağlantılar şimdilik çalışmayabilir.'
     }
   },
   footer: {

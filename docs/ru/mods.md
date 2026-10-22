@@ -64,3 +64,8 @@ SDK лежит здесь: [github.com/Blockheads-Club/mod-sdk](https://github.c
 
 Моды попадают в каталог через pull request в [Blockheads-Club/mods](https://github.com/Blockheads-Club/mods).
 Шаги, правила и проверки описаны на странице <a href="../../mods/submit" target="_self">«Отправить мод»</a>.
+
+Каждый новый мод проходит **проверку безопасности**: мейнтейнер читает его код до публикации. Обновления проверяются
+снова, если добавляют разрешения или нативный код. Опубликованный список лежит по адресу
+[blockheads.club/mods/index.json](https://blockheads.club/mods/index.json); каждая загрузка сверяется с указанными там
+SHA-256 и размером.

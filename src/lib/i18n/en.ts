@@ -1120,6 +1120,7 @@ export const en = {
       rulesTitle: 'Rules',
       rules: [
         'One mod per pull request.',
+        'Every new mod gets a security review: a maintainer reads its code before it is listed. Updates are reviewed again when they add permissions or native code.',
         'Only the owners listed in the file can add versions. The first submitter becomes the first owner.',
         'Versions are append-only. Never edit or remove a published version; the only allowed change is `yanked = true`, to pull a broken or unsafe version.',
         'Only submit mods you made or may share, and keep their licence in your repository.',
@@ -1136,7 +1137,7 @@ export const en = {
         'The package follows the package rules, and its `mod.toml` matches the entry.',
         'Dependencies exist in the index and their version ranges can be met.',
         'WASM modules validate and Lua/Luau scripts compile.',
-        'A permission diff is posted. Native mods and any new permission get the `needs-security-review` label and wait for a maintainer.'
+        'A permission diff is posted. Every new mod, versions with native code and updates that add a permission get the `needs-security-review` label and wait for a maintainer’s review.'
       ],
       nativeTitle: 'Native mods',
       nativeBody: 'Mods with `native = true` run code outside the sandbox. They are allowed, but they are reviewed by hand and shown with a red warning.',
@@ -1145,7 +1146,6 @@ export const en = {
       sdkButton: 'Open the mod SDK',
       modsButton: 'Open Blockheads-Club/mods',
       docsButton: 'Making a mod (docs)',
-      notPublic: 'The mod-sdk and mods repositories are not public yet, so these links may not work for now.'
     }
   },
   footer: {

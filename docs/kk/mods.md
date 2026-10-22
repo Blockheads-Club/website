@@ -63,3 +63,8 @@ SDK мұнда: [github.com/Blockheads-Club/mod-sdk](https://github.com/Blockhea
 
 Модтар [Blockheads-Club/mods](https://github.com/Blockheads-Club/mods) репозиторийіне pull request арқылы тізімге қосылады.
 Қадамдар, ережелер мен тексерулер <a href="../../mods/submit" target="_self">Мод жіберу</a> бетінде.
+
+Әр жаңа мод **қауіпсіздік тексеруінен** өтеді: тізімге қосылмас бұрын мейнтейнер оның кодын оқиды. Жаңартулар жаңа
+рұқсат немесе нативті код қосса, қайта тексеріледі. Жарияланған тізім
+[blockheads.club/mods/index.json](https://blockheads.club/mods/index.json) мекенжайында; әр жүктеу ондағы SHA-256 және
+өлшеммен салыстырылады.

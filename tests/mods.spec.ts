@@ -75,3 +75,9 @@ test('mods pages and docs page translate', async ({ page }) => {
   await page.getByRole('link', { name: 'Mod gönder' }).first().click();
   await expect(page).toHaveURL(/\/mods\/submit$/);
 });
+
+test('no /mods/index.json is served without a published index', async ({ request }) => {
+  // The sample index is for the pages only; clients must never receive it as the real index.
+  const res = await request.get('/mods/index.json');
+  expect(res.ok()).toBe(false);
+});

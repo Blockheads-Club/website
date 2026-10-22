@@ -31,7 +31,9 @@ Project: Blockheads Club website (see README.md). Part of the Blockheads-Club mu
   published blockheads-patcher release, builds it with `BASE_PATH=<base>/patcher` into `build/patcher/` and merges its
   `_headers` (pure helpers in `src/lib/patcher-build.ts`). No SvelteKit route may use `/patcher`. The Worker stays
   assets-only (no script, no bindings). Details in `docs/development.md`.
-- Mods: pages read the mod index (`src/lib/mods-index.ts`) at build time from `MODS_INDEX_URL` (default
-  `https://blockheads-club.github.io/mods/index.json`); unreachable/invalid -> bundled `src/lib/data/mods-sample.json`
-  (the page shows a sample notice). The build never fails on it. Playwright points it at a closed port. TODO: verify
-  `index.json.minisig` once the public key exists.
+- Mods: pages read the mod index (`src/lib/mods-index.ts`) at build time from `MODS_INDEX_URL` (default: the `index`
+  release asset of Blockheads-Club/mods); a valid file is also served unchanged at `/mods/index.json`
+  (`src/routes/mods/index.json/+server.ts`). Unreachable/invalid -> bundled `src/lib/data/mods-sample.json` (the page
+  shows a sample notice) and no `/mods/index.json` (svelte.config.js tolerates that one 404). The build never fails on
+  it. The index is unsigned (HTTPS + per-package sha256/size). Playwright points it at a closed port. Details:
+  `docs/development.md`.

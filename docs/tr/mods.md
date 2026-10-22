@@ -64,3 +64,8 @@ Yalnızca ihtiyacın olanı iste.
 
 Modlar, [Blockheads-Club/mods](https://github.com/Blockheads-Club/mods) deposuna gönderilen bir çekme isteğiyle listelenir.
 Adımlar, kurallar ve kontroller <a href="../../mods/submit" target="_self">Mod gönder</a> sayfasında.
+
+Her yeni mod **güvenlik incelemesinden** geçer: listelenmeden önce bir bakımcı kodunu okur. Güncellemeler yeni izin
+veya yerel kod eklediğinde tekrar incelenir. Yayınlanan liste
+[blockheads.club/mods/index.json](https://blockheads.club/mods/index.json) adresinde; her indirme, listedeki SHA-256 ve
+boyutla karşılaştırılır.
