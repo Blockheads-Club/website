@@ -54,7 +54,7 @@
       <img class="tile t1" src={base + '/apps/pc.svg'} alt="" width="190" height="190" />
       <img class="tile t2" src={base + '/apps/patcher.svg'} alt="" width="170" height="170" />
       <img class="tile t3" src={base + '/apps/server.svg'} alt="" width="180" height="180" />
-      <span class="t4">{d.apps.names.mods}<br />{h.tileSoon}</span>
+      <span class="t4"><Icon name="puzzle" size={30} />{d.apps.names.mods}</span>
     </div>
   </div>
 </section>
@@ -86,10 +86,10 @@
         </article>
       {/each}
       <a class="card mods-card" href={base + PATHS.mods}>
-        <span class="dashed-box mods-ico"><Icon name="puzzle" /></span>
+        <span class="icon-box mods-ico"><Icon name="puzzle" /></span>
         <span class="mods-text">
           <span class="hint b700 blk">{d.apps.mods.task}</span>
-          <span class="mods-title blk">{h.mods.title + ' '}<span class="soonb">{d.nav.soon}</span></span>
+          <span class="mods-title blk">{h.mods.title}</span>
           <span class="muted blk small">{h.mods.body}</span>
         </span>
         <span class="more">{h.mods.link}<Icon name="arrow-r" size={16} /></span>
@@ -252,10 +252,11 @@
     width: 110px;
     height: 110px;
     border-radius: 24px;
-    border: 3px dashed var(--hero-text-2);
-    opacity: 0.7;
+    border: 3px solid var(--hero-text-2);
+    background: rgba(255, 255, 255, 0.45);
     display: grid;
     place-items: center;
+    align-content: center;
     text-align: center;
     rotate: 5deg;
     color: var(--hero-text-2);
@@ -314,7 +315,6 @@
     gap: 16px;
     align-items: center;
     flex-wrap: wrap;
-    border-style: dashed;
   }
   .mods-ico {
     width: 52px;

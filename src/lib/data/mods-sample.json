@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "generated": "2026-10-21T12:00:00Z",
+  "api": [
+    "0.1.0"
+  ],
+  "mods": [
+    {
+      "id": "hello-lua",
+      "name": "Hello (Lua)",
+      "description": "Starter mod written in Lua: greets players in chat. Copy it to start your own mod.",
+      "owners": [
+        "Blockheads-Club"
+      ],
+      "repo": "https://github.com/Blockheads-Club/mod-sdk",
+      "tags": [
+        "example",
+        "lua"
+      ],
+      "draft": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "url": "https://github.com/Blockheads-Club/mod-sdk/releases/download/v0.1.0/hello-lua-0.1.0.bhmod",
+          "sha256": "9b1c6f0d2e3a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f9012345678",
+          "size": 1532,
+          "sides": [
+            "server"
+          ],
+          "api": "^0.1",
+          "permissions": {
+            "players": [
+              "chat"
+            ]
+          },
+          "published": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "id": "hello-rust",
+      "name": "Hello (Rust)",
+      "description": "Starter mod written in Rust and compiled to WebAssembly. Needs no permissions.",
+      "owners": [
+        "Blockheads-Club"
+      ],
+      "repo": "https://github.com/Blockheads-Club/mod-sdk",
+      "tags": [
+        "example",
+        "rust"
+      ],
+      "draft": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "url": "https://github.com/Blockheads-Club/mod-sdk/releases/download/v0.1.0/hello-rust-0.1.0.bhmod",
+          "sha256": "4f8a2c1e7d6b5a493827160f5e4d3c2b1a09f8e7d6c5b4a39281706f5e4d3c2b",
+          "size": 20480,
+          "sides": [
+            "server"
+          ],
+          "api": "^0.1",
+          "permissions": {},
+          "published": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "id": "sample-lib",
+      "name": "Sample Library (fake)",
+      "description": "FAKE sample data to try out the page. A helper library other sample mods depend on. Version 1.0.0 is yanked.",
+      "owners": [
+        "sample-author"
+      ],
+      "repo": "https://example.invalid/sample-lib",
+      "tags": [
+        "sample",
+        "library"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "url": "https://example.invalid/sample-lib-1.0.0.bhmod",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "size": 4096,
+          "sides": [
+            "server",
+            "client"
+          ],
+          "api": "^0.1",
+          "permissions": {},
+          "published": "2026-09-01",
+          "yanked": true
+        },
+        {
+          "version": "1.1.0",
+          "url": "https://example.invalid/sample-lib-1.1.0.bhmod",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "size": 4300,
+          "sides": [
+            "server",
+            "client"
+          ],
+          "api": "^0.1",
+          "permissions": {},
+          "published": "2026-09-15",
+          "mirror": "https://example.invalid/mirror/sample-lib-1.1.0.bhmod"
+        }
+      ]
+    },
+    {
+      "id": "sample-minimap",
+      "name": "Sample Minimap (fake)",
+      "description": "FAKE sample data to try out the page. A client and server mod that draws a minimap and edits the world.",
+      "owners": [
+        "sample-author",
+        "another-author"
+      ],
+      "repo": "https://example.invalid/sample-minimap",
+      "tags": [
+        "sample",
+        "ui",
+        "map"
+      ],
+      "versions": [
+        {
+          "version": "0.3.0",
+          "url": "https://example.invalid/sample-minimap-0.3.0.bhmod",
+          "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "size": 65536,
+          "sides": [
+            "server",
+            "client"
+          ],
+          "api": "^0.1",
+          "permissions": {
+            "world": "write",
+            "channels": true
+          },
+          "published": "2026-10-10",
+          "client-required": true,
+          "depends": {
+            "sample-lib": "^1.1"
+          },
+          "soft-depends": {
+            "missing-mod": "^2.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sample-skin-pack",
+      "name": "Sample Skin Pack (fake)",
+      "description": "FAKE sample data to try out the page. A client-only cosmetic mod.",
+      "owners": [
+        "sample-author"
+      ],
+      "repo": "https://example.invalid/sample-skin-pack",
+      "tags": [
+        "sample",
+        "cosmetic"
+      ],
+      "versions": [
+        {
+          "version": "2.0.1",
+          "url": "https://example.invalid/sample-skin-pack-2.0.1.bhmod",
+          "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "size": 1048576,
+          "sides": [
+            "client"
+          ],
+          "api": "^0.1",
+          "permissions": {},
+          "published": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "sample-native-tools",
+      "name": "Sample Native Tools (fake)",
+      "description": "FAKE sample data to try out the page. Uses native code, so it gets the red warning.",
+      "owners": [
+        "sample-author"
+      ],
+      "repo": "https://example.invalid/sample-native-tools",
+      "tags": [
+        "sample",
+        "admin"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "url": "https://example.invalid/sample-native-tools-1.0.0.bhmod",
+          "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "size": 2097152,
+          "sides": [
+            "server"
+          ],
+          "api": "^0.1",
+          "permissions": {
+            "world": "read",
+            "players": [
+              "kick",
+              "ban"
+            ],
+            "net-http": [
+              "api.example.invalid"
+            ],
+            "native": true
+          },
+          "published": "2026-10-12"
+        }
+      ]
+    }
+  ]
+}

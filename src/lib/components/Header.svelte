@@ -16,7 +16,7 @@
 
   const d = $derived(dict());
   const docs = $derived(base + docsPath(i18n.locale));
-  const isApp = $derived(route === 'pc' || route === 'patcher' || route === 'server' || route === 'mods');
+  const isApp = $derived(route === 'pc' || route === 'patcher' || route === 'server' || route === 'mods' || route === 'modsSubmit' || route === 'modDetail');
 
   // Apps disclosure (desktop): a button that shows a panel of links. Arrow keys move, Esc closes.
   let appsOpen = $state(false);
@@ -127,8 +127,8 @@
               </a>
             {/each}
             <a class="ai" href={base + PATHS.mods} onclick={() => closeApps(false)}>
-              <span class="soon dashed-box"><Icon name="puzzle" /></span>
-              <span><b>{d.apps.names.mods + ' '}<span class="soonb">{d.nav.soon}</span></b><span>{d.apps.mods.menu}</span></span>
+              <span class="icon-box mods-box"><Icon name="puzzle" /></span>
+              <span><b>{d.apps.names.mods}</b><span>{d.apps.mods.menu}</span></span>
             </a>
             <div class="all">
               <span class="hint">{d.nav.notSure}</span>
@@ -205,9 +205,7 @@
         >
       {/each}
       <a class="mlink" href={base + PATHS.mods} onclick={() => closeMenu(false)}
-        ><span class="dashed-box mi"><Icon name="puzzle" /></span>{d.apps.names.mods}<span class="soonb"
-          >{d.nav.soonShort}</span
-        ></a
+        ><span class="icon-box mi"><Icon name="puzzle" /></span>{d.apps.names.mods}</a
       >
       <a class="mlink" href={docs} rel="external">{d.nav.docs}<Icon name="extl" size={16} /></a>
       <a class="mlink" href={base + PATHS.contribute} onclick={() => closeMenu(false)}>{d.nav.contribute}</a>
@@ -310,7 +308,7 @@
     color: var(--text);
   }
   .ai img,
-  .ai .soon {
+  .ai .mods-box {
     width: 44px;
     height: 44px;
     border-radius: 11px;
@@ -325,10 +323,6 @@
     font-size: 13.5px;
     color: var(--text-2);
     line-height: 1.35;
-  }
-  .ai .soonb {
-    font-size: 12px;
-    padding: 0 8px;
   }
   .all {
     grid-column: 1 / -1;
@@ -420,9 +414,6 @@
     width: 36px;
     height: 36px;
     border-radius: 9px;
-  }
-  .mlink .soonb {
-    font-family: var(--f-body);
   }
   .mfoot {
     margin-top: auto;

@@ -394,21 +394,13 @@ a.card:hover {
   background: var(--info-soft);
   color: var(--info);
 }
+.b-bad {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
 .b-warn {
   background: var(--warn-soft);
   color: var(--warn);
-}
-/* "Coming soon" pill: dashed, quiet */
-.soonb {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 1px 9px;
-  border-radius: 999px;
-  font: 700 12.5px/1.5 var(--f-body);
-  border: 2px dashed var(--line-strong);
-  color: var(--text-2);
-  white-space: nowrap;
 }
 .btn-ink {
   border-color: #1f1a17;
@@ -593,6 +585,13 @@ a.card:hover {
 }
 .notice.warn > .ico {
   color: var(--warn);
+}
+.notice.bad {
+  background: var(--bad-soft);
+  border-color: var(--bad);
+}
+.notice.bad > .ico {
+  color: var(--bad);
 }
 .code {
   background: var(--code-bg);

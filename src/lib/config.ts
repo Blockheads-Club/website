@@ -11,6 +11,7 @@ export const LINKS = {
   websiteRepo: GH + '/website',
   websiteIssues: GH + '/website/issues',
   modSdk: GH + '/mod-sdk',
+  modsRepo: GH + '/mods',
   modSdkIssues: GH + '/mod-sdk/issues',
   i18nFiles: GH + '/website/tree/dev/src/lib/i18n',
   docsSource: GH + '/website/tree/dev/docs',

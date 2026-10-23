@@ -19,16 +19,18 @@ import Guides from './guides/+page.svelte';
 import { entries } from './guides/[slug]/+page';
 import Guide from './guides/[slug]/+page.svelte';
 import Legal from './legal/+page.svelte';
-import Mods from './mods/+page.svelte';
 import PatcherApp from './patcher-app/+page.svelte';
 import Pc from './pc/+page.svelte';
 import Server from './server/+page.svelte';
 
-const nav = vi.hoisted(() => ({ path: '/', replaceState: vi.fn(), redirect: vi.fn() }));
+const nav = vi.hoisted(() => ({ path: '/', data: {} as Record<string, unknown>, replaceState: vi.fn(), redirect: vi.fn() }));
 vi.mock('$app/state', () => ({
   page: {
     get url() {
       return new URL('http://localhost' + nav.path);
+    },
+    get data() {
+      return nav.data;
     }
   }
 }));
@@ -53,6 +55,7 @@ function ua(value: string) {
 beforeEach(() => {
   vi.stubGlobal('matchMedia', () => ({ matches: false }));
   nav.path = '/';
+  nav.data = {};
 });
 afterEach(() => {
   vi.restoreAllMocks();
@@ -94,6 +97,26 @@ describe('layout', () => {
     expect(document.title).toBe('Blockheads Club');
   });
 
+  it('titles the mod pages', () => {
+    nav.path = '/mods';
+    const list = render(Layout, { children });
+    expect(document.title).toBe('Mods · Blockheads Club');
+    list.unmount();
+    nav.path = '/mods/submit';
+    const submit = render(Layout, { children });
+    expect(document.title).toBe('Submit a mod · Blockheads Club');
+    expect(document.querySelector('header')).not.toHaveClass('on-hero');
+    submit.unmount();
+    nav.path = '/mods/hello-lua';
+    nav.data = { mod: { name: 'Hello (Lua)' } };
+    const detail = render(Layout, { children });
+    expect(document.title).toBe('Hello (Lua) · Blockheads Club');
+    detail.unmount();
+    nav.data = {};
+    render(Layout, { children });
+    expect(document.title).toBe('Mods · Blockheads Club');
+  });
+
   it('sends old one-page anchors to their new home in the visitor’s language', () => {
     localStorage.setItem('bh-locale', 'ru');
     at('/#faq');
@@ -130,7 +153,7 @@ describe('home', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('The Blockheads, kept alive by its players.');
     expect(screen.getByRole('link', { name: 'Get the Patcher' })).toHaveAttribute('href', '/download?task=patcher');
     expect(screen.getByRole('link', { name: /Learn more\s*: Server/ })).toHaveAttribute('href', '/server');
-    expect(screen.getByRole('link', { name: /Mods are coming/ })).toHaveAttribute('href', '/mods');
+    expect(screen.getByRole('link', { name: /Mods are here/ })).toHaveAttribute('href', '/mods');
     expect(screen.getAllByText('0.1.1', { selector: '.mono' })).toHaveLength(2);
     expect(screen.getByRole('link', { name: /What’s new\s*: Blockheads PC/ })).toHaveAttribute('href', RELEASES.pc!.url);
     expect(screen.getByRole('link', { name: 'Open the docs ↗' })).toHaveAttribute('href', '/docs/');
@@ -237,12 +260,6 @@ describe('download', () => {
 });
 
 describe('content pages', () => {
-  it('mods: coming soon, linked to the SDK', () => {
-    render(Mods);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Mods are coming to The Blockheads.');
-    expect(screen.getByRole('link', { name: /Follow progress on GitHub/ })).toHaveAttribute('href', 'https://github.com/Blockheads-Club/mod-sdk');
-  });
-
   it('contribute: ways to help and translation status', () => {
     render(Contribute);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Blockheads Club is made by people like you.');

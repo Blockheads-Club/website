@@ -19,6 +19,7 @@
   const onHero = $derived(route === 'home' || route === 'pc' || route === 'patcher' || route === 'server');
   const title = $derived.by(() => {
     const titles = dict().meta.titles;
+    if (route === 'modDetail') return ((page.data.mod?.name as string | undefined) ?? dict().apps.names.mods) + ' · ' + dict().meta.title;
     return route in titles ? titles[route as keyof typeof titles] : dict().meta.title;
   });
 

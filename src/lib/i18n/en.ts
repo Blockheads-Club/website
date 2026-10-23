@@ -4,6 +4,14 @@ export interface Item {
   body: string;
 }
 
+/** Plural forms picked with Intl.PluralRules (en/tr/kk use one/other; ru also uses few/many). */
+export interface Plural {
+  one: string;
+  few: string;
+  many: string;
+  other: string;
+}
+
 export const en = {
   meta: {
     title: 'Blockheads Club',
@@ -16,6 +24,7 @@ export const en = {
       patcher: 'Patcher · Blockheads Club',
       server: 'Server · Blockheads Club',
       mods: 'Mods · Blockheads Club',
+      modsSubmit: 'Submit a mod · Blockheads Club',
       contribute: 'Get involved · Blockheads Club',
       about: 'About & legal · Blockheads Club',
       moved: 'This page moved · Blockheads Club'
@@ -40,9 +49,7 @@ export const en = {
     themeLight: 'Light',
     themeDark: 'Dark',
     notSure: 'Not sure which one you need?',
-    helpChoose: 'Help me choose',
-    soon: 'Coming soon',
-    soonShort: 'Soon'
+    helpChoose: 'Help me choose'
   },
   apps: {
     pc: {
@@ -92,13 +99,12 @@ export const en = {
     lead: 'Free tools to play the game on your computer, fix it on new phones and host worlds for friends.',
     cta: 'Get the right download',
     ctaWhat: 'What is Blockheads Club?',
-    tileSoon: 'soon',
     q: 'What do you want to do?',
     qLead: 'Three free apps. Pick the one for what you want to do.',
     mods: {
-      title: 'Mods are coming',
-      body: 'New things for servers and the game, from a public list reviewed by the maintainers. You can make your own.',
-      link: 'See what’s planned'
+      title: 'Mods are here',
+      body: 'Add commands, chat tools and mini-games to your server from a public list reviewed by the maintainers. You can make your own.',
+      link: 'Browse mods'
     },
     what: {
       eyebrow: 'What is Blockheads Club?',
@@ -213,7 +219,7 @@ export const en = {
     features: [
       { title: 'Play with friends', body: 'On the same Wi-Fi in a minute, or over the internet with a port forward.' },
       { title: 'Easy to manage', body: 'Start and stop, back up worlds and manage players from a simple app.' },
-      { title: 'Mods (soon)', body: 'Add server mods from a reviewed public list.' }
+      { title: 'Mods', body: 'Add server mods from a reviewed public list.' }
     ] as Item[],
     steps: [
       { title: 'Install the Server', body: 'Desktop or Android app — or one command on Linux.' },
@@ -329,41 +335,6 @@ export const en = {
     olderLink: 'GitHub Releases',
     footnote: 'Unofficial fan project. We never ship the game itself — you need your own copy.'
   },
-  mods: {
-    eyebrow: 'Mods · coming soon',
-    title: 'Mods are coming to The Blockheads.',
-    lead: 'Add new things to your server or your game, from a public list the maintainers review. Or make your own. We’re building it in the open — follow along.',
-    follow: 'Follow progress on GitHub',
-    sdk: 'Read the mod SDK',
-    cards: [
-      {
-        title: 'Server mods',
-        body: 'New commands, chat tools and mini-games. The Blockheads Server gets Lua mods first, then WebAssembly mods.'
-      },
-      {
-        title: 'Player mods',
-        body: 'A mod can also have a part for players. It downloads straight from the server when you join.'
-      },
-      { title: 'A reviewed public list', body: 'A maintainer checks every new mod before it appears on the public list.' },
-      {
-        title: 'Make your own',
-        body: 'Write mods in Lua or in Rust (WebAssembly). The bhmod tool creates a starter mod for you.'
-      }
-    ] as Item[],
-    safeTitle: 'Safe by default',
-    safeBody:
-      'Server owners decide what each mod may do: a mod only gets the permissions you grant it. WebAssembly mods run in a sandbox.',
-    permRead: 'Read world',
-    permChange: 'Change world',
-    permNet: 'Internet: one host',
-    nativeTitle: 'Native code · full access',
-    nativeBody:
-      'Mods that run outside the sandbox always get an extra security review, again whenever an update asks for more.',
-    statusBadge: 'Not released yet',
-    status:
-      'There is no release date yet. Watch the mod SDK on GitHub to see when servers can load the first mods. Mod authors can already try it.',
-    statusLink: 'Ask a question on GitHub'
-  },
   contribute: {
     eyebrow: 'Get involved',
     title: 'Blockheads Club is made by people like you.',
@@ -388,7 +359,7 @@ export const en = {
         title: 'Help other players',
         body: 'Answer questions in the GitHub issues. Many players are new to patching or hosting.'
       },
-      { title: 'Make mods (soon)', body: 'When mods launch, publish yours on the public list for everyone.' }
+      { title: 'Make mods', body: 'Publish yours on the public list for everyone.' }
     ] as Item[],
     links: ['Find a first issue', 'Open the translation files', 'Report a bug', 'Edit the docs', 'Open issues', 'About mods'],
     langTitle: 'Translations',
@@ -442,6 +413,149 @@ export const en = {
     home: 'Go home',
     docs: 'Search the docs'
   },
+  mods: {
+    eyebrow: 'Mods',
+    title: 'Mods for The Blockheads',
+    lead: 'Browse community mods for servers and clients. Every mod lists what it is allowed to do.',
+    safeTitle: 'Safe by default',
+    safeBody:
+      'Server owners decide what each mod may do: a mod only gets the permissions you grant it. WebAssembly mods run in a sandbox.',
+    permRead: 'Read world',
+    permChange: 'Change world',
+    permNet: 'Internet: one host',
+    nativeTitle: 'Native code · full access',
+    nativeBody:
+      'Mods that run outside the sandbox always get an extra security review, again whenever an update asks for more.',
+    sample: 'Sample data: the mod index isn’t published yet, so the mods below are examples.',
+    searchLabel: 'Search mods',
+    searchPlaceholder: 'Search by name, id, description or tag',
+    tagsLabel: 'Filter by tag',
+    allTags: 'All tags',
+    resultsStatus: { one: 'mod shown', few: 'mods shown', many: 'mods shown', other: 'mods shown' } as Plural,
+    noResults: 'No mods match your search.',
+    clear: 'Clear search',
+    by: 'by',
+    draft: 'Placeholder',
+    allYanked: 'All versions yanked',
+    submitButton: 'Submit a mod',
+    makeButton: 'Make a mod',
+    clientRequired: 'Players need it',
+    version: 'Version',
+    sides: { server: 'Server', client: 'Client', both: 'Server + client' },
+    native: {
+      badge: 'Native code',
+      warn: 'Runs native code outside the sandbox. Only install it if you trust the author.'
+    },
+    perms: {
+      none: 'Needs no special permissions.',
+      world: {
+        read: { label: 'World: read', text: 'Can read the world: blocks, items and other data.' },
+        write: { label: 'World: write', text: 'Can change the world: place and break blocks, add items.' }
+      },
+      players: {
+        chat: { label: 'Chat', text: 'Can send chat messages to players.' },
+        teleport: { label: 'Teleport', text: 'Can teleport players.' },
+        kick: { label: 'Kick', text: 'Can kick players from the server.' },
+        ban: { label: 'Ban', text: 'Can ban players.' },
+        inventory: { label: 'Inventory', text: 'Can look at and change what players carry.' },
+        health: { label: 'Health', text: 'Can change players’ health.' }
+      },
+      http: { label: 'Internet', text: 'Can connect to these websites:' },
+      channels: { label: 'Messages', text: 'Can send its own messages between server, clients and other mods.' }
+    },
+    detail: {
+      breadcrumb: 'Breadcrumb',
+      all: 'All mods',
+      noDescription: 'No description.',
+      owners: 'Owners',
+      repo: 'Source code',
+      tags: 'Tags',
+      versions: 'Versions',
+      columns: { version: 'Version', published: 'Published', size: 'Size', sides: 'Runs on', download: 'Download' },
+      select: 'Show details',
+      selected: 'Showing',
+      yanked: 'Yanked',
+      latest: 'Latest',
+      download: 'Download',
+      mirror: 'Mirror',
+      sha: 'SHA-256',
+      copy: 'Copy',
+      copied: 'Copied',
+      copyFailed: 'Copy failed',
+      copyLabel: 'Copy the SHA-256',
+      noDownload: 'Every version of this mod was yanked, so there is nothing to download.',
+      api: 'Needs mod API',
+      loader: 'Loader',
+      depends: 'Needs these mods',
+      softDepends: 'Works better with',
+      notInIndex: 'not in the index',
+      noDepends: 'No other mods needed.',
+      permsTitle: 'What this version can do',
+      draftNote: 'This is a placeholder entry: the mod is not published yet and there is nothing to download.',
+      installTitle: 'How to install',
+      players: 'Players',
+      playersBody: 'Client mods will install from the in-game mod browser or with the Patcher. This is coming later.',
+      admins: 'Server admins',
+      adminsBody:
+        'Download the `.bhmod` file and drop it into the server’s `mods/` folder. Later, `/mods install <id>` will do it for you. Servers can’t load mods yet: that comes in a later release.',
+      nativeTitle: 'Native code: be careful',
+      nativeBody:
+        'This version runs native code outside the sandbox. It can do anything the program can do on your computer. Only install it if you trust the author and have read the source.'
+    },
+    submit: {
+      eyebrow: 'Mods',
+      title: 'Submit a mod',
+      lead: 'Mods are listed through a pull request to the Blockheads-Club/mods repository. CI checks the files and a maintainer reviews the rest.',
+      stepsTitle: 'How to submit',
+      steps: [
+        {
+          title: 'Build and publish your mod',
+          body: 'Run `bhmod pack` and attach the `.bhmod` file to a release in your own repository. The download link must be a public `https://` address ending in `.bhmod`.'
+        },
+        {
+          title: 'Fork Blockheads-Club/mods',
+          body: 'Add one file: `mods/<first letter>/<id>.toml`, for example `mods/h/hello-lua.toml`. It holds the mod’s name, owners, repository and every published version.'
+        },
+        {
+          title: 'Describe the version',
+          body: 'For each version give the download URL, the SHA-256 and size of the `.bhmod` file, the sides, the API range, the permissions and the date.'
+        },
+        {
+          title: 'Open a pull request',
+          body: 'CI runs the checks below and comments with the result. A maintainer reviews and merges. Then the index is rebuilt and this page picks it up on its next build.'
+        }
+      ],
+      rulesTitle: 'Rules',
+      rules: [
+        'One mod per pull request.',
+        'Every new mod gets a security review: a maintainer reads its code before it is listed. Updates are reviewed again when they add permissions or native code.',
+        'Only the owners listed in the file can add versions. The first submitter becomes the first owner.',
+        'Versions are append-only. Never edit or remove a published version; the only allowed change is `yanked = true`, to pull a broken or unsafe version.',
+        'Only submit mods you made or may share, and keep their licence in your repository.',
+        'Ask only for the permissions the mod really needs.',
+        'No game files and no copied game assets.'
+      ],
+      ciTitle: 'What CI checks',
+      ci: [
+        'The file follows the index schema and its path matches the mod id.',
+        'The pull request touches exactly one mod.',
+        'Versions are only appended; existing ones change only by `yanked`.',
+        'The pull request author is one of the `owners`.',
+        'The download works, and its SHA-256 and size match.',
+        'The package follows the package rules, and its `mod.toml` matches the entry.',
+        'Dependencies exist in the index and their version ranges can be met.',
+        'WASM modules validate and Lua/Luau scripts compile.',
+        'A permission diff is posted. Every new mod, versions with native code and updates that add a permission get the `needs-security-review` label and wait for a maintainer’s review.'
+      ],
+      nativeTitle: 'Native mods',
+      nativeBody: 'Mods with `native = true` run code outside the sandbox. They are allowed, but they are reviewed by hand and shown with a red warning.',
+      toolsTitle: 'Tools',
+      toolsBody: 'The mod SDK has the `bhmod` command line tool, the schemas and examples.',
+      sdkButton: 'Open the mod SDK',
+      modsButton: 'Open Blockheads-Club/mods',
+      docsButton: 'Making a mod (docs)',
+    }
+  },
   footer: {
     tagline: 'Free, open-source tools for The Blockheads, made by players.',
     disclaimer:
@@ -449,7 +563,6 @@ export const en = {
     apps: 'Apps',
     help: 'Help',
     project: 'Project',
-    modsSoon: 'Mods · soon',
     allDownloads: 'All downloads',
     guides: 'Install guides',
     faq: 'FAQ',

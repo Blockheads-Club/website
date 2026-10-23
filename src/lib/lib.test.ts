@@ -44,6 +44,8 @@ describe('routes', () => {
     ['/website/patcher-app', 'patcher'],
     ['/website/server', 'server'],
     ['/website/mods', 'mods'],
+    ['/website/mods/submit', 'modsSubmit'],
+    ['/website/mods/hello-lua', 'modDetail'],
     ['/website/contribute', 'contribute'],
     ['/website/about', 'about'],
     ['/website/guides', 'moved'],

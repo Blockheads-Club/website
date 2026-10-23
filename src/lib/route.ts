@@ -1,6 +1,6 @@
 import type { ProductId } from './releases';
 
-export type RouteKey = 'home' | 'download' | ProductId | 'mods' | 'contribute' | 'about' | 'moved' | 'other';
+export type RouteKey = 'home' | 'download' | ProductId | 'mods' | 'modsSubmit' | 'modDetail' | 'contribute' | 'about' | 'moved' | 'other';
 
 /** Site pages below the base path. `/patcher` itself is the bundled web Patcher, so its app page lives elsewhere. */
 export const PATHS = {
@@ -10,6 +10,7 @@ export const PATHS = {
   patcher: '/patcher-app',
   server: '/server',
   mods: '/mods',
+  modsSubmit: '/mods/submit',
   contribute: '/contribute',
   about: '/about'
 } as const;
@@ -71,7 +72,8 @@ export function routeKey(pathname: string, base: string): RouteKey {
   const path = strip(pathname, base);
   if (movedTarget(pathname, base)) return 'moved';
   const hit = (Object.entries(PATHS) as [RouteKey, string][]).find(([, p]) => p === path);
-  return hit ? hit[0] : 'other';
+  if (hit) return hit[0];
+  return path.startsWith('/mods/') ? 'modDetail' : 'other';
 }
 
 /** The new home of an old `path#hash` link, if any. */

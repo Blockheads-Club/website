@@ -34,3 +34,29 @@ test('the guides moved into the docs, with their screenshots', async ({ page }) 
   await page.goto('/docs/kk/guides/');
   await expect(page.getByRole('link', { name: 'Docker және Docker Compose' }).first()).toBeVisible();
 });
+
+test('mods docs: sidebar section, guides and the generated API reference', async ({ page }) => {
+  await page.goto('/docs/mods');
+  const sidebar = page.locator('.VPSidebar');
+  await expect(sidebar.getByText('Mods', { exact: true })).toBeVisible();
+  await sidebar.getByRole('link', { name: 'For server owners' }).click();
+  await expect(page).toHaveURL(/\/docs\/mods\/servers$/);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Mods on your server');
+  await expect(page.getByText('mods.toml').first()).toBeVisible();
+  await page.goto('/docs/mods/api/');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('API reference');
+  await page.getByRole('link', { name: 'events', exact: true }).first().click();
+  await expect(page).toHaveURL(/\/docs\/mods\/api\/events$/);
+  await expect(page.getByRole('heading', { name: /event-kind/ })).toBeVisible();
+});
+
+test('translated mods docs keep the generated reference in English', async ({ page }) => {
+  await page.goto('/docs/tr/mods/players');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'tr');
+  await expect(page.locator('.VPSidebar').getByText('Modlar', { exact: true })).toBeVisible();
+  await page.goto('/docs/tr/mods/api/');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('API başvurusu');
+  await page.goto('/docs/ru/mods/api/players');
+  await expect(page.getByText('Сам справочник на английском')).toBeVisible();
+  await expect(page.getByText('Connected players.')).toBeVisible();
+});

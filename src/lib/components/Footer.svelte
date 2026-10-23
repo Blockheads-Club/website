@@ -26,7 +26,7 @@
           <h2>{d.footer.apps}</h2>
           <ul>
             {#each APPS as a (a.id)}<li><a href={base + a.path}>{appName(a.id, d)}</a></li>{/each}
-            <li><a href={base + PATHS.mods}>{d.footer.modsSoon}</a></li>
+            <li><a href={base + PATHS.mods}>{d.apps.names.mods}</a></li>
             <li><a href={base + PATHS.download}>{d.footer.allDownloads}</a></li>
           </ul>
         </div>

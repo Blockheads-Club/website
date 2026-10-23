@@ -1,4 +1,4 @@
-import { en, type Dict } from './en';
+import { en, type Dict, type Plural } from './en';
 import { kk } from './kk';
 import { ru } from './ru';
 import { tr } from './tr';
@@ -30,6 +30,12 @@ export function detectLocale(languages: readonly string[]): Locale {
     if (isLocale(code)) return code;
   }
   return DEFAULT_LOCALE;
+}
+
+/** Picks the plural form for `n` with the locale's CLDR rules (Russian: one/few/many). */
+export function plural(forms: Plural, n: number, locale: string): string {
+  const category = new Intl.PluralRules(locale).select(n);
+  return category in forms ? forms[category as keyof Plural] : forms.other;
 }
 
 function leaves(value: unknown): string[] {

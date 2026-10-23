@@ -1,0 +1,17 @@
+{
+  "id": "blockheads:api@0.2.0",
+  "pages": [
+    "events",
+    "commands",
+    "players",
+    "scheduler",
+    "storage",
+    "log",
+    "host",
+    "services",
+    "channels",
+    "guest",
+    "types",
+    "worlds"
+  ]
+}

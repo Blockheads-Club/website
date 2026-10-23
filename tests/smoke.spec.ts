@@ -19,7 +19,7 @@ test('the Apps menu reaches every app page', async ({ page }) => {
     ['Blockheads PC', '/pc', 'Blockheads PC'],
     ['Patcher', '/patcher-app', 'Patcher'],
     ['Server', '/server', 'Server'],
-    ['Mods', '/mods', 'Mods are coming to The Blockheads.']
+    ['Mods', '/mods', 'Mods for The Blockheads']
   ]) {
     await nav.getByRole('button', { name: 'Apps' }).click();
     await page.locator('#apps-panel').getByRole('link', { name: new RegExp('^' + name) }).click();

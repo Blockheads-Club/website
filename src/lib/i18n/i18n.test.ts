@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_LOCALE, LOCALES, LOCALE_NAMES, detectLocale, dictionaries, docsPath, isLocale, translationProgress } from './index';
+import { DEFAULT_LOCALE, LOCALES, LOCALE_NAMES, detectLocale, dictionaries, docsPath, isLocale, plural, translationProgress } from './index';
 
 function shape(value: unknown, prefix = ''): string[] {
   if (Array.isArray(value)) {
@@ -102,5 +102,18 @@ describe('i18n', () => {
     }
     expect(dictionaries.tr.nav.docs).toBe('Dokümanlar');
     expect(JSON.stringify(dictionaries.tr)).not.toMatch(/\b\w+(sınız|siniz|sunuz|sünüz)\b/);
+  });
+});
+
+describe('plural', () => {
+  const forms = { one: 'mod', few: 'mods (few)', many: 'mods (many)', other: 'mods' };
+  it('uses the CLDR category of the locale', () => {
+    expect(plural(forms, 1, 'en')).toBe('mod');
+    expect(plural(forms, 5, 'en')).toBe('mods');
+    expect(plural(forms, 2, 'ru')).toBe('mods (few)');
+    expect(plural(forms, 5, 'ru')).toBe('mods (many)');
+  });
+  it('falls back to other for a category without a form', () => {
+    expect(plural(forms, 2, 'ar')).toBe('mods');
   });
 });

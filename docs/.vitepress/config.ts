@@ -1,4 +1,6 @@
 import { defineConfig, type DefaultTheme } from 'vitepress';
+// Written by scripts/gen-mod-api.ts together with the API reference pages (docs/**/mods/api/).
+import modApi from './mod-api.json';
 
 // Same BASE_PATH as the SvelteKit site ("/website" on GitHub Pages, empty elsewhere); the docs live under <base>/docs/.
 const siteBase = process.env.BASE_PATH ?? '';
@@ -17,6 +19,21 @@ interface Strings {
   pages: { start: string; pc: string; patcher: string; server: string; faq: string };
   /** Sidebar group for docs/<dir>/guides/, guide id → title. */
   guides: { title: string; items: Record<string, string> };
+  mods: {
+    section: string;
+    players: string;
+    servers: string;
+    making: string;
+    lua: string;
+    rust: string;
+    events: string;
+    commands: string;
+    storage: string;
+    interop: string;
+    publish: string;
+    versions: string;
+    api: string;
+  };
   outline: string;
   prev: string;
   next: string;
@@ -63,6 +80,28 @@ function themeConfig(s: Strings): DefaultTheme.Config {
           { text: s.guides.title, link: p + 'guides/' },
           ...Object.entries(s.guides.items).map(([id, text]) => ({ text, link: p + 'guides/' + id }))
         ]
+      },
+      {
+        text: s.mods.section,
+        items: [
+          { text: s.mods.players, link: p + 'mods/players' },
+          { text: s.mods.servers, link: p + 'mods/servers' },
+          { text: s.mods.making, link: p + 'mods' },
+          { text: s.mods.lua, link: p + 'mods/first-lua-mod' },
+          { text: s.mods.rust, link: p + 'mods/first-rust-mod' },
+          { text: s.mods.events, link: p + 'mods/events' },
+          { text: s.mods.commands, link: p + 'mods/commands' },
+          { text: s.mods.storage, link: p + 'mods/storage' },
+          { text: s.mods.interop, link: p + 'mods/interop' },
+          { text: s.mods.publish, link: p + 'mods/publishing' },
+          { text: s.mods.versions, link: p + 'mods/api-versions' },
+          {
+            text: s.mods.api,
+            link: p + 'mods/api/',
+            collapsed: true,
+            items: modApi.pages.map((name) => ({ text: name, link: p + 'mods/api/' + name }))
+          }
+        ]
       }
     ],
     socialLinks: [{ icon: 'github', link: GITHUB }],
@@ -101,6 +140,21 @@ const en: Strings = {
       'host-android': 'Host from an Android phone',
       'docker': 'Docker and Docker Compose'
     }
+  },
+  mods: {
+    section: 'Mods',
+    players: 'For players',
+    servers: 'For server owners',
+    making: 'Making a mod',
+    lua: 'First Lua mod',
+    rust: 'First Rust mod',
+    events: 'Events',
+    commands: 'Commands and timers',
+    storage: 'Storage',
+    interop: 'Working with other mods',
+    publish: 'Publishing',
+    versions: 'API versions',
+    api: 'API reference'
   },
   outline: 'On this page',
   prev: 'Previous page',
@@ -148,6 +202,21 @@ const tr: Strings = {
       'docker': 'Docker ve Docker Compose'
     }
   },
+  mods: {
+    section: 'Modlar',
+    players: 'Oyuncular için',
+    servers: 'Sunucu sahipleri için',
+    making: 'Mod yapma',
+    lua: 'İlk Lua modun',
+    rust: 'İlk Rust modun',
+    events: 'Olaylar',
+    commands: 'Komutlar ve zamanlayıcılar',
+    storage: 'Depolama',
+    interop: 'Diğer modlarla çalışma',
+    publish: 'Yayımlama',
+    versions: 'API sürümleri',
+    api: 'API başvurusu'
+  },
   outline: 'Bu sayfada',
   prev: 'Önceki sayfa',
   next: 'Sonraki sayfa',
@@ -194,6 +263,21 @@ const ru: Strings = {
       'docker': 'Docker и Docker Compose'
     }
   },
+  mods: {
+    section: 'Моды',
+    players: 'Игрокам',
+    servers: 'Владельцам серверов',
+    making: 'Как сделать мод',
+    lua: 'Первый мод на Lua',
+    rust: 'Первый мод на Rust',
+    events: 'События',
+    commands: 'Команды и таймеры',
+    storage: 'Хранилище',
+    interop: 'Взаимодействие модов',
+    publish: 'Публикация',
+    versions: 'Версии API',
+    api: 'Справочник API'
+  },
   outline: 'На этой странице',
   prev: 'Предыдущая страница',
   next: 'Следующая страница',
@@ -239,6 +323,21 @@ const kk: Strings = {
       'host-android': 'Android телефонда сервер ашу',
       'docker': 'Docker және Docker Compose'
     }
+  },
+  mods: {
+    section: 'Модтар',
+    players: 'Ойыншыларға',
+    servers: 'Сервер иелеріне',
+    making: 'Мод жасау',
+    lua: 'Алғашқы Lua моды',
+    rust: 'Алғашқы Rust моды',
+    events: 'Оқиғалар',
+    commands: 'Командалар мен таймерлер',
+    storage: 'Сақтау орны',
+    interop: 'Басқа модтармен жұмыс',
+    publish: 'Жариялау',
+    versions: 'API нұсқалары',
+    api: 'API анықтамасы'
   },
   outline: 'Осы бетте',
   prev: 'Алдыңғы бет',
