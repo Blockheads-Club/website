@@ -8,7 +8,7 @@ oyunda göreceğin şeyler ekler. Hepsine <a href="../../../mods/" target="_self
 Çoğu mod **sunucuda** çalışır. Normal oyununla her zamanki gibi katılırsın ve modun eklediği şeyleri kullanırsın;
 örneğin komutlarını sohbete yazarak. Hangi modların çalışacağına sunucu sahibi karar verir ve komutları sana söyleyebilir.
 
-## İstemci modlu bir sunucuya katılmak <Badge type="warning" text="yakında" />
+## İstemci modlu bir sunucuya katılmak <Badge type="info" text="önizleme" />
 
 Bazı modların **oyunun içinde** çalışan bir parçası da vardır (yeni bir blok, bir mini harita). Böyle bir sunucuya katılırken:
 
@@ -22,12 +22,12 @@ listede tam olarak aynı dosyayla bulunmalıdır ve onaylaman gerekir. Bir sunuc
 Mod yükleyici olmadan da tüm modları sunucu tarafında olan sunuculara katılabilirsin. İstemci modu gereken sunucular
 seni geri çevirir; oyun, istemcinin çok eski olduğunu söyler.
 
-Mod yükleyici [PC Sürümü](../pc-port) ile ve Android'de [Patcher](../patcher) ile gelecek. İkisinde de henüz yok.
+Mod yükleyici [PC Sürümü](../pc-port)'nün parçası, Android'de ise [Patcher](../patcher)'ın bir yaması. İkisinin de geliştirme sürümlerinde var; yayımlanmış sürümlerde henüz yok.
 
-## Kendi istemci modların <Badge type="warning" text="yakında" />
+## Kendi istemci modların <Badge type="info" text="önizleme" />
 
 İstemci modlarını (mini harita, koordinatlar, envanter sıralama, kozmetikler) herkese açık listeden ya da bir
-dosyadan, PC Sürümü başlatıcısında veya Patcher'da kurabileceksin.
+dosyadan ya da bağlantıdan, PC Sürümü başlatıcısında veya Android'de oyunun içinde (mod yükleyici yamasıyla) kurabilirsin.
 
 ## Güvende kalmak
 

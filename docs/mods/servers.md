@@ -1,8 +1,8 @@
 # Mods on your server
 
 ::: warning Preview
-The [Blockheads Server](../server) runs **Lua** mods in its development builds; they are not in a release yet.
-**WASM** (Rust) mods and **client** mods are coming soon.
+The [Blockheads Server](../server) runs **Lua** and **WASM** (Rust) mods in its development builds; they are not in a
+release yet. Mods with a **client** part need players to have the mod loader (PC Port, or Android with the Patcher).
 :::
 
 ## Turn mods on
@@ -25,7 +25,7 @@ Without a mods folder (or with an empty one) the server behaves exactly like van
 3. Grant its permissions in `mods.toml` (below).
 4. Restart the server. The log shows `loaded 1 mod(s): …` or why a mod did not load.
 
-Installing from the public list, from a file or a link inside the desktop app is coming soon.
+The Server app also has a Mods screen for the mods folder (development builds).
 
 ## mods.toml
 
@@ -76,5 +76,5 @@ resets the mods' data and leaves the world untouched. Back it up together with t
 ## Vanilla players
 
 - **Server-only mods:** anyone can join with the normal game.
-- **Client-required mods** <Badge type="warning" text="coming soon" />: players without the mod loader are turned away
+- **Client-required mods** <Badge type="info" text="preview" />: players without the mod loader are turned away
   (their game says the client is too old). The mod's page marks such mods as *client-required*.

@@ -8,7 +8,7 @@ things you see in the game. Browse them on the <a href="../../mods/" target="_se
 Most mods run **on the server**. You join as usual, with your normal game, and simply use what the mod adds, for
 example by typing its commands in chat. The server owner decides which mods run and can tell you their commands.
 
-## Joining a server with client mods <Badge type="warning" text="coming soon" />
+## Joining a server with client mods <Badge type="info" text="preview" />
 
 Some mods also have a part that runs **in your game** (a new block, a minimap). When you join such a server:
 
@@ -22,12 +22,12 @@ the public list with exactly the same file, and you must confirm them. A server 
 Without the mod loader you can still join servers whose mods are all server-side. Servers that need a client mod
 turn you away; the game says your client is too old.
 
-The mod loader comes with the [PC Port](../pc-port) and, on Android, with the [Patcher](../patcher). Neither has it yet.
+The mod loader is part of the [PC Port](../pc-port) and, on Android, a patch of the [Patcher](../patcher). Both have it in their development builds; the released versions do not yet.
 
-## Your own client mods <Badge type="warning" text="coming soon" />
+## Your own client mods <Badge type="info" text="preview" />
 
-You will be able to install client mods (a minimap, coordinates, inventory sorting, cosmetics) from the public list
-or from a file, in the PC Port launcher or in the Patcher.
+You can install client mods (a minimap, coordinates, inventory sorting, cosmetics) from the public list
+or from a file or a link, in the PC Port launcher or in the game itself on Android (with the mod loader patch).
 
 ## Staying safe
 

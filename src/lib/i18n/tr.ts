@@ -482,10 +482,10 @@ export const tr: Dict = {
       draftNote: 'Bu bir taslak kayıt: mod henüz yayında değil ve indirilecek bir şey yok.',
       installTitle: 'Nasıl kurulur',
       players: 'Oyuncular',
-      playersBody: 'İstemci modları oyun içi mod tarayıcısından veya Patcher ile kurulacak. Bu daha sonra geliyor.',
+      playersBody: 'İstemci modları mod yükleyiciyle kurulur: PC Sürümü başlatıcısında ya da Android’de oyunun içinde (bir Patcher seçeneği). İkisi de şimdilik geliştirme sürümlerinde.',
       admins: 'Sunucu yöneticileri',
       adminsBody:
-        '`.bhmod` dosyasını indirip sunucunun `mods/` klasörüne at. İleride `/mods install <id>` bunu senin yerine yapacak. Sunucular henüz mod yükleyemiyor: bu sonraki bir sürümde gelecek.',
+        '`.bhmod` dosyasını indirip sunucunun `mods/` klasörüne at, sonra izinlerini `mods.toml` içinde ver. Blockheads Server geliştirme sürümlerinde Lua ve WASM modlarını çalıştırır; bir sürüm arkasından gelecek.',
       nativeTitle: 'Yerel kod: dikkatli ol',
       nativeBody:
         'Bu sürüm yerel kodu korumalı alanın dışında çalıştırır. Bilgisayarında programın yapabildiği her şeyi yapabilir. Yalnızca yazarına güveniyorsan ve kaynağı okuduysan kur.'

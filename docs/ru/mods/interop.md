@@ -72,7 +72,7 @@ bh.channels.send(ch, "local", "hello")
 ```
 
 Нужно разрешение `channels`. `"local"` доходит до каждого другого мода, открывшего то же имя, на следующем тике.
-Отправка игрокам, `"all-players"` или `"server"` скоро появится вместе с клиентскими модами.
+Для отправки игрокам, `"all-players"` или `"server"` нужен клиентский мод с загрузчиком модов.
 
 ## Примеры
 
@@ -81,7 +81,7 @@ bh.channels.send(ch, "local", "hello")
 - [`economy`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/economy): монеты, `/balance`, `/pay`; предоставляет сервис `economy` и вызывает `economy:balance-changed`.
 - [`landclaim`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/landclaim): участки через `/claim` за монеты; отменяет `block-place`/`block-break` на чужой земле; мягко зависит от `perms`.
 - [`perms`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/perms): узлы прав как сервис `permissions`.
-- [`shop-rust`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/shop-rust): мод на **Rust**, платящий через **Lua**-мод economy (нужна WASM-среда, скоро).
+- [`shop-rust`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/shop-rust): мод на **Rust**, платящий через **Lua**-мод economy (WASM-моды работают в сборках сервера для разработки).
 
 Справочник: [`services`](./api/services), [`events`](./api/events), [`channels`](./api/channels). Правила значений:
 [соответствие Luau API](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/luau-api.md#values-typesvalue-cbor).

@@ -3,9 +3,9 @@
 Rust mods compile to a **WebAssembly component**. They run in a sandbox, like Lua mods, and can call Lua mods and
 the other way round.
 
-::: warning Servers can't run WASM mods yet
-You can build, check and pack a Rust mod today. The WASM runtime for the server is coming soon; until then use
-[Lua](./first-lua-mod) to try things on a server.
+::: tip Servers run WASM mods
+The [Blockheads Server](../server) runs WASM mods in its development builds, next to Lua mods. They arrive in a
+release with the rest of the mod system.
 :::
 
 ## 1. Set up

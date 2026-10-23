@@ -3,9 +3,9 @@
 Rust modları bir **WebAssembly bileşenine** derlenir. Lua modları gibi korumalı alanda çalışır; Lua modlarını
 çağırabilir ve onlar da Rust modlarını çağırabilir.
 
-::: warning Sunucular henüz WASM modlarını çalıştıramıyor
-Bir Rust modunu bugün derleyebilir, kontrol edebilir ve paketleyebilirsin. Sunucu için WASM çalışma zamanı yakında
-geliyor; o zamana kadar bir sunucuda denemek için [Lua](./first-lua-mod) kullan.
+::: tip Sunucular WASM modlarını çalıştırır
+[Blockheads Server](../server) geliştirme sürümlerinde Lua modlarının yanında WASM modlarını da çalıştırır. Modların
+geri kalanıyla birlikte bir sürümle gelecek.
 :::
 
 ## 1. Hazırlık

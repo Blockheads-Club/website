@@ -1,8 +1,8 @@
 # Sunucunda modlar
 
 ::: warning Önizleme
-[Blockheads Server](../server) geliştirme sürümlerinde **Lua** modlarını çalıştırır; henüz bir sürümde yok.
-**WASM** (Rust) modları ve **istemci** modları yakında geliyor.
+[Blockheads Server](../server) geliştirme sürümlerinde **Lua** ve **WASM** (Rust) modlarını çalıştırır; henüz bir sürümde yok.
+**İstemci** parçası olan modlar için oyuncuların mod yükleyicisi olmalı (PC Sürümü ya da Patcher'lı Android).
 :::
 
 ## Modları aç
@@ -25,7 +25,7 @@ Mod klasörü yoksa (ya da boşsa) sunucu tam olarak vanilla gibi davranır: ayn
 3. İzinlerini `mods.toml` içinde ver (aşağıda).
 4. Sunucuyu yeniden başlat. Günlükte `loaded 1 mod(s): …` ya da bir modun neden yüklenmediği görünür.
 
-Masaüstü uygulamasında herkese açık listeden, dosyadan veya bağlantıdan kurmak yakında geliyor.
+Server uygulamasında mod klasörün için bir Modlar ekranı da var (geliştirme sürümleri).
 
 ## mods.toml
 
@@ -75,5 +75,5 @@ verisi sıfırlanır, dünyaya dokunulmaz. Dünyayla birlikte yedekle.
 ## Vanilla oyuncular
 
 - **Yalnızca sunucu modları:** herkes normal oyunla katılabilir.
-- **İstemcide zorunlu modlar** <Badge type="warning" text="yakında" />: mod yükleyicisi olmayan oyuncular geri
+- **İstemcide zorunlu modlar** <Badge type="info" text="önizleme" />: mod yükleyicisi olmayan oyuncular geri
   çevrilir (oyunları istemcinin çok eski olduğunu söyler). Modun sayfası bunları *client-required* olarak işaretler.

@@ -72,7 +72,7 @@ bh.channels.send(ch, "local", "hello")
 ```
 
 `channels` izni gerekir. `"local"`, aynı adı açan diğer her moda bir sonraki tick'te ulaşır. Oyunculara, `"all-players"`
-ya da `"server"` hedefine göndermek istemci modlarıyla birlikte yakında geliyor.
+ya da `"server"` hedefine göndermek için mod yükleyicili bir istemci modu gerekir.
 
 ## Örnekler
 
@@ -81,7 +81,7 @@ Hepsi SDK'da, birlikte çalıştırmaya hazır:
 - [`economy`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/economy): para, `/balance`, `/pay`; `economy` servisini sağlar ve `economy:balance-changed` tetikler.
 - [`landclaim`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/landclaim): para ile `/claim` arsaları; başkalarının arazisinde `block-place`/`block-break` iptal eder; `perms`'e isteğe bağlı bağlanır.
 - [`perms`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/perms): izin düğümleri, bir `permissions` servisi olarak.
-- [`shop-rust`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/shop-rust): **Lua** economy üzerinden ödeme yapan bir **Rust** modu (WASM çalışma zamanı gerekir, yakında).
+- [`shop-rust`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/shop-rust): **Lua** economy üzerinden ödeme yapan bir **Rust** modu (WASM modları sunucunun geliştirme sürümlerinde çalışır).
 
 Başvuru: [`services`](./api/services), [`events`](./api/events), [`channels`](./api/channels). Değer kuralları:
 [Luau API eşlemesi](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/luau-api.md#values-typesvalue-cbor).

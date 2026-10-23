@@ -494,10 +494,10 @@ export const en = {
       draftNote: 'This is a placeholder entry: the mod is not published yet and there is nothing to download.',
       installTitle: 'How to install',
       players: 'Players',
-      playersBody: 'Client mods will install from the in-game mod browser or with the Patcher. This is coming later.',
+      playersBody: 'Client mods install with the mod loader: in the PC Port launcher, or on Android in the game itself (a Patcher option). Both are in development builds for now.',
       admins: 'Server admins',
       adminsBody:
-        'Download the `.bhmod` file and drop it into the server’s `mods/` folder. Later, `/mods install <id>` will do it for you. Servers can’t load mods yet: that comes in a later release.',
+        'Download the `.bhmod` file and drop it into the server’s `mods/` folder, then grant its permissions in `mods.toml`. The Blockheads Server runs Lua and WASM mods in its development builds; a release will follow.',
       nativeTitle: 'Native code: be careful',
       nativeBody:
         'This version runs native code outside the sandbox. It can do anything the program can do on your computer. Only install it if you trust the author and have read the source.'

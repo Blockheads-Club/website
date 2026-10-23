@@ -4,8 +4,9 @@
 players see in the game. You can browse what others made on the <a href="../mods/" target="_self">Mods page</a>.
 
 ::: warning What works today
-`bhmod` (create, check, pack) works, and the [Blockheads Server](./server) runs **Lua** mods in its development
-builds. Running **WASM** (Rust) mods and **client** mods is coming soon.
+`bhmod` (create, check, pack) works, and the [Blockheads Server](./server) runs **Lua** and **WASM** (Rust) mods in
+its development builds. **Client** mods run with the mod loader of the PC Port and the Patcher's Android mod loader
+patch; both are in development builds too and arrive with the next releases.
 :::
 
 ## Start here
@@ -23,7 +24,7 @@ Prefer Rust? See [your first Rust mod](./mods/first-rust-mod). Every function is
 A mod runs on one or both **sides**:
 
 - **server**: runs on the server.
-- **client**: runs in the game on a player's device (coming soon).
+- **client**: runs in the game on a player's device (needs the mod loader).
 - **both**: has a server part and a client part. It can be marked *client-required*, so players without it cannot join.
 
 ## Languages

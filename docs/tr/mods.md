@@ -5,7 +5,8 @@ oyuncuların oyunda göreceği değişiklikler. Başkalarının yaptıklarına <
 
 ::: warning Bugün neler çalışıyor
 `bhmod` (oluştur, kontrol et, paketle) çalışıyor ve [Blockheads Server](./server) geliştirme sürümlerinde **Lua**
-modlarını çalıştırıyor. **WASM** (Rust) modları ve **istemci** modları yakında geliyor.
+modlarının yanında **WASM** (Rust) modlarını da çalıştırıyor. **İstemci** modları PC Sürümü'nün mod yükleyicisiyle ve
+Patcher'ın Android mod yükleyici yamasıyla çalışır; ikisi de geliştirme sürümlerinde ve sonraki sürümlerle gelecek.
 :::
 
 ## Buradan başla
@@ -23,7 +24,7 @@ Rust mı tercih edersin? [İlk Rust modun](./mods/first-rust-mod) sayfasına bak
 Bir mod bir veya iki **tarafta** çalışır:
 
 - **server** (sunucu): sunucuda çalışır.
-- **client** (istemci): oyuncunun cihazında, oyunun içinde çalışır (yakında).
+- **client** (istemci): oyuncunun cihazında, oyunun içinde çalışır (mod yükleyici gerekir).
 - **both** (ikisi birden): hem sunucu hem istemci parçası vardır. *client-required* (istemcide zorunlu) işaretlenebilir; o zaman modu olmayan oyuncular katılamaz.
 
 ## Diller

@@ -72,7 +72,7 @@ bh.channels.send(ch, "local", "hello")
 ```
 
 Needs the `channels` permission. `"local"` reaches every other mod that opened the same name, on the next tick.
-Sending to players, `"all-players"` or `"server"` is coming soon with client mods.
+Sending to players, `"all-players"` or `"server"` needs a client mod with the mod loader.
 
 ## Examples
 
@@ -81,7 +81,7 @@ All in the SDK, ready to run together:
 - [`economy`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/economy): coins, `/balance`, `/pay`; provides the `economy` service and fires `economy:balance-changed`.
 - [`landclaim`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/landclaim): `/claim` plots with coins; cancels `block-place`/`block-break` on others' land; soft-depends on `perms`.
 - [`perms`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/perms): permission nodes as a `permissions` service.
-- [`shop-rust`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/shop-rust): a **Rust** mod paying through the **Lua** economy (needs the WASM runtime, coming soon).
+- [`shop-rust`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/shop-rust): a **Rust** mod paying through the **Lua** economy (WASM mods run on the server's development builds).
 
 Reference: [`services`](./api/services), [`events`](./api/events), [`channels`](./api/channels). Value rules:
 [Luau API mapping](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/luau-api.md#values-typesvalue-cbor).

@@ -71,7 +71,7 @@ bh.channels.send(ch, "local", "hello")
 ```
 
 `channels` рұқсаты керек. `"local"` дәл сол атауды ашқан әрбір басқа модқа келесі тикте жетеді. Ойыншыларға,
-`"all-players"` немесе `"server"` жіберу клиент модтарымен бірге жақында.
+`"all-players"` немесе `"server"` жіберу үшін мод жүктегіші бар клиент моды керек.
 
 ## Мысалдар
 
@@ -80,7 +80,7 @@ bh.channels.send(ch, "local", "hello")
 - [`economy`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/economy): монеталар, `/balance`, `/pay`; `economy` сервисін ұсынады және `economy:balance-changed` жібереді.
 - [`landclaim`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/landclaim): монеталарға `/claim` телімдері; басқалардың жерінде `block-place`/`block-break` бас тартады; `perms` модына жұмсақ тәуелді.
 - [`perms`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/perms): `permissions` сервисі ретінде рұқсат түйіндері.
-- [`shop-rust`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/shop-rust): **Lua** economy арқылы төлейтін **Rust** моды (WASM орындау ортасы керек, жақында).
+- [`shop-rust`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/shop-rust): **Lua** economy арқылы төлейтін **Rust** моды (WASM модтары сервердің әзірлеу құрастырмаларында жұмыс істейді).
 
 Анықтама: [`services`](./api/services), [`events`](./api/events), [`channels`](./api/channels). Мән ережелері:
 [Luau API сәйкестігі](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/luau-api.md#values-typesvalue-cbor).
