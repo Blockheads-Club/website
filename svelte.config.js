@@ -7,7 +7,9 @@ const base = process.env.BASE_PATH ?? '';
 export default {
   kit: {
     adapter: adapter({ fallback: '404.html' }),
-    paths: { base },
+    // Absolute paths: route.ts matches `page.url.pathname` against `base`, which a relative base (".." while
+    // prerendering) never matches, so every moved page broke the build under BASE_PATH.
+    paths: { base, relative: false },
     prerender: {
       // /mods/index.json 404s when no valid published index could be fetched (src/routes/mods/index.json); the build
       // then simply has no such file. Every other prerender error still fails the build.
