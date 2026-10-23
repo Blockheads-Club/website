@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  checks: read
 
 concurrency:
   group: release-watch
@@ -45,15 +46,24 @@ jobs:
           [ -n "$idx" ] || idx=$(jq -r '.["mods-index"] // empty' "$out" 2>/dev/null || true)
           next=$(jq --arg t "$idx" '. + {"mods-index": $t}' <<<"$next")
           jq -S . <<<"$next" > "$out.new"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if [ -f "$out" ] && cmp -s "$out" "$out.new"; then
             rm "$out.new"
             echo "No release changed."
+            # A failed Workers build of dev's head (seen once: a transient Cloudflare failure) is retried with one
+            # empty commit; a retry that fails too is left for a person, so a broken build never loops.
+            head=$(git rev-parse HEAD)
+            build=$(gh api "repos/$GITHUB_REPOSITORY/commits/$head/check-runs" \
+              -q '[.check_runs[] | select(.name | startswith("Workers Builds"))][0].conclusion // ""' 2>/dev/null || true)
+            if [ "$build" = "failure" ] && [ "$(git log -1 --format=%s)" != "chore: retry the site build" ]; then
+              git commit --allow-empty -m "chore: retry the site build"
+              git push origin HEAD:dev
+            fi
             exit 0
           fi
           mv "$out.new" "$out"
           cat "$out"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$out"
           git commit -m "chore: record the latest app releases (rebuilds the site)"
           git push origin HEAD:dev
