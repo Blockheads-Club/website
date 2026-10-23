@@ -29,10 +29,18 @@ export interface ModVersion {
   yanked?: boolean;
 }
 
+/** A translation of a mod's name and/or description; a missing field falls back to English. */
+export interface Translation {
+  name?: string;
+  description?: string;
+}
+
 export interface Mod {
   id: string;
   name: string;
   description?: string;
+  /** Optional translations by language code (`tr`, `ru`, `kk` ...). */
+  i18n?: Record<string, Translation>;
   owners: string[];
   repo: string;
   tags?: string[];
@@ -64,9 +72,16 @@ function validVersion(v: unknown): boolean {
   );
 }
 
+const optionalString = (v: unknown): boolean => v === undefined || typeof v === 'string';
+
+function validI18n(v: unknown): boolean {
+  return v === undefined || (isObject(v) && Object.values(v).every((t) => isObject(t) && optionalString(t.name) && optionalString(t.description)));
+}
+
 function validMod(m: unknown): boolean {
   return (
     isObject(m) &&
+    validI18n(m.i18n) &&
     typeof m.id === 'string' &&
     typeof m.name === 'string' &&
     isStrings(m.owners) &&
@@ -141,6 +156,16 @@ export function permissionKeys(p: Permissions): PermKey[] {
 
 export const isNative = (v: ModVersion | undefined): boolean => v?.permissions.native === true;
 
+/** The mod's name in `locale`, English when it has no translation. */
+export function modName(mod: Mod, locale: string): string {
+  return mod.i18n?.[locale]?.name ?? mod.name;
+}
+
+/** The mod's description in `locale`, English (or none) when it has no translation. */
+export function modDescription(mod: Mod, locale: string): string | undefined {
+  return mod.i18n?.[locale]?.description ?? mod.description;
+}
+
 /** Every tag used in the index, sorted. */
 export function allTags(mods: readonly Mod[]): string[] {
   return [...new Set(mods.flatMap((m) => m.tags ?? []))].sort();
@@ -151,7 +176,9 @@ export function filterMods(mods: readonly Mod[], query: string, tag: string, loc
   const q = query.trim().toLocaleLowerCase(locale);
   return mods.filter((m) => {
     if (tag !== '' && !m.tags?.includes(tag)) return false;
-    const text = [m.name, m.id, m.description ?? '', ...(m.tags ?? [])].join(' ').toLocaleLowerCase(locale);
+    const text = [m.name, modName(m, locale), m.id, m.description ?? '', modDescription(m, locale) ?? '', ...(m.tags ?? [])]
+      .join(' ')
+      .toLocaleLowerCase(locale);
     return text.includes(q);
   });
 }

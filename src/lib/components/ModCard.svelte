@@ -1,7 +1,7 @@
 <script lang="ts">
   import { base } from '$app/paths';
-  import { dict } from '$lib/locale.svelte';
-  import { isNative, latestVersion, sortedVersions, type Mod } from '$lib/mods';
+  import { dict, i18n } from '$lib/locale.svelte';
+  import { isNative, latestVersion, modDescription, modName, sortedVersions, type Mod } from '$lib/mods';
   import Badge from './Badge.svelte';
   import ModBadges from './ModBadges.svelte';
 
@@ -9,16 +9,18 @@
 
   const m = $derived(dict().mods);
   const latest = $derived(latestVersion(mod));
+  const name = $derived(modName(mod, i18n.locale));
+  const description = $derived(modDescription(mod, i18n.locale));
   const shown = $derived(latest ?? sortedVersions(mod)[0]);
 </script>
 
 <a class="card mcard" href={base + '/mods/' + mod.id}>
   <span class="head">
-    <span class="t">{mod.name}</span>
+    <span class="t">{name}</span>
     {#if mod.draft}<Badge>{m.draft}</Badge>{/if}
   </span>
   <span class="hint mono">{mod.id}</span>
-  {#if mod.description}<span class="muted s">{mod.description}</span>{/if}
+  {#if description}<span class="muted s">{description}</span>{/if}
   <ModBadges version={shown} />
   {#if isNative(shown)}<span class="warn">{m.native.warn}</span>{/if}
   <span class="hint">

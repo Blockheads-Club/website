@@ -8,14 +8,26 @@
   import Icon from '$lib/components/Icon.svelte';
   import ModBadges from '$lib/components/ModBadges.svelte';
   import Rich from '$lib/components/Rich.svelte';
-  import { dict } from '$lib/locale.svelte';
-  import { formatSize, isNative, latestVersion, permissionKeys, sortedVersions, type Mod, type PermKey } from '$lib/mods';
+  import { dict, i18n } from '$lib/locale.svelte';
+  import {
+    formatSize,
+    isNative,
+    latestVersion,
+    modDescription,
+    modName,
+    permissionKeys,
+    sortedVersions,
+    type Mod,
+    type PermKey
+  } from '$lib/mods';
 
   let { data }: { data: { mod: Mod; ids: string[] } } = $props();
 
   const m = $derived(dict().mods);
   const d = $derived(m.detail);
   const mod = $derived(data.mod);
+  const name = $derived(modName(mod, i18n.locale));
+  const description = $derived(modDescription(mod, i18n.locale));
   const versions = $derived(sortedVersions(mod));
   const latest = $derived(latestVersion(mod));
   let pick = $state('');
@@ -44,15 +56,15 @@
 {/snippet}
 
 <div class="wrap page">
-  <Breadcrumb label={d.breadcrumb} items={[{ label: dict().apps.names.mods, href: base + '/mods' }, { label: mod.name }]} />
+  <Breadcrumb label={d.breadcrumb} items={[{ label: dict().apps.names.mods, href: base + '/mods' }, { label: name }]} />
 
   <header class="intro">
     <div class="title">
-      <h1>{mod.name}</h1>
+      <h1>{name}</h1>
       {#if mod.draft}<Badge>{m.draft}</Badge>{/if}
     </div>
     <p class="hint mono">{mod.id}</p>
-    <p class="muted lead-l">{mod.description ?? d.noDescription}</p>
+    <p class="muted lead-l">{description ?? d.noDescription}</p>
     <ModBadges version={shown} />
     {#if mod.draft}<Callout tone="info" icon="info">{d.draftNote}</Callout>{/if}
     {#if isNative(shown)}

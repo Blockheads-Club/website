@@ -20,6 +20,10 @@ Herkese açık liste [Blockheads-Club/mods](https://github.com/Blockheads-Club/m
 2. Bir çekme isteği aç. CI girdiyi ve paketi kontrol eder, istediği izinlerle yorum yapar.
 3. Bir bakımcı, her **yeni** modun (ve izin ya da yerel kod ekleyen güncellemelerin) kodunu listelenmeden önce okur.
 
+Modunun adı ve açıklaması başka dillerde de görünsün mü? Girdiye `name` ve/veya `description` içeren `[i18n.tr]`,
+`[i18n.ru]`, `[i18n.kk]` ... tabloları ekle. Okuyucular kendi dillerini görür, eksik olan her şey için İngilizceye
+dönülür; bunları istediğin zaman değiştirebilirsin.
+
 Tüm alanlar ve bir örnek: <a href="../../../mods/submit" target="_self">Mod gönder</a>.
 
 ## Güncellemeler

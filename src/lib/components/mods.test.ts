@@ -92,6 +92,16 @@ describe('ModCard', () => {
     expect(all.container).toHaveTextContent('All versions yanked');
     expect(all.container.querySelector('.s')).toBeNull();
   });
+  it('shows the translated name and description, English for the rest', () => {
+    const m = { ...byId('sample-lib'), i18n: { tr: { name: 'Örnek Kütüphane' } } } as Mod;
+    i18n.locale = 'tr';
+    const tr = render(ModCard, { mod: m });
+    expect(tr.container).toHaveTextContent('Örnek Kütüphane');
+    expect(tr.container.querySelector('.s')).toHaveTextContent(m.description as string);
+    tr.unmount();
+    i18n.locale = 'en';
+    expect(render(ModCard, { mod: m }).container).toHaveTextContent('Sample Library (fake)');
+  });
   it('renders Turkish', () => {
     i18n.locale = 'tr';
     render(ModCard, { mod: byId('sample-lib') });

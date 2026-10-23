@@ -104,6 +104,15 @@ describe('detail page', () => {
   const page = (id: string) => render(Detail, { data: { mod: byId(id), ids } });
   const rowOf = (version: string) => document.querySelector(`tr[data-version="${version}"]`) as HTMLElement;
 
+  it('shows the translated name and description in the visitor’s language', () => {
+    i18n.locale = 'tr';
+    const m = { ...byId('hello-lua'), i18n: { tr: { name: 'Merhaba (Lua)', description: 'Oyuncuları selamlar.' } } };
+    render(Detail, { data: { mod: m, ids } });
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Merhaba (Lua)');
+    expect(document.body).toHaveTextContent('Oyuncuları selamlar.');
+    expect(document.querySelector('.crumbs')).toHaveTextContent('Merhaba (Lua)');
+  });
+
   it('shows a draft mod with its fields', () => {
     page('hello-lua');
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Hello (Lua)');

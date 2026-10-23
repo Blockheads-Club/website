@@ -7,7 +7,8 @@
   import Header from '$lib/components/Header.svelte';
   import { SITE_URL } from '$lib/config';
   import { DOCS_DIRS } from '$lib/i18n';
-  import { dict, initLocale, preferredLocale } from '$lib/locale.svelte';
+  import { dict, i18n, initLocale, preferredLocale } from '$lib/locale.svelte';
+  import { modName, type Mod } from '$lib/mods';
   import { legacyAnchor, routeKey, targetHref } from '$lib/route';
   import { redirect } from '$lib/nav';
   import { initTheme } from '$lib/theme.svelte';
@@ -19,7 +20,10 @@
   const onHero = $derived(route === 'home' || route === 'pc' || route === 'patcher' || route === 'server');
   const title = $derived.by(() => {
     const titles = dict().meta.titles;
-    if (route === 'modDetail') return ((page.data.mod?.name as string | undefined) ?? dict().apps.names.mods) + ' · ' + dict().meta.title;
+    if (route === 'modDetail') {
+      const mod = page.data.mod as Mod | undefined;
+      return (mod ? modName(mod, i18n.locale) : dict().apps.names.mods) + ' · ' + dict().meta.title;
+    }
     return route in titles ? titles[route as keyof typeof titles] : dict().meta.title;
   });
 

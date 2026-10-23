@@ -8,6 +8,8 @@ import {
   isModsIndex,
   isNative,
   latestVersion,
+  modDescription,
+  modName,
   permissionKeys,
   sidesLabel,
   sortedVersions,
@@ -41,6 +43,7 @@ describe('isModsIndex', () => {
   it('rejects wrong shapes', () => {
     const good = mod('a', [ver('1.0.0')]);
     expect(isModsIndex({ schema: 1, mods: [good] })).toBe(true);
+    expect(isModsIndex({ schema: 1, mods: [{ ...good, i18n: { tr: { name: 'A' }, ru: { description: 'B' }, kk: {} } }] })).toBe(true);
     for (const bad of [
       null,
       [],
@@ -53,7 +56,11 @@ describe('isModsIndex', () => {
       { schema: 1, mods: [{ ...good, owners: [1] }] },
       { schema: 1, mods: [{ ...good, versions: [{ ...ver('1.0.0'), sides: [] }] }] },
       { schema: 1, mods: [{ ...good, versions: [{ ...ver('1.0.0'), permissions: null }] }] },
-      { schema: 1, mods: [{ ...good, versions: [{ ...ver('1.0.0'), sha256: 5 }] }] }
+      { schema: 1, mods: [{ ...good, versions: [{ ...ver('1.0.0'), sha256: 5 }] }] },
+      { schema: 1, mods: [{ ...good, i18n: 'tr' }] },
+      { schema: 1, mods: [{ ...good, i18n: { tr: 'x' } }] },
+      { schema: 1, mods: [{ ...good, i18n: { tr: { name: 1 } } }] },
+      { schema: 1, mods: [{ ...good, i18n: { tr: { description: 1 } } }] }
     ]) {
       expect(isModsIndex(bad)).toBe(false);
     }
@@ -124,6 +131,29 @@ describe('search', () => {
     expect(filterMods(mods, '', 'lua', 'en').map((m) => m.id)).toEqual(['hello-lua']);
     expect(filterMods(mods, 'zzz', '', 'en')).toEqual([]);
     expect(filterMods([mod('bare', [ver('1.0.0')])], 'bare', '', 'en')).toHaveLength(1);
+  });
+});
+
+describe('translations', () => {
+  const m = mod('hello', [ver('1.0.0')], {
+    name: 'Hello',
+    description: 'Greets players',
+    i18n: { tr: { name: 'Merhaba', description: 'Oyuncuları selamlar' }, ru: { name: 'Привет' } }
+  });
+  it('falls back to English for a missing language or field', () => {
+    expect(modName(m, 'tr')).toBe('Merhaba');
+    expect(modDescription(m, 'tr')).toBe('Oyuncuları selamlar');
+    expect(modName(m, 'ru')).toBe('Привет');
+    expect(modDescription(m, 'ru')).toBe('Greets players');
+    expect(modName(m, 'kk')).toBe('Hello');
+    expect(modDescription(m, 'en')).toBe('Greets players');
+    expect(modDescription(mod('bare', [ver('1.0.0')]), 'tr')).toBeUndefined();
+  });
+  it('searches the translated and the English text', () => {
+    expect(filterMods([m], 'selamlar', '', 'tr')).toHaveLength(1);
+    expect(filterMods([m], 'greets', '', 'tr')).toHaveLength(1);
+    expect(filterMods([m], 'merhaba', '', 'tr')).toHaveLength(1);
+    expect(filterMods([m], 'merhaba', '', 'en')).toEqual([]);
   });
 });
 

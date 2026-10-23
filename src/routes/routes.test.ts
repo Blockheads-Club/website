@@ -112,6 +112,14 @@ describe('layout', () => {
     const detail = render(Layout, { children });
     expect(document.title).toBe('Hello (Lua) · Blockheads Club');
     detail.unmount();
+    localStorage.setItem('bh-locale', 'tr');
+    nav.path = '/mods/hello-lua';
+    nav.data = { mod: { name: 'Hello (Lua)', i18n: { tr: { name: 'Merhaba (Lua)' } } } };
+    const tr = render(Layout, { children });
+    expect(document.title).toBe('Merhaba (Lua) · Blockheads Club');
+    tr.unmount();
+    localStorage.clear();
+    i18n.locale = 'en';
     nav.data = {};
     render(Layout, { children });
     expect(document.title).toBe('Mods · Blockheads Club');

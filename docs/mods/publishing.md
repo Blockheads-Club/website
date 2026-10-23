@@ -21,6 +21,10 @@ The public list lives in [Blockheads-Club/mods](https://github.com/Blockheads-Cl
 3. A maintainer reads the code of every **new** mod (and of updates that add permissions or native code) before
    it is listed.
 
+Want your mod's name and description in other languages? Add `[i18n.tr]`, `[i18n.ru]`, `[i18n.kk]` ... tables with
+`name` and/or `description` to the entry. Readers see their language and fall back to English for anything missing;
+you can change these any time.
+
 All fields and an example: <a href="../../mods/submit" target="_self">Submit a mod</a>.
 
 ## Updates
