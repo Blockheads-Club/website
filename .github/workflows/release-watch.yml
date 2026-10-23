@@ -1,0 +1,59 @@
+name: release-watch
+
+# The site bakes in the latest published releases of the apps at build time (download pages, /patcher/). Cloudflare
+# Workers Builds rebuilds it on every push to dev, so this job checks the apps' latest releases every hour and, when
+# one changed, commits the new tags to .github/release-versions.json. That push is the rebuild trigger: no deploy hook,
+# no secret, only this repository's own token.
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+      - name: Look up the latest published releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.github/release-versions.json
+          next="{}"
+          for repo in blockheads-patcher blockheads-server blockheads-pc mod-sdk; do
+            # /releases/latest is the newest published, non-prerelease release; drafts are never listed.
+            tag=$(gh api "repos/Blockheads-Club/$repo/releases/latest" -q .tag_name 2>/dev/null || true)
+            if [ -z "$tag" ]; then
+              # A failed lookup keeps the recorded tag instead of dropping it (no rebuild on a GitHub hiccup).
+              tag=$(jq -r --arg r "$repo" '.[$r] // empty' "$out" 2>/dev/null || true)
+            fi
+            next=$(jq --arg r "$repo" --arg t "$tag" '. + {($r): $t}' <<<"$next")
+          done
+          # The mod index is republished under the fixed tag `index`: its file's upload time marks a new index.
+          idx=$(gh api repos/Blockheads-Club/mods/releases/tags/index \
+            -q '.assets[] | select(.name == "index.json") | .updated_at' 2>/dev/null || true)
+          [ -n "$idx" ] || idx=$(jq -r '.["mods-index"] // empty' "$out" 2>/dev/null || true)
+          next=$(jq --arg t "$idx" '. + {"mods-index": $t}' <<<"$next")
+          jq -S . <<<"$next" > "$out.new"
+          if [ -f "$out" ] && cmp -s "$out" "$out.new"; then
+            rm "$out.new"
+            echo "No release changed."
+            exit 0
+          fi
+          mv "$out.new" "$out"
+          cat "$out"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$out"
+          git commit -m "chore: record the latest app releases (rebuilds the site)"
+          git push origin HEAD:dev

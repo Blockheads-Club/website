@@ -47,25 +47,21 @@ Cloudflare Workers Builds from this repo, with blockheads.club attached as a cus
 
 The site itself must never add a SvelteKit route under `/patcher`.
 
-### Auto-refresh on a new Patcher release (deploy hook)
+### Auto-refresh on new releases (release-watch)
 
-Workers Builds has deploy hooks (a per-branch URL; a POST starts a build, no auth header). The patcher repo's
-`.github/workflows/website-rebuild.yml` POSTs to it when a release is published, and the rebuilt site picks up the new
-release. Set up once:
+The site bakes in the latest published releases of the apps and the mod index at build time, and Workers Builds
+rebuilds it on every push to `dev`. `.github/workflows/release-watch.yml` runs every hour: it looks up the latest
+published release of blockheads-patcher, blockheads-server, blockheads-pc and mod-sdk (and the upload time of the mod
+index), and when one changed it commits the new values to `.github/release-versions.json`. That push starts the
+rebuild. It needs no deploy hook and no secret (only this repository's own token), and costs nothing on a public
+repository. Run it by hand from **Actions** → *release-watch* → **Run workflow** right after a release.
 
-1. Cloudflare dashboard → **Workers & Pages** → `blockheads-club-website` → **Settings** → **Builds** →
-   **Deploy Hooks** → name `patcher-release`, branch: the production branch (`dev` for now) → **Create** → copy
-   the URL (`https://api.cloudflare.com/client/v4/workers/builds/deploy_hooks/<id>`). Treat it as a secret.
-2. GitHub → Blockheads-Club/blockheads-patcher → **Settings** → **Secrets and variables** → **Actions** →
-   **New repository secret**: name `WEBSITE_DEPLOY_HOOK`, value: the URL.
-3. Test: in the patcher repo, **Actions** → *website-rebuild* → **Run workflow**; a build labelled `patcher-release`
-   appears in the Worker's build history. If the URL leaks, delete the hook and create a new one.
-
-Hook limits: 10 builds/minute per Worker; repeated calls before a build starts are deduplicated.
+The apps' `website-rebuild.yml` workflows still POST to a Workers Builds deploy hook when their `WEBSITE_DEPLOY_HOOK`
+secret is set (an optional faster trigger); without it they only print a notice.
 Optional: add a `GITHUB_TOKEN` build variable (a fine-grained token with public read-only access) under the Worker's
 Settings → Builds → Variables to avoid the shared-IP API rate limit.
 
-### Mod index (`/mods/index.json`, deploy hook)
+### Mod index (`/mods/index.json`)
 
 The `/mods` pages and `/mods/index.json` come from the mod index that Blockheads-Club/mods publishes on every push to
 its `dev` branch as the asset `index.json` of the fixed release `index`
@@ -77,10 +73,8 @@ the bundled sample with a notice and `/mods/index.json` is not written (the buil
 served as the real index. The index is not signed: integrity comes from HTTPS and the `sha256` and `size` of every
 package version.
 
-To rebuild the site when the index changes, the mods repo's `publish.yml` POSTs to its `WEBSITE_DEPLOY_HOOK` secret
-(skipped with a notice when unset). Set up once like the Patcher hook above: create a deploy hook named
-`mods-index` for the production branch, and add its URL as the secret `WEBSITE_DEPLOY_HOOK` in
-Blockheads-Club/mods → Settings → Secrets and variables → Actions.
+A new index rebuilds the site through release-watch (above), within the hour; the mods repo's `publish.yml` can
+also POST to a `WEBSITE_DEPLOY_HOOK` secret (skipped with a notice when unset).
 
 ### Mod API reference (generated)
 
