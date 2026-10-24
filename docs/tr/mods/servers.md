@@ -67,6 +67,11 @@ Modlar sunucunun ana iş parçacığında çalışır, bu yüzden her birinin s�
 Bir hata, zaman aşımı ya da belleğin bitmesi bir **arızadır**. **60 sn içinde 3 arıza, modu bir sonraki yeniden başlatmaya kadar kapatır**;
 günlük `disabled: 3 faults within 60 s` der ve hatayı belirtir. Modun yazarına bildir.
 
+## Çalışan modları yönet
+
+Yöneticiler sunucuyu yeniden başlatmadan modları listeleyebilir, yeniden yükleyebilir ve sürelerini görebilir: `/mods`, `/mods reload [id]`, `/mods timings`.
+[Sıcak yenileme ve süreler](./hot-reload) sayfasına bak.
+
 ## Depolama
 
 Her mod kendi verisini dünya başına `saves/<world>/mods/storage` içinde tutar, dünyadan ayrı. Silersen modların

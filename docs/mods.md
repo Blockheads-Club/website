@@ -14,7 +14,8 @@ patch; both are in development builds too and arrive with the next releases.
 1. [Your first Lua mod](./mods/first-lua-mod), from `bhmod new` to a running server.
 2. [Events](./mods/events), [commands and timers](./mods/commands), [storage](./mods/storage).
 3. [Working with other mods](./mods/interop): services, custom events, channels.
-4. [Publishing](./mods/publishing) on the public list.
+4. [Hot reload and timings](./mods/hot-reload): change a mod without restarting the world.
+5. [Publishing](./mods/publishing) on the public list.
 
 Prefer Rust? See [your first Rust mod](./mods/first-rust-mod). Every function is in the
 [API reference](./mods/api/).

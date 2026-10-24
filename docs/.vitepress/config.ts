@@ -30,6 +30,7 @@ interface Strings {
     commands: string;
     storage: string;
     interop: string;
+    reload: string;
     publish: string;
     versions: string;
     api: string;
@@ -93,6 +94,7 @@ function themeConfig(s: Strings): DefaultTheme.Config {
           { text: s.mods.commands, link: p + 'mods/commands' },
           { text: s.mods.storage, link: p + 'mods/storage' },
           { text: s.mods.interop, link: p + 'mods/interop' },
+          { text: s.mods.reload, link: p + 'mods/hot-reload' },
           { text: s.mods.publish, link: p + 'mods/publishing' },
           { text: s.mods.versions, link: p + 'mods/api-versions' },
           {
@@ -152,6 +154,7 @@ const en: Strings = {
     commands: 'Commands and timers',
     storage: 'Storage',
     interop: 'Working with other mods',
+    reload: 'Hot reload and timings',
     publish: 'Publishing',
     versions: 'API versions',
     api: 'API reference'
@@ -213,6 +216,7 @@ const tr: Strings = {
     commands: 'Komutlar ve zamanlayıcılar',
     storage: 'Depolama',
     interop: 'Diğer modlarla çalışma',
+    reload: 'Sıcak yenileme ve süreler',
     publish: 'Yayımlama',
     versions: 'API sürümleri',
     api: 'API başvurusu'
@@ -274,6 +278,7 @@ const ru: Strings = {
     commands: 'Команды и таймеры',
     storage: 'Хранилище',
     interop: 'Взаимодействие модов',
+    reload: 'Горячая перезагрузка и замеры',
     publish: 'Публикация',
     versions: 'Версии API',
     api: 'Справочник API'
@@ -335,6 +340,7 @@ const kk: Strings = {
     commands: 'Командалар мен таймерлер',
     storage: 'Сақтау орны',
     interop: 'Басқа модтармен жұмыс',
+    reload: 'Ыстық қайта жүктеу және уақыт',
     publish: 'Жариялау',
     versions: 'API нұсқалары',
     api: 'API анықтамасы'

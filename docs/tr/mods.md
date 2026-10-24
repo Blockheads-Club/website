@@ -14,7 +14,8 @@ Patcher'ın Android mod yükleyici yamasıyla çalışır; ikisi de geliştirme 
 1. [İlk Lua modun](./mods/first-lua-mod): `bhmod new`'den çalışan bir sunucuya.
 2. [Olaylar](./mods/events), [komutlar ve zamanlayıcılar](./mods/commands), [depolama](./mods/storage).
 3. [Başka modlarla çalışmak](./mods/interop): servisler, özel olaylar, kanallar.
-4. Herkese açık listede [yayımlama](./mods/publishing).
+4. [Sıcak yenileme ve süreler](./mods/hot-reload): bir modu dünyayı yeniden başlatmadan değiştir.
+5. Herkese açık listede [yayımlama](./mods/publishing).
 
 Rust mı tercih edersin? [İlk Rust modun](./mods/first-rust-mod) sayfasına bak. Tüm fonksiyonlar
 [API başvurusunda](./mods/api/).
