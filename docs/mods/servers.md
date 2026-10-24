@@ -68,6 +68,11 @@ Mods run on the server's main thread, so each one is kept on a short leash:
 An error, a timeout or running out of memory is a **fault**. **3 faults within 60 s turn the mod off** until the
 next restart; the log says `disabled: 3 faults within 60 s` and names the error. Report it to the mod's author.
 
+## Manage running mods
+
+Admins can list, reload and time the mods without restarting the server: `/mods`, `/mods reload [id]`, `/mods timings`.
+See [Hot reload and timings](./hot-reload).
+
 ## Storage
 
 Each mod keeps its own data per world in `saves/<world>/mods/storage`, separate from the world itself. Deleting it
