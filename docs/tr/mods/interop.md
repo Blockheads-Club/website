@@ -49,6 +49,40 @@ end
 - Zaten çalışan bir moda geri çağrı (A → B → A) `reentrant` ile başarısız olur.
 - `wit/` dosyası, servisin fonksiyonlarını diğer yazarlar için belgeler.
 
+## Ağ üzerinden (istemci ve sunucu)
+
+API 0.3.1. Bir istemci modu bir **sunucu** modunun servisini, bir sunucu modu da oyuncunun **istemci** modunun servisini normal oyun bağlantısı üzerinden çağırabilir. Ağ çağrıları **asenkrondur**: bir geri çağrı (callback) verirsin, o sonra çalışır, çağrının içinde asla çalışmaz.
+
+```toml
+# shop/mod.toml  (the provider: a server mod)
+api = "^0.3.1"
+[provides]
+services = [{ name = "shop", version = "1.0.0", wit = "wit/shop.wit", remote = true, remote-methods = ["price"] }]
+```
+
+```lua
+-- provider (server)
+bh.services.provide("shop", "1.0.0", {
+	price = function(item)
+		local who = bh.services.caller() -- { mod = "shop-ui", player = <player> }
+		return prices[item]
+	end,
+})
+
+-- caller (client mod, permission `channels`)
+local id = bh.services.call_remote("server", "shop", "^1", "price", { "apple" }, function(ok, v)
+	if ok then bh.ui.toast("apple: " .. tostring(v)) else print(v.kind .. ": " .. v.message) end
+end, 3000)
+bh.services.cancel_remote(id) -- the callback never runs
+```
+
+- **Sağlayıcı** neyin çağrılabileceğine karar verir: `[provides]` içinde `remote = true` (olmadan servisi yalnızca aynı taraftaki modlar çağırabilir) ve istersen yalnızca bazı metotlara izin veren `remote-methods`.
+- Çağıran `api = "^0.3.1"` bildirir ve `channels` iznine ihtiyaç duyar.
+- Cevap tam bir kez `(true, değer)` ya da `(false, { kind, message })` olur. `kind` örneğin `not-found`, `not-permitted`, `busy` (hız sınırı), `provider-error`, `timeout`, `unavailable` (modlu sunucu yok ya da mod yükleyicisi olmayan oyuncu) veya `disconnected` olabilir.
+- Sağlayıcının içinde `bh.services.caller()` hangi modun, istemci çağırdıysa hangi oyuncunun çağırdığını söyler.
+- **Sınırlar:** zaman aşımı varsayılan 5 sn, en fazla 30 sn; mod başına 16 açık çağrı; argümanlar ve sonuç için 32 KiB; oyuncu başına saniyede 10 çağrı (20'ye kadar ani artış). Sağlayıcı kendi süre bütçesiyle çalışır ve çökmesi *sağlayıcının* hatası sayılır: argümanlarını kontrol et, çağırana asla güvenme.
+- Rust modları `services::call_remote`, Java modları `api.callRemote(...)` kullanır; tüm diller cevabı `<mod-id>:service-result` özel olayı olarak alır. [Luau API](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/luau-api.md#remote-services-api-031) ve örnek modlar [`prices-lua`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/prices-lua), [`prices-rust`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/prices-rust).
+
 ## Özel olaylar
 
 ```lua

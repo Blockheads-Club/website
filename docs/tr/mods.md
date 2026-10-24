@@ -29,8 +29,11 @@ Bir mod bir veya iki **tarafta** çalışır:
 
 ## Diller
 
-**Lua (Luau)** en kolayı. **WebAssembly'ye (WASM) derlenen Rust** da çalışır; WASM bileşeni üretebilen C, Zig, Go
-ve diğerleri de gelecek. Farklı dillerdeki modlar birbirini çağırabilir.
+**Lua (Luau)** en kolayı. **WebAssembly'ye (WASM) derlenen Rust** da çalışır; WASM bileşeni üretebilen C, Zig, Go ve diğerleri de gelecek. **Java** (ve Kotlin ya da herhangi bir JVM dili) de çalışır: `bhmod new my-mod --lang java` yaz. Farklı dillerdeki modlar birbirini çağırabilir.
+
+::: danger Java ve yerel modlar korumalı alanda çalışmaz
+**Java (JVM) modları** ve **yerel (native) modlar** (oyunun kendisine kanca atar) sunucunun ya da oyunun tüm yetkileriyle çalışır. `native` izni ister, **kırmızı uyarıyla** gösterilir ve sen açmadıkça kapalıdır: JVM desteği bir anahtardır (sunucu: *Ayarlar > Java modları*; PC Port: başlatıcının mod ayarları; Android: Modlar ekranındaki *Java modları* anahtarı). Yerel modlar yalnızca incelenmiş herkese açık listeden yüklenir. Ayrıntılar: [JVM modları](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/jvm.md), [yerel modlar](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/native.md).
+:::
 
 ## mod.toml
 

@@ -73,6 +73,16 @@ next restart; the log says `disabled: 3 faults within 60 s` and names the error.
 Each mod keeps its own data per world in `saves/<world>/mods/storage`, separate from the world itself. Deleting it
 resets the mods' data and leaves the world untouched. Back it up together with the world.
 
+## Java mods (JVM) {#jvm}
+
+Mods written in Java or Kotlin run in a Java virtual machine inside the server. A JVM **cannot be sandboxed**, so this is off by default and the mod must have the `native` permission:
+
+1. Install Java 8 or newer on the machine (or point the server to one).
+2. Turn on **Settings > Java mods** in the server app (or start the server with `BLOCKHEADS_JVM=1`; `BLOCKHEADS_JAVA_HOME` picks the Java folder). The app must be built with Java support, otherwise it says so under the switch.
+3. Grant `native` to the mod in `mods.toml`. The red warning stays on the mod.
+
+Turn this on only for mods you trust. The time limit cannot interrupt a tight loop in Java code, only a blocking call.
+
 ## Vanilla players
 
 - **Server-only mods:** anyone can join with the normal game.

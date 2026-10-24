@@ -49,6 +49,40 @@ end
 - Қазір жұмыс істеп тұрған модқа кері шақыру (A → B → A) `reentrant` қатесімен аяқталады.
 - `wit/` файлы сервистің функцияларын басқа авторларға құжаттайды.
 
+## Желі арқылы (клиент және сервер)
+
+API 0.3.1. Клиент моды **сервер** модының сервисін, ал сервер моды ойыншының **клиент** модының сервисін қалыпты ойын байланысы арқылы шақыра алады. Желілік шақырулар **асинхронды**: сіз кері шақыру (callback) бересіз, ол кейін орындалады, шақырудың ішінде ешқашан емес.
+
+```toml
+# shop/mod.toml  (the provider: a server mod)
+api = "^0.3.1"
+[provides]
+services = [{ name = "shop", version = "1.0.0", wit = "wit/shop.wit", remote = true, remote-methods = ["price"] }]
+```
+
+```lua
+-- provider (server)
+bh.services.provide("shop", "1.0.0", {
+	price = function(item)
+		local who = bh.services.caller() -- { mod = "shop-ui", player = <player> }
+		return prices[item]
+	end,
+})
+
+-- caller (client mod, permission `channels`)
+local id = bh.services.call_remote("server", "shop", "^1", "price", { "apple" }, function(ok, v)
+	if ok then bh.ui.toast("apple: " .. tostring(v)) else print(v.kind .. ": " .. v.message) end
+end, 3000)
+bh.services.cancel_remote(id) -- the callback never runs
+```
+
+- **Провайдер** нені шақыруға болатынын шешеді: `[provides]` ішінде `remote = true` (онсыз сервисті тек сол жақтағы модтар шақыра алады) және қаласаңыз, тек кейбір әдістерге рұқсат беретін `remote-methods`.
+- Шақырушы `api = "^0.3.1"` деп жазады және оған `channels` рұқсаты керек.
+- Жауап дәл бір рет `(true, мән)` немесе `(false, { kind, message })` болады. `kind` мысалы: `not-found`, `not-permitted`, `busy` (жиілік шегі), `provider-error`, `timeout`, `unavailable` (модталған сервер жоқ немесе ойыншыда мод жүктегіші жоқ) немесе `disconnected`.
+- Провайдердің ішінде `bh.services.caller()` қай мод шақырғанын, ал клиент шақырса қай ойыншы екенін айтады.
+- **Шектеулер:** күту уақыты әдепкіде 5 с, ең көбі 30 с; мод үшін 16 ашық шақыру; аргументтер мен нәтиже үшін 32 КиБ; ойыншыға секундына 10 шақыру (20-ға дейін жылдам). Провайдер өз уақыт бюджетімен жұмыс істейді, ал құлауы *провайдердің* қатесі саналады: аргументтерді тексеріңіз, шақырушыға ешқашан сенбеңіз.
+- Rust модтары `services::call_remote`, Java модтары `api.callRemote(...)` қолданады; барлық тілдерде жауап `<mod-id>:service-result` өз оқиғасы ретінде келеді. [Luau API](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/luau-api.md#remote-services-api-031) және мысал модтар [`prices-lua`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/prices-lua), [`prices-rust`](https://github.com/Blockheads-Club/mod-sdk/tree/dev/examples/prices-rust).
+
 ## Өз оқиғалар
 
 ```lua

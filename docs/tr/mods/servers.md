@@ -72,6 +72,16 @@ günlük `disabled: 3 faults within 60 s` der ve hatayı belirtir. Modun yazarı
 Her mod kendi verisini dünya başına `saves/<world>/mods/storage` içinde tutar, dünyadan ayrı. Silersen modların
 verisi sıfırlanır, dünyaya dokunulmaz. Dünyayla birlikte yedekle.
 
+## Java modları (JVM) {#jvm}
+
+Java veya Kotlin ile yazılmış modlar sunucunun içindeki bir Java sanal makinesinde çalışır. Bir JVM **korumalı alana alınamaz**; bu yüzden varsayılan olarak kapalıdır ve modun `native` izni olmalıdır:
+
+1. Makineye Java 8 veya daha yenisini kur (ya da sunucuya bir tane göster).
+2. Sunucu uygulamasında **Ayarlar > Java modları** anahtarını aç (ya da sunucuyu `BLOCKHEADS_JVM=1` ile başlat; `BLOCKHEADS_JAVA_HOME` Java klasörünü seçer). Uygulama Java desteğiyle derlenmiş olmalıdır, değilse anahtarın altında söyler.
+3. `mods.toml` içinde moda `native` ver. Kırmızı uyarı modun üzerinde kalır.
+
+Bunu yalnızca güvendiğin modlar için aç. Süre sınırı Java kodundaki sıkı bir döngüyü kesemez, yalnızca bekleyen bir çağrıyı keser.
+
 ## Vanilla oyuncular
 
 - **Yalnızca sunucu modları:** herkes normal oyunla katılabilir.

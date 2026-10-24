@@ -29,8 +29,11 @@ A mod runs on one or both **sides**:
 
 ## Languages
 
-**Lua (Luau)** is the easiest. **Rust compiled to WebAssembly (WASM)** also works; C, Zig, Go and others that
-build WASM components will follow. Mods in different languages can call each other.
+**Lua (Luau)** is the easiest. **Rust compiled to WebAssembly (WASM)** also works; C, Zig, Go and others that build WASM components will follow. **Java** (and Kotlin, or any JVM language) works too: run `bhmod new my-mod --lang java`. Mods in different languages can call each other.
+
+::: danger Java and native mods are not sandboxed
+**Java (JVM) mods** and **native mods** (they hook the game itself) run with the full rights of the server or the game. They need the `native` permission, are shown with a **red warning**, and are off unless you turn them on: JVM support is a switch (server: *Settings > Java mods*; PC Port: the launcher's mod settings; Android: the *Java mods* switch in the Mods screen). Native mods are only loaded from the reviewed public list. Details: [JVM mods](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/jvm.md), [native mods](https://github.com/Blockheads-Club/mod-sdk/blob/dev/docs/native.md).
+:::
 
 ## mod.toml
 
