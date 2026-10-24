@@ -1,5 +1,5 @@
 {
-  "id": "blockheads:api@0.2.0",
+  "id": "blockheads:api@0.3.1",
   "pages": [
     "events",
     "commands",
@@ -12,6 +12,8 @@
     "channels",
     "guest",
     "types",
+    "content",
+    "ui",
     "worlds"
   ]
 }
