@@ -370,6 +370,11 @@
       min-height: 68px;
     }
   }
+  @media (max-width: 420px) {
+    .hdr > .wrap {
+      gap: 12px;
+    }
+  }
   .msheet {
     position: fixed;
     inset: 0;
