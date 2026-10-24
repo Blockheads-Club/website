@@ -99,7 +99,7 @@
   }
   @media (max-width: 860px) {
     .body {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       padding-top: 40px;
       gap: 24px;
     }
