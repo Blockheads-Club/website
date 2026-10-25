@@ -33,6 +33,12 @@ Sonra:
 Uygulamada canlı konsolu ve kimlerin çevrimiçi olduğunu da görebilir, yönetici, moderatör, beyaz ve kara listeleri
 düzenleyebilirsin. Port, en çok oyuncu sayısı ve parola **Ayarlar**’dadır.
 
+İsim oyuncunun kendisidir: Minecraft çevrimdışı modundaki gibi, bilinen bir isimle giren herkes hangi cihazdan olursa
+olsun o oyuncu olarak oynar (aynı blockhead’ler, envanter ve yetkiler). Zaten çevrimiçi olan bir isimle yapılan giriş
+eski oturumun yerini alır. Özgün kuralı, yani ismin ilk cihazına ait olmasını istiyorsan **Ayarlar**’dan **Aynı
+kullanıcı adıyla her cihazdan giriş** seçeneğini kapat. İsim parola değildir; herkese açık bir sunucuda parola ya da
+beyaz liste kullan.
+
 ![Blockheads Server konsolu: katılma, sohbet ve hata satırlarıyla canlı log, filtreler, arama alanı ve çalıştırma düğmeli komut kutusu.](/shots/tr/server/console.webp)
 
 *Canlı konsol: logda ara ve komut yaz.*

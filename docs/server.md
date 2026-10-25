@@ -32,6 +32,11 @@ Then:
 In the app you can also see the live console and who is online, and edit the admin, mod, white and black lists.
 Port, max players and password are under **Settings**.
 
+The name is the player: like a Minecraft offline-mode server, anyone who joins with a known name plays as that player
+(same blockheads, inventory and rights) from any device, and a login under a name that is already online replaces
+the old session. Turn **Same name from any device** off in **Settings** for the original rule, where a name belongs to
+its first device. Names are not passwords, so use a password or the whitelist on an open server.
+
 ![Blockheads Server Console: the live log with join, chat and error lines, filters, a search field and a command box with a Run button.](/shots/en/server/console.webp)
 
 *The live console: search the log and type commands.*
