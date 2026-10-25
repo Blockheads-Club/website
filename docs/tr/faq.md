@@ -42,6 +42,12 @@ Evet. Her şey ücretsiz ve açık kaynaklıdır (GPL-3.0-or-later).
 
 Yamalı oyun orijinal anahtarla değil kendi anahtarınla imzalanır. Android, farklı imzalı bir uygulamanın yüklü uygulamanın yerine geçmesine izin vermez. Önce dünyalarını yedekle.
 
+## Android “Bu uygulama Android’in son sürümüyle uyumlu değil” diyor. Yamam bozuk mu?
+
+Hayır. The Blockheads 32-bit bir uygulama ve Android 14 ve sonrası her 32-bit uygulama açılırken bu uyarıyı gösteriyor. **Tamam**’a dokun, oyun normal çalışır. Patcher bu uyarıyı kaldıramaz: bunun için oyunun 32-bit kodunu baştan derlemek gerekir.
+
+Bazı yeni telefonlar (örneğin Pixel 7 ve sonrası) 32-bit uygulamaları hiç çalıştıramaz; bu telefonlarda oyun yamalı olsun ya da olmasın açılmaz. Bu durumda [Blockheads PC](./pc-port) ile oynayabilirsin.
+
 ## İmza anahtarı nedir ve neden saklamalıyım?
 
 Bir uygulamanın aynı kaynaktan geldiğini kanıtlar. Daha sonra aynı anahtarla yeniden yamalarsan yamalı oyunun üzerine kurabilir ve dünyalarını koruyabilirsin. Dışa aktar ve güvenli bir yerde sakla.

@@ -42,6 +42,12 @@ Yes. Everything is free and open source (GPL-3.0-or-later).
 
 The patched game is signed with your own key, not the original one. Android doesn’t allow an app with a different signature to replace an installed app. Back up your worlds first.
 
+## Android says “This app isn’t compatible with the latest version of Android”. Is my patch broken?
+
+No. The Blockheads is a 32-bit app, and Android 14 and newer show this warning for every 32-bit app when it starts. Tap **OK** and the game runs normally. The Patcher can’t remove the warning: that would mean rebuilding the game’s 32-bit code.
+
+Some newer phones (for example Pixel 7 and later) can’t run 32-bit apps at all, so the game won’t start on them, patched or not. On those, play with [Blockheads PC](./pc-port) instead.
+
 ## What is a signing key and why keep it?
 
 It proves an app comes from the same source. If you patch again later with the same key, you can install over your patched game and keep your worlds. Export it and store it somewhere safe.
