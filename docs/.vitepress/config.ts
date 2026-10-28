@@ -8,7 +8,7 @@ const siteBase = process.env.BASE_PATH ?? '';
 const GITHUB = 'https://github.com/Blockheads-Club';
 
 // Link previews: the canonical (GitHub Pages) URL, as SITE_URL in src/lib/config.ts.
-const SITE_URL = 'https://blockheads-club.github.io/website/';
+const SITE_URL = 'https://blockheads.club/';
 const OG_LOCALES: Record<string, string> = { en: 'en_US', tr: 'tr_TR', ru: 'ru_RU', kk: 'kk_KZ' };
 
 /** Per-page Open Graph + Twitter card tags, with the site-wide preview image (static/social-preview.png). */

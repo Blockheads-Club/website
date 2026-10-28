@@ -1,7 +1,7 @@
 import { expect, test, type APIRequestContext } from '@playwright/test';
 
 // Link previews are read by crawlers from the prerendered HTML (no JavaScript), so these tests fetch raw files.
-const SITE_URL = 'https://blockheads-club.github.io/website/';
+const SITE_URL = 'https://blockheads.club/';
 
 /** The `content` of every `<meta property|name="key">` in `html`, in order. */
 function metas(html: string, key: string): string[] {

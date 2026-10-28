@@ -44,7 +44,7 @@ export function truncate(text: string, max = 200): string {
   return (space > max / 2 ? cut.slice(0, space) : cut).replace(/[\s,.;:—–-]+$/, '') + '…';
 }
 
-/** Absolute canonical URL of a site path below the base path (`/pc` -> `https://…/website/pc`). */
+/** Absolute canonical URL of a site path below the base path (`/pc` -> `https://blockheads.club/pc`). */
 export function canonical(path: string): string {
   return SITE_URL + path.replace(/^\/+/, '').replace(/\/+$/, '');
 }

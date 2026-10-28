@@ -22,5 +22,5 @@ export const LINKS = {
 
 export type LinkKey = keyof typeof LINKS;
 
-/** Canonical site URL (GitHub Pages); used for absolute OpenGraph URLs. Ends with a slash. */
-export const SITE_URL = 'https://blockheads-club.github.io/website/';
+/** Canonical site URL (blockheads.club, served by Cloudflare; the GitHub Pages copy points here too); used for absolute OpenGraph and canonical URLs. Ends with a slash. */
+export const SITE_URL = 'https://blockheads.club/';

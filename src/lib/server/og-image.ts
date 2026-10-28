@@ -30,7 +30,7 @@ export interface OgCard {
 const ICONS: Record<OgIcon, string> = { logo: logoSvg, pc: pcSvg, patcher: patcherSvg, server: serverSvg };
 
 /** Shown at the bottom of every card. */
-export const SITE_LABEL = 'blockheads-club.github.io/website';
+export const SITE_LABEL = 'blockheads.club';
 
 /** Bytes of a base64 data URL (`?inline` imports). */
 export function dataUrlBytes(url: string): Uint8Array {
