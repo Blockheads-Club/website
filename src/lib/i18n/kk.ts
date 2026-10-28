@@ -5,6 +5,8 @@ export const kk: Dict = {
     title: 'Blockheads Club',
     description:
       'Ойыншылар жасаған The Blockheads үшін тегін, ашық бастапқы кодты құралдар: компьютерде ойнаңыз, ойынды жаңа телефондарда түзетіңіз және достарыңызға әлем ашыңыз.',
+    modTitle: 'Blockheads моды',
+    vanilla: 'қарапайым клиенттермен жұмыс істейді',
     titles: {
       home: 'Blockheads Club',
       download: 'Жүктеп алу · Blockheads Club',

@@ -18,10 +18,10 @@
 ---
 
 ## 🚀 Project Status
-**Current Status:** Live at [blockheads-club.github.io/website](https://blockheads-club.github.io/website/) (v0.1.0).
+**Current Status:** Live at [blockheads.club](https://blockheads.club/) (v0.1.0).
 
 The site introduces the Blockheads Club tools (Blockheads PC, Patcher, Server, and mods soon), picks the right download
-from the latest GitHub releases and links into the [docs](https://blockheads-club.github.io/website/docs/), which hold
+from the latest GitHub releases and links into the [docs](https://blockheads.club/docs/), which hold
 the install guides and the FAQ. English, Turkish, Russian and Kazakh (picked from the browser language), light and dark theme.
 
 ---

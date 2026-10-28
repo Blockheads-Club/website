@@ -5,12 +5,13 @@
   import { page } from '$app/state';
   import Footer from '$lib/components/Footer.svelte';
   import Header from '$lib/components/Header.svelte';
-  import { SITE_URL } from '$lib/config';
+  import Seo from '$lib/components/Seo.svelte';
   import { DOCS_DIRS } from '$lib/i18n';
   import { dict, i18n, initLocale, preferredLocale } from '$lib/locale.svelte';
   import { modName, type Mod } from '$lib/mods';
   import { legacyAnchor, routeKey, targetHref } from '$lib/route';
   import { redirect } from '$lib/nav';
+  import { pageMeta } from '$lib/seo';
   import { initTheme } from '$lib/theme.svelte';
 
   let { children } = $props();
@@ -27,6 +28,10 @@
     return route in titles ? titles[route as keyof typeof titles] : dict().meta.title;
   });
 
+  const meta = $derived(
+    pageMeta(route, page.url.pathname.slice(base.length), dict(), i18n.locale, page.data.mod as Mod | undefined)
+  );
+
   onMount(() => {
     initLocale();
     initTheme();
@@ -38,20 +43,8 @@
 
 <svelte:head>
   <title>{'' + title}</title>
-  <meta name="description" content={dict().meta.description} />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Blockheads Club" />
-  <meta property="og:title" content={dict().meta.title} />
-  <meta property="og:description" content={dict().meta.description} />
-  <meta property="og:url" content={SITE_URL} />
-  <meta property="og:image" content={SITE_URL + 'social-preview.png'} />
-  <meta property="og:image:width" content="1280" />
-  <meta property="og:image:height" content="640" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={dict().meta.title} />
-  <meta name="twitter:description" content={dict().meta.description} />
-  <meta name="twitter:image" content={SITE_URL + 'social-preview.png'} />
 </svelte:head>
+<Seo {meta} />
 
 <a class="skip" href="#main">{dict().nav.skip}</a>
 <Header {route} {onHero} />

@@ -5,6 +5,8 @@ export const ru: Dict = {
     title: 'Blockheads Club',
     description:
       'Бесплатные инструменты с открытым кодом для The Blockheads от игроков: играйте на компьютере, исправьте игру на новых телефонах и создайте мир для друзей.',
+    modTitle: 'мод для Blockheads',
+    vanilla: 'работает с обычными клиентами',
     titles: {
       home: 'Blockheads Club',
       download: 'Скачать · Blockheads Club',

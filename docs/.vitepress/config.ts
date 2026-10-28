@@ -1,4 +1,4 @@
-import { defineConfig, type DefaultTheme } from 'vitepress';
+import { defineConfig, type DefaultTheme, type HeadConfig, type TransformContext } from 'vitepress';
 // Written by scripts/gen-mod-api.ts together with the API reference pages (docs/**/mods/api/).
 import modApi from './mod-api.json';
 
@@ -6,6 +6,41 @@ import modApi from './mod-api.json';
 const siteBase = process.env.BASE_PATH ?? '';
 
 const GITHUB = 'https://github.com/Blockheads-Club';
+
+// Link previews: the canonical (GitHub Pages) URL, as SITE_URL in src/lib/config.ts.
+const SITE_URL = 'https://blockheads.club/';
+const OG_LOCALES: Record<string, string> = { en: 'en_US', tr: 'tr_TR', ru: 'ru_RU', kk: 'kk_KZ' };
+
+/** Per-page Open Graph + Twitter card tags, with the site-wide preview image (static/social-preview.png). */
+function previewTags(ctx: TransformContext): HeadConfig[] {
+  const path = ctx.pageData.relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '');
+  const url = SITE_URL + 'docs/' + path;
+  // Locale folders are tr/, ru/, kk/; English lives at the root.
+  const first = path.split('/')[0];
+  const lang = first in OG_LOCALES ? first : 'en';
+  const image = SITE_URL + 'social-preview.png';
+  const meta = (key: 'property' | 'name', id: string, content: string): HeadConfig => ['meta', { [key]: id, content }];
+  return [
+    ['link', { rel: 'canonical', href: url }],
+    meta('property', 'og:type', 'article'),
+    meta('property', 'og:site_name', 'Blockheads Club'),
+    meta('property', 'og:locale', OG_LOCALES[lang]),
+    ...Object.entries(OG_LOCALES)
+      .filter(([code]) => code !== lang)
+      .map(([, locale]) => meta('property', 'og:locale:alternate', locale)),
+    meta('property', 'og:title', ctx.title),
+    meta('property', 'og:description', ctx.description),
+    meta('property', 'og:url', url),
+    meta('property', 'og:image', image),
+    meta('property', 'og:image:width', '1280'),
+    meta('property', 'og:image:height', '640'),
+    meta('property', 'og:image:alt', 'Blockheads Club'),
+    meta('name', 'twitter:card', 'summary_large_image'),
+    meta('name', 'twitter:title', ctx.title),
+    meta('name', 'twitter:description', ctx.description),
+    meta('name', 'twitter:image', image)
+  ];
+}
 
 /** Per-language UI strings. Page paths are the same in every language. */
 interface Strings {
@@ -399,6 +434,7 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/svg+xml', href: siteBase + '/docs/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#c2410c' }]
   ],
+  transformHead: previewTags,
   locales: Object.fromEntries(
     all.map((s) => [
       s.dir || 'root',
