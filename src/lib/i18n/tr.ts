@@ -5,6 +5,8 @@ export const tr: Dict = {
     title: 'Blockheads Club',
     description:
       'The Blockheads için oyuncuların yaptığı ücretsiz, açık kaynaklı araçlar: oyunu bilgisayarında oyna, yeni telefonlarda düzelt ve arkadaşların için dünya aç.',
+    modTitle: 'Blockheads modu',
+    vanilla: 'modsuz oyuncularla da çalışır',
     titles: {
       home: 'Blockheads Club',
       download: 'İndir · Blockheads Club',

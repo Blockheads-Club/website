@@ -17,6 +17,10 @@ export const en = {
     title: 'Blockheads Club',
     description:
       'Free, open-source tools for The Blockheads, made by players: play on your computer, fix the game on new phones and host worlds for friends.',
+    /** Link preview title of a mod page: "<mod name> — <modTitle>". */
+    modTitle: 'Blockheads mod',
+    /** Link preview fact: the mod is not needed on players' games. */
+    vanilla: 'works on vanilla clients',
     titles: {
       home: 'Blockheads Club',
       download: 'Download · Blockheads Club',

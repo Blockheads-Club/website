@@ -3,7 +3,9 @@ import userEvent from '@testing-library/user-event';
 import { createRawSnippet } from 'svelte';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { i18n } from '$lib/locale.svelte';
+import { SAMPLE_INDEX } from '$lib/mods-index';
 import { NO_RELEASES } from '$lib/releases';
+import { SITE_URL } from '$lib/config';
 import { setTheme } from '$lib/theme.svelte';
 import { RELEASES } from '../test/fixtures';
 import ErrorPage from './+error.svelte';
@@ -108,13 +110,13 @@ describe('layout', () => {
     expect(document.querySelector('header')).not.toHaveClass('on-hero');
     submit.unmount();
     nav.path = '/mods/hello-lua';
-    nav.data = { mod: { name: 'Hello (Lua)' } };
+    nav.data = { mod: SAMPLE_INDEX.mods[0] };
     const detail = render(Layout, { children });
     expect(document.title).toBe('Hello (Lua) · Blockheads Club');
     detail.unmount();
     localStorage.setItem('bh-locale', 'tr');
     nav.path = '/mods/hello-lua';
-    nav.data = { mod: { name: 'Hello (Lua)', i18n: { tr: { name: 'Merhaba (Lua)' } } } };
+    nav.data = { mod: { ...SAMPLE_INDEX.mods[0], i18n: { tr: { name: 'Merhaba (Lua)' } } } };
     const tr = render(Layout, { children });
     expect(document.title).toBe('Merhaba (Lua) · Blockheads Club');
     tr.unmount();
@@ -123,6 +125,26 @@ describe('layout', () => {
     nav.data = {};
     render(Layout, { children });
     expect(document.title).toBe('Mods · Blockheads Club');
+  });
+
+  it('renders one set of page-specific link preview tags', () => {
+    const tags = (sel: string) => [...document.head.querySelectorAll(sel)].map((e) => e.getAttribute('content') ?? e.getAttribute('href'));
+    nav.path = '/pc';
+    const pc = render(Layout, { children });
+    expect(tags('meta[property="og:title"]')).toEqual(['Blockheads PC · Blockheads Club']);
+    expect(tags('meta[property="og:image"]')).toEqual([SITE_URL + 'og/pc.png']);
+    expect(tags('meta[property="og:url"]')).toEqual([SITE_URL + 'pc']);
+    expect(tags('link[rel="canonical"]')).toEqual([SITE_URL + 'pc']);
+    expect(tags('meta[name="description"]')).toHaveLength(1);
+    pc.unmount();
+    nav.path = '/mods/hello-lua';
+    nav.data = { mod: SAMPLE_INDEX.mods[0] };
+    render(Layout, { children });
+    expect(tags('meta[property="og:title"]')).toEqual(['Hello (Lua) — Blockheads mod']);
+    expect(tags('meta[property="og:type"]')).toEqual(['article']);
+    expect(tags('meta[property="og:image"]')).toEqual([SITE_URL + 'mods/hello-lua/og.png']);
+    expect(tags('meta[name="twitter:image"]')).toEqual([SITE_URL + 'mods/hello-lua/og.png']);
+    expect(tags('meta[property="og:locale"]')).toEqual(['en_US']);
   });
 
   it('sends old one-page anchors to their new home in the visitor’s language', () => {
